@@ -9,7 +9,7 @@ st.set_page_config(
 # Sidebar
 with st.sidebar:
     logo = Image.open("Assets/Img/Website_Logo_2.png")
-    st.image(logo, use_column_width=True)
+    st.image(logo, use_container_width=True)
     st.page_link("pages/1_About.py", label="About")
     st.page_link("pages/2_NP_Database_Search.py", label="Neuropeptide Database Search")
     st.page_link("pages/3_Tools.py", label="Tools")
