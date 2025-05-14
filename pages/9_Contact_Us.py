@@ -47,7 +47,7 @@ If you want to support the development of the CNPD, or have any trouble accessin
 # ─── Publications Grid ───────────────────────────────────────────────────
 
 # --- helper to load an image as base64 ---
-def img_to_base64(path):
+def img_b64(path):
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
