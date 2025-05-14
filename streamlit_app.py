@@ -117,7 +117,7 @@ st.markdown("""
 ### Funding
 This work is supported by [Funding Agencies]
 For other tools developed by the Li Lab, visit **www.lilabs.org/resources**
-""")
+
 
 <i>Last update: Jul 2025<i>
-
+""")
