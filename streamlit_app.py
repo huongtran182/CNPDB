@@ -81,19 +81,20 @@ st.markdown("""
     
     .stPageLink a {
         all: unset !important;
-        color: #ffffff !important;
+        color: #9592a0 !important;
         font-family: 'Arial', sans-serif !important;
-        font-size: 16px !important;
+        font-size: 20px !important;
         font-weight: bold !important;
         text-transform: uppercase !important;
         text-align: center !important;
-        letter-spacing: 1px !important;
-        padding: 12px 0 !important;
+        letter-spacing: 0.5px !important;
+        padding: 0px 8px !important;
         margin: 0 !important;
         width: 100% !important;
         display: block !important;
         cursor: pointer !important;
         transition: all 0.3s ease !important;
+        text-decoration: none !important;
     }
     
     .stPageLink a:hover {
