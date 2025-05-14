@@ -80,7 +80,6 @@ st.markdown("""
     }
     
     .stPageLink a {
-        all: unset !important;
         color: #9592a0 !important;
         font-family: 'Arial', sans-serif !important;
         font-size: 30px !important;
