@@ -106,19 +106,20 @@ for col, p in zip(cols, papers):
               font-size: 1.15em;
               line-height: 1.2;
               flex-shrink: 0;
+              text-align: center;
           ">
             {p["title"]}
           </h3>
 
           <!-- flexible summary block -->
           <div style="
-              flex: 1;
-              overflow: hidden;
+             flex: 1;
               color: #555;
               font-size: 0.9em;
-              margin-bottom: 15px;
-              text-align: left;
               line-height: 1.4;
+              margin: 0 0 15px 0;
+              overflow: auto; /* in case text is long */
+              text-align: left;
           ">
             {p["summary"]}
           </div>
