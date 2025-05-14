@@ -82,85 +82,36 @@ cols = st.columns(3, gap="medium")
 for col, p in zip(cols, papers):
     b64 = img_b64(p["img"])
     with col:
+       # the card wrapper
         st.markdown(f"""
-        <!-- entire card wrapper -->
-<div style="
-    background-color: #9e9ac8;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 500px;
-">
+        <div style="
+            background-color:#9e9ac8;
+            border-radius:10px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.1);
+            padding:20px;
+            display:flex;
+            flex-direction:column;
+            height:100%;
+        ">
+            <img src="data:image/png;base64,{img_to_base64(paper['img'])}" 
+                 style="width:100%; height:auto; object-fit:contain; border-radius:5px; margin-bottom:15px;" />
+            <h3 style="color:#29004c; margin:0 0 10px; font-size:1.1em; line-height:1.2;">
+              {paper['title']}
+            </h3>
+            <p style="flex:1; color:#555; font-size:0.9em; margin-bottom:15px; text-align:left;">
+              {paper['summary']}
+            </p>
+            <a href="{paper['link']}" target="_blank" style="
+                background-color:#29004c;
+                color:#fff;
+                text-decoration:none;
+                padding:8px 16px;
+                border-radius:5px;
+                align-self:center;
+                font-size:0.9em;
+            ">Read More</a>
+        </div>
 
-  <!-- 1) FIXED white box for TOC -->
-  <div style="
-      width: 100%;
-      max-width: 400px;      /* limit width if you wish */
-      height: 200px;         /* fixed height */
-      background-color: white;
-      border-radius: 5px;
-      margin: 0 auto 15px;   /* center horizontally + bottom gap */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  ">
-    <img
-      src="data:image/png;base64,{b64}"
-      style="
-        max-width: 90%;      /* leave some padding inside the white box */
-        max-height: 90%;
-        object-fit: contain;  /* preserve aspect ratio */
-      "
-    />
-  </div>
-
-  <!-- 2) TITLE: ensure it's centered and has zero top-margin -->
-  <h3 style="
-      color: #29004c;
-      margin: 0 0 10px 0;
-      text-align: center;
-      font-size: 1.15em;
-      line-height: 1.2;
-      flex-shrink: 0;
-  ">
-    {p["title"]}
-  </h3>
-
-  <!-- 3) SUMMARY: no top margin, so it always starts at same Y -->
-  <div style="
-      flex: 1;
-      color: #555;
-      font-size: 0.9em;
-      line-height: 1.4;
-      margin: 0 0 15px 0;
-      overflow: auto; /* in case text is long */
-      text-align: left;
-  ">
-    {p["summary"]}
-  </div>
-
-  <!-- 4) BUTTON: fixed‐height block so it sits at same Y -->
-  <div style="
-      height: 45px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-shrink: 0;
-  ">
-    <a href="{p["link"]}" target="_blank" style="
-        background-color: #29004c;
-        color: white;
-        text-decoration: none;
-        padding: 8px 16px;
-        border-radius: 5px;
-        font-size: 0.9em;
-    ">Read More</a>
-  </div>
-
-</div>
 """, unsafe_allow_html=True)
 
 # ─── Footer ───────────────────────────────────────────────────────────────
