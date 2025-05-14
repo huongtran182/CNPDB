@@ -22,16 +22,22 @@ st.markdown("""
         display: none;
     }
     
-    /* Sidebar appearance */
+    /* Reset default Streamlit sidebar styles */
     section[data-testid="stSidebar"] {
-        background-color: #2a2541 !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        height: 100vh !important;
-        display: flex !important;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center; 
+    background-color: #2a2541 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 100vh !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    }
+
+    /* Fixes ghost search bar and mobile collapse weirdness */
+    section[data-testid="stSidebar"] input,
+    div[data-testid="collapsedControl"] {
+    display: none !important;
     }
     
     .logo-container {
@@ -63,19 +69,23 @@ st.markdown("""
         margin: 0 !important;
     }
     
-   /* Styled native st.page_link buttons */
-    section[data-testid="stSidebar"] a {
-        color: #9592a0 !important;
-        font-family: 'Arial', sans-serif;
-        font-size: 50px !important;
-        font-weight: bold !important;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        text-align: center;
-        padding: 0px 8px !important;
-        display: block;
-        text-decoration: none !important;
-        transition: background-color 0.3s ease;
+    section[data-testid="stSidebar"] button {
+    all: unset !important;
+    color: #9592a0 !important;
+    font-family: 'Arial', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    letter-spacing: 0.5px !important;
+    padding: 10px 20px !important;
+    margin: 4px 0 !important;
+    border-radius: 4px !important;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    display: block !important;
+    opacity: 1 !important;
+    cursor: pointer;
     }
      section[data-testid="stSidebar"] a:hover {
         background-color: #3a2d5a !important;
