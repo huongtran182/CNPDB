@@ -70,26 +70,23 @@ st.markdown("""
         width: 100%;
     }
     
-   /* New sidebar navigation styles */
-    .stPageLink {
-        display: block !important;
-        text-align: center !important;
-        padding: 4px 0 !important;
-        margin: 0 !important;
+   /* Target the actual link elements more precisely */
+    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlockBorderWrapper"] > div > div {
         width: 100% !important;
     }
     
-    .stPageLink a {
+    /* Target the anchor tags inside page links */
+    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] a {
         all: unset !important;
-        color: #9592a0 !important;
+        color: #ffffff !important;
         font-family: 'Arial', sans-serif !important;
-        font-size: 30px !important;
+        font-size: 16px !important;
         font-weight: bold !important;
         text-transform: uppercase !important;
         text-align: center !important;
-        letter-spacing: 0.5px !important;
-        padding: 0px 8px !important;
-        margin: 0 !important;
+        letter-spacing: 1px !important;
+        padding: 12px 0 !important;
+        margin: 0 auto !important;
         width: 100% !important;
         display: block !important;
         cursor: pointer !important;
@@ -97,22 +94,30 @@ st.markdown("""
         text-decoration: none !important;
     }
     
-    .stPageLink a:hover {
+    /* Hover effects */
+    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] a:hover {
         background-color: #3a2d5a !important;
         color: #ffcc00 !important;
-        text-decoration: none !important;
     }
-
-    .stPageLink a:active {
+    
+    /* Active state */
+    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] a:active {
         background-color: #4a3666 !important;
     }
-
-    /* Add separator between nav items */
+    
+    /* Separator style */
     .nav-separator {
-        height: 0.1px;
+        height: 1px;
         background-color: #555167;
-        width: 10%;
-        margin: 0 auto;
+        width: 80%;
+        margin: 4px auto;
+    }
+    
+    /* Ensure the nav container takes full width */
+    .nav-container {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 </style>
 """, unsafe_allow_html=True)
