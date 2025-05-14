@@ -9,12 +9,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for the sidebar
-def local_css(file_name):
-    with open(file_name) as f:
-        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
-# Apply custom CSS
+# Custom CSS for the sidebar and banner
 st.markdown("""
 <style>
     /* Main sidebar styling */
@@ -61,6 +56,13 @@ st.markdown("""
         font-weight: bold;
         font-size: 1.5rem;
     }
+    
+    /* Full-width banner */
+    .full-width {
+        width: 100%;
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -87,8 +89,13 @@ with st.sidebar:
     st.page_link("pages/8_FAQ.py", label="FAQ")
     st.page_link("pages/9_Contact_Us.py", label="Contact Us")
 
-# Main content
-st.Image.open("Assets/Img/CNPD_Banner.png")
+# Main content - Banner image spanning full width
+col1, col2 = st.columns([1, 20])  # Adjust ratio to control sidebar offset
+with col2:
+    banner = Image.open("Assets/Img/CNPD_Banner.png")
+    st.image(banner, use_column_width=True)
+
+# Rest of your content
 st.markdown("""
 ### WELCOME TO CNPD: THE CRUSTACEAN NEUROPEPTIDE DATABASE
 
@@ -117,7 +124,8 @@ st.markdown("""
 ### Funding
 This work is supported by [Funding Agencies]
 For other tools developed by the Li Lab, visit **www.lilabs.org/resources**
-
-
-<i>Last update: Jul 2025<i>
 """)
+
+st.markdown("""
+<i>Last update: Jul 2025</i>
+""", unsafe_allow_html=True)
