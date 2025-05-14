@@ -128,14 +128,7 @@ with st.sidebar:
     st.page_link("pages/8_FAQ.py", label="Frequently Asked Questions"),
     st.page_link("pages/9_Contact_Us.py", label="Contact Us"),
     ]
-    current_page = os.path.basename(__file__)
-    for page in pages:
-        is_active = current_page == os.path.basename(page["file"])
-        active_class = "active" if is_active else ""
-        st.markdown(
-            f'<a href="{page["file"]}" class="nav-item {active_class}" target="_self">{page["label"].upper()}</a>',
-            unsafe_allow_html=True
-        )
+    
     st.markdown('</div>', unsafe_allow_html=True)
 
 
