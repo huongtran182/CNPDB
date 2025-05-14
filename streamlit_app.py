@@ -105,11 +105,15 @@ with st.sidebar:
         {"file": "pages/9_Contact_Us.py", "label": "Contact Us"}
     ]
     
- for page in pages:
+ current_page = os.path.basename(__file__)
+    for page in pages:
+        is_active = current_page == os.path.basename(page["file"])
+        active_class = "active" if is_active else ""
         st.markdown(
-            f'<a href="{page["file"]}" class="nav-item" target="_self">{page["label"].upper()}</a>',
+            f'<a href="{page["file"]}" class="nav-item {active_class}" target="_self">{page["label"].upper()}</a>',
             unsafe_allow_html=True
         )
+    
     st.markdown('</div>', unsafe_allow_html=True)
 
 # Main content - Banner image spanning full width
