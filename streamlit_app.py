@@ -71,15 +71,15 @@ st.markdown("""
     
     section[data-testid="stSidebar"] button {
     all: unset !important;
-    color: #9592a0 !important;
+    color: #8a8695 !important;
     font-family: 'Arial', sans-serif !important;
     font-size: 18px !important;
-    font-weight: 800 !important;
+    font-weight: bold !important;
     text-transform: uppercase !important;
     text-align: center !important;
     letter-spacing: 0.5px !important;
-    padding: 10px 20px !important;
-    margin: 4px 0 !important;
+    padding: 0px 8px !important;
+    margin: 0 !important;
     border-radius: 4px !important;
     width: 100%;
     transition: background-color 0.3s ease;
