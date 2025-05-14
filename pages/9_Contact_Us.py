@@ -117,7 +117,7 @@ for col, p in zip(cols, papers):
               color: #555;
               font-size: 0.9em;
               line-height: 1.4;
-              margin: 0 0 15px 0;
+              margin: 5px 0 0 0;
               overflow: auto; /* in case text is long */
               text-align: left;
           ">
