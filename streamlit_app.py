@@ -2,17 +2,26 @@ import streamlit as st
 from PIL import Image, ImageDraw
 import os
 
+
 # Set page config with no padding
 st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Remove all margins and padding
+# Remove all margins and padding + fix top spacing and logo center alignment
 st.markdown("""
 <style>
-    .stApp { padding: 0 !important; margin: 0 !important; }
-    [data-testid="stSidebarNav"] { display: none; }
+    html, body, .stApp {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    header[data-testid="stHeader"] {
+        height: 0 !important;
+    }
+    [data-testid="stSidebarNav"] {
+        display: none;
+    }
     [data-testid="stSidebar"] {
         background-color: #2a2541 !important;
         padding: 0 !important;
@@ -22,12 +31,12 @@ st.markdown("""
     .nav-item {
         color: white !important;
         font-family: 'Arial', sans-serif;
-        font-size: 13px !important;
+        font-size: 12px !important;
         font-weight: 500;
         letter-spacing: 0.5px;
         text-transform: uppercase;
         text-align: left;
-        padding: 8px 20px !important;
+        padding: 6px 16px !important;
         margin: 0 !important;
         display: block;
         text-decoration: none !important;
@@ -39,20 +48,24 @@ st.markdown("""
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0 !important;
-        margin: 0 !important;
-        height: 140px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        margin: 0 auto;
+        height: 120px;
         border-bottom: 1px solid #4a3666;
     }
     .logo-img {
         border-radius: 50%;
-        width: 100px !important;
-        height: 100px !important;
+        width: 96px !important;
+        height: 96px !important;
         object-fit: cover;
         border: 3px solid white;
-        margin: 0 auto;
+        display: block;
     }
-    .nav-container { padding: 5px 0 !important; margin: 0 !important; }
+    .nav-container {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
     .stImage { padding: 0 !important; margin: 0 !important; }
 </style>
 """, unsafe_allow_html=True)
@@ -64,18 +77,18 @@ with st.sidebar:
     logo_path = os.path.join("Assets", "Img", "Website_Logo_2.png")
     if os.path.exists(logo_path):
         logo = Image.open(logo_path).convert("RGBA")
-        mask = Image.new("L", (100, 100), 0)
+        logo = logo.resize((96, 96))
+        mask = Image.new("L", (96, 96), 0)
         draw = ImageDraw.Draw(mask)
-        draw.ellipse((0, 0, 100, 100), fill=255)
-        logo = logo.resize((100, 100))
+        draw.ellipse((0, 0, 96, 96), fill=255)
         logo.putalpha(mask)
-        st.image(logo, width=100, output_format="PNG")
+        st.image(logo, width=96, output_format="PNG")
     else:
         st.error(f"Logo image not found at: {logo_path}")
         st.text(f"Working directory: {os.getcwd()}")
 
     st.markdown('</div>', unsafe_allow_html=True)
-
+                
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
     pages = [
         {"file": "streamlit_app.py", "label": "Home"},
