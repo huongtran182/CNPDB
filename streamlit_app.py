@@ -111,12 +111,13 @@ st.markdown("""
 ### HOW TO CITE
 If you use CNPD in your research, please cite:
 Crustacean Neuropeptide Database (CNPD): A curated resource for neuropeptide research in crustacean species. [Authors]. [Journal Name], [Year]. DOI: [XXXX].
+""")
 
 st.markdown("""
 ### Funding
 This work is supported by [Funding Agencies]
 For other tools developed by the Li Lab, visit **www.lilabs.org/resources**
-
+""")
 
 <i>Last update: Jul 2025<i>
 
