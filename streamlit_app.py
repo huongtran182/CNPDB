@@ -79,7 +79,7 @@ st.markdown("""
     section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] a {
         color: white !important;
         font-family: 'Arial', sans-serif !important;
-        font-size: 30px !important;
+        font-size: 40px !important;
         font-weight: 700 !important;
         text-transform: uppercase !important;
         text-align: center !important;
