@@ -78,15 +78,15 @@ st.markdown("""
     /* Target the anchor tags inside page links */
     section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] a {
         all: unset !important;
-        color: #ffffff !important;
+        color: #9592a0 !important;
         font-family: 'Arial', sans-serif !important;
-        font-size: 16px !important;
+        font-size: 30px !important;
         font-weight: bold !important;
         text-transform: uppercase !important;
         text-align: center !important;
-        letter-spacing: 1px !important;
-        padding: 12px 0 !important;
-        margin: 0 auto !important;
+        letter-spacing: 0.5px !important;
+        padding: 0px 8px !important;
+        margin: 0 !important;
         width: 100% !important;
         display: block !important;
         cursor: pointer !important;
@@ -107,10 +107,10 @@ st.markdown("""
     
     /* Separator style */
     .nav-separator {
-        height: 1px;
+        height: 0.1px;
         background-color: #555167;
-        width: 80%;
-        margin: 4px auto;
+        width: 10%;
+        margin: 0 auto;
     }
     
     /* Ensure the nav container takes full width */
