@@ -56,10 +56,10 @@ st.markdown("""
         font-family: 'Arial', sans-serif;
         font-size: 16px !important;
         font-weight: bold !important;
-        letter-spacing: 0.1px;
+        letter-spacing: 0.5px;
         text-transform: uppercase;
         text-align: center;
-        padding: 3px 16px !important;
+        padding: 1px 8px !important;
         margin: 0 !important;
         display: block;
         text-decoration: none !important;
