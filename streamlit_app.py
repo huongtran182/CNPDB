@@ -29,16 +29,16 @@ st.markdown("""
         min-width: 250px !important;
     }
     .nav-item {
-        color: white !important;
+        color: #8a8695 !important;
         font-family: 'Arial', sans-serif;
-        font-size: 12px !important;
-        font-weight: 500;
+        font-size: 16px !important;
+        font-weight: 1500;
         letter-spacing: 0.5px;
         text-transform: uppercase;
         text-align: left;
-        padding: 6px 16px !important;
+        padding: 3px 16px !important;
         margin: 0 !important;
-        display: inline-block;
+        display: block;
         text-decoration: none !important;
         transition: all 0.3s ease;
     }
