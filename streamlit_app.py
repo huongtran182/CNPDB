@@ -93,7 +93,7 @@ with st.sidebar:
 col1, col2 = st.columns([1, 20])  # Adjust ratio to control sidebar offset
 with col2:
     banner = Image.open("Assets/Img/CNPD_Banner.png")
-    st.image(banner, use_column_width=True)
+    st.image(banner, use_container_width=True)
 
 # Rest of your content
 st.markdown("""
@@ -123,6 +123,7 @@ Crustacean Neuropeptide Database (CNPD): A curated resource for neuropeptide res
 st.markdown("""
 ### Funding
 This work is supported by [Funding Agencies]
+
 For other tools developed by the Li Lab, visit **www.lilabs.org/resources**
 """)
 
