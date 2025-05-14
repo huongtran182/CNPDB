@@ -48,10 +48,10 @@ st.markdown("""
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 8px;
-        padding-bottom: 8px;
+        padding-top: 0px;
+        padding-bottom: 0px;
         margin: 0 auto;
-        height: 200px;
+        height: 0px;
         border-bottom: 1px solid #4a3666;
     }
     .logo-img {
