@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-import base64
+import os
 
 # Set page config
 st.set_page_config(
@@ -9,95 +9,129 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS for the sidebar and banner
+# Get current page to highlight active link
+current_page = os.path.basename(__file__)
+
+# Custom CSS for the sidebar
 st.markdown("""
 <style>
+    /* Hide the default sidebar nav */
+    [data-testid="stSidebarNav"] {
+        display: none;
+    }
+    
     /* Main sidebar styling */
     [data-testid="stSidebar"] {
         background-color: #2a2541 !important;
-        padding-top: 0rem;
+        padding: 0 !important;
     }
     
-    /* Sidebar navigation links */
-    .stPageLink {
-        color: white !important;
+    /* Navigation links */
+    .nav-item {
+        color: #ffffff !important;
         font-family: 'Arial', sans-serif;
-        font-size: 16px;
-        padding: 0.5rem 1rem;
-        margin: 0.2rem 0;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        text-align: left;
+        padding: 12px 20px !important;
+        margin: 0 !important;
+        width: 100%;
+        display: block;
+        text-decoration: none !important;
+        transition: all 0.3s ease;
     }
     
-    .stPageLink:hover {
-        background-color: #7b1fa2 !important;
-        color: white !important;
+    .nav-item:hover {
+        background-color: #3a2d5a !important;
     }
     
-    /* Logo styling */
+    .nav-item.active {
+        background-color: #4a3666 !important;
+        font-weight: 600;
+    }
+    
+    /* Logo container */
     .logo-container {
         display: flex;
         justify-content: center;
-        margin-bottom: 1.5rem;
+        padding: 2rem 1rem;
+        border-bottom: 1px solid #4a3666;
     }
     
     .logo-img {
         border-radius: 50%;
-        object-fit: cover;
         width: 120px;
         height: 120px;
-        border: 3px solid white;
+        object-fit: cover;
+        border: 3px solid #ffffff;
     }
     
-    /* Title styling */
-    .sidebar-title {
-        color: white;
-        text-align: center;
-        font-family: 'Arial', sans-serif;
-        margin-bottom: 1.5rem;
-        font-weight: bold;
-        font-size: 1.5rem;
+    /* Navigation container */
+    .nav-container {
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
     }
     
-    /* Full-width banner */
-    .full-width {
-        width: 100%;
-        margin-left: -1rem;
-        margin-right: -1rem;
+    /* Remove Streamlit's default sidebar spacing */
+    .st-emotion-cache-6qob1r {
+        padding-top: 0 !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # Sidebar with logo and navigation
 with st.sidebar:
-    # Logo in a circle
+    # Circular logo at top-center
     st.markdown('<div class="logo-container">', unsafe_allow_html=True)
-    logo = Image.open("Assets/Img/Website_Logo_2.png")
-    st.image(logo, width=120, output_format="PNG", use_container_width=False)
+    try:
+        logo = Image.open("Assets/Img/Website_Logo_2.png")
+        st.image(logo, width=120, use_container_width=False)
+    except:
+        st.error("Logo image not found")
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Title
-    st.markdown('<div class="sidebar-title">CNPD</div>', unsafe_allow_html=True)
+    # Navigation menu (left-aligned)
+    st.markdown('<div class="nav-container">', unsafe_allow_html=True)
     
-    # Navigation links
-    st.page_link("streamlit_app.py", label="Home")
-    st.page_link("pages/1_About.py", label="About")
-    st.page_link("pages/2_NP_Database_Search.py", label="NP Database Search")
-    st.page_link("pages/3_Tools.py", label="Tools")
-    st.page_link("pages/4_Related_Databases.py", label="Related Databases")
-    st.page_link("pages/5_Tutorials.py", label="Tutorials")
-    st.page_link("pages/6_Statistics.py", label="Statistics")
-    st.page_link("pages/7_Glossary.py", label="Glossary")
-    st.page_link("pages/8_FAQ.py", label="FAQ")
-    st.page_link("pages/9_Contact_Us.py", label="Contact Us")
+    pages = [
+        {"file": "streamlit_app.py", "label": "Home"},
+        {"file": "pages/1_About.py", "label": "About"},
+        {"file": "pages/2_NP_Database_Search.py", "label": "NP Database Search"},
+        {"file": "pages/3_Tools.py", "label": "Tools"},
+        {"file": "pages/4_Related_Databases.py", "label": "Related Databases"},
+        {"file": "pages/5_Tutorials.py", "label": "Tutorials"},
+        {"file": "pages/6_Statistics.py", "label": "Statistics"},
+        {"file": "pages/7_Glossary.py", "label": "Glossary"},
+        {"file": "pages/8_FAQ.py", "label": "FAQ"},
+        {"file": "pages/9_Contact_Us.py", "label": "Contact Us"}
+    ]
+    
+    current_page = os.path.basename(__file__)
+    for page in pages:
+        is_active = current_page == os.path.basename(page["file"])
+        active_class = "active" if is_active else ""
+        st.markdown(
+            f'<a href="{page["file"]}" class="nav-item {active_class}" target="_self">{page["label"].upper()}</a>',
+            unsafe_allow_html=True
+        )
+    
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# Main content - Banner image spanning full width
-col1, col2 = st.columns([1, 20])  # Adjust ratio to control sidebar offset
+# Main content
+col1, col2 = st.columns([1, 20])
 with col2:
-    banner = Image.open("Assets/Img/CNPD_Banner.png")
-    st.image(banner, use_container_width=True)
+    try:
+        banner = Image.open("Assets/Img/CNPD_Banner.png")
+        st.image(banner, use_column_width=True)
+    except:
+        st.error("Banner image not found")
 
-# Rest of your content
 st.markdown("""
-### WELCOME TO CNPD: THE CRUSTACEAN NEUROPEPTIDE DATABASE
+## WELCOME TO CNPD: THE CRUSTACEAN NEUROPEPTIDE DATABASE
 
 Neuropeptides are critical signaling molecules involved in numerous physiological processes, including metabolism, reproduction, development, and behavior. In crustaceans, neuropeptides regulate key biological functions such as molting, feeding, and immune responses. Despite their significance, crustacean neuropeptides remain underrepresented in existing neuropeptide databases.
 
