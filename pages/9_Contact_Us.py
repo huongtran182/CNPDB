@@ -91,13 +91,29 @@ for col, p in zip(cols, papers):
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 550px;
+            min-height: 500px;
         ">
-          <!-- fixed-height image block -->
-          <div style="height: 200px; flex-shrink: 0; display:flex; justify-content:center; align-items:center;">
-            <img src="data:image/png;base64,{b64}"
-                 style="max-height:100%; width:auto; object-fit:contain; border-radius:5px;" />
-          </div>
+          <!-- fixed‐size white “TOC” block -->
+            <div style="
+                width: 100%;
+                max-width: 400px;     /* caps the block at 400px wide */
+                height: 200px;        /* always 200px tall */
+                background-color: white;
+                border-radius: 5px;   /* same rounding as your cards */
+                display: flex;        
+                justify-content: center;  /* horizontal centering */
+                align-items: center;      /* vertical centering */
+                margin: 0 auto 15px;      /* auto‐center block in column + bottom gap */
+            ">
+              <img 
+                src="data:image/png;base64,{b64}" 
+                style="
+                  max-width: 100%;     /* will never overflow the 400px box */
+                  max-height: 100%;    /* nor exceed 200px height */
+                  object-fit: contain; /* aspect‐ratio preserved, centered */
+                " 
+              />
+            </div>
 
           <!-- title -->
           <h3 style="
@@ -106,6 +122,7 @@ for col, p in zip(cols, papers):
               font-size: 1.15em;
               line-height: 1.2;
               flex-shrink: 0;
+              text-align: center;
           ">
             {p["title"]}
           </h3>
