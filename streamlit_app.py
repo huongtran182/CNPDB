@@ -9,7 +9,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Get current page name to highlight active link
+# Get current page to highlight active link
 current_page = os.path.basename(__file__)
 
 # Custom CSS for the sidebar
@@ -18,83 +18,80 @@ st.markdown("""
     /* Main sidebar styling */
     [data-testid="stSidebar"] {
         background-color: #2a2541 !important;
-        padding: 0rem !important;
+        padding: 0 !important;
     }
     
-    /* Sidebar navigation links */
-    .sidebar-link {
-        color: white !important;
-        font-family: 'Muli', sans-serif;
-        font-size: 16px;
-        padding: 0.5rem 1rem;
-        margin: 0.1rem 0;
-        border-radius: 0.25rem;
+    /* Navigation links */
+    .nav-item {
+        color: #ffffff !important;
+        font-family: 'Arial', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 12px 0 !important;
+        margin: 0 !important;
+        width: 100%;
         display: block;
-        text-decoration: none;
+        text-decoration: none !important;
+        transition: all 0.3s ease;
     }
     
-    .sidebar-link:hover {
-        background-color: #3f2d5a !important;
-        color: white !important;
+    .nav-item:hover {
+        background-color: #3a2d5a !important;
     }
     
-    .sidebar-link.active {
+    .nav-item.active {
         background-color: #4a3666 !important;
-        font-weight: bold;
+        font-weight: 600;
     }
     
-    /* Logo styling */
+    /* Logo container */
     .logo-container {
         display: flex;
         justify-content: center;
-        padding: 1.5rem 1rem 1rem 1rem;
+        padding: 2rem 1rem 1.5rem 1rem;
     }
     
     .logo-img {
         border-radius: 50%;
-        object-fit: cover;
         width: 120px;
         height: 120px;
-        border: 3px solid white;
-    }
-    
-    /* Title styling */
-    .sidebar-title {
-        color: white;
-        text-align: center;
-        font-family: 'Saira Extra Condensed', sans-serif;
-        margin-bottom: 1.5rem;
-        font-weight: 700;
-        font-size: 1.8rem;
-        text-transform: uppercase;
-        padding: 0 1rem;
+        object-fit: cover;
+        border: 3px solid #ffffff;
     }
     
     /* Navigation container */
     .nav-container {
-        padding: 0 1rem 1.5rem 1rem;
+        padding: 0.5rem 0 2rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+    
+    /* Remove Streamlit's default sidebar spacing */
+    .st-emotion-cache-6qob1r {
+        padding-top: 0 !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
 # Sidebar with logo and navigation
 with st.sidebar:
-    # Logo in a circle
+    # Circular logo at top
     st.markdown('<div class="logo-container">', unsafe_allow_html=True)
     try:
         logo = Image.open("Assets/Img/Website_Logo_2.png")
         st.image(logo, width=120, use_column_width=False)
     except:
-        st.error("Logo image not found at: Assets/Img/Website_Logo_2.png")
+        st.error("Logo image not found")
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Title
-    st.markdown('<div class="sidebar-title">CNPD</div>', unsafe_allow_html=True)
-    
-    # Navigation links
+    # Navigation menu (all caps, centered)
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
     
-    # Create links with active state
     pages = [
         {"file": "streamlit_app.py", "label": "Home"},
         {"file": "pages/1_About.py", "label": "About"},
@@ -112,20 +109,14 @@ with st.sidebar:
         is_active = current_page == os.path.basename(page["file"])
         active_class = "active" if is_active else ""
         st.markdown(
-            f'<a href="{page["file"]}" class="sidebar-link {active_class}">{page["label"]}</a>',
+            f'<a href="{page["file"]}" class="nav-item {active_class}" target="_self">{page["label"].upper()}</a>',
             unsafe_allow_html=True
         )
     
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Main content - Banner image
-try:
-    banner = Image.open("Assets/Img/CNPD_Banner.png")
-    st.image(banner, use_column_width=True)
-except:
-    st.error("Banner image not found at: Assets/Img/CNPD_Banner.png")
-
-# Rest of your content
+# Main content
+st.title("CNPD: CRUSTACEAN NEUROPEPTIDE DATABASE")
 st.markdown("""
 ## WELCOME TO CNPD: THE CRUSTACEAN NEUROPEPTIDE DATABASE
 
