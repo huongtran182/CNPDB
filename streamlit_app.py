@@ -1,10 +1,9 @@
 import streamlit as st
-from PIL import Image
+from PIL import Image, ImageDraw
 import os
 
 # Set page config with no padding
 st.set_page_config(
-    page_title="CNPD - Crustacean Neuropeptide Database",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -12,26 +11,14 @@ st.set_page_config(
 # Remove all margins and padding
 st.markdown("""
 <style>
-    /* Remove all default spacing */
-    .stApp {
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    
-    /* Hide default sidebar nav */
-    [data-testid="stSidebarNav"] {
-        display: none;
-    }
-    
-    /* Tight sidebar styling */
+    .stApp { padding: 0 !important; margin: 0 !important; }
+    [data-testid="stSidebarNav"] { display: none; }
     [data-testid="stSidebar"] {
         background-color: #2a2541 !important;
         padding: 0 !important;
         margin: 0 !important;
         min-width: 250px !important;
     }
-    
-    /* Compact navigation items */
     .nav-item {
         color: white !important;
         font-family: 'Arial', sans-serif;
@@ -46,16 +33,8 @@ st.markdown("""
         text-decoration: none !important;
         transition: all 0.2s ease;
     }
-    
-    .nav-item:hover {
-        background-color: #3a2d5a !important;
-    }
-    
-    .nav-item.active {
-        background-color: #4a3666 !important;
-    }
-    
-    /* Perfect circular logo */
+    .nav-item:hover { background-color: #3a2d5a !important; }
+    .nav-item.active { background-color: #4a3666 !important; }
     .logo-container {
         display: flex;
         justify-content: center;
@@ -65,7 +44,6 @@ st.markdown("""
         height: 140px;
         border-bottom: 1px solid #4a3666;
     }
-    
     .logo-img {
         border-radius: 50%;
         width: 100px !important;
@@ -74,41 +52,31 @@ st.markdown("""
         border: 3px solid white;
         margin: 0 auto;
     }
-    
-    /* Tight navigation container */
-    .nav-container {
-        padding: 5px 0 !important;
-        margin: 0 !important;
-    }
-    
-    /* Remove banner spacing */
-    .stImage {
-        padding: 0 !important;
-        margin: 0 !important;
-    }
+    .nav-container { padding: 5px 0 !important; margin: 0 !important; }
+    .stImage { padding: 0 !important; margin: 0 !important; }
 </style>
 """, unsafe_allow_html=True)
 
 # Sidebar with zero-spacing layout
 with st.sidebar:
-    # Logo container with exact centering
     st.markdown('<div class="logo-container">', unsafe_allow_html=True)
-    try:
-        logo = Image.open("Assets/Img/Website_Logo_2.png")
-        # Create perfect circle mask
+
+    logo_path = os.path.join("Assets", "Img", "Website_Logo_2.png")
+    if os.path.exists(logo_path):
+        logo = Image.open(logo_path).convert("RGBA")
         mask = Image.new("L", (100, 100), 0)
-        draw = ImageDraw.Draw(mask) 
+        draw = ImageDraw.Draw(mask)
         draw.ellipse((0, 0, 100, 100), fill=255)
         logo = logo.resize((100, 100))
         logo.putalpha(mask)
         st.image(logo, width=100, output_format="PNG")
-    except:
-        st.error("Logo image not found")
+    else:
+        st.error(f"Logo image not found at: {logo_path}")
+        st.text(f"Working directory: {os.getcwd()}")
+
     st.markdown('</div>', unsafe_allow_html=True)
-    
-    # Ultra-compact navigation
+
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
-    
     pages = [
         {"file": "streamlit_app.py", "label": "Home"},
         {"file": "pages/1_About.py", "label": "About"},
@@ -121,7 +89,6 @@ with st.sidebar:
         {"file": "pages/8_FAQ.py", "label": "Frequently Asked Questions"},
         {"file": "pages/9_Contact_Us.py", "label": "Contact Us"}
     ]
-    
     current_page = os.path.basename(__file__)
     for page in pages:
         is_active = current_page == os.path.basename(page["file"])
@@ -130,13 +97,10 @@ with st.sidebar:
             f'<a href="{page["file"]}" class="nav-item {active_class}" target="_self">{page["label"].upper()}</a>',
             unsafe_allow_html=True
         )
-    
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Main content with zero top margin
-st.markdown("""
-<div style="padding:0;margin:0;">
-""", unsafe_allow_html=True)
+# Main content area
+st.markdown("""<div style="padding:0;margin:0;">""", unsafe_allow_html=True)
 
 try:
     banner = Image.open("Assets/Img/CNPD_Banner.png")
