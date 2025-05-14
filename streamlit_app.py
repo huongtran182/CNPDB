@@ -93,6 +93,13 @@ st.markdown("""
         transition: all 0.3s ease !important;
         text-decoration: none !important;
     }
+      /* New sidebar navigation styles */
+    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] {
+        display: block !important;
+        text-align: center !important;
+        padding: 4px 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
     
     /* Hover effects */
     section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] a:hover {
@@ -111,13 +118,6 @@ st.markdown("""
         background-color: #555167;
         width: 10%;
         margin: 0 auto;
-    }
-    
-    /* Ensure the nav container takes full width */
-    .nav-container {
-        width: 100% !important;
-        padding: 0 !important;
-        margin: 0 !important;
     }
 </style>
 """, unsafe_allow_html=True)
