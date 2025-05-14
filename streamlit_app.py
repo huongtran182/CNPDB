@@ -76,7 +76,6 @@ st.markdown("""
         display: block;
         text-decoration: none !important;
         transition: background-color 0.3s ease;
-        border-radius: 4px;
     }
      section[data-testid="stSidebar"] a:hover {
         background-color: #3a2d5a !important;
