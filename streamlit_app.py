@@ -51,15 +51,15 @@ st.markdown("""
         padding-top: 8px;
         padding-bottom: 8px;
         margin: 0 auto;
-        height: 120px;
+        height: 200px;
         border-bottom: 1px solid #4a3666;
     }
     .logo-img {
-        border-radius: 50%;
-        width: 96px !important;
-        height: 96px !important;
+        border-radius: 80%;
+        width: 200px !important;
+        height: 200px !important;
         object-fit: cover;
-        border: 3px solid #4a3666;
+        border: 20px solid #4a3666;
         display: block;
     }
     .nav-container {
