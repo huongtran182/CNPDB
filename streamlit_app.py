@@ -80,7 +80,7 @@ st.markdown("""
         all: unset !important;
         color: #9592a0 !important;
         font-family: 'Arial', sans-serif !important;
-        font-size: 30px !important;
+        font-size: 100x !important;
         font-weight: bold !important;
         text-transform: uppercase !important;
         text-align: center !important;
@@ -93,13 +93,6 @@ st.markdown("""
         transition: all 0.3s ease !important;
         text-decoration: none !important;
     }
-      /* New sidebar navigation styles */
-    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] {
-        display: block !important;
-        text-align: center !important;
-        padding: 4px 0 !important;
-        margin: 0 !important;
-        width: 100% !important;
     
     /* Hover effects */
     section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] a:hover {
