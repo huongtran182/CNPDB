@@ -112,7 +112,7 @@ def render_sidebar():
             {"file": "pages/6_Statistics.py", "label": "Statistics"},
             {"file": "pages/7_Glossary.py", "label": "Glossary"},
             {"file": "pages/8_FAQ.py", "label": "Frequently Asked Questions"},
-            {"file": "pages/9_Contact_Us.py", "label": "Contact Us"}
+            {"file": "pages/9_Contact_Us.py", "label": "Contact Us"},
         ]
 
         current_page = os.path.basename(__file__)
