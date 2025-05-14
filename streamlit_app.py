@@ -84,7 +84,7 @@ with st.sidebar:
     st.markdown('<div class="logo-container">', unsafe_allow_html=True)
     try:
         logo = Image.open("Assets/Img/Website_Logo_2.png")
-        st.image(logo, width=120, use_column_width=False)
+        st.image(logo, width=120, use_container_width=False)
     except:
         st.error("Logo image not found")
     st.markdown('</div>', unsafe_allow_html=True)
@@ -115,8 +115,11 @@ with st.sidebar:
     
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Main content
-st.title("CNPD: CRUSTACEAN NEUROPEPTIDE DATABASE")
+# Main content - Banner image spanning full width
+col1, col2 = st.columns([1, 20])  # Adjust ratio to control sidebar offset
+with col2:
+    banner = Image.open("Assets/Img/CNPD_Banner.png")
+    st.image(banner, use_container_width=True)
 st.markdown("""
 ## WELCOME TO CNPD: THE CRUSTACEAN NEUROPEPTIDE DATABASE
 
