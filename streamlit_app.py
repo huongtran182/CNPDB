@@ -11,6 +11,7 @@ st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 st.markdown("""
 <style>
     html, body, .stApp {
+        height: 100% !important;
         padding: 0 !important;
         margin: 0 !important;
     }
@@ -24,6 +25,11 @@ st.markdown("""
         background-color: #2a2541 !important;
         padding: 0 !important;
         margin: 0 !important;
+        height: 100vh !important;        /* Full screen height */
+        overflow-y: auto !important;     /* Allow scroll only if needed */
+        display: flex !important;
+        flex-direction: column;
+        justify-content: flex-start;
     }
     .logo-container {
     display: flex;
