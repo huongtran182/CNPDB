@@ -15,7 +15,7 @@ col1, col2 = st.columns([1, 3], gap="medium")
 with col1:
     headshot = os.path.join("Assets", "Img", "PIHeadshot.jpg")
     if os.path.exists(headshot):
-        st.image(headshot, use_column_width=True)
+        st.image(headshot, use_container_width=True)
     else:
         st.error(f"Profile image not found at:\n{headshot}")
 
@@ -44,7 +44,7 @@ st.markdown("### PI’s Main Publications on Neuropeptides")
 
 papers = [
     {
-        "img": os.path.join("Assets", "Publication - Resource TOC", "Gaoyuan AmericanLobster TOC.jpeg"),
+        "img": os.path.join("Assets", "Publication_TOC", "Gaoyuan AmericanLobster TOC.jpeg"),
         "title": "Neuropeptidomics of the American Lobster",
         "summary": (
             "Leveraging the recently sequenced high-quality draft genome of the American lobster, our study "
@@ -54,7 +54,7 @@ papers = [
         "link": "https://pubs.acs.org/doi/10.1021/jasms.4c00192"
     },
     {
-        "img": os.path.join("Assets", "Publication - Resource TOC", "Endogenius TOC.png"),
+        "img": os.path.join("Assets", "Publication_TOC", "Endogenius TOC.png"),
         "title": "EndoGenius: Optimized Neuropeptide Identification from Mass Spectrometry Datasets",
         "summary": (
             "EndoGenius is a database-searching strategy designed specifically for elucidating neuropeptide "
@@ -69,7 +69,7 @@ cols = st.columns(3, gap="medium")
 for idx, paper in enumerate(papers):
     with cols[idx]:
         if os.path.exists(paper["img"]):
-            st.image(paper["img"], use_column_width=True)
+            st.image(paper["img"], use_container_width=True)
         else:
             st.warning(f"Couldn’t find image:\n{paper['img']}")
         st.markdown(f"**{paper['title']}**")
