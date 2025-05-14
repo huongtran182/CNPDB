@@ -87,7 +87,7 @@ with st.sidebar:
     # Circular logo
     st.markdown('<div class="logo-container">', unsafe_allow_html=True)
     logo = Image.open("Assets/Img/Website_Logo_2.png")
-    st.image(logo, width=120, use_column_width=False)
+    st.image(logo, width=120, use_container_width=False)
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Custom navigation
