@@ -19,7 +19,7 @@ st.markdown("""
 <style>
     /* Main sidebar styling */
     [data-testid="stSidebar"] {
-        background-color: #6a0dad !important;
+        background-color: #2a2541 !important;
         padding-top: 0rem;
     }
     
