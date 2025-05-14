@@ -31,7 +31,7 @@ st.markdown("""
         overflow-y: auto !important;
         display: flex !important;
         flex-direction: column;
-        align-items: center;
+        justify-content: flex-start;
     }
     
     .logo-container {
@@ -72,7 +72,7 @@ st.markdown("""
         letter-spacing: 0.5px;
         text-transform: uppercase;
         text-align: center;
-        padding: 10px 12px !important;
+        padding: 0px 8px !important;
         display: block;
         text-decoration: none !important;
         transition: background-color 0.3s ease;
