@@ -1,11 +1,13 @@
 import streamlit as st
-from sidebar import render_sidebar  # import your sidebar function
+from sidebar import render_sidebar  # 👈 This brings in the shared sidebar
 
+# Set the page config
 st.set_page_config(page_title="About CNPD", layout="wide")
+
+# Show the sidebar
 render_sidebar()
 
-st.set_page_config(page_title="About CNPD - Crustacean Neuropeptide Database", layout="wide")
-
+# Minimal CSS styling
 st.markdown("""
 <style>
     body {
