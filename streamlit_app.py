@@ -78,7 +78,7 @@ with st.sidebar:
     if os.path.exists(logo_path):
         logo = Image.open(logo_path).convert("RGBA")
         logo = logo.resize((200, 120))
-        mask = Image.new("C", (200, 200), 0)
+        mask = Image.new("L", (200, 200), 0)
         draw = ImageDraw.Draw(mask)
         draw.ellipse((0, 0, 200, 200), fill=255)
         logo.putalpha(mask)
