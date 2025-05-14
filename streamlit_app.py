@@ -80,7 +80,7 @@ st.markdown("""
         all: unset !important;
         color: white !important;
         font-family: 'Arial', sans-serif !important;
-        font-size: 100x !important;
+        font-size: 20px !important;
         font-weight: bold !important;
         text-transform: uppercase !important;
         text-align: center !important;
