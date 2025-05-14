@@ -77,7 +77,7 @@ with st.sidebar:
     logo_path = os.path.join("Assets", "Img", "Website_Logo_2.png")
     if os.path.exists(logo_path):
         logo = Image.open(logo_path).convert("RGBA")
-        logo = logo.resize((200, 120))
+        logo = logo.resize((200, 200))
         mask = Image.new("L", (200, 200), 0)
         draw = ImageDraw.Draw(mask)
         draw.ellipse((0, 0, 200, 200), fill=255)
