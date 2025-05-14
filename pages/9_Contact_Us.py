@@ -51,99 +51,90 @@ st.markdown("### PI’s MAIN PUBLICATIONS ON NEUROPEPTIDES")
 st.markdown("""
 <style>
 .paper-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+  margin-top: 1rem;
 }
 .paper-card {
-    background-color: #9e9ac8;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  background-color: #9e9ac8;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 .paper-card img {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    margin-bottom: 15px;
-    border-radius: 5px;
+  max-width: 100%; height: auto;
+  object-fit: contain;
+  margin-bottom: 15px;
+  border-radius: 5px;
 }
 .paper-card h3 {
-    margin: 0 0 10px;
-    color: #29004c;
-    font-size: 1.2em;
-    line-height: 1.2;
+  margin: 0 0 10px;
+  color: #29004c;
+  font-size: 1.2em;
+  line-height: 1.2;
 }
 .paper-card p {
-    flex: 1;
-    color: #555;
-    font-size: 0.9em;
-    margin-bottom: 15px;
-    overflow: hidden;
+  flex: 1;
+  color: #555;
+  font-size: 0.9em;
+  margin-bottom: 15px;
+  overflow: hidden;
 }
 .paper-card a.btn {
-    display: inline-block;
-    background-color: #29004c;
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    transition: background-color 0.2s ease;
+  background-color: #29004c;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
 }
 .paper-card a.btn:hover {
-    background-color: #7c78a8;
+  background-color: #7c78a8;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# 2) Your data
+
+# 2) Prepare your paper data
 papers = [
     {
-        "img": os.path.join("Assets", "Publication_TOC", "Gaoyuan AmericanLobster TOC.jpeg"),
-        "title": "Neuropeptidomics of the American Lobster",
-        "summary": (
-            "Leveraging the recently sequenced high-quality draft genome of the "
-            "American lobster, our study sought to profile the neuropeptidome of this model organism. "
-            "Employing advanced mass spectrometry techniques, we identified 24 neuropeptide precursors "
-            "and 101 unique mature neuropeptides."
-        ),
-        "link": "https://pubs.acs.org/doi/10.1021/jasms.4c00192"
+      "img": "Assets/Publication - Resource TOC/Gaoyuan AmericanLobster TOC.jpeg",
+      "title": "Neuropeptidomics of the American Lobster",
+      "summary": "Leveraging the recently sequenced high-quality draft genome of the American lobster, we identified 24 neuropeptide precursors and 101 unique mature neuropeptides.",
+      "link": "https://pubs.acs.org/doi/10.1021/jasms.4c00192"
     },
     {
-        "img": os.path.join("Assets", "Publication_TOC", "Endogenius TOC.png"),
-        "title": "EndoGenius: Optimized Neuropeptide Identification from Mass Spectrometry Datasets",
-        "summary": (
-            "EndoGenius is a database-searching strategy designed specifically for elucidating "
-            "neuropeptide identifications from mass spectra. It leverages optimized "
-            "peptide–spectrum matching, an expansive motif database, and a novel scoring algorithm "
-            "to broaden neuropeptidome coverage and minimize re-identification."
-        ),
-        "link": "https://pubs.acs.org/doi/full/10.1021/acs.jproteome.3c00758"
+      "img": "Assets/Publication - Resource TOC/Endogenius TOC.png",
+      "title": "EndoGenius: Optimized Neuropeptide Identification from Mass Spectrometry Datasets",
+      "summary": "EndoGenius leverages optimized peptide–spectrum matching, an expansive motif database, and a novel algorithm to broaden neuropeptidome coverage.",
+      "link": "https://pubs.acs.org/doi/full/10.1021/acs.jproteome.3c00758"
     }
 ]
 
-# 3) Build the HTML for the grid
-html = ['<div class="paper-grid">']
+# 3) Build the cards as one big HTML string
+cards_html = []
 for p in papers:
-    # load and base64-encode
+    # Read & base64-encode the TOC image
     with open(p["img"], "rb") as f:
         b64 = base64.b64encode(f.read()).decode()
-    html.append(f'''
+    cards_html.append(f"""
     <div class="paper-card">
       <img src="data:image/png;base64,{b64}" />
-      <h3>{p["title"]}</h3>
-      <p>{p["summary"]}</p>
-      <a class="btn" href="{p["link"]}" target="_blank">Read More</a>
+      <h3>{p['title']}</h3>
+      <p>{p['summary']}</p>
+      <a class="btn" href="{p['link']}" target="_blank">Read More</a>
     </div>
-    ''')
-html.append('</div>')
+    """)
 
-st.markdown("".join(html), unsafe_allow_html=True)
+grid_html = f'<div class="paper-grid">{"".join(cards_html)}</div>'
+
+# 4) Finally render the grid, again with unsafe_allow_html:
+st.markdown(grid_html, unsafe_allow_html=True)
 
 # ─── Footer ───────────────────────────────────────────────────────────────
 st.markdown("""
