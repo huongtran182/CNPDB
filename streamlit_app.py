@@ -67,32 +67,42 @@ st.markdown("""
     .nav-container {
         padding: 0 !important;
         margin: 0 !important;
+        width: 100%;
     }
     
-    section[data-testid="stSidebar"] button {
-    all: unset !important;
-    color: #8a8695 !important;
-    font-family: 'Arial', sans-serif !important;
-    font-size: 18px !important;
-    font-weight: bold !important;
-    text-transform: uppercase !important;
-    text-align: center !important;
-    letter-spacing: 0.5px !important;
-    padding: 0px 8px !important;
-    margin: 0 !important;
-    border-radius: 4px !important;
-    width: 100%;
-    transition: background-color 0.3s ease;
-    display: block !important;
-    opacity: 1 !important;
-    cursor: pointer;
+   /* New sidebar navigation styles */
+    .stPageLink {
+        display: block !important;
+        text-align: center !important;
+        padding: 12px 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
     }
-     section[data-testid="stSidebar"] a:hover {
+    
+    .stPageLink a {
+        all: unset !important;
+        color: #ffffff !important;
+        font-family: 'Arial', sans-serif !important;
+        font-size: 16px !important;
+        font-weight: bold !important;
+        text-transform: uppercase !important;
+        text-align: center !important;
+        letter-spacing: 1px !important;
+        padding: 12px 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        display: block !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .stPageLink a:hover {
         background-color: #3a2d5a !important;
         color: #ffcc00 !important;
+        text-decoration: none !important;
     }
 
-    section[data-testid="stSidebar"] a:active {
+    .stPageLink a:active {
         background-color: #4a3666 !important;
     }
 </style>
