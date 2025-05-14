@@ -105,6 +105,14 @@ st.markdown("""
     .stPageLink a:active {
         background-color: #4a3666 !important;
     }
+
+    /* Add separator between nav items */
+    .nav-separator {
+        height: 1px;
+        background-color: #555167;
+        width: 80%;
+        margin: 0 auto;
+    }
 </style>
 """, unsafe_allow_html=True)
 
