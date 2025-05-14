@@ -74,7 +74,7 @@ st.markdown("""
     .stPageLink {
         display: block !important;
         text-align: center !important;
-        padding: 12px 0 !important;
+        padding: 0 0 !important;
         margin: 0 !important;
         width: 100% !important;
     }
