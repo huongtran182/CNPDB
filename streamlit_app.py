@@ -112,7 +112,7 @@ with st.sidebar:
     pages = [
         {"file": "streamlit_app.py", "label": "Home"},
         {"file": "pages/1_About.py", "label": "About"},
-        {"file": "pages/2_NP_Database_Search.py", "label": "Neuropeptide Database Search Engine"},
+        {"file": "pages/2_NP_Database_Search.py", "label": "Neuropeptide Database Search"},
         {"file": "pages/3_Tools.py", "label": "Tools"},
         {"file": "pages/4_Related_Databases.py", "label": "Related Resources"},
         {"file": "pages/5_Tutorials.py", "label": "Tutorials"},
