@@ -28,10 +28,10 @@ st.markdown("""
         padding: 0 !important;
         margin: 0 !important;
         height: 100vh !important;
-        overflow-y: auto !important;
         display: flex !important;
         flex-direction: column;
         justify-content: flex-start;
+        align-items: center; 
     }
     
     .logo-container {
