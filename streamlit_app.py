@@ -109,9 +109,9 @@ st.markdown("""
 
     /* Add separator between nav items */
     .nav-separator {
-        height: 1px;
+        height: 0.1px;
         background-color: #555167;
-        width: 80%;
+        width: 10%;
         margin: 0 auto;
     }
 </style>
