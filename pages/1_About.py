@@ -12,13 +12,13 @@ st.markdown('<h1>About CNPD – Crustacean Neuropeptide Database</h1>', unsafe_a
 
 st.markdown("""
 <div class="section">
-<h2>Overview</h2>
+<h2>OVERVIEW</h2>
 <p>The current release of <span class="highlight">CNPD (Version 1.0, 2025)</span> contains <span class="highlight">[X]</span> curated neuropeptide entries from <span class="highlight">[Y]</span> crustacean species, organized into <span class="highlight">[Z]</span> neuropeptide families.</p>
 <p>Data is manually curated from peer-reviewed literature, mass spectrometry-based peptidomics, and public protein databases such as <b>UniProt</b> and <b>NCBI</b>.</p>
 </div>
 
 <div class="section">
-<h2>What CNPD Provides</h2>
+<h2>WHAT CNPD PROVIDES</h2>
 <ul>
 <li>Neuropeptide sequence (FASTA format)</li>
 <li>Species taxonomy & homology</li>
@@ -34,7 +34,7 @@ st.markdown("""
 </div>
 
 <div class="section">
-<h2>Database Features & Tools</h2>
+<h2>DATABASE FEATURES AND TOOLS</h2>
 <ul>
 <li><b>Flexible Search Engine</b> – Find neuropeptides by name, sequence, family, or function.</li>
 <li><b>Comparative Peptide Analysis</b> – Compare neuropeptide sequences across crustacean species.</li>
@@ -45,7 +45,7 @@ st.markdown("""
 </div>
 
 <div class="section">
-<h2>Crustacean Species Covered</h2>
+<h2>CRUSTACEAN SPECIES COVERED</h2>
 <ul>
 <li><i>Homarus americanus</i> (American Lobster)</li>
 <li><i>Callinectes sapidus</i> (Blue Crab)</li>
@@ -56,7 +56,7 @@ st.markdown("""
 </div>
 
 <div class="section">
-<h2>Data Sources & Curation</h2>
+<h2>DATA SOURCES AND CURATION</h2>
 <ul>
 <li><b>Experimental Data</b> – Mass spectrometry & neuropeptide bioassays</li>
 <li><b>Literature Mining</b> – Curated from PubMed & primary research papers</li>
@@ -67,7 +67,7 @@ st.markdown("""
 </div>
 
 <div class="section">
-<h2>Get Involved & Contribute</h2>
+<h2>GET INVOLVED & CONTRIBUTE</h2>
 <ul>
 <li>Submit new neuropeptide sequences</li>
 <li>Report missing or updated annotations</li>
@@ -78,14 +78,14 @@ st.markdown("""
 </div>
 
 <div class="section">
-<h2>Citation & Funding</h2>
+<h2>CITATION & FUNDING</h2>
 <p>If you use CNPD in your research, please cite:</p>
 <p><b>Crustacean Neuropeptide Database (CNPD): A curated resource for neuropeptide research in crustacean species.</b> [Authors]. [Journal Name], [Year]. DOI: [XXXX].</p>
 <p><b>Funding:</b> This work is supported by [Funding Agencies].</p>
 </div>
 
 <div class="section">
-<h2>Future Updates</h2>
+<h2>FUTURE UPDATES</h2>
 <ul>
 <li>Expansion to more crustacean species</li>
 <li>Enhanced peptide discovery tools</li>
