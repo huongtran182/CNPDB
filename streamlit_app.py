@@ -65,9 +65,9 @@ st.markdown("""
     
    /* Styled native st.page_link buttons */
     section[data-testid="stSidebar"] a {
-        color: #8a8695 !important;
+        color: #9592a0 !important;
         font-family: 'Arial', sans-serif;
-        font-size: 16px !important;
+        font-size: 20px !important;
         font-weight: bold !important;
         letter-spacing: 0.5px;
         text-transform: uppercase;
