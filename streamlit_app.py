@@ -29,7 +29,7 @@ st.markdown("""
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    height: 0px;
     }
     .logo-border {
     width: 160px;
