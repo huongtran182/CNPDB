@@ -24,23 +24,23 @@ st.markdown("""
         background-color: #2a2541 !important;
         padding: 0 !important;
         margin: 0 !important;
-        min-width: 250px !important;
+        min-width: 200px !important;
     }
     .logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 200px;
-    margin-top: 10px;
     }
     .logo-border {
     width: 160px;
     height: 160px;
-    border: 5px solid #b9b0cc;
+    border: 7px solid #b9b0cc;
     border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     }
     .circle-img {
     width: 150px;
