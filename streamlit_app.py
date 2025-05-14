@@ -32,10 +32,12 @@ st.markdown("""
         color: #8a8695 !important;
         font-family: 'Arial', sans-serif;
         font-size: 16px !important;
-        font-weight: 1500;
+        font-weight: 500;
+        font-weight: bold !important;
+        font-style: normal;
         letter-spacing: 0.5px;
         text-transform: uppercase;
-        text-align: left;
+        text-align: center;
         padding: 3px 16px !important;
         margin: 0 !important;
         display: block;
@@ -52,15 +54,7 @@ st.markdown("""
         padding-bottom: 0px;
         margin: 0 auto;
         height: 0px;
-        border-bottom: 1px solid #4a3666;
-    }
-    .logo-img {
-        border-radius: 80%;
-        width: 0px !important;
-        height: 0px !important;
-        object-fit: cover;
-        border: 50px solid #4a3666;
-        display: block;
+        border-bottom: 0px solid #4a3666;
     }
     .nav-container {
         padding: 0 !important;
@@ -77,12 +71,12 @@ with st.sidebar:
     logo_path = os.path.join("Assets", "Img", "Website_Logo_2.png")
     if os.path.exists(logo_path):
         logo = Image.open(logo_path).convert("RGBA")
-        logo = logo.resize((200, 200))
-        mask = Image.new("L", (200, 200), 0)
+        logo = logo.resize((160, 160))
+        mask = Image.new("L", (160, 160), 0)
         draw = ImageDraw.Draw(mask)
-        draw.ellipse((0, 0, 200, 200), fill=255)
+        draw.ellipse((0, 0, 160, 160), fill=255)
         logo.putalpha(mask)
-        st.image(logo, width=200, output_format="PNG")
+        st.image(logo, width=160, output_format="PNG")
     else:
         st.error(f"Logo image not found at: {logo_path}")
         st.text(f"Working directory: {os.getcwd()}")
