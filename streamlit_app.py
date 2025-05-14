@@ -21,7 +21,7 @@ st.markdown("""
     [data-testid="stSidebarNav"] {
         display: none;
     }
-    
+
     /* Reset default Streamlit sidebar styles */
     section[data-testid="stSidebar"] {
     background-color: #2a2541 !important;
@@ -30,7 +30,7 @@ st.markdown("""
     height: 100vh !important;
     display: flex !important;
     flex-direction: column;
-    align-items: center !important;
+    align-items: center !important; /* Center items horizontally in the sidebar */
     justify-content: flex-start !important;
     }
 
@@ -39,7 +39,7 @@ st.markdown("""
     div[data-testid="collapsedControl"] {
     display: none !important;
     }
-    
+
     .logo-container {
     width: 100%;
     display: flex;
@@ -56,7 +56,7 @@ st.markdown("""
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    margin: 0 auto;
+    margin: 20px auto; /* Add some top margin for spacing */
     }
     .circle-img {
     width: 150px;
@@ -65,51 +65,50 @@ st.markdown("""
     }
 
     .nav-container {
-        padding: 0 !important;
+        padding: 20px 0 !important; /* Add some vertical padding for spacing */
         margin: 0 !important;
         width: 100%;
+        display: flex;
+        flex-direction: column; /* Arrange links vertically */
+        align-items: center !important; /* Center the links horizontally within the container */
     }
-    
+
    /* Target the actual link elements more precisely */
-    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlockBorderWrapper"] > div > div {
-        width: 100% !important;
-    }
-    
-    /* Target the anchor tags inside page links */
-    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] a {
+    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlockBorderWrapper"] > div > div > a {
         color: white !important;
         font-family: 'Arial', sans-serif !important;
-        font-size: 40px !important;
+        font-size: 24px !important; /* Adjusted font size for better centering */
         font-weight: 700 !important;
         text-transform: uppercase !important;
-        text-align: center !important;
+        text-align: center !important; /* Ensure text inside the link is centered */
         letter-spacing: 0.5px !important;
-        padding: 0px 8px !important;
-        margin: 0 !important;
-        width: 100% !important;
+        padding: 10px 8px !important; /* Add vertical padding for better touch targets */
+        margin: 5px 0 !important; /* Add vertical margin for spacing between links */
+        width: 80% !important; /* Reduce width and center to see the effect */
         display: block !important;
         cursor: pointer !important;
         transition: all 0.3s ease !important;
         text-decoration: none !important;
+        border-radius: 5px; /* Add some border-radius for visual appeal */
     }
-    
+
     /* Hover effects */
-    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] a:hover {
+    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlockBorderWrapper"] > div > div > a:hover {
         background-color: #3a2d5a !important;
         color: #ffcc00 !important;
     }
-    
+
     /* Active state */
-    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] a:active {
+    section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] > div[data-testid="stVerticalBlockBorderWrapper"] > div > div > a:active {
         background-color: #4a3666 !important;
     }
-    
+
     /* Separator style */
     .nav-separator {
-        height: 0.1px;
+        height: 1px; /* Increased height for better visibility */
         background-color: #555167;
-        width: 10%;
-        margin: 0 auto;
+        width: 60%; /* Adjusted width */
+        margin: 15px auto; /* Added vertical margin for spacing */
     }
 </style>
 """, unsafe_allow_html=True)
@@ -153,18 +152,21 @@ with st.sidebar:
 
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
     pages = [
-    st.page_link("streamlit_app.py", label="Home"),
-    st.page_link("pages/1_About.py", label="About"),
-    st.page_link("pages/2_NP_Database_Search.py", label="Neuropeptide Database Search Engine"),
-    st.page_link("pages/3_Tools.py", label="Tools"),
-    st.page_link("pages/4_Related_Databases.py", label="Related Resources"),
-    st.page_link("pages/5_Tutorials.py", label="Tutorials"),
-    st.page_link("pages/6_Statistics.py", label="Statistics"),
-    st.page_link("pages/7_Glossary.py", label="Glossary"),
-    st.page_link("pages/8_FAQ.py", label="Frequently Asked Questions"),
-    st.page_link("pages/9_Contact_Us.py", label="Contact Us"),
+        st.page_link("streamlit_app.py", label="Home"),
+        st.page_link("pages/1_About.py", label="About"),
+        st.page_link("pages/2_NP_Database_Search.py", label="Neuropeptide Database Search Engine"),
+        st.page_link("pages/3_Tools.py", label="Tools"),
+        st.page_link("pages/4_Related_Databases.py", label="Related Resources"),
+        st.page_link("pages/5_Tutorials.py", label="Tutorials"),
+        st.page_link("pages/6_Statistics.py", label="Statistics"),
+        st.page_link("pages/7_Glossary.py", label="Glossary"),
+        st.page_link("pages/8_FAQ.py", label="Frequently Asked Questions"),
+        st.page_link("pages/9_Contact_Us.py", label="Contact Us"),
     ]
-    
+
+    st.markdown('<hr class="nav-separator">', unsafe_allow_html=True) # Added a separator
+    st.markdown('<hr class="nav-separator">', unsafe_allow_html=True) # Added another separator for visual balance
+
     st.markdown('</div>', unsafe_allow_html=True)
 
 
