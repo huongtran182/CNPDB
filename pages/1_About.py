@@ -10,21 +10,21 @@ st.set_page_config(
 
 render_sidebar()
 
-# Page title
+
 st.markdown("# About CNPD – Crustacean Neuropeptide Database")
 
-# Overview section
+
 st.markdown("""
-## Overview
+## OVERVIEW
 
 The current release of **CNPD (Version 1.0, 2025)** contains **[X]** curated neuropeptide entries from **[Y]** crustacean species, organized into **[Z]** neuropeptide families.
 
 Data is manually curated from peer-reviewed literature, mass spectrometry-based peptidomics, and public protein databases such as **UniProt** and **NCBI**.
 """)
 
-# What CNPD Provides
+
 st.markdown("""
-## What CNPD Provides
+## WHAT CNPD PROVIDES
 
 - Neuropeptide sequence (FASTA format)  
 - Species taxonomy & homology  
@@ -39,9 +39,9 @@ st.markdown("""
 CNPD also provides cross-links to **UniProt**, **NCBI**, and **PubMed**, along with search and analysis tools for neuropeptide research.
 """)
 
-# Database Features & Tools
+
 st.markdown("""
-## Database Features & Tools
+## DATABASE FEATURES &  TOOLS
 
 - **Flexible Search Engine** – Find neuropeptides by name, sequence, family, or function.  
 - **Comparative Peptide Analysis** – Compare neuropeptide sequences across crustacean species.  
@@ -50,9 +50,9 @@ st.markdown("""
 - **Peptide Property Calculator** – Compute GRAVY scores, hydrophobicity, half-life, 3D structures, and more.  
 """)
 
-# Crustacean Species Covered
+
 st.markdown("""
-## Crustacean Species Covered
+## CRUSTACEANS SPECIES COVERED
 
 - *Homarus americanus* (American Lobster)  
 - *Callinectes sapidus* (Blue Crab)  
@@ -61,9 +61,9 @@ st.markdown("""
 - *Pandalus borealis* (Northern Shrimp)  
 """)
 
-# Data Sources & Curation
+
 st.markdown("""
-## Data Sources & Curation
+## DATASOURCES & CURATION
 
 - **Experimental Data** – Mass spectrometry & neuropeptide bioassays  
 - **Literature Mining** – Curated from PubMed & primary research papers  
@@ -73,9 +73,9 @@ st.markdown("""
 Every neuropeptide entry undergoes **manual examination** to ensure accuracy and reliability.
 """)
 
-# Get Involved & Contribute
+
 st.markdown("""
-## Get Involved & Contribute
+## GET INVOLVED & CONTRIBUTE
 
 - Submit new neuropeptide sequences  
 - Report missing or updated annotations  
@@ -85,9 +85,9 @@ st.markdown("""
 For collaborations, submissions, or feedback, please contact **Dr. Lingjun Li** at <lingjun.li@wisc.edu>.
 """)
 
-# Citation & Funding
+
 st.markdown("""
-## Citation & Funding
+## CITATION & FUNDING
 
 If you use CNPD in your research, please cite:
 
@@ -97,9 +97,9 @@ If you use CNPD in your research, please cite:
 **Funding:** This work is supported by [Funding Agencies].
 """)
 
-# Future Updates
+
 st.markdown("""
-## Future Updates
+## FUTURE UPDATES
 
 - Expansion to more crustacean species  
 - Enhanced peptide discovery tools  
@@ -107,7 +107,7 @@ st.markdown("""
 - User-submitted experimental data uploads  
 """)
 
-# Centered “last update”
+
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
   <em>Last update: Jul 2025</em>
