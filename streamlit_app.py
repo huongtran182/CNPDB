@@ -38,9 +38,9 @@ st.markdown("""
         text-align: left;
         padding: 6px 16px !important;
         margin: 0 !important;
-        display: block;
+        display: inline-block;
         text-decoration: none !important;
-        transition: all 0.2s ease;
+        transition: all 0.3s ease;
     }
     .nav-item:hover { background-color: #3a2d5a !important; }
     .nav-item.active { background-color: #4a3666 !important; }
@@ -59,7 +59,7 @@ st.markdown("""
         width: 96px !important;
         height: 96px !important;
         object-fit: cover;
-        border: 3px solid white;
+        border: 3px solid #4a3666;
         display: block;
     }
     .nav-container {
