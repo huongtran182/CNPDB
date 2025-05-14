@@ -59,7 +59,7 @@ st.markdown("""
         letter-spacing: 0.5px;
         text-transform: uppercase;
         text-align: center;
-        padding: 1px 8px !important;
+        padding: 0px 8px !important;
         margin: 0 !important;
         display: block;
         text-decoration: none !important;
