@@ -19,16 +19,17 @@ def render_sidebar():
         [data-testid="stSidebarNav"] {
             display: none;
         }
-        [data-testid="stSidebar"] {
-            background-color: #2a2541 !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            height: 100vh !important;
-            overflow-y: auto !important;
-            display: flex !important;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
+        section[data-testid="stSidebar"] {
+        background-color: #2a2541 !important;
+        padding:0 !important; margin:0 !important;
+        height:100vh !important;
+        display:flex !important;
+        flex-direction:column !important;
+        align-items:center !important;
+        justify-content:flex-start !important;
+          }
+          section[data-testid="stSidebar"] input,
+          div[data-testid="collapsedControl"] { display:none !important; }
         .logo-container {
             width: 100%;
             display: flex;
@@ -56,22 +57,31 @@ def render_sidebar():
             padding: 0 !important;
             margin: 0 !important;
         }
-        .nav-item {
-            color: #8a8695 !important;
-            font-family: 'Arial', sans-serif;
-            font-size: 16px !important;
-            font-weight: bold !important;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            text-align: center;
-            padding: 0px 8px !important;
-            margin: 0 !important;
-            display: block;
-            text-decoration: none !important;
-            transition: all 0.3s ease;
-        }
-        .nav-item:hover { background-color: #3a2d5a !important; }
-        .nav-item.active { background-color: #4a3666 !important; }
+        .stPageLink {
+        display:block !important;
+        text-align:center !important;
+        width:100% !important;
+        margin:0 !important;
+        padding:4px 0 !important;
+      }
+      .stPageLink a {
+        all:unset !important;
+        color:#9592a0 !important;
+        font-family:'Arial',sans-serif !important;
+        font-size:30px !important;
+        font-weight:bold !important;
+        text-transform:uppercase !important;
+        letter-spacing:0.5px !important;
+        cursor:pointer !important;
+        transition:all 0.3s ease !important;
+      }
+      .stPageLink a:hover {
+        background-color:#3a2d5a !important;
+        color:#ffcc00 !important;
+      }
+      .stPageLink a:active {
+        background-color:#4a3666 !important;
+      }
     </style>
     """, unsafe_allow_html=True)
 
@@ -114,13 +124,4 @@ def render_sidebar():
             st.page_link("pages/8_FAQ.py", label="Frequently Asked Questions"),
             st.page_link("pages/9_Contact_Us.py", label="Contact Us"),
         ]
-
-        current_page = os.path.basename(__file__)
-        for page in pages:
-            is_active = current_page == os.path.basename(page["file"])
-            active_class = "active" if is_active else ""
-            st.markdown(
-                f'<a href="{page["file"]}" class="nav-item {active_class}" target="_self">{page["label"].upper()}</a>',
-                unsafe_allow_html=True
-            )
         st.markdown('</div>', unsafe_allow_html=True)
