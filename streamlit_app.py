@@ -21,16 +21,19 @@ st.markdown("""
     [data-testid="stSidebarNav"] {
         display: none;
     }
-    [data-testid="stSidebar"] {
+
+    /* Sidebar appearance */
+    section[data-testid="stSidebar"] {
         background-color: #2a2541 !important;
         padding: 0 !important;
         margin: 0 !important;
-        height: 100vh !important;        /* Full screen height */
-        overflow-y: auto !important;     /* Allow scroll only if needed */
+        height: 100vh !important;
+        overflow-y: auto !important;
         display: flex !important;
         flex-direction: column;
-        justify-content: flex-start;
+        align-items: center;
     }
+    
     .logo-container {
     width: 100%;
     display: flex;
@@ -59,7 +62,9 @@ st.markdown("""
         padding: 0 !important;
         margin: 0 !important;
     }
-    .nav-item {
+    
+   /* Styled native st.page_link buttons */
+    section[data-testid="stSidebar"] a {
         color: #8a8695 !important;
         font-family: 'Arial', sans-serif;
         font-size: 16px !important;
@@ -67,14 +72,20 @@ st.markdown("""
         letter-spacing: 0.5px;
         text-transform: uppercase;
         text-align: center;
-        padding: 0px 8px !important;
-        margin: 0 !important;
+        padding: 10px 12px !important;
         display: block;
         text-decoration: none !important;
-        transition: all 0.3s ease;
+        transition: background-color 0.3s ease;
+        border-radius: 4px;
     }
-    .nav-item:hover { background-color: #3a2d5a !important; }
-    .nav-item.active { background-color: #4a3666 !important; }
+     section[data-testid="stSidebar"] a:hover {
+        background-color: #3a2d5a !important;
+        color: #ffcc00 !important;
+    }
+
+    section[data-testid="stSidebar"] a:active {
+        background-color: #4a3666 !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
