@@ -105,7 +105,7 @@ with st.sidebar:
         {"file": "pages/9_Contact_Us.py", "label": "Contact Us"}
     ]
     
- current_page = os.path.basename(__file__)
+   current_page = os.path.basename(__file__)
     for page in pages:
         is_active = current_page == os.path.basename(page["file"])
         active_class = "active" if is_active else ""
