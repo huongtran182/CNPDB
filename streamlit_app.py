@@ -78,7 +78,7 @@ st.markdown("""
     /* Target the anchor tags inside page links */
     section[data-testid="stSidebar"] div[data-testid="stVerticalBlock"] a {
         all: unset !important;
-        color: #9592a0 !important;
+        color: white !important;
         font-family: 'Arial', sans-serif !important;
         font-size: 100x !important;
         font-weight: bold !important;
