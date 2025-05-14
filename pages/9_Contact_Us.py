@@ -161,6 +161,7 @@ for col, p in zip(cols, papers):
   </div>
 
 </div>
+""", unsafe_allow_html=True)
 
 # ─── Footer ───────────────────────────────────────────────────────────────
 st.markdown("""
