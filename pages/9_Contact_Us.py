@@ -82,37 +82,66 @@ cols = st.columns(3, gap="medium")
 for col, p in zip(cols, papers):
     b64 = img_b64(p["img"])
     with col:
-       # the card wrapper
         st.markdown(f"""
         <div style="
-            background-color:#9e9ac8;
-            border-radius:10px;
-            box-shadow:0 2px 8px rgba(0,0,0,0.1);
-            padding:20px;
-            display:flex;
-            flex-direction:column;
-            height:100%;
+            background-color: #9e9ac8;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 550px;
         ">
-            <img src="data:image/png;base64,{img_b64(paper['img'])}" 
-                 style="width:100%; height:auto; object-fit:contain; border-radius:5px; margin-bottom:15px;" />
-            <h3 style="color:#29004c; margin:0 0 10px; font-size:1.1em; line-height:1.2;">
-              {paper['title']}
-            </h3>
-            <p style="flex:1; color:#555; font-size:0.9em; margin-bottom:15px; text-align:left;">
-              {paper['summary']}
-            </p>
-            <a href="{paper['link']}" target="_blank" style="
-                background-color:#29004c;
-                color:#fff;
-                text-decoration:none;
-                padding:8px 16px;
-                border-radius:5px;
-                align-self:center;
-                font-size:0.9em;
-            ">Read More</a>
-        </div>
+          <!-- fixed-height image block -->
+          <div style="height: 200px; flex-shrink: 0; display:flex; justify-content:center; align-items:center;">
+            <img src="data:image/png;base64,{b64}"
+                 style="max-height:100%; width:auto; object-fit:contain; border-radius:5px;" />
+          </div>
 
-""", unsafe_allow_html=True)
+          <!-- title -->
+          <h3 style="
+              color: #29004c;
+              margin: 15px 0 10px 0;
+              font-size: 1.15em;
+              line-height: 1.2;
+              flex-shrink: 0;
+          ">
+            {p["title"]}
+          </h3>
+
+          <!-- flexible summary block -->
+          <div style="
+              flex: 1;
+              overflow: hidden;
+              color: #555;
+              font-size: 0.9em;
+              margin-bottom: 15px;
+              text-align: left;
+              line-height: 1.4;
+          ">
+            {p["summary"]}
+          </div>
+
+          <!-- fixed-height button block -->
+          <div style="
+              height: 45px;
+              flex-shrink: 0;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          ">
+            <a href="{p["link"]}" target="_blank" style="
+                background-color: #29004c;
+                color: white;
+                text-decoration: none;
+                padding: 8px 16px;
+                border-radius: 5px;
+                font-size: 0.9em;
+            ">Read More</a>
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
 
 # ─── Footer ───────────────────────────────────────────────────────────────
 st.markdown("""
