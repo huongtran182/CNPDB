@@ -100,13 +100,13 @@ with st.sidebar:
     pages = [
         {"file": "streamlit_app.py", "label": "Home"},
         {"file": "pages/1_About.py", "label": "About"},
-        {"file": "pages/2_NP_Database_Search.py", "label": "NP Database Search"},
+        {"file": "pages/2_NP_Database_Search.py", "label": "Neuropeptide Database Search"},
         {"file": "pages/3_Tools.py", "label": "Tools"},
-        {"file": "pages/4_Related_Databases.py", "label": "Related Databases"},
+        {"file": "pages/4_Related_Databases.py", "label": "Related Databases and Resources"},
         {"file": "pages/5_Tutorials.py", "label": "Tutorials"},
         {"file": "pages/6_Statistics.py", "label": "Statistics"},
         {"file": "pages/7_Glossary.py", "label": "Glossary"},
-        {"file": "pages/8_FAQ.py", "label": "FAQ"},
+        {"file": "pages/8_FAQ.py", "label": "Frequently Asked Questions"},
         {"file": "pages/9_Contact_Us.py", "label": "Contact Us"}
     ]
     
@@ -126,7 +126,7 @@ col1, col2 = st.columns([1, 20])
 with col2:
     try:
         banner = Image.open("Assets/Img/CNPD_Banner.png")
-        st.image(banner, use_column_width=True)
+        st.image(banner, use_container_width=True)
     except:
         st.error("Banner image not found")
 
