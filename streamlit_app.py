@@ -2,9 +2,9 @@ import streamlit as st
 from PIL import Image, ImageDraw
 import os
 
-
 # Set page config with no padding
 st.set_page_config(
+    page_title="CNPD - Crustacean Neuropeptide Database",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -29,20 +29,19 @@ st.markdown("""
         min-width: 250px !important;
     }
     .nav-item {
-        color: #8a8695 !important;
+        color: white !important;
         font-family: 'Arial', sans-serif;
-        font-size: 16px !important;
-        font-weight: 500;
+        font-size: 12px !important;
         font-weight: bold !important;
         font-style: normal;
         letter-spacing: 0.5px;
         text-transform: uppercase;
-        text-align: center;
-        padding: 3px 16px !important;
+        text-align: left;
+        padding: 6px 16px !important;
         margin: 0 !important;
         display: block;
         text-decoration: none !important;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
     }
     .nav-item:hover { background-color: #3a2d5a !important; }
     .nav-item.active { background-color: #4a3666 !important; }
@@ -50,11 +49,19 @@ st.markdown("""
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 0px;
-        padding-bottom: 0px;
+        padding-top: 16px;
+        padding-bottom: 16px;
         margin: 0 auto;
-        height: 0px;
-        border-bottom: 0px solid #4a3666;
+        height: auto;
+        border-bottom: 1px solid #4a3666;
+    }
+    .logo-img {
+        border-radius: 50%;
+        width: 120px !important;
+        height: 120px !important;
+        object-fit: cover;
+        border: 4px solid #aaa9b5;
+        display: block;
     }
     .nav-container {
         padding: 0 !important;
@@ -71,18 +78,19 @@ with st.sidebar:
     logo_path = os.path.join("Assets", "Img", "Website_Logo_2.png")
     if os.path.exists(logo_path):
         logo = Image.open(logo_path).convert("RGBA")
-        logo = logo.resize((160, 160))
-        mask = Image.new("L", (160, 160), 0)
+        size = 120
+        logo = logo.resize((size, size))
+        mask = Image.new("L", (size, size), 0)
         draw = ImageDraw.Draw(mask)
-        draw.ellipse((0, 0, 160, 160), fill=255)
+        draw.ellipse((0, 0, size, size), fill=255)
         logo.putalpha(mask)
-        st.image(logo, width=160, output_format="PNG")
+        st.image(logo, width=size, output_format="PNG")
     else:
         st.error(f"Logo image not found at: {logo_path}")
         st.text(f"Working directory: {os.getcwd()}")
 
     st.markdown('</div>', unsafe_allow_html=True)
-                
+
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
     pages = [
         {"file": "streamlit_app.py", "label": "Home"},
