@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 import os
+import base64
 from sidebar import render_sidebar
 
 st.set_page_config(
@@ -20,13 +21,17 @@ with col1:
         st.error(f"Profile image not found at:\n{headshot}")
 
 with col2:
-    st.markdown("## Lingjun Li, Ph.D.")
-    st.markdown("**Professor**")
-    st.markdown("Department of Pharmaceutical Sciences and Chemistry")  
-    st.markdown("University of Wisconsin – Madison")  
-    st.markdown("Madison, WI 53705, USA")  
-    st.markdown("**Phone:** +1 (608) 265-8491")  
-    st.markdown("**Email:** [lingjun.li@wisc.edu](mailto:lingjun.li@wisc.edu)")  
+    st.markdown("""
+    <div style="line-height:1.2;">
+      <h2 style="margin:0 0 0.25rem 0;">Lingjun Li, Ph.D.</h2>
+      <p style="margin:0 0 0.5rem 0;"><strong>Professor</strong></p>
+      <p style="margin:0 0 0.5rem 0;">Department of Pharmaceutical Sciences and Chemistry</p>
+      <p style="margin:0 0 0.5rem 0;">University of Wisconsin – Madison</p>
+      <p style="margin:0 0 0.5rem 0;">Madison, WI 53705, USA</p>
+      <p style="margin:0 0 0.5rem 0;"><strong>Phone:</strong> +1 (608) 265-8491</p>
+      <p style="margin:0;"><strong>Email:</strong> <a href="mailto:lingjun.li@wisc.edu">lingjun.li@wisc.edu</a></p>
+    </div>
+    """, unsafe_allow_html=True)
 
 
 # ─── Opportunities ────────────────────────────────────────────────────────
