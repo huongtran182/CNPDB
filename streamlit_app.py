@@ -2,45 +2,49 @@ import streamlit as st
 from PIL import Image
 import os
 
-# Set page config
+# Set page config with no padding
 st.set_page_config(
     page_title="CNPD - Crustacean Neuropeptide Database",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Get current page to highlight active link
-current_page = os.path.basename(__file__)
-
-# Custom CSS for the sidebar
+# Remove all margins and padding
 st.markdown("""
 <style>
-    /* Hide the default sidebar nav */
+    /* Remove all default spacing */
+    .stApp {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    /* Hide default sidebar nav */
     [data-testid="stSidebarNav"] {
         display: none;
     }
     
-    /* Main sidebar styling */
+    /* Tight sidebar styling */
     [data-testid="stSidebar"] {
         background-color: #2a2541 !important;
         padding: 0 !important;
+        margin: 0 !important;
+        min-width: 250px !important;
     }
     
-    /* Navigation links */
+    /* Compact navigation items */
     .nav-item {
-        color: #ffffff !important;
+        color: white !important;
         font-family: 'Arial', sans-serif;
-        font-size: 14px;
+        font-size: 13px !important;
         font-weight: 500;
         letter-spacing: 0.5px;
         text-transform: uppercase;
         text-align: left;
-        padding: 12px 20px !important;
+        padding: 8px 20px !important;
         margin: 0 !important;
-        width: 100%;
         display: block;
         text-decoration: none !important;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
     }
     
     .nav-item:hover {
@@ -49,60 +53,68 @@ st.markdown("""
     
     .nav-item.active {
         background-color: #4a3666 !important;
-        font-weight: 600;
     }
     
-    /* Logo container */
+    /* Perfect circular logo */
     .logo-container {
         display: flex;
         justify-content: center;
-        padding: 2rem 1rem;
+        align-items: center;
+        padding: 0 !important;
+        margin: 0 !important;
+        height: 140px;
         border-bottom: 1px solid #4a3666;
     }
     
     .logo-img {
         border-radius: 50%;
-        width: 120px;
-        height: 120px;
+        width: 100px !important;
+        height: 100px !important;
         object-fit: cover;
-        border: 3px solid #ffffff;
+        border: 3px solid white;
+        margin: 0 auto;
     }
     
-    /* Navigation container */
+    /* Tight navigation container */
     .nav-container {
-        padding: 1rem 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0;
+        padding: 5px 0 !important;
+        margin: 0 !important;
     }
     
-    /* Remove Streamlit's default sidebar spacing */
-    .st-emotion-cache-6qob1r {
-        padding-top: 0 !important;
+    /* Remove banner spacing */
+    .stImage {
+        padding: 0 !important;
+        margin: 0 !important;
     }
 </style>
 """, unsafe_allow_html=True)
 
-# Sidebar with logo and navigation
+# Sidebar with zero-spacing layout
 with st.sidebar:
-    # Circular logo at top-center
+    # Logo container with exact centering
     st.markdown('<div class="logo-container">', unsafe_allow_html=True)
     try:
-        logo = Image.open("Assets/Img/Website_Logo_2.png")
-        st.image(logo, width=120, use_container_width=False)
+        logo = Image.open("Assets/Img/Website_Logo_2.png").convert("RGBA")
+        # Create perfect circle mask
+        mask = Image.new("L", (100, 100), 0)
+        draw = ImageDraw.Draw(mask) 
+        draw.ellipse((0, 0, 100, 100), fill=255)
+        logo = logo.resize((100, 100))
+        logo.putalpha(mask)
+        st.image(logo, width=100, output_format="PNG")
     except:
         st.error("Logo image not found")
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Navigation menu (left-aligned)
+    # Ultra-compact navigation
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
     
     pages = [
         {"file": "streamlit_app.py", "label": "Home"},
         {"file": "pages/1_About.py", "label": "About"},
-        {"file": "pages/2_NP_Database_Search.py", "label": "Neuropeptide Database Search"},
+        {"file": "pages/2_NP_Database_Search.py", "label": "Neuropeptide Database Search Engine"},
         {"file": "pages/3_Tools.py", "label": "Tools"},
-        {"file": "pages/4_Related_Databases.py", "label": "Related Databases and Resources"},
+        {"file": "pages/4_Related_Databases.py", "label": "Related Resources"},
         {"file": "pages/5_Tutorials.py", "label": "Tutorials"},
         {"file": "pages/6_Statistics.py", "label": "Statistics"},
         {"file": "pages/7_Glossary.py", "label": "Glossary"},
@@ -121,14 +133,16 @@ with st.sidebar:
     
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Main content
-col1, col2 = st.columns([1, 20])
-with col2:
-    try:
-        banner = Image.open("Assets/Img/CNPD_Banner.png")
-        st.image(banner, use_container_width=True)
-    except:
-        st.error("Banner image not found")
+# Main content with zero top margin
+st.markdown("""
+<div style="padding:0;margin:0;">
+""", unsafe_allow_html=True)
+
+try:
+    banner = Image.open("Assets/Img/CNPD_Banner.png")
+    st.image(banner, use_column_width=True)
+except:
+    st.error("Banner image not found")
 
 st.markdown("""
 ## WELCOME TO CNPD: THE CRUSTACEAN NEUROPEPTIDE DATABASE
