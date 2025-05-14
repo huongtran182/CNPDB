@@ -27,22 +27,28 @@ st.markdown("""
         min-width: 250px !important;
     }
     .logo-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 200px;
-        margin-top: 20px;
-        margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    margin-top: 20px;
     }
     .logo-border {
-        width: 170px;
-        height: 170px;
-        border: 5px solid #b9b0cc;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    width: 170px;
+    height: 170px;
+    border: 5px solid #b9b0cc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
     }
+    .circle-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    }
+
     .nav-container {
         padding: 0 !important;
         margin: 0 !important;
@@ -75,29 +81,33 @@ def image_to_base64(image):
 
 # Sidebar content
 with st.sidebar:
-    st.markdown('<div class="logo-container"><div class="logo-border">', unsafe_allow_html=True)
+    st.markdown('<div class="logo-container">', unsafe_allow_html=True)
 
     logo_path = os.path.join("Assets", "Img", "Website_Logo_2.png")
     if os.path.exists(logo_path):
-        logo = Image.open(logo_path).convert("RGBA").resize((160, 160))
+        logo = Image.open(logo_path).convert("RGBA").resize((150, 150))
 
         # Circular mask
-        mask = Image.new("L", (160, 160), 0)
+        mask = Image.new("L", (150, 150), 0)
         draw = ImageDraw.Draw(mask)
-        draw.ellipse((0, 0, 160, 160), fill=255)
+        draw.ellipse((0, 0, 150, 150), fill=255)
         logo.putalpha(mask)
 
-        # Display with base64 inside div
-        img_base64 = image_to_base64(logo)
-        st.markdown(
-            f'<img src="data:image/png;base64,{img_base64}" width="160">',
-            unsafe_allow_html=True
-        )
+        # Base64 encoding
+        buffered = BytesIO()
+        logo.save(buffered, format="PNG")
+        img_base64 = base64.b64encode(buffered.getvalue()).decode()
+
+        st.markdown(f"""
+            <div class="logo-border">
+                <img src="data:image/png;base64,{img_base64}" class="circle-img" />
+            </div>
+        """, unsafe_allow_html=True)
     else:
         st.error(f"Logo image not found at: {logo_path}")
         st.text(f"Working directory: {os.getcwd()}")
 
-    st.markdown('</div></div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
     pages = [
