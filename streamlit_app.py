@@ -24,7 +24,6 @@ st.markdown("""
         background-color: #2a2541 !important;
         padding: 0 !important;
         margin: 0 !important;
-        min-width: 200px !important;
     }
     .logo-container {
     display: flex;
