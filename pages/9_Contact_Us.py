@@ -103,13 +103,13 @@ st.markdown("""
 # 2) Prepare your paper data
 papers = [
     {
-      "img": "Assets/Publication - Resource TOC/Gaoyuan AmericanLobster TOC.jpeg",
+      "img": "Assets/Publication_TOC/Gaoyuan AmericanLobster TOC.jpeg",
       "title": "Neuropeptidomics of the American Lobster",
       "summary": "Leveraging the recently sequenced high-quality draft genome of the American lobster, we identified 24 neuropeptide precursors and 101 unique mature neuropeptides.",
       "link": "https://pubs.acs.org/doi/10.1021/jasms.4c00192"
     },
     {
-      "img": "Assets/Publication - Resource TOC/Endogenius TOC.png",
+      "img": "Assets/Publication_TOC/Endogenius TOC.png",
       "title": "EndoGenius: Optimized Neuropeptide Identification from Mass Spectrometry Datasets",
       "summary": "EndoGenius leverages optimized peptide–spectrum matching, an expansive motif database, and a novel algorithm to broaden neuropeptidome coverage.",
       "link": "https://pubs.acs.org/doi/full/10.1021/acs.jproteome.3c00758"
