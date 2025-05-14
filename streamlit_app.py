@@ -210,6 +210,8 @@ This work is supported by [Funding Agencies]
 For other tools developed by the Li Lab, visit **www.lilabs.org/resources**
 """)
 
-st.markdown("""style="text-align: center; font-size: 14px; color: #2a2541;"
-<i>Last update: Jul 2025</i>
+st.markdown("""
+<div style="text-align: center; font-size: 14px; color: #2a2541;">
+  <em>Last update: Jul 2025</em>
+</div>
 """, unsafe_allow_html=True)
