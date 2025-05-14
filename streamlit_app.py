@@ -69,7 +69,7 @@ with st.sidebar:
     # Logo in a circle
     st.markdown('<div class="logo-container">', unsafe_allow_html=True)
     logo = Image.open("Assets/Img/Website_Logo_2.png")
-    st.image(logo, width=120, output_format="PNG", use_column_width=False)
+    st.image(logo, width=120, output_format="PNG", use_container_width=False)
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Title
