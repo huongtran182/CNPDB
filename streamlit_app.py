@@ -22,6 +22,25 @@ st.markdown("""
         display: none;
     }
 
+    /* Hide built-in mobile sidebar search */
+    section[data-testid="stSidebar"] input {
+    display: none !important;
+    }
+
+    /* Prevent Streamlit from collapsing the sidebar into mobile mode */
+    @media (max-width: 768px) {
+    section[data-testid="stSidebar"] {
+        position: fixed !important;
+        z-index: 999 !important;
+        width: 270px !important;
+        left: 0 !important;
+        top: 0 !important;
+        height: 100vh !important;
+        transform: none !important;
+        visibility: visible !important;
+        background-color: #2a2541 !important;
+    }
+
     /* Sidebar appearance */
     section[data-testid="stSidebar"] {
         background-color: #2a2541 !important;
