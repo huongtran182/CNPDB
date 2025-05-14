@@ -26,7 +26,7 @@ st.markdown("""
         padding: 0 !important;
     }
     
-    .nav-item {
+.nav-item {
         color: #ffffff !important;
         font-family: 'Arial', sans-serif;
         font-size: 14px;
@@ -39,8 +39,8 @@ st.markdown("""
         width: 100%;
         display: block;
         text-decoration: none !important;
+        transition: all 0.3s ease;
     }
-    
     
     .nav-item:hover {
         background-color: #3a2d5a !important;
