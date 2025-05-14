@@ -56,10 +56,10 @@ st.markdown("""
     }
     .logo-img {
         border-radius: 80%;
-        width: 200px !important;
-        height: 200px !important;
+        width: 0px !important;
+        height: 0px !important;
         object-fit: cover;
-        border: 20px solid #4a3666;
+        border: 50px solid #4a3666;
         display: block;
     }
     .nav-container {
