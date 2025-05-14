@@ -21,17 +21,7 @@ st.markdown("""
     [data-testid="stSidebarNav"] {
         display: none;
     }
-
-    /* Hide built-in mobile sidebar search */
-    section[data-testid="stSidebar"] input {
-    display: none !important;
-    }
-
-    /* Override Streamlit’s hidden sidebar behavior */
-    div[data-testid="collapsedControl"] {
-    display: none !important;
-    }
-
+    
     /* Sidebar appearance */
     section[data-testid="stSidebar"] {
         background-color: #2a2541 !important;
@@ -77,7 +67,7 @@ st.markdown("""
     section[data-testid="stSidebar"] a {
         color: #9592a0 !important;
         font-family: 'Arial', sans-serif;
-        font-size: 20px !important;
+        font-size: 50px !important;
         font-weight: bold !important;
         letter-spacing: 0.5px;
         text-transform: uppercase;
