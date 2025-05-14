@@ -7,37 +7,6 @@ st.set_page_config(page_title="About CNPD", layout="wide")
 # Show the sidebar
 render_sidebar()
 
-# Minimal CSS styling
-st.markdown("""
-<style>
-    body {
-        background-color: #dadaeb;
-    }
-    h1, h2 {
-        color: #29004c;
-    }
-    .highlight {
-        font-weight: bold;
-        color: #29004c;
-    }
-    ul {
-        list-style-type: none;
-        padding-left: 1rem;
-    }
-    ul li::before {
-        content: "✅ ";
-        padding-right: 0.5em;
-    }
-    .section {
-        margin-bottom: 2rem;
-    }
-    .email {
-        color: #29004c;
-        font-weight: bold;
-    }
-</style>
-""", unsafe_allow_html=True)
-
 # Main content
 st.markdown('<h1>About CNPD – Crustacean Neuropeptide Database</h1>', unsafe_allow_html=True)
 
