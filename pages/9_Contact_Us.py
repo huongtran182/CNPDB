@@ -93,7 +93,7 @@ for col, p in zip(cols, papers):
             flex-direction:column;
             height:100%;
         ">
-            <img src="data:image/png;base64,{img_to_base64(paper['img'])}" 
+            <img src="data:image/png;base64,{img_base64(paper['img'])}" 
                  style="width:100%; height:auto; object-fit:contain; border-radius:5px; margin-bottom:15px;" />
             <h3 style="color:#29004c; margin:0 0 10px; font-size:1.1em; line-height:1.2;">
               {paper['title']}
