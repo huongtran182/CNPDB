@@ -32,6 +32,7 @@ st.markdown("""
         justify-content: flex-start;
     }
     .logo-container {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,6 +47,7 @@ st.markdown("""
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    margin: 0 auto;
     }
     .circle-img {
     width: 150px;
