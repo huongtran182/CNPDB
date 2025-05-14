@@ -82,13 +82,19 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Your custom sidebar implementation
+# Sidebar with logo and navigation
 with st.sidebar:
-    # Circular logo
+    # Circular logo at top
     st.markdown('<div class="logo-container">', unsafe_allow_html=True)
-    logo = Image.open("Assets/Img/Website_Logo_2.png")
-    st.image(logo, width=120, use_container_width=False)
+    try:
+        logo = Image.open("Assets/Img/Website_Logo_2.png")
+        st.image(logo, width=120, use_container_width=False)
+    except:
+        st.error("Logo image not found")
     st.markdown('</div>', unsafe_allow_html=True)
+    
+    # Navigation menu (all caps, centered)
+    st.markdown('<div class="nav-container">', unsafe_allow_html=True)
     
     # Custom navigation
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
