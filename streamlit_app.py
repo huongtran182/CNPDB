@@ -106,15 +106,15 @@ with st.sidebar:
     ]
     
 current_page = os.path.basename(__file__)
-    for page in pages:
-        is_active = current_page == os.path.basename(page["file"])
-        active_class = "active" if is_active else ""
-        st.markdown(
-            f'<a href="{page["file"]}" class="nav-item {active_class}" target="_self">{page["label"].upper()}</a>',
-            unsafe_allow_html=True
-        )
+for page in pages:
+    is_active = current_page == os.path.basename(page["file"])
+    active_class = "active" if is_active else ""
+    st.markdown(
+        f'<a href="{page["file"]}" class="nav-item {active_class}" target="_self">{page["label"].upper()}</a>',
+        unsafe_allow_html=True
+    )
     
-    st.markdown('</div>', unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
 
 # Main content - Banner image spanning full width
 col1, col2 = st.columns([1, 20])  # Adjust ratio to control sidebar offset
