@@ -34,14 +34,13 @@ st.markdown("""
     margin-top: 10px;
     }
     .logo-border {
-    width: 170px;
-    height: 170px;
+    width: 160px;
+    height: 160px;
     border: 5px solid #b9b0cc;
     border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     }
     .circle-img {
     width: 150px;
