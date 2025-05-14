@@ -117,6 +117,6 @@ st.markdown("""
 This work is supported by [Funding Agencies]
 For other tools developed by the Li Lab, visit **www.lilabs.org/resources**
 
-st.markdown("""
+
 <i>Last update: Jul 2025<i>
 
