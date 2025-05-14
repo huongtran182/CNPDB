@@ -1,15 +1,13 @@
 import streamlit as st
 from PIL import Image, ImageDraw
 import os
+import base64
+from io import BytesIO
 
-# Set page config with no padding
-st.set_page_config(
-    page_title="CNPD - Crustacean Neuropeptide Database",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+# Set page config
+st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
-# Remove all margins and padding + fix top spacing and logo center alignment
+# Custom CSS for logo and nav
 st.markdown("""
 <style>
     html, body, .stApp {
@@ -28,74 +26,84 @@ st.markdown("""
         margin: 0 !important;
         min-width: 250px !important;
     }
-    .nav-item {
-        color: white !important;
-        font-family: 'Arial', sans-serif;
-        font-size: 12px !important;
-        font-weight: bold !important;
-        font-style: normal;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        text-align: left;
-        padding: 6px 16px !important;
-        margin: 0 !important;
-        display: block;
-        text-decoration: none !important;
-        transition: all 0.2s ease;
-    }
-    .nav-item:hover { background-color: #3a2d5a !important; }
-    .nav-item.active { background-color: #4a3666 !important; }
     .logo-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 16px;
-        padding-bottom: 16px;
-        margin: 0 auto;
-        height: auto;
-        border-bottom: 1px solid #4a3666;
+        height: 200px;
+        margin-top: 20px;
+        margin-bottom: 10px;
     }
-    .logo-img {
+    .logo-border {
+        width: 170px;
+        height: 170px;
+        border: 5px solid #b9b0cc;
         border-radius: 50%;
-        width: 120px !important;
-        height: 120px !important;
-        object-fit: cover;
-        border: 4px solid #aaa9b5;
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .nav-container {
         padding: 0 !important;
         margin: 0 !important;
     }
-    .stImage { padding: 0 !important; margin: 0 !important; }
+    .nav-item {
+        color: #8a8695 !important;
+        font-family: 'Arial', sans-serif;
+        font-size: 16px !important;
+        font-weight: bold !important;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 3px 16px !important;
+        margin: 0 !important;
+        display: block;
+        text-decoration: none !important;
+        transition: all 0.3s ease;
+    }
+    .nav-item:hover { background-color: #3a2d5a !important; }
+    .nav-item.active { background-color: #4a3666 !important; }
 </style>
 """, unsafe_allow_html=True)
 
-# Sidebar with zero-spacing layout
+
+def image_to_base64(image):
+    buffered = BytesIO()
+    image.save(buffered, format="PNG")
+    return base64.b64encode(buffered.getvalue()).decode()
+
+
+# Sidebar content
 with st.sidebar:
-    st.markdown('<div class="logo-container">', unsafe_allow_html=True)
+    st.markdown('<div class="logo-container"><div class="logo-border">', unsafe_allow_html=True)
 
     logo_path = os.path.join("Assets", "Img", "Website_Logo_2.png")
     if os.path.exists(logo_path):
-        logo = Image.open(logo_path).convert("RGBA")
-        size = 120
-        logo = logo.resize((size, size))
-        mask = Image.new("L", (size, size), 0)
+        logo = Image.open(logo_path).convert("RGBA").resize((160, 160))
+
+        # Circular mask
+        mask = Image.new("L", (160, 160), 0)
         draw = ImageDraw.Draw(mask)
-        draw.ellipse((0, 0, size, size), fill=255)
+        draw.ellipse((0, 0, 160, 160), fill=255)
         logo.putalpha(mask)
-        st.image(logo, width=size, output_format="PNG")
+
+        # Display with base64 inside div
+        img_base64 = image_to_base64(logo)
+        st.markdown(
+            f'<img src="data:image/png;base64,{img_base64}" width="160">',
+            unsafe_allow_html=True
+        )
     else:
         st.error(f"Logo image not found at: {logo_path}")
         st.text(f"Working directory: {os.getcwd()}")
 
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div></div>', unsafe_allow_html=True)
 
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
     pages = [
         {"file": "streamlit_app.py", "label": "Home"},
         {"file": "pages/1_About.py", "label": "About"},
-        {"file": "pages/2_NP_Database_Search.py", "label": "Neuropeptide Database Search"},
+        {"file": "pages/2_NP_Database_Search.py", "label": "Neuropeptide Database Search Engine"},
         {"file": "pages/3_Tools.py", "label": "Tools"},
         {"file": "pages/4_Related_Databases.py", "label": "Related Resources"},
         {"file": "pages/5_Tutorials.py", "label": "Tutorials"},
@@ -113,6 +121,7 @@ with st.sidebar:
             unsafe_allow_html=True
         )
     st.markdown('</div>', unsafe_allow_html=True)
+
 
 # Main content area
 st.markdown("""<div style="padding:0;margin:0;">""", unsafe_allow_html=True)
