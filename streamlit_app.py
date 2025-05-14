@@ -34,7 +34,7 @@ st.markdown("""
     .logo-border {
     width: 160px;
     height: 160px;
-    border: 7px solid #b9b0cc;
+    border: 7px solid #555167;
     border-radius: 100%;
     display: flex;
     justify-content: center;
@@ -56,7 +56,7 @@ st.markdown("""
         font-family: 'Arial', sans-serif;
         font-size: 16px !important;
         font-weight: bold !important;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.1px;
         text-transform: uppercase;
         text-align: center;
         padding: 3px 16px !important;
