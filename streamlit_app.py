@@ -31,13 +31,13 @@ st.markdown("""
     justify-content: center;
     align-items: center;
     height: 200px;
-    margin-top: 20px;
+    margin-top: 10px;
     }
     .logo-border {
     width: 170px;
     height: 170px;
     border: 5px solid #b9b0cc;
-    border-radius: 50%;
+    border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,7 +46,7 @@ st.markdown("""
     .circle-img {
     width: 150px;
     height: 150px;
-    border-radius: 50%;
+    border-radius: 100%;
     }
 
     .nav-container {
@@ -85,12 +85,12 @@ with st.sidebar:
 
     logo_path = os.path.join("Assets", "Img", "Website_Logo_2.png")
     if os.path.exists(logo_path):
-        logo = Image.open(logo_path).convert("RGBA").resize((150, 150))
+        logo = Image.open(logo_path).convert("RGBA").resize((160, 160))
 
         # Circular mask
-        mask = Image.new("L", (150, 150), 0)
+        mask = Image.new("L", (160, 160), 0)
         draw = ImageDraw.Draw(mask)
-        draw.ellipse((0, 0, 150, 150), fill=255)
+        draw.ellipse((0, 0, 160, 160), fill=255)
         logo.putalpha(mask)
 
         # Base64 encoding
