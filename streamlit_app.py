@@ -117,16 +117,16 @@ with st.sidebar:
 
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
     pages = [
-    st.page_link("streamlit_app.py", label="Home")
-    st.page_link("pages/1_About.py", label="About")
-    st.page_link("pages/2_NP_Database_Search.py", label="Neuropeptide Database Search Engine")
-    st.page_link("pages/3_Tools.py", label="Tools")
-    st.page_link("pages/4_Related_Databases.py", label="Related Resources")
-    st.page_link("pages/5_Tutorials.py", label="Tutorials")
-    st.page_link("pages/6_Statistics.py", label="Statistics")
-    st.page_link("pages/7_Glossary.py", label="Glossary")
-    st.page_link("pages/8_FAQ.py", label="Frequently Asked Questions")
-    st.page_link("pages/9_Contact_Us.py", label="Contact Us")
+    st.page_link("streamlit_app.py", label="Home"),
+    st.page_link("pages/1_About.py", label="About"),
+    st.page_link("pages/2_NP_Database_Search.py", label="Neuropeptide Database Search Engine"),
+    st.page_link("pages/3_Tools.py", label="Tools"),
+    st.page_link("pages/4_Related_Databases.py", label="Related Resources"),
+    st.page_link("pages/5_Tutorials.py", label="Tutorials"),
+    st.page_link("pages/6_Statistics.py", label="Statistics"),
+    st.page_link("pages/7_Glossary.py", label="Glossary"),
+    st.page_link("pages/8_FAQ.py", label="Frequently Asked Questions"),
+    st.page_link("pages/9_Contact_Us.py", label="Contact Us"),
     ]
     current_page = os.path.basename(__file__)
     for page in pages:
