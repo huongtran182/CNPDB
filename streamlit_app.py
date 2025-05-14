@@ -27,6 +27,11 @@ st.markdown("""
     display: none !important;
     }
 
+    /* Override Streamlit’s hidden sidebar behavior */
+    div[data-testid="collapsedControl"] {
+    display: none !important;
+    }
+
     /* Sidebar appearance */
     section[data-testid="stSidebar"] {
         background-color: #2a2541 !important;
