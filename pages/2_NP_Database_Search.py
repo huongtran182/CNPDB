@@ -1,4 +1,3 @@
-# pages/1_About.py
 import streamlit as st
 from sidebar import render_sidebar
 
