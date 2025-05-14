@@ -94,7 +94,7 @@ with st.sidebar:
     # Logo container with exact centering
     st.markdown('<div class="logo-container">', unsafe_allow_html=True)
     try:
-        logo = Image.open("Assets/Img/Website_Logo_2.png").convert("RGBA")
+        logo = Image.open("Assets/Img/Website_Logo_2.png")
         # Create perfect circle mask
         mask = Image.new("L", (100, 100), 0)
         draw = ImageDraw.Draw(mask) 
@@ -140,7 +140,7 @@ st.markdown("""
 
 try:
     banner = Image.open("Assets/Img/CNPD_Banner.png")
-    st.image(banner, use_column_width=True)
+    st.image(banner, use_container_width=True)
 except:
     st.error("Banner image not found")
 
