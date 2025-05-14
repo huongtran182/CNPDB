@@ -12,16 +12,20 @@ st.set_page_config(
 # Get current page to highlight active link
 current_page = os.path.basename(__file__)
 
-# Custom CSS for the sidebar
+# Hide the auto-generated Streamlit sidebar nav
 st.markdown("""
 <style>
-    /* Main sidebar styling */
+    /* Hide the default sidebar nav */
+    [data-testid="stSidebarNav"] {
+        display: none;
+    }
+    
+    /* Your existing custom sidebar styles */
     [data-testid="stSidebar"] {
         background-color: #2a2541 !important;
         padding: 0 !important;
     }
     
-    /* Navigation links */
     .nav-item {
         color: #ffffff !important;
         font-family: 'Arial', sans-serif;
@@ -35,8 +39,8 @@ st.markdown("""
         width: 100%;
         display: block;
         text-decoration: none !important;
-        transition: all 0.3s ease;
     }
+    
     
     .nav-item:hover {
         background-color: #3a2d5a !important;
@@ -78,20 +82,16 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Sidebar with logo and navigation
+# Your custom sidebar implementation
 with st.sidebar:
-    # Circular logo at top
+    # Circular logo
     st.markdown('<div class="logo-container">', unsafe_allow_html=True)
-    try:
-        logo = Image.open("Assets/Img/Website_Logo_2.png")
-        st.image(logo, width=120, use_container_width=False)
-    except:
-        st.error("Logo image not found")
+    logo = Image.open("Assets/Img/Website_Logo_2.png")
+    st.image(logo, width=120, use_column_width=False)
     st.markdown('</div>', unsafe_allow_html=True)
     
-    # Navigation menu (all caps, centered)
+    # Custom navigation
     st.markdown('<div class="nav-container">', unsafe_allow_html=True)
-    
     pages = [
         {"file": "streamlit_app.py", "label": "Home"},
         {"file": "pages/1_About.py", "label": "About"},
@@ -105,14 +105,11 @@ with st.sidebar:
         {"file": "pages/9_Contact_Us.py", "label": "Contact Us"}
     ]
     
-    for page in pages:
-        is_active = current_page == os.path.basename(page["file"])
-        active_class = "active" if is_active else ""
+ for page in pages:
         st.markdown(
-            f'<a href="{page["file"]}" class="nav-item {active_class}" target="_self">{page["label"].upper()}</a>',
+            f'<a href="{page["file"]}" class="nav-item" target="_self">{page["label"].upper()}</a>',
             unsafe_allow_html=True
         )
-    
     st.markdown('</div>', unsafe_allow_html=True)
 
 # Main content - Banner image spanning full width
