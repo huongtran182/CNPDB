@@ -170,8 +170,7 @@ papers = [
             "matching approaches, an expansive motif database, and a novel scoring algorithm to "
             "achieve broader representation of the neuropeptidome and minimize reidentification."
         ),
-        "read_link": "https://pubs.acs.org/doi/full/10.1021/acs.jproteome.3c00758",
-        "explore_link": "https://yourdatabase.com/tools/endoGenius"
+        "link": "https://pubs.acs.org/doi/full/10.1021/acs.jproteome.3c00758",
     },
     {
         "img": os.path.join("Assets", "Publication_TOC", "MotifQuest TOC.jpeg"),
@@ -181,8 +180,7 @@ papers = [
             "with EndoGenius – a program optimized for database searching of endogenous peptides – and is "
             "powered by a motif database to capitalize on biological context for confident identifications."
         ),
-        "read_link": "https://yourdatabase.com/publications/motifquest",
-        "explore_link": "https://yourdatabase.com/tools/motifquest"
+        "link": "https://yourdatabase.com/publications/motifquest",
     },
 ]
 
@@ -244,26 +242,17 @@ for col, p in zip(cols, papers):
 
           <!-- buttons -->
           <div style="display:flex; gap:10px; justify-content:center;">
-            <a href="{p["read_link"]}" target="_blank" style="
-                background-color:#29004c;
-                color:white;
-                padding:8px 16px;
-                border-radius:5px;
-                text-decoration:none;
-                font-size:0.9em;
-             ">Read More</a>
-            <a href="{p["explore_link"]}" target="_blank" style="
-                background-color:#29004c;
-                color:white;
-                padding:8px 16px;
-                border-radius:5px;
-                text-decoration:none;
-                font-size:0.9em;
-             ">Explore</a>
-            </div>
+             <a href="{p["link"]}" target="_blank" style="
+                background-color: #29004c;
+                color: white;
+                text-decoration: none;
+                padding: 8px 16px;
+                border-radius: 5px;
+                font-size: 0.9em;
+            ">Read More</a>
+          </div>
         </div>
         """, unsafe_allow_html=True)
-        
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
