@@ -25,7 +25,7 @@ st.markdown("""
   .related-table {
     background-color: #9e9ac8;
     border-radius: 10px;
-    padding: 20px;
+    padding: 0px;
     margin: auto;
     margin-top: 20px;  /* extra space before the table if you like */
   }
