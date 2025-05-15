@@ -45,7 +45,7 @@ st.markdown("""
     If you’re interested in advancing neuropeptide research, please reach out to Dr. Li at <a href="mailto:lingjun.li@wisc.edu">lingjun.li@wisc.edu</a>.
   </p>
   <p style="margin-bottom: 0.8em;">
-    If you want to initiate collaborations, support the development of the CNPD, or have any trouble accessing this database, please email Dr. Li at <a href="mailto:lingjun.li@wisc.edu">lingjun.li@wisc.edu</a>.
+    If you want to initiate collaborations, support the development of the CNPD, or have any trouble accessing this database, please email graduate student Huong (Jacey) Tran at <a href="mailto:vtran23@wisc.edu">vtran23@wisc.edu</a>.
   </p>
 </div>
 """, unsafe_allow_html=True)
