@@ -106,19 +106,19 @@ if len(df_filtered) > 0:
                 </div>
             """, unsafe_allow_html=True)
 
-    st.markdown("### Actions")
+     st.markdown("### Actions")
     col_a, col_b = st.columns(2)
+
     with col_a:
         if st.button("View details"):
             st.dataframe(df_filtered.loc[selected_indices])
 
-     with col_b:
+    with col_b:
         if st.button("Download Fasta File"):
             fasta_str = ""
             for idx in selected_indices:
                 row = df_filtered.loc[idx]
                 fasta_str += f">{row['id']}\n{row['Seq']}\n"
-            
             st.download_button("Download FASTA", data=fasta_str, file_name="peptides.fasta", mime="text/plain")
 else:
     st.info("No peptides matched the search criteria.")
