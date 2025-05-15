@@ -40,8 +40,7 @@ st.markdown("""
     padding: 12px;
     text-align: center;
     font-weight: bold;
-    border-bottom: 2px solid #29004c;
-    border-top: 2px solid #29004c;
+    border: 2px solid #29004c;
     background-color: #9e9ac8;
   }
   .related-table th:first-child {
@@ -57,8 +56,7 @@ st.markdown("""
     padding: 12px;
   }
   .related-table tr + tr td {
-    border-top: 2px solid #29004c;
-    border-bottom: 2px solid #29004c;
+    border: 2px solid #29004c;
   }
 
   /* 5) Link styling */
