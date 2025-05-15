@@ -13,6 +13,76 @@ render_sidebar()
 
 # --- Section 1: Table of External Databases ---
 st.markdown("## ACCESSIBLE NEUROPEPTIDE DATABASES")
+# CSS for table styling
+st.markdown("""
+<style>
+.related-table {
+  background-color: #9e9ac8;
+  border-radius: 10px;
+  padding: 20px;
+}
+.related-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.related-table th, .related-table td {
+  padding: 12px;
+}
+.related-table th {
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 2px solid #29004c;
+}
+.related-table tr + tr td {
+  border-top: 1px solid #29004c;
+}
+.related-table a {
+  color: #29004c;
+  text-decoration: none;
+  font-weight: bold;
+}
+.related-table a:hover {
+  text-decoration: underline;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Table HTML
+st.markdown("""
+<div class="related-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Website</th>
+        <th>Year Published</th>
+        <th>Database Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="http://neuropeptides.nl" target="_blank">neuropeptides.nl</a></td>
+        <td>20xx</td>
+        <td>The Neuropeptide Database is the internet resource to data about all known neuropeptides, their genes, precursors and expression in the brain.</td>
+      </tr>
+      <tr>
+        <td><a href="https://neuropep.org" target="_blank">NeuroPep</a></td>
+        <td>2015</td>
+        <td>NeuroPep holds 5949 non-redundant neuropeptide entries originating from 493 organisms belonging to 65 neuropeptide families.</td>
+      </tr>
+      <tr>
+        <td><a href="http://neuropepdia.org" target="_blank">Neuropepdia</a></td>
+        <td>20xx</td>
+        <td>abcxyz</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+""", unsafe_allow_html=True)
+
+
+
+# --- Section 2: resources for neuropeptide research ---
+st.markdown("## RESOURCES FOR NEUROPEPTIDE RESEARCH")
 
 # --- helper to load an image as base64 ---
 def img_b64(path):
@@ -34,7 +104,7 @@ papers = [
         "explore_link": "https://yourdatabase.com/tools/endoGenius"
     },
     {
-        "img": os.path.join("Assets", "Publication_TOC", "MotifQuest TOC.png"),
+        "img": os.path.join("Assets", "Publication_TOC", "MotifQuest TOC.jpeg"),
         "title": "MotifQuest",
         "summary": (
             "MotifQuest, our novel motif database generation algorithm, is designed to work in partnership "
@@ -45,7 +115,6 @@ papers = [
         "explore_link": "https://yourdatabase.com/tools/motifquest"
     },
 ]
-st.markdown("### PI’s MAIN PUBLICATIONS ON NEUROPEPTIDES")
 
 # create three equal columns
 cols = st.columns(3, gap="medium")
