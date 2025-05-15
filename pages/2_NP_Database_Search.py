@@ -30,7 +30,7 @@ st.markdown(
 )
 
 # Load data
-df = pd.read_excel("Assets/CNPD_Li.xlsx")
+df_raw = pd.read_excel("Assets/CNPD_Li.xlsx")
 
 st.write("Raw columns:", df_raw.columns.tolist())
 
