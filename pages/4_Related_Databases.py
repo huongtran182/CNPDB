@@ -101,22 +101,24 @@ for col, p in zip(cols, papers):
             {p["summary"]}
           </div>
 
-          <!-- fixed-height button block -->
-          <div style="
-              height: 45px;
-              flex-shrink: 0;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-          ">
-            <a href="{p["link"]}" target="_blank" style="
-                background-color: #29004c;
-                color: white;
-                text-decoration: none;
-                padding: 8px 16px;
-                border-radius: 5px;
-                font-size: 0.9em;
+         <!-- buttons -->
+          <div class="buttons" style="display:flex; gap:10px; justify-content:center;">
+            <a href="{p["read_link"]}" target="_blank" style="
+                background-color:#29004c;
+                color:white;
+                padding:8px 16px;
+                border-radius:5px;
+                text-decoration:none;
+                font-size:0.9em;
             ">Read More</a>
+            <a href="{p["explore_link"]}" target="_blank" style="
+                background-color:#29004c;
+                color:white;
+                padding:8px 16px;
+                border-radius:5px;
+                text-decoration:none;
+                font-size:0.9em;
+            ">Explore</a>
           </div>
         </div>
         """, unsafe_allow_html=True)
