@@ -13,67 +13,65 @@ render_sidebar()
 
 # --- Section 1: Table of External Databases ---
 st.markdown("""
-<style>
-/* 1) Centered title with 10px top margin */
-  h2.custom-title {
+</style>
+h2.custom-title {
     text-align: center !important;
     margin-top: 10px !important;
     color: #29004c;
-  }
+}
 
-  /* 2) Container wrapper—no border, no padding */
-  .related-table {
-    margin: auto;
-    margin-top: 20px;
+.related-table {
+    background: none;
     padding: 0;
-  }
+    margin: auto;
+    margin-top: 0px;
+    border: none; /* Removed container border */
+    border-radius: 10px;
+}
 
-  /* 3) Full 2px purple border + 10px radius ON THE TABLE */
-  .related-table table {
+.related-table table {
     width: 100%;
-    margin: 0;                     /* remove any default table margin */
-    border: 2px solid #29004c;     /* the outer frame */
-    border-radius: 10px;           /* round the corners */
-    border-collapse: collapse;     /* collapse cell borders into single lines */
-    border-spacing: 0;             /* zero out the default cell spacing */
-    overflow: hidden;              /* clip interior gridlines at the rounded corners */
-  }
+    border: 2px solid #29004c;
+    border-radius: 10px;
+    border-collapse: collapse;
+    border-spacing: 0; /* Added to fix cell spacing */
+    overflow: hidden;
+}
 
-  /* 4) Uniform cell padding */
-  .related-table th,
-  .related-table td {
+.related-table th,
+.related-table td {
     padding: 12px;
-  }
+}
 
-  /* 5) Header styling */
-  .related-table th {
+.related-table th {
     background-color: #9e9ac8;
     text-align: center;
     font-weight: bold;
-  }
-  /* vertical dividers between headers */
-  .related-table th + th {
-    border-left: 2px solid #29004c;
-  }
+    border: 2px solid #29004c;
+}
 
-  /* 6) Vertical dividers between body cells */
-  .related-table td + td {
-    border-left: 2px solid #29004c;
-  }
-  /* 7) Horizontal dividers between rows */
-  .related-table tr + tr td {
-    border-top: 2px solid #29004c;
-  }
+.related-table th + th {
+    border: 2px solid #29004c;
+}
 
-  /* 8) Link styling */
-  .related-table a {
+.related-table td + td {
+    border: 2px solid #29004c;
+}
+
+.related-table tr + tr td {
+    border: 2px solid #29004c;
+}
+
+.related-table a {
     color: #29004c;
     text-decoration: none;
     font-weight: bold;
-  }
-  .related-table a:hover {
+}
+
+.related-table a:hover {
     text-decoration: underline;
-  }
+}
+
 </style>
 """, unsafe_allow_html=True)
 
