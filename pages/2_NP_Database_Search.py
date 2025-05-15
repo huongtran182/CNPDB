@@ -112,12 +112,12 @@ if len(df_filtered) > 0:
         if st.button("View details"):
             st.dataframe(df_filtered.loc[selected_indices])
 
-    with col_b:
+     with col_b:
         if st.button("Download Fasta File"):
             fasta_str = ""
             for idx in selected_indices:
                 row = df_filtered.loc[idx]
-                fasta_str += f">{idx}
+                fasta_str += f">{row['id']}
 {row['Seq']}
 "
             st.download_button("Download FASTA", data=fasta_str, file_name="peptides.fasta", mime="text/plain")
