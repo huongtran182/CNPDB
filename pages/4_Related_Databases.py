@@ -244,19 +244,26 @@ for col, p in zip(cols, papers):
 
           <!-- buttons -->
         st.markdown(f"""
-<div style="display:flex; gap:10px; justify-content:center;">
-    <a href="{p["read_link"].replace('"', '%22')}" 
-       target="_blank" 
-       style="background-color:#29004c; color:white; padding:8px 16px; border-radius:5px; text-decoration:none; font-size:0.9em;">
-        Read More
-    </a>
-    <a href="{p["explore_link"].replace('"', '%22')}" 
-       target="_blank" 
-       style="background-color:#29004c; color:white; padding:8px 16px; border-radius:5px; text-decoration:none; font-size:0.9em;">
-        Explore
-    </a>
-</div>
-""", unsafe_allow_html=True)
+ <div style="display:flex; gap:10px; justify-content:center;">
+            <a href="{p["read_link"]}" target="_blank" style="
+                background-color:#29004c;
+                color:white;
+                padding:8px 16px;
+                border-radius:5px;
+                text-decoration:none;
+                font-size:0.9em;
+            ">Read More</a>
+            <a href="{p["explore_link"]}" target="_blank" style="
+                background-color:#29004c;
+                color:white;
+                padding:8px 16px;
+                border-radius:5px;
+                text-decoration:none;
+                font-size:0.9em;
+            ">Explore</a>
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
         
 
 st.markdown("""
