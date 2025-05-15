@@ -65,37 +65,52 @@ def render_card(faq):
         flex-direction: column;
         min-height: 400px;
     ">
-      <!-- Header -->
-      <div style="
-          display: flex;
-          align-items: flex-start;
-          gap: 10px;
-          min-height: 30px;
-      ">
-        <div style="
-            font-size: 60px;
-            font-weight: bold;
-            color: black;
-            flex-shrink: 0;
-        ">{faq['num']}</div>
-        <div style="flex:1;">
-          <div style="
-              border-bottom: 3px solid black;
-              padding-bottom: 5px;
-              margin-bottom: 0;
-              margin-top: 30px;  
-          ">
-            <div style="
-                font-size: 18px;
-                font-weight: bold;
-                color: #29004c;
-                margin: 0;
-                line-height: 20px;
-            ">{faq['question']}</div>
-          </div>
-        </div>
-      </div>
+    <!-- Header container: fixed height -->
+<div style="
+    position: relative;
+    height: 120px;           /* total header height */
+    margin-bottom: 10px;
+">
+  <!-- 1) The underline, fixed at 50px down -->
+  <div style="
+      position: absolute;
+      top: 50px;             /* exactly 50px from top */
+      left: 0;
+      right: 0;
+      border-bottom: 3px solid black;
+  "></div>
 
+  <!-- 2) Number + question, centered vertically in the top 50px -->
+  <div style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 50px;          /* bottom edge sits at underline */
+      display: flex;
+      align-items: center;   /* vertical centering in that 0–50px band */
+      gap: 10px;
+  ">
+    <!-- the big number -->
+    <div style="
+        font-size: 50px;
+        font-weight: bold;
+        color: black;
+        flex-shrink: 0;
+    ">{faq['num']}</div>
+
+    <!-- the question text -->
+    <div style="flex: 1;">
+      <div style="
+          font-size: 18px;
+          font-weight: bold;
+          color: #29004c;
+          margin: 0;
+          line-height: 1.2;
+      ">{faq['question']}</div>
+    </div>
+  </div>
+</div>
       <!-- Answer -->
       <div style="
           flex: 1;
