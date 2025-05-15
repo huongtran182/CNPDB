@@ -15,7 +15,7 @@ render_sidebar()
 st.markdown("""
 st.markdown("""
 <style>
- /* 1) Centered title with 10px top margin */
+ /* 1) Centered title with10px top margin */
   h2.custom-title {
     text-align: center !important;
     margin-top: 10px !important;
