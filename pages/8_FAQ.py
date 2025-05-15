@@ -114,7 +114,6 @@ def render_card(faq):
     </div>
     """
   return html
-st.markdown(html, unsafe_allow_html=True)
 
 # 5. Lay out in rows of 3
 for i in range(0, len(faqs), 3):
