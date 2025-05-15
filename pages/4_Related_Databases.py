@@ -27,6 +27,7 @@ st.markdown("""
     padding: 0;
     margin: auto;
     margin-top: 0px;
+    margin-bottom: 0px;
     border: none;
     border-radius: 10px;
     border: 2px solid #29004c;
