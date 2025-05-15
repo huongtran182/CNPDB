@@ -32,6 +32,25 @@ st.markdown(
 # Load data
 df = pd.read_excel("Assets/CNPD_Li.xlsx", skiprows=1)
 
+# Parse 'CNPD ID' for embedded info
+
+def parse_metadata(row):
+    metadata = row['id'] if pd.notna(row['id']) else ""
+    def extract(pattern):
+        match = re.search(pattern, metadata)
+        return match.group(1) if match else None
+
+    return pd.Series({
+        'Family': extract(r'Family=([^\s]+)'),
+        'OS': extract(r'OS=([^\s]+)'),
+        'Existence': extract(r'Existence=([^\s]+)'),
+        'Monoisotopic mass': float(extract(r'mz=([^\s]+)')) if extract(r'mz=([^\s]+)') else None,
+        'Tissue': extract(r'Tissue=([^\s]+)'),
+    })
+
+parsed = df.apply(parse_metadata, axis=1)
+df = pd.concat([df, parsed], axis=1)
+
 # Search inputs
 col1, col2 = st.columns(2)
 
@@ -40,16 +59,11 @@ with col1:
     family_selected = st.multiselect("Family", options=df['Family'].dropna().unique())
     tissue_selected = st.multiselect("Tissue", options=df['Tissue'].dropna().unique())
     existence_selected = st.multiselect("Existence", options=df['Existence'].dropna().unique())
-    ptm_selected = st.multiselect("PTMs", options=df['PTM'].dropna().unique())
 
 with col2:
     pubmed_input = st.text_input("PubMED ID", placeholder="Separate by space, e.g. 19007832")
     organisms_selected = st.multiselect("Organisms", options=df['OS'].dropna().unique())
-    mono_mass_range = st.slider("Monoisotopic mass (m/z)", 300, 1600, (300, 1600))
-    length_range = st.slider("Length (a.a.)", 3, 100, (3, 50))
-    gravy_range = st.slider("GRAVY Score", -5.0, 5.0, (-5.0, 5.0))
-    hydro_range = st.slider("% Hydrophobic residues", 0, 100, (0, 100))
-    half_life_range = st.slider("Predicted Half-life (min)", 0, 120, (0, 60))
+    mono_mass_range = st.slider("Monoisotopic mass (m/z)", 300.0, 1600.0, (300.0, 1600.0))
 
 # Filtering
 df_filtered = df.copy()
@@ -60,7 +74,7 @@ if peptide_input:
 
 if pubmed_input:
     for pmid in pubmed_input.split():
-        df_filtered = df_filtered[df_filtered['PubMed ID'].astype(str).str.contains(pmid)]
+        df_filtered = df_filtered[df_filtered['PubMed ID'].astype(str).str.contains(pmid, na=False)]
 
 if family_selected:
     df_filtered = df_filtered[df_filtered['Family'].isin(family_selected)]
@@ -74,22 +88,8 @@ if tissue_selected:
 if existence_selected:
     df_filtered = df_filtered[df_filtered['Existence'].isin(existence_selected)]
 
-if ptm_selected:
-    df_filtered = df_filtered[df_filtered['PTM'].isin(ptm_selected)]
-
-# Convert columns to numeric as needed
-df_filtered['Monoisotopic mass'] = pd.to_numeric(df_filtered['Monoisotopic mass'], errors='coerce')
-df_filtered['Length'] = pd.to_numeric(df_filtered['Length'], errors='coerce')
-df_filtered['GRAVY Score'] = pd.to_numeric(df_filtered['GRAVY Score'], errors='coerce')
-df_filtered['% Hydrophobic Residue (%)'] = pd.to_numeric(df_filtered['% Hydrophobic Residue (%)'], errors='coerce')
-df_filtered['Predicted Half Life (Min)'] = pd.to_numeric(df_filtered['Predicted Half Life (Min)'], errors='coerce')
-
 # Apply numeric filters
 df_filtered = df_filtered[df_filtered['Monoisotopic mass'].between(*mono_mass_range)]
-df_filtered = df_filtered[df_filtered['Length'].between(*length_range)]
-df_filtered = df_filtered[df_filtered['GRAVY Score'].between(*gravy_range)]
-df_filtered = df_filtered[df_filtered['% Hydrophobic Residue (%)'].between(*hydro_range)]
-df_filtered = df_filtered[df_filtered['Predicted Half Life (Min)'].between(*half_life_range)]
 
 # Display results
 st.markdown("## Search Results")
@@ -133,7 +133,6 @@ if len(df_filtered) > 0:
             st.download_button("Download FASTA", data=fasta_str, file_name="peptides.fasta", mime="text/plain")
 else:
     st.info("No peptides matched the search criteria.")
-
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
