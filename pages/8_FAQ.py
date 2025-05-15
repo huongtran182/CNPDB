@@ -109,7 +109,7 @@ def render_card(faq):
           text-justify: inter-word;
           overflow-y: auto;
           min-height: 0;
-          margin-top: 5px; 
+          margin-top: 0; 
       ">
         {faq['answer'].replace('\n', '<br>')}
       </div>
