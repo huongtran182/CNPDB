@@ -55,6 +55,7 @@ st.markdown("""
   .related-table td {
     padding: 12px;
     border: 2px solid #29004c;
+    border-radius: 10px;
   }
   .related-table tr + tr td {
     border: 2px solid #29004c;
