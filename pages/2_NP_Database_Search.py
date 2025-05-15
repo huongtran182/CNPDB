@@ -153,7 +153,7 @@ if len(df_filtered) > 0:
     cols = st.columns(2)
     for i, (idx, row) in enumerate(df_filtered.iterrows()):
         with cols[i % 2]:
-            checked = st.checkbox("", key=f"check_{idx}", value=check_all)
+            checked = st.checkbox(f"Select {row['Seq']}", key=f"check_{idx}", value=check_all)
             if checked:
                 selected_indices.append(idx)
             st.markdown(f"""
