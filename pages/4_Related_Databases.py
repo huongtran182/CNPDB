@@ -38,10 +38,10 @@ st.markdown("""
   /* 3) Header row */
   .related-table th {
     padding: 12px;
-    text-align: left;
+    text-align: center;
     font-weight: bold;
     border-bottom: 2px solid #29004c;
-    background-color: #8072b5;
+    background-color: #9e9ac8;
   }
   .related-table th:first-child {
     background-color: #6a51a3;
@@ -56,7 +56,7 @@ st.markdown("""
     padding: 12px;
   }
   .related-table tr + tr td {
-    border-top: 1px solid #29004c;
+    border-top: 3px solid #29004c;
   }
 
   /* 5) Link styling */
