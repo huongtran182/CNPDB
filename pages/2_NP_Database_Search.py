@@ -13,8 +13,8 @@ render_sidebar()
 # Load data
 df = pd.read_excel("Assets/CNPD_Li.xlsx", skiprows=1)
 
-st.set_page_config(page_title="Neuropeptide Search Engine", layout="wide")
-st.title("Neuropeptide Search Engine")
+st.markdown("""
+## NEUROPEPTIDE SEARCH ENGINE
 
 # Search inputs
 col1, col2 = st.columns(2)
