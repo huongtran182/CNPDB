@@ -13,7 +13,6 @@ render_sidebar()
 
 # --- Section 1: Table of External Databases ---
 st.markdown("""
-st.markdown("""
 <style>
  /* 1) Centered title with10px top margin */
   h2.custom-title {
