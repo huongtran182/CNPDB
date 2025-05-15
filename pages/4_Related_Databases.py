@@ -13,65 +13,72 @@ render_sidebar()
 
 # --- Section 1: Table of External Databases ---
 st.markdown("""
-</style>
-h2.custom-title {
+st.markdown("""
+<style>
+ /* 1) Centered title with 10px top margin */
+  h2.custom-title {
     text-align: center !important;
     margin-top: 10px !important;
     color: #29004c;
-}
+  }
 
-.related-table {
+  /* 2) Container reset */
+  .related-table {
     background: none;
     padding: 0;
     margin: auto;
     margin-top: 0px;
-    border: none; /* Removed container border */
+    border: none;
     border-radius: 10px;
-}
+  }
 
-.related-table table {
+  /* 3) Full 2px border + 10px rounding on the table itself */
+  .related-table table {
     width: 100%;
     border: 2px solid #29004c;
     border-radius: 10px;
-    border-collapse: collapse;
-    border-spacing: 0; /* Added to fix cell spacing */
-    overflow: hidden;
-}
+    border-spacing: 0;
+    overflow: hidden; /* clips interior cells at rounded corners */
+  }
 
-.related-table th,
-.related-table td {
+  /* 4) Cell padding */
+  .related-table th,
+  .related-table td {
     padding: 12px;
-}
+  }
 
-.related-table th {
+  /* 5) Header row styling */
+  .related-table th {
     background-color: #9e9ac8;
     text-align: center;
     font-weight: bold;
     border: 2px solid #29004c;
-}
+  }
 
-.related-table th + th {
+  /* 6) Vertical separators between header cells */
+  .related-table th + th {
     border: 2px solid #29004c;
-}
+  }
 
-.related-table td + td {
+  /* 7) Vertical separators between body cells */
+  .related-table td + td {
     border: 2px solid #29004c;
-}
+  }
 
-.related-table tr + tr td {
+  /* 8) Horizontal separators between rows */
+  .related-table tr + tr td {
     border: 2px solid #29004c;
-}
+  }
 
-.related-table a {
+  /* 9) Link styling */
+  .related-table a {
     color: #29004c;
     text-decoration: none;
     font-weight: bold;
-}
-
-.related-table a:hover {
+  }
+  .related-table a:hover {
     text-decoration: underline;
-}
-
+  }
 </style>
 """, unsafe_allow_html=True)
 
