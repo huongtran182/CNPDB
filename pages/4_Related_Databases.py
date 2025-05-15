@@ -51,6 +51,7 @@ st.markdown("""
     background-color: #9e9ac8;
     text-align: center;
     font-weight: bold;
+    border: 2px solid #29004c;
   }
 
   /* 6) Vertical separators between header cells */
