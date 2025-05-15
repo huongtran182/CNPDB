@@ -9,13 +9,98 @@ st.set_page_config(
 
 render_sidebar()
 
+# Inject custom CSS for the glossary layout
 st.markdown("""
-## OVERVIEW
+<style>
+/* Section heading with purple underline */
+.section-heading {
+  color: #29004c;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 0.25rem;
+  position: relative;
+  padding-bottom: 0.25rem;
+}
+.section-heading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom: 3px solid #29004c;
+}
 
-The current release of **CNPD (Version 1.0, 2025)** contains **[X]** curated neuropeptide entries from **[Y]** crustacean species, organized into **[Z]** neuropeptide families.
+/* Two‐column item: term on left, definition on right */
+.glossary-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
 
-Data is manually curated from peer-reviewed literature, mass spectrometry-based peptidomics, and public protein databases such as **UniProt** and **NCBI**.
-""")
+/* Term cell */
+.glossary-term {
+  background-color: #29004c;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px 0 0 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Definition cell */
+.glossary-def {
+  background-color: white;
+  color: #333;
+  padding: 10px 20px;
+  border: 2px solid #29004c;
+  border-radius: 0 10px 10px 0;
+}
+
+/* Ensure definitions wrap and justify nicely */
+.glossary-def p {
+  margin: 0;
+  text-align: justify;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Define your glossary content
+species = [
+    ("C. elegans", "Caenorhabditis elegans – a nematode used as a model organism in biological research."),
+    ("D. melanogaster", "Drosophila melanogaster – the common fruit fly, widely used in genetic and neuropeptide research."),
+    ("H. americanus", "Homarus americanus – the American lobster, a model organism for neuropeptide studies."),
+]
+
+families = [
+    ("Allatostatin", "A family of neuropeptides that regulate juvenile hormone biosynthesis."),
+    ("FMRFamide",      "A neuropeptide involved in muscle contraction and neurotransmission."),
+    ("Tachykinin",     "A family of neuropeptides involved in pain perception and inflammation."),
+]
+
+tools = [
+    ("BLAST",                 "Basic Local Alignment Search Tool for sequence similarity searches."),
+    ("Mass Spectrometry",     "Techniques to measure mass-to-charge ratios of peptide ions."),
+    ("Peptide Calculator",    "Computes GRAVY, hydrophobicity, charge, half-life, and more."),
+]
+
+# Helper to render one section
+def render_section(title, entries):
+    st.markdown(f'<div class="section-heading">{title}</div>', unsafe_allow_html=True)
+    for term, definition in entries:
+        st.markdown(f"""
+        <div class="glossary-item">
+          <div class="glossary-term">{term}</div>
+          <div class="glossary-def"><p>{definition}</p></div>
+        </div>
+        """, unsafe_allow_html=True)
+
+# Render each glossary section
+render_section("Species", species)
+render_section("Neuropeptide Family", families)
+render_section("Tools", tools)
 
 
 st.markdown("""
