@@ -63,14 +63,14 @@ def render_card(faq):
         padding: 20px;
         display: flex;
         flex-direction: column;
-        min-height: 300px;
+        min-height: 400px;
     ">
       <!-- Header -->
       <div style="
           display: flex;
           align-items: flex-start;
           gap: 10px;
-          min-height: 50px;
+          min-height: 30px;
       ">
         <div style="
             font-size: 60px;
@@ -83,7 +83,7 @@ def render_card(faq):
               border-bottom: 3px solid black;
               padding-bottom: 5px;
               margin-bottom: 0;
-              margin-top: 50px;  
+              margin-top: 30px;  
           ">
             <div style="
                 font-size: 18px;
