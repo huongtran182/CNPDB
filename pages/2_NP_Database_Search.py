@@ -106,7 +106,7 @@ if len(df_filtered) > 0:
                 </div>
             """, unsafe_allow_html=True)
 
-     st.markdown("### Actions")
+    st.markdown("### Actions")
     col_a, col_b = st.columns(2)
 
     with col_a:
