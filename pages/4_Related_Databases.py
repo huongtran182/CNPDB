@@ -243,26 +243,13 @@ for col, p in zip(cols, papers):
           </div>
 
           <!-- buttons -->
-          <div style="display:flex; gap:10px; justify-content:center;">
-            <a href="{p["read_link"]}" target="_blank" style="
-                background-color:#29004c;
-                color:white;
-                padding:8px 16px;
-                border-radius:5px;
-                text-decoration:none;
-                font-size:0.9em;
-            ">Read More</a>
-            <a href="{p["explore_link"]}" target="_blank" style="
-                background-color:#29004c;
-                color:white;
-                padding:8px 16px;
-                border-radius:5px;
-                text-decoration:none;
-                font-size:0.9em;
-            ">Explore</a>
-          </div>
-        </div>
-        """, unsafe_allow_html=True)
+         # Use Streamlit native buttons
+        col1, col2 = st.columns(2)
+        with col1:
+            st.link_button("Read More", p["read_link"])
+        with col2:
+            st.link_button("Explore", p["explore_link"])
+        
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
