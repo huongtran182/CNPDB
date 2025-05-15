@@ -62,7 +62,7 @@ st.markdown("""
     justify-content: center;
     align-items: center;
     height: 190px; /* Fixed height for TOC container */
-    margin-bottom: 5px;
+    margin-bottom: 0px;
 }
 </style>
 """, unsafe_allow_html=True)
