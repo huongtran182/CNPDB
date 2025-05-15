@@ -15,7 +15,7 @@ st.markdown("""
 /* Section heading */
 .section-heading {
   color: #29004c;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
   margin-top: 2rem;
   margin-bottom: 0.25rem;
@@ -29,14 +29,14 @@ st.markdown("""
   display: grid;
   grid-template-columns: 20% 80%;
   margin-bottom: 10px;
-  align-items: center;
+  align-items: stretch;
 }
 
 /* Term cell */
 .glossary-term {
   background-color: #29004c;
   color: white;
-  padding: 10px 10px;
+  padding: 10px 20px;
   border-radius: 10px 0 0 10px;
   font-weight: bold;
   text-align: left;
@@ -49,6 +49,8 @@ st.markdown("""
   padding: 10px 10px;
   border: 3px solid #29004c;
   border-radius: 0 10px 10px 0;
+  display: flex;
+  align-items: center;
 }
 
 /* Ensure definitions wrap and justify nicely */
