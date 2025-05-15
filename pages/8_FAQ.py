@@ -37,8 +37,7 @@ faqs = [
         "num": "03",
         "question": "How do I analyze neuropeptide properties?",
         "answer": textwrap.dedent("""
-            You can use our peptide property calculator, which provides insights into molecular weight,
-            hydrophobicity, and GRAVY scores.
+            You can use our peptide property calculator, which provides insights into molecular weight, hydrophobicity, and GRAVY scores.
             <a href="https://yourdatabase.com/tools" target="_blank">Try it here</a>.
         """)
     },
