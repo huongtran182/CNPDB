@@ -30,7 +30,7 @@ st.markdown(
 )
 
 # Load data
-df = pd.read_excel("Assets/CNPD_Li.xlsx", skiprows=1)
+df = pd.read_excel("Assets/CNPD_Li.xlsx")
 
 # Search inputs
 # Ensure numeric columns are correctly typed
