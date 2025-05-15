@@ -54,10 +54,18 @@ st.markdown("""
   .related-table td {
     padding: 12px;
     border: 2px solid #29004c;
-    border-radius: 10px;
+
   }
   .related-table tr + tr td {
     border: 2px solid #29004c;
+  }
+
+  /* 6) Round bottom corners on the last row */
+  .related-table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+  }
+  .related-table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
   }
 
   /* 5) Link styling */
