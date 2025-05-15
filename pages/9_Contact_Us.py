@@ -52,6 +52,20 @@ st.markdown("""
 
 
 # ─── Publications Grid ───────────────────────────────────────────────────
+st.markdown("""
+<style>
+/* White background block for TOC images */
+.resource-item .toc-container {
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 230px; /* Fixed height for TOC container */
+    margin-bottom: 15px;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # --- helper to load an image as base64 ---
 def img_b64(path):
@@ -100,10 +114,12 @@ for col, p in zip(cols, papers):
             justify-content: space-between;
             min-height: 510px;
         ">
-          <!-- fixed-height image block -->
-          <div style="height: 200px; flex-shrink: 0; display:flex; justify-content:center; align-items:center;">
-            <img src="data:image/png;base64,{b64}"
-                 style="max-height:100%; width:auto; object-fit:contain; border-radius:5px;" />
+           <!-- fixed-height image block -->
+          <div class="resource-item">
+            <div class="toc-container">
+              <img src="data:image/png;base64,{b64}"
+                   style="max-height:100%; width:auto; object-fit:contain; border-radius:5px;" />
+            </div>
           </div>
 
           <!-- title -->
