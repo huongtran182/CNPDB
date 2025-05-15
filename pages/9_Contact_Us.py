@@ -91,7 +91,7 @@ for col, p in zip(cols, papers):
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 550px;
+            min-height: 500px;
         ">
           <!-- fixed-height image block -->
           <div style="height: 200px; flex-shrink: 0; display:flex; justify-content:center; align-items:center;">
@@ -100,17 +100,23 @@ for col, p in zip(cols, papers):
           </div>
 
           <!-- title -->
+          <div style="
+            height: 60px;             /* reserve exactly 60px for the title */
+            overflow: hidden;         /* crop any extra if the text is very long */
+            margin-bottom: 10px;      /* gap before the summary */
+            display: flex;
+            align-items: center;      /* vertical centering within that 60px */
+            justify-content: center;  /* horizontal centering of the text */
+        ">
           <h3 style="
               color: #29004c;
-              margin: 15px 0 10px 0;
+              margin: 0;
+              text-align: center;
               font-size: 1.15em;
               line-height: 1.2;
-              flex-shrink: 0;
-              text-align: center;
-          ">
-            {p["title"]}
-          </h3>
-
+          ">{p["title"]}</h3>
+        </div>
+          
           <!-- flexible summary block -->
           <div style="
              flex: 1;
