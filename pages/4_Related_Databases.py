@@ -81,6 +81,12 @@ st.markdown("""
   .related-table a:hover {
     text-decoration: underline;
   }
+/* Add this new rule to center the Year Published column */
+  .related-table td:nth-child(2),
+  .related-table th:nth-child(2) {
+    text-align: center !important;
+  }
+  
 </style>
 """, unsafe_allow_html=True)
 
