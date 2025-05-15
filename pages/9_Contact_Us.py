@@ -112,7 +112,7 @@ for col, p in zip(cols, papers):
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 480px;
+            min-height: 500px;
         ">
            <!-- fixed-height image block -->
           <div class="resource-item">
