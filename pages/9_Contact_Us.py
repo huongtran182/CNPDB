@@ -101,7 +101,7 @@ for col, p in zip(cols, papers):
 
           <!-- title -->
           <div style="
-            height: 60px;             /* reserve exactly 60px for the title */
+            height: 80px;             /* reserve exactly 80px for the title */
             overflow: hidden;         /* crop any extra if the text is very long */
             margin-bottom: 10px;      /* gap before the summary */
             display: flex;
