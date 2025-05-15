@@ -85,7 +85,7 @@ def render_card(faq):
         <div style="
             font-size: 55px;
             font-weight: bold;
-            color: #29004c;
+            color: black;
             flex-shrink: 0;
         ">{faq['num']}</div>
         <div style="flex:1;">
@@ -93,7 +93,7 @@ def render_card(faq):
           <div style="
               font-size: 22px;
               font-weight: bold;
-              color: #29004c;
+              color: black;
               margin: 0;
               line-height: 25px;
           ">{faq['question']}</div>
