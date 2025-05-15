@@ -12,42 +12,74 @@ st.set_page_config(
 render_sidebar()
 
 # --- Section 1: Table of External Databases ---
-st.markdown("## ACCESSIBLE NEUROPEPTIDE DATABASES")
-# CSS for table styling
 st.markdown("""
 <style>
-.related-table {
-  background-color: #9e9ac8;
-  border-radius: 10px;
-  padding: 20px;
-}
-.related-table table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.related-table th, .related-table td {
-  padding: 12px;
-}
-.related-table th {
-  text-align: left;
-  font-weight: bold;
-  border-bottom: 2px solid #29004c;
-}
-.related-table tr + tr td {
-  border-top: 1px solid #29004c;
-}
-.related-table a {
-  color: #29004c;
-  text-decoration: none;
-  font-weight: bold;
-}
-.related-table a:hover {
-  text-decoration: underline;
-}
+  /* 1) Center the title and add 10px of top margin */
+  h2.custom-title {
+    text-align: center !important;
+    margin-top: 10px !important;
+    color: #29004c;
+  }
+
+  /* 2) Table container styling */
+  .related-table {
+    background-color: #9e9ac8;
+    border-radius: 10px;
+    padding: 20px;
+    margin: auto;
+    margin-top: 20px;  /* extra space before the table if you like */
+  }
+
+  .related-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  /* 3) Header row */
+  .related-table th {
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #29004c;
+    background-color: #8072b5;
+  }
+  .related-table th:first-child {
+    background-color: #6a51a3;
+    border-top-left-radius: 10px;
+  }
+  .related-table th:last-child {
+    border-top-right-radius: 10px;
+  }
+
+  /* 4) Body rows */
+  .related-table td {
+    padding: 12px;
+  }
+  .related-table tr + tr td {
+    border-top: 1px solid #29004c;
+  }
+
+  /* 5) Link styling */
+  .related-table a {
+    color: #29004c;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .related-table a:hover {
+    text-decoration: underline;
+  }
 </style>
 """, unsafe_allow_html=True)
 
-# Table HTML
+# --- Centered, spaced title ---
+st.markdown(
+    '<h2 class="custom-title">'
+    'ACCESSIBLE NEUROPEPTIDE DATABASES'
+    '</h2>',
+    unsafe_allow_html=True
+)
+
+# --- Your table HTML unchanged except for class name ---
 st.markdown("""
 <div class="related-table">
   <table>
@@ -78,8 +110,6 @@ st.markdown("""
   </table>
 </div>
 """, unsafe_allow_html=True)
-
-
 
 # --- Section 2: resources for neuropeptide research ---
 st.markdown("## RESOURCES FOR NEUROPEPTIDE RESEARCH")
