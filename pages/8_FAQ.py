@@ -109,24 +109,15 @@ def render_card(faq):
         </div>
     </div>
     """
-    return html
+   st.markdown(html, unsafe_allow_html=True)
 
-# Inject grid CSS with 40px gaps
-st.markdown("""
-<style>
-  .faq-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
-    gap: 40px;
-  }
-</style>
-""", unsafe_allow_html=True)
-
-# Lay out in a grid
-st.markdown('<div class="faq-grid">', unsafe_allow_html=True)
-for faq in faqs:
-    st.markdown(render_card(faq), unsafe_allow_html=True)
-st.markdown('</div>', unsafe_allow_html=True)
+# 5. Lay out in rows of 3
+for i in range(0, len(faqs), 3):
+    row = faqs[i:i+3]
+    cols = st.columns(3, gap="large")
+    for col, faq in zip(cols, row):
+        with col:
+            render_card(faq)
 
 
 # footers
