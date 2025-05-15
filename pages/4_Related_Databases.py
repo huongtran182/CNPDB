@@ -23,7 +23,7 @@ st.markdown("""
 
   /* 2) Table container styling */
   .related-table {
-    background-color: #9e9ac8;
+    background-color: none;
     border-radius: 10px;
     padding: 0px;
     margin: auto;
