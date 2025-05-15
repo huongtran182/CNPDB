@@ -74,13 +74,12 @@ def render_card(faq):
           border-bottom: 3px solid black;
       "></div>
 
-      <!-- number + question centered above the line -->
+     <!-- Header -->
       <div style="
-          margin-bottom: 10px;
           display: flex;
-          align-items: center;
-          height: 50px;
+          align-items: flex-start;
           gap: 10px;
+          min-height: 70px;
       ">
         <div style="
             font-size: 50px;
@@ -88,14 +87,21 @@ def render_card(faq):
             color: black;
             flex-shrink: 0;
         ">{faq['num']}</div>
-        <div style="flex: 1; display: flex; align-items: center;">
+        <div style="flex:1;">
           <div style="
-              font-size: 18px;
-              font-weight: bold;
-              color: #29004c;
-              line-height: 1.2;
-              margin: 0;
-          ">{faq['question']}</div>
+            position: absolute;
+          top: 50px;
+          left: 20px;
+          right: 20px;
+          border-bottom: 3px solid black;
+          ">
+            <div style="
+                font-size: 18px;
+                font-weight: bold;
+                color: #29004c;
+                margin: 0;
+            ">{faq['question']}</div>
+          </div>
         </div>
       </div>
       <!-- Answer -->
