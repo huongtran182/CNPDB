@@ -12,7 +12,7 @@ render_sidebar()
 # Inject custom CSS for the glossary layout
 st.markdown("""
 <style>
-/* Section heading with purple underline */
+/* Section heading */
 .section-heading {
   color: #29004c;
   font-size: 24px;
@@ -21,21 +21,13 @@ st.markdown("""
   margin-bottom: 0.25rem;
   position: relative;
   padding-bottom: 0.25rem;
-}
-.section-heading::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-bottom: 3px solid #29004c;
+  text-transform:uppercase;
 }
 
 /* Two‐column item: term on left, definition on right */
 .glossary-item {
   display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 10px;
+  grid-template-columns: 20% 80%;
   margin-bottom: 10px;
   align-items: center;
 }
@@ -44,18 +36,18 @@ st.markdown("""
 .glossary-term {
   background-color: #29004c;
   color: white;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-radius: 10px 0 0 10px;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
 }
 
 /* Definition cell */
 .glossary-def {
   background-color: white;
   color: #333;
-  padding: 10px 20px;
-  border: 2px solid #29004c;
+  padding: 10px 10px;
+  border: 3px solid #29004c;
   border-radius: 0 10px 10px 0;
 }
 
