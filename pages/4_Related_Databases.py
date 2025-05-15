@@ -14,44 +14,59 @@ render_sidebar()
 # --- Section 1: Table of External Databases ---
 st.markdown("""
 <style>
-  /* Outer 2px purple border + 10px radius on the table */
-.related-table table {
-  width: 100%;
-  border: 2px solid #29004c;    /* the 2px purple line you asked for */
-  border-radius: 10px;          /* rounds all four corners */
-  border-collapse: collapse;    /* so the inner cell‐borders don’t double up */
-  overflow: hidden;             /* clip the inner cells at the rounded corners */
-}
+ /* 1) Centered title with 10px top margin */
+  h2.custom-title {
+    text-align: center !important;
+    margin-top: 10px !important;
+    color: #29004c;
+  }
 
-/* interior vertical separators */
-.related-table th + th,
-.related-table td + td {
-  border-left: 2px solid #29004c;
-}
+  /* 2) Container reset */
+  .related-table {
+    background: none;
+    padding: 0;
+    margin: auto;
+    margin-top: 20px;
+  }
 
-/* interior horizontal separators */
-.related-table tr + tr td {
-  border-top: 2px solid #29004c;
-}
+  /* 3) Full 2px border + 10px rounding on the table itself */
+  .related-table table {
+    width: 100%;
+    border: 2px solid #29004c;
+    border-radius: 10px;
+    border-collapse: collapse;
+    overflow: hidden; /* clips interior cells at rounded corners */
+  }
 
-  /* 2) Common cell padding */
+  /* 4) Cell padding */
   .related-table th,
   .related-table td {
     padding: 12px;
   }
 
-  /* 3) Header row styling */
+  /* 5) Header row styling */
   .related-table th {
     background-color: #9e9ac8;
     text-align: center;
     font-weight: bold;
   }
-  /* vertical separators between header cells */
+
+  /* 6) Vertical separators between header cells */
   .related-table th + th {
     border-left: 2px solid #29004c;
   }
 
-  /* 5) Links */
+  /* 7) Vertical separators between body cells */
+  .related-table td + td {
+    border-left: 2px solid #29004c;
+  }
+
+  /* 8) Horizontal separators between rows */
+  .related-table tr + tr td {
+    border-top: 2px solid #29004c;
+  }
+
+  /* 9) Link styling */
   .related-table a {
     color: #29004c;
     text-decoration: none;
