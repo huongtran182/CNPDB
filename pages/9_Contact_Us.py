@@ -37,11 +37,14 @@ with col2:
 # ─── Opportunities ────────────────────────────────────────────────────────
 st.markdown("### OPPORTUNITIES")
 st.markdown("""
-Join our research efforts! We are continuously expanding this database and welcome contributions from students and postdoctoral fellows with fellowships or scholarships.  
-If you're interested in advancing neuropeptide research or initiating collaborations, please reach out to Prof. Li at [lingjun.li@wisc.edu](mailto:lingjun.li@wisc.edu).
+<div style="text-align: justify; text-justify: inter-word;">
+  Join our research efforts! We are continuously expanding this database and welcome contributions from students and postdoctoral fellows with fellowships or scholarships.
 
-If you want to support the development of the CNPD, or have any trouble accessing this database, please email our graduate student Huong (Jacey) Tran at [vtran23@wisc.edu](mailto:vtran23@wisc.edu).
-""")
+  If you're interested in advancing neuropeptide research, please reach out to Dr. Li at <a href="mailto:lingjun.li@wisc.edu">lingjun.li@wisc.edu</a>.
+
+  If you want to initiate collaborations, support the development of the CNPD, or have any trouble accessing this database, please email Dr. Li at <a href="mailto:lingjun.li@wisc.edu">lingjun.li@wisc.edu</a>.
+</div>
+""", unsafe_allow_html=True)
 
 
 # ─── Publications Grid ───────────────────────────────────────────────────
