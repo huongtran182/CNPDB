@@ -61,7 +61,7 @@ st.markdown("""
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 210px; /* Fixed height for TOC container */
+    height: 190px; /* Fixed height for TOC container */
     margin-bottom: 15px;
 }
 </style>
@@ -124,9 +124,9 @@ for col, p in zip(cols, papers):
 
           <!-- title -->
           <div style="
-            height: 70px;             /* reserve exactly 80px for the title */
+            height: 60px;             /* reserve exactly 60px for the title */
             overflow: hidden;         /* crop any extra if the text is very long */
-            margin-bottom: 10px;      /* gap before the summary */
+            margin-bottom: 20px;      /* gap before the summary */
             display: flex;
             align-items: center;      /* vertical centering within that 60px */
             justify-content: center;  /* horizontal centering of the text */
