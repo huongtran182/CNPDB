@@ -118,6 +118,7 @@ if len(df_filtered) > 0:
             for idx in selected_indices:
                 row = df_filtered.loc[idx]
                 fasta_str += f">{row['id']}\n{row['Seq']}\n"
+            
             st.download_button("Download FASTA", data=fasta_str, file_name="peptides.fasta", mime="text/plain")
 else:
     st.info("No peptides matched the search criteria.")
