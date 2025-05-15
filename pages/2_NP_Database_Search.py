@@ -35,6 +35,15 @@ st.markdown("""
  input[type="checkbox"] {
     accent-color: #6a51a3;
  }
+ /* Slider accent color */
+ input[type="range"] {
+    accent-color: #6a51a3;
+ }
+ /* Button color */
+ .stButton>button {
+    background-color: #6a51a3;
+    color: white;
+ }
 </style>
 """, unsafe_allow_html=True)
 
@@ -58,8 +67,8 @@ numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (
 for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
-# Layout: filters (1/3) and inputs (2/3)
-col_filter, col_main = st.columns([1, 2])
+# Layout: filters (1/4) and inputs (3/4)
+col_filter, col_main = st.columns([1, 3])
 
 with col_filter:
     st.markdown('<div class="section-title">Filters</div>', unsafe_allow_html=True)
