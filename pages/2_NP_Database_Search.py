@@ -32,6 +32,8 @@ st.markdown(
 # Load data
 df = pd.read_excel("Assets/CNPD_Li.xlsx")
 
+st.write("Raw columns:", df_raw.columns.tolist())
+
 # Search inputs
 # Ensure numeric columns are correctly typed
 numeric_cols = ['GRAVY', 'Length', '% Hydrophobic Residue (%)', 'Predicted Half Life (Min)']
