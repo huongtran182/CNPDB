@@ -34,7 +34,7 @@ df = pd.read_excel("Assets/CNPD_Li.xlsx", skiprows=1)
 
 # Search inputs
 # Ensure numeric columns are correctly typed
-numeric_cols = ['GRAVY Score', 'Length', '% Hydrophobic Residue (%)', 'Predicted Half Life (Min)']
+numeric_cols = ['GRAVY', 'Length', '% Hydrophobic Residue (%)', 'Predicted Half Life (Min)']
 for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 col1, col2 = st.columns(2)
@@ -73,9 +73,9 @@ if existence_selected:
     df_filtered = df_filtered[df_filtered['Existence'].isin(existence_selected)]
 
 # Apply numeric filters
-df_filtered = df_filtered[df_filtered['Monoisotopic mass'].between(*mono_mass_range)]
+df_filtered = df_filtered[df_filtered['Monoisotopic Mass'].between(*mono_mass_range)]
 df_filtered = df_filtered[df_filtered['Length'].between(*length_range)]
-df_filtered = df_filtered[df_filtered['GRAVY Score'].between(*gravy_range)]
+df_filtered = df_filtered[df_filtered['GRAVY'].between(*gravy_range)]
 df_filtered = df_filtered[df_filtered['% Hydrophobic Residue (%)'].between(*hydro_range)]
 df_filtered = df_filtered[df_filtered['Predicted Half Life (Min)'].between(*half_life_range)]
 
