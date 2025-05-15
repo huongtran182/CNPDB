@@ -30,52 +30,66 @@ st.markdown(
 )
 
 # Load data
-df = pd.read_excel(
-    "Assets/CNPD_Li.xlsx",  # Path to your Excel file
-    sheet_name="Example",   # Read the correct sheet
-)
+DF_PATH = "Assets/CNPD_Li.xlsx"
+df = pd.read_excel(DF_PATH, sheet_name="Example")
 
-# Search inputs
 # Ensure numeric columns are correctly typed
-numeric_cols = ['GRAVY', 'Length', '% Hydrophobic Residue (%)', 'Predicted Half Life (Min)']
+numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (%)', 'Predicted Half Life (Min)']
 for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
-col1, col2 = st.columns(2)
 
-with col1:
-    peptide_input = st.text_input("Peptide Sequence", placeholder="Separate by space, e.g. FDAFTTGFGHN")
-    family_selected = st.multiselect("Family", options=df['Family'].dropna().unique())
-    tissue_selected = st.multiselect("Tissue", options=df['Tissue'].dropna().unique())
-    existence_selected = st.multiselect("Existence", options=df['Existence'].dropna().unique())
+# Layout: 1/3 filters, 2/3 inputs
+col_filter, col_main = st.columns([1, 2])
 
-with col2:
-    organisms_selected = st.multiselect("Organisms", options=df['OS'].dropna().unique())
+# Filter sliders in left column
+with col_filter:
+    st.header("Filters")
     mono_mass_range = st.slider("Monoisotopic mass (m/z)", 300.0, 1600.0, (300.0, 1600.0))
     length_range = st.slider("Length (aa)", 3, 100, (3, 50))
     gravy_range = st.slider("GRAVY Score", -5.0, 5.0, (-5.0, 5.0))
     hydro_range = st.slider("% Hydrophobic Residue", 0, 100, (0, 100))
     half_life_range = st.slider("Predicted Half-life (min)", 0, 120, (0, 60))
 
-# Filtering
+# Inputs on right column
+with col_main:
+    peptide_input = st.text_input("Peptide Sequence", placeholder="Separate by space, e.g. FDAFTTGFGHN")
+
+    # Checkbox filters for categorical fields
+    st.subheader("Family")
+    family_options = sorted(df['Family'].dropna().unique())
+    family_selected = [opt for opt in family_options if st.checkbox(opt, key=f"fam_{opt}")]
+
+    st.subheader("Tissue")
+    tissue_options = sorted(df['Tissue'].dropna().unique())
+    tissue_selected = [opt for opt in tissue_options if st.checkbox(opt, key=f"tiss_{opt}")]
+
+    st.subheader("Existence")
+    existence_options = sorted(df['Existence'].dropna().unique())
+    existence_selected = [opt for opt in existence_options if st.checkbox(opt, key=f"ex_{opt}")]
+
+    st.subheader("Organisms")
+    organism_options = sorted(df['OS'].dropna().unique())
+    organisms_selected = [opt for opt in organism_options if st.checkbox(opt, key=f"org_{opt}")]
+
+# Filtering logic
 df_filtered = df.copy()
 
+# Sequence filtering
 if peptide_input:
     for pep in peptide_input.split():
         df_filtered = df_filtered[df_filtered['Seq'].str.contains(pep, na=False)]
 
+# Categorical filtering
 if family_selected:
     df_filtered = df_filtered[df_filtered['Family'].isin(family_selected)]
-
+if tissue_selected:
+    df_filtered = df_filtered[df_filtered['Tissue'].isin(tissue_selected)]
+if existence_selected:
+    df_filtered = df_filtered[df_filtered['Existence'].isin(existence_selected)]
 if organisms_selected:
     df_filtered = df_filtered[df_filtered['OS'].isin(organisms_selected)]
 
-if tissue_selected:
-    df_filtered = df_filtered[df_filtered['Tissue'].isin(tissue_selected)]
-
-if existence_selected:
-    df_filtered = df_filtered[df_filtered['Existence'].isin(existence_selected)]
-
-# Apply numeric filters
+# Numeric filtering
 df_filtered = df_filtered[df_filtered['Monoisotopic Mass'].between(*mono_mass_range)]
 df_filtered = df_filtered[df_filtered['Length'].between(*length_range)]
 df_filtered = df_filtered[df_filtered['GRAVY'].between(*gravy_range)]
@@ -87,11 +101,9 @@ st.markdown("## Search Results")
 st.write(f"Hit: {len(df_filtered)} peptides")
 
 selected_indices = []
-
 if len(df_filtered) > 0:
     check_all = st.checkbox("Check/Uncheck All")
     cols = st.columns(2)
-
     for i, (idx, row) in enumerate(df_filtered.iterrows()):
         with cols[i % 2]:
             checked = st.checkbox("", key=f"check_{idx}", value=check_all)
@@ -111,11 +123,9 @@ if len(df_filtered) > 0:
 
     st.markdown("### Actions")
     col_a, col_b = st.columns(2)
-
     with col_a:
         if st.button("View details"):
             st.dataframe(df_filtered.loc[selected_indices])
-
     with col_b:
         if st.button("Download Fasta File"):
             fasta_str = ""
@@ -126,6 +136,7 @@ if len(df_filtered) > 0:
 else:
     st.info("No peptides matched the search criteria.")
 
+# Footer
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
   <em>Last update: Jul 2025</em>
