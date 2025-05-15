@@ -72,8 +72,6 @@ existence_selected = st.sidebar.multiselect("Existence", sorted(df['Existence'].
 organisms_selected = st.sidebar.multiselect("Organism", sorted(df['OS'].dropna().unique()))
 
 # --- Filter Data ---
-df_filtered = df.copy()
-
 if peptide_input:
     for pep in peptide_input.split():
         df_filtered = df_filtered[df_filtered['Seq'].str.contains(pep, na=False)]
