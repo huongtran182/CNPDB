@@ -71,7 +71,7 @@ def render_card(faq):
           position: absolute;
           top: 100px;
           left: 80px;
-          right: 20px;
+          right: 0px;
           border-bottom: 3px solid black;
       "></div>
 
@@ -84,7 +84,7 @@ def render_card(faq):
           margin-top: 0;            /* no extra top margin */
       ">
         <div style="
-            font-size: 50px;
+            font-size: 60px;
             font-weight: bold;
             color: black;
             flex-shrink: 0;
@@ -92,18 +92,18 @@ def render_card(faq):
         <div style="flex:1;">
           <!-- remove this inner border-bottom -->
           <div style="
-              font-size: 18px;
+              font-size: 25px;
               font-weight: bold;
               color: #29004c;
               margin: 0;
-              line-height: 22px;
+              line-height: 30px;
           ">{faq['question']}</div>
         </div>
       </div>
       <!-- Answer -->
       <div style="
           flex: 1;
-          font-size: 14px;
+          font-size: 20px;
           color: #333;
           text-align: justify;
           text-justify: inter-word;
