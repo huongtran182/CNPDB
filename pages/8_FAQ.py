@@ -54,8 +54,8 @@ faqs = [
 ]
 
 # 4. Helper to render one card
-def get_card_html(faq):
-    return f"""
+def render_card(faq):
+    html = f"""
     <div style="
         background-color: #9e9ac8;
         border-radius: 10px;
@@ -64,6 +64,7 @@ def get_card_html(faq):
         display: flex;
         flex-direction: column;
         min-height: 400px;
+        min-width: 250px; 
     ">
       <!-- underline fixed at 50px down -->
       <div style="
@@ -112,22 +113,16 @@ def get_card_html(faq):
       </div>
     </div>
     """
-# Inject grid CSS with 40px gaps
-st.markdown("""
-<style>
-  .faq-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 40px;       /* 40px both row and column gap */
-    margin-top: 20px;
-  }
-</style>
-""", unsafe_allow_html=True)
+   st.markdown(html, unsafe_allow_html=True)
 
-# Build the entire grid HTML and render once
-cards = "".join(get_card_html(f) for f in faqs)
-grid_html = f'<div class="faq-grid">{cards}</div>'
-st.markdown(grid_html, unsafe_allow_html=True)
+# 5. Lay out in rows of 3
+for i in range(0, len(faqs), 3):
+    row = faqs[i:i+3]
+    cols = st.columns(3, gap="large")
+    for col, faq in zip(cols, row):
+        with col:
+            render_card(faq)
+
 
 # footers
 st.markdown("""
