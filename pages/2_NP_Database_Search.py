@@ -30,9 +30,13 @@ st.markdown(
 )
 
 # Load data
-df_raw = pd.read_excel("Assets/CNPD_Li.xlsx")
+df = pd.read_excel(
+    "Assets/CNPD_Li.xlsx",  # Path to your Excel file
+    sheet_name="Example",   # Read the correct sheet
+)
 
-st.write("Raw columns:", df_raw.columns.tolist())
+# Debug: Show column names to verify
+st.write("Actual columns in 'Example' sheet:", df.columns.tolist())
 
 # Search inputs
 # Ensure numeric columns are correctly typed
