@@ -57,6 +57,7 @@ faqs = [
 def render_card(faq):
     html = f"""
     <div style="
+        position: relative;           /* ← add this */
         background-color: #9e9ac8;
         border-radius: 10px;
         box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
@@ -65,7 +66,7 @@ def render_card(faq):
         flex-direction: column;
         min-height: 400px;
     ">
-  <!-- underline fixed at 50px down -->
+      <!-- underline fixed at 50px down -->
       <div style="
           position: absolute;
           top: 50px;
@@ -74,12 +75,13 @@ def render_card(faq):
           border-bottom: 3px solid black;
       "></div>
 
-     <!-- Header -->
+      <!-- Header -->
       <div style="
           display: flex;
           align-items: flex-start;
           gap: 10px;
           min-height: 70px;
+          margin-top: 0;            /* no extra top margin */
       ">
         <div style="
             font-size: 50px;
@@ -88,16 +90,13 @@ def render_card(faq):
             flex-shrink: 0;
         ">{faq['num']}</div>
         <div style="flex:1;">
+          <!-- remove this inner border-bottom -->
           <div style="
-          border-bottom: 3px solid black;
-          ">
-            <div style="
-                font-size: 18px;
-                font-weight: bold;
-                color: #29004c;
-                margin: 0;
-            ">{faq['question']}</div>
-          </div>
+              font-size: 18px;
+              font-weight: bold;
+              color: #29004c;
+              margin: 0;
+          ">{faq['question']}</div>
         </div>
       </div>
       <!-- Answer -->
