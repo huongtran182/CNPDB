@@ -38,13 +38,13 @@ with col2:
 st.markdown("### OPPORTUNITIES")
 st.markdown("""
 <div style="text-align: justify; text-justify: inter-word;">
-  <p style="margin-bottom: 1.5em;">
+  <p style="margin-bottom: 0.8em;">
     Join our research efforts! We are continuously expanding this database and welcome contributions from students and postdoctoral fellows with fellowships or scholarships.
   </p>
-  <p style="margin-bottom: 1.5em;">
+  <p style="margin-bottom: 0.8em;">
     If you’re interested in advancing neuropeptide research, please reach out to Dr. Li at <a href="mailto:lingjun.li@wisc.edu">lingjun.li@wisc.edu</a>.
   </p>
-  <p style="margin-bottom: 1.5em;">
+  <p style="margin-bottom: 0.8em;">
     If you want to initiate collaborations, support the development of the CNPD, or have any trouble accessing this database, please email Dr. Li at <a href="mailto:lingjun.li@wisc.edu">lingjun.li@wisc.edu</a>.
   </p>
 </div>
