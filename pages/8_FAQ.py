@@ -55,7 +55,7 @@ faqs = [
 
 # 4. Helper to render one card
 def get_card_html(faq):
-    return = f"""
+    return f"""
     <div style="
         background-color: #9e9ac8;
         border-radius: 10px;
