@@ -44,6 +44,12 @@ st.markdown("""
     background-color: #6a51a3;
     color: white;
  }
+/* Label colors (including sliders and text inputs) */
+ .main-search-container label,
+ .stTextInput>label,
+ .stTextInput label {
+    color: #6a51a3 !important;
+ }
 </style>
 """, unsafe_allow_html=True)
 
@@ -71,7 +77,6 @@ for col in numeric_cols:
 col_filter, col_main = st.columns([1, 3])
 
 with col_filter:
-    st.markdown('<div class="section-title">Filters</div>', unsafe_allow_html=True)
     mono_mass_range = st.slider("Monoisotopic mass (m/z)", 300.0, 1600.0, (300.0, 1600.0))
     length_range = st.slider("Length (aa)", 3, 100, (3, 50))
     gravy_range = st.slider("GRAVY Score", -5.0, 5.0, (-5.0, 5.0))
@@ -79,7 +84,7 @@ with col_filter:
     half_life_range = st.slider("Predicted Half-life (min)", 0, 120, (0, 60))
 
 with col_main:
-    peptide_input = st.text_input("Peptide Sequence", placeholder="Separate by space, e.g. FDAFTTGFGHN")
+    peptide_input = st.text_input("Peptide Sequence", placeholder="Separate by space, e.g. FDAFTTGFGHN NFDEIDRSGFGFN")
     # Categorical multi-select via checkboxes
     st.markdown('<div class="section-title">Family</div>', unsafe_allow_html=True)
     family_options = sorted(df['Family'].dropna().unique())
