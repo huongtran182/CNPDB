@@ -94,8 +94,8 @@ st.markdown("""
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 230px; /* Fixed height for TOC container */
-    margin-bottom: 15px;
+    height: 190px; /* Fixed height for TOC container */
+    margin-bottom: 0px;
 }
 </style>
 """, unsafe_allow_html=True)
