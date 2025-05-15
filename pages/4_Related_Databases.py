@@ -112,7 +112,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- Section 2: resources for neuropeptide research ---
-st.markdown("## RESOURCES FOR NEUROPEPTIDE RESEARCH")
+st.markdown(
+    '<h2 class="custom-title">'
+    'RESOURCES FOR NEUROPEPTIDE RESEARCH'
+    '</h2>',
+    unsafe_allow_html=True
+)
 
 # --- inject custom CSS for TOC images ---
 st.markdown("""
