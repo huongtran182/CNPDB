@@ -27,6 +27,7 @@ st.markdown("""
     padding: 0;
     margin: auto;
     margin-top: 20px;
+    border: 2px solid #29004c;
   }
 
   /* 3) Full 2px border + 10px rounding on the table itself */
