@@ -53,7 +53,7 @@ faqs = [
     },
 ]
 
-# 4. Helper to render one card and return HTML
+# 4. Helper to render one card
 def render_card(faq):
     html = f"""
     <div style="
@@ -64,52 +64,55 @@ def render_card(faq):
         display: flex;
         flex-direction: column;
         min-height: 400px;
-        min-width: 250px;
     ">
-        <div style="
-            position: absolute;
-            top: 100px;
-            left: 40px;
-            right: 40px;
-            border-bottom: 3px solid black;
-        "></div>
+      <!-- underline fixed at 50px down -->
+      <div style="
+          position: absolute;
+          top: 100px;
+          left: 40px;
+          right: 40px;
+          border-bottom: 3px solid black;
+      "></div>
 
+      <!-- Header -->
+      <div style="
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          min-height: 70px;
+          margin-top: 0;            /* no extra top margin */
+      ">
         <div style="
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            min-height: 70px;
-            margin-top: 0;         /* no extra top margin */
-        ">
-            <div style="
-                font-size: 50px;
-                font-weight: bold;
-                color: black;
-                flex-shrink: 0;
-            ">{faq['num']}</div>
-            <div style="flex:1;">
-                <div style="
-                    font-size: 18px;
-                    font-weight: bold;
-                    color: #29004c;
-                    margin: 0;
-                    line-height: 22px;
-                ">{faq['question']}</div>
-            </div>
+            font-size: 50px;
+            font-weight: bold;
+            color: black;
+            flex-shrink: 0;
+        ">{faq['num']}</div>
+        <div style="flex:1;">
+          <!-- remove this inner border-bottom -->
+          <div style="
+              font-size: 18px;
+              font-weight: bold;
+              color: #29004c;
+              margin: 0;
+              line-height: 22px;
+          ">{faq['question']}</div>
         </div>
-        <div style="
-            flex: 1;
-            font-size: 14px;
-            color: #333;
-            text-align: justify;
-            text-justify: inter-word;
-            overflow: auto;
-        ">
-            {faq['answer'].replace('\n', '<br>')}
-        </div>
+      </div>
+      <!-- Answer -->
+      <div style="
+          flex: 1;
+          font-size: 14px;
+          color: #333;
+          text-align: justify;
+          text-justify: inter-word;
+          overflow: auto;
+      ">
+        {faq['answer'].replace('\n', '<br>')}
+      </div>
     </div>
     """
-   st.markdown(html, unsafe_allow_html=True)
+    st.markdown(html, unsafe_allow_html=True)
 
 # 5. Lay out in rows of 3
 for i in range(0, len(faqs), 3):
@@ -119,10 +122,10 @@ for i in range(0, len(faqs), 3):
         with col:
             render_card(faq)
 
-
 # footers
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
-    <em>Last update: Jul 2025</em>
+  <em>Last update: Jul 2025</em>
 </div>
 """, unsafe_allow_html=True)
+
