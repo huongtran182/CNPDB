@@ -14,14 +14,25 @@ render_sidebar()
 # --- Section 1: Table of External Databases ---
 st.markdown("""
 <style>
-  /* 1) Outer border + rounding on the <table> itself */
-  .related-table table {
-    width: 100%;
-    border: 2px solid #29004c;
-    border-radius: 10px;
-    border-collapse: collapse;
-    overflow: hidden;    /* clips the corners of the cells so they follow the table’s radius */
-  }
+  /* Outer 2px purple border + 10px radius on the table */
+.related-table table {
+  width: 100%;
+  border: 2px solid #29004c;    /* the 2px purple line you asked for */
+  border-radius: 10px;          /* rounds all four corners */
+  border-collapse: collapse;    /* so the inner cell‐borders don’t double up */
+  overflow: hidden;             /* clip the inner cells at the rounded corners */
+}
+
+/* interior vertical separators */
+.related-table th + th,
+.related-table td + td {
+  border-left: 2px solid #29004c;
+}
+
+/* interior horizontal separators */
+.related-table tr + tr td {
+  border-top: 2px solid #29004c;
+}
 
   /* 2) Common cell padding */
   .related-table th,
@@ -38,15 +49,6 @@ st.markdown("""
   /* vertical separators between header cells */
   .related-table th + th {
     border-left: 2px solid #29004c;
-  }
-
-  /* 4) Body rows: vertical separators between columns */
-  .related-table td + td {
-    border-left: 2px solid #29004c;
-  }
-  /* horizontal separators between rows */
-  .related-table tr + tr td {
-    border-top: 2px solid #29004c;
   }
 
   /* 5) Links */
