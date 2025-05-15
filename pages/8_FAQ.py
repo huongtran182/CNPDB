@@ -89,10 +89,6 @@ def render_card(faq):
         ">{faq['num']}</div>
         <div style="flex:1;">
           <div style="
-            position: absolute;
-          top: 50px;
-          left: 20px;
-          right: 20px;
           border-bottom: 3px solid black;
           ">
             <div style="
