@@ -85,7 +85,7 @@ def render_card(faq):
         <div style="
             font-size: 55px;
             font-weight: bold;
-            color: black;
+            color: #29004c;
             flex-shrink: 0;
         ">{faq['num']}</div>
         <div style="flex:1;">
