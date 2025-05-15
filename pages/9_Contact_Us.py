@@ -91,7 +91,7 @@ for col, p in zip(cols, papers):
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 520px;
+            min-height: 510px;
         ">
           <!-- fixed-height image block -->
           <div style="height: 200px; flex-shrink: 0; display:flex; justify-content:center; align-items:center;">
