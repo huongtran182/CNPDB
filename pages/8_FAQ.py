@@ -70,8 +70,8 @@ def render_card(faq):
       <div style="
           position: absolute;
           top: 100px;
-          left: 40px;
-          right: 40px;
+          left: 80px;
+          right: 20px;
           border-bottom: 3px solid black;
       "></div>
 
