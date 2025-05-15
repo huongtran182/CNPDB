@@ -68,9 +68,9 @@ def render_card(faq):
       <!-- underline fixed at 50px down -->
       <div style="
           position: absolute;
-          top: 50px;
-          left: 20px;
-          right: 20px;
+          top: 1000px;
+          left: 40px;
+          right: 40px;
           border-bottom: 3px solid black;
       "></div>
 
