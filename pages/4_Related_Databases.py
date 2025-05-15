@@ -84,15 +84,14 @@ st.markdown("""
 st.markdown("## RESOURCES FOR NEUROPEPTIDE RESEARCH")
 
 # CSS for the card grid
-st.markdown("""
 <style>
-.resource-grid {
+.papers-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 40px;
   margin-top: 20px;
 }
-.card {
+.paper-item {
   background-color: #9e9ac8;
   border-radius: 10px;
   padding: 20px;
@@ -100,20 +99,20 @@ st.markdown("""
   flex-direction: column;
   min-height: 500px;
 }
-.card img {
+.paper-item img {
   width: 100%;
   height: auto;
   object-fit: contain;
   border-radius: 5px;
   margin-bottom: 15px;
 }
-.card h3 {
+.paper-item h3 {
   color: #29004c;
   margin: 0 0 10px 0;
   text-align: center;
   font-size: 1.25em;
 }
-.card p {
+.paper-item p {
   flex: 1;
   color: #555;
   font-size: 0.9em;
@@ -122,12 +121,12 @@ st.markdown("""
   text-align: left;
   overflow: auto;
 }
-.card .buttons {
+.paper-item .buttons {
   display: flex;
   gap: 10px;
   justify-content: center;
 }
-.card .buttons a {
+.paper-item .buttons a {
   background-color: #29004c;
   color: white;
   padding: 8px 16px;
@@ -135,16 +134,16 @@ st.markdown("""
   text-decoration: none;
   font-size: 0.9em;
 }
-.card .buttons a:hover {
+.paper-item .buttons a:hover {
   background-color: #7c78a8;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# Data for your two internal resources
+# — Your resources data —
 resources = [
     {
-        "img": os.path.join("Assets", "Publication - Resource TOC", "Endogenius TOC.png"),
+        "img": os.path.join("Assets", "Publication_TOC", "Endogenius TOC.png"),
         "title": "Endogenius",
         "summary": (
             "EndoGenius, a database searching strategy designed specifically for elucidating "
@@ -156,7 +155,7 @@ resources = [
         "explore_link": "https://yourdatabase.com/tools/endoGenius"
     },
     {
-        "img": os.path.join("Assets", "Publication - Resource TOC", "MotifQuest TOC.png"),
+        "img": os.path.join("Assets", "Publication_TOC", "MotifQuest TOC.png"),
         "title": "MotifQuest",
         "summary": (
             "MotifQuest, our novel motif database generation algorithm, is designed to work in partnership "
@@ -168,17 +167,17 @@ resources = [
     },
 ]
 
-# Helper to encode an image as base64
+# helper to base64-encode images
 def img_to_b64(path):
     with open(path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-# Build and render the grid
-cards_html = []
+# — Build & render the grid —
+cards = []
 for r in resources:
     b64 = img_to_b64(r["img"])
-    cards_html.append(f"""
-    <div class="card">
+    cards.append(f"""
+    <div class="paper-item">
       <img src="data:image/png;base64,{b64}" />
       <h3>{r['title']}</h3>
       <p>{r['summary']}</p>
@@ -189,9 +188,8 @@ for r in resources:
     </div>
     """)
 
-grid_html = f'<div class="resource-grid">{"".join(cards_html)}</div>'
+grid_html = f'<div class="papers-grid">{"".join(cards)}</div>'
 st.markdown(grid_html, unsafe_allow_html=True)
-
 
 
 st.markdown("""
