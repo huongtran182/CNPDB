@@ -103,7 +103,7 @@ def render_card(faq):
       <!-- Answer -->
       <div style="
           position: absolute;
-          top: 105px;
+          top: 90px;
           flex: 1;
           font-size: 17px;
           color: #333;
