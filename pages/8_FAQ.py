@@ -64,6 +64,7 @@ def render_card(faq):
         display: flex;
         flex-direction: column;
         min-height: 400px;
+        min-width: 250px;
     ">
       <!-- underline fixed at 50px down -->
       <div style="
