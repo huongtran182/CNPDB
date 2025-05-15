@@ -19,36 +19,40 @@ st.markdown("""
     color: #29004c;
  }
  /* Container background */
- .main-search-container {
-    background-color: #efedf5;
-    padding: 20px;
-    border-radius: 10px;
+div[data-testid="stColumns"] > div[data-testid="stColumn"] {
+    background-color: #efedf5 !important;
+    padding: 20px !important;
+    border-radius: 10px !important;
  }
  /* Section titles */
- .section-title {
+  .section-title {
     color: #6a51a3;
     font-size: 16px;
     font-weight: bold;
     margin-top: 10px;
- }
- /* Checkbox accent color */
- input[type="checkbox"] {
-    accent-color: #6a51a3;
- }
- /* Slider accent color */
- input[type="range"] {
-    accent-color: #6a51a3;
- }
- /* Button color */
- .stButton>button {
+  }
+  /* Checkbox accent color */
+  input[type="checkbox"] { accent-color: #6a51a3; }
+  /* Slider accent color (handles only) */
+  input[type="range"] { accent-color: #6a51a3; }
+  /* Button color */
+  .stButton>button {
     background-color: #6a51a3;
     color: white;
- }
-/* Label colors (including sliders and text inputs) */
- .main-search-container label,
- .stTextInput>label,
- .stTextInput label {
+  }
+
+  /* 1) Make slider & text-input labels purple & bold */
+  [data-testid="stSlider"] label,
+  [data-testid="stTextInput"] label {
     color: #6a51a3 !important;
+    font-weight: bold !important;
+  }
+
+  /* 2) Wrap both filter & main columns in a purple-background box */
+  div[data-testid="stColumns"] > div[data-testid="stColumn"] {
+    background-color: #efedf5 !important;
+    padding: 20px !important;
+    border-radius: 10px !important;
  }
 </style>
 """, unsafe_allow_html=True)
@@ -77,30 +81,37 @@ for col in numeric_cols:
 col_filter, col_main = st.columns([1, 3])
 
 with col_filter:
-    mono_mass_range = st.slider("Monoisotopic mass (m/z)", 300.0, 1600.0, (300.0, 1600.0))
-    length_range = st.slider("Length (aa)", 3, 100, (3, 50))
-    gravy_range = st.slider("GRAVY Score", -5.0, 5.0, (-5.0, 5.0))
-    hydro_range = st.slider("% Hydrophobic Residue", 0, 100, (0, 100))
-    half_life_range = st.slider("Predicted Half-life (min)", 0, 120, (0, 60))
+    mono_mass_range  = st.slider("Monoisotopic mass (m/z)", 300.0, 1600.0, (300.0, 1600.0))
+    length_range     = st.slider("Length (aa)", 3, 100, (3, 50))
+    gravy_range      = st.slider("GRAVY Score", -5.0, 5.0, (-5.0, 5.0))
+    hydro_range      = st.slider("% Hydrophobic Residue", 0, 100, (0, 100))
+    half_life_range  = st.slider("Predicted Half-life (min)", 0, 120, (0, 60))
 
 with col_main:
-    peptide_input = st.text_input("Peptide Sequence", placeholder="Separate by space, e.g. FDAFTTGFGHN NFDEIDRSGFGFN")
-    # Categorical multi-select via checkboxes
+    peptide_input = st.text_input(
+        "Peptide Sequence",
+        placeholder="Separate by space, e.g. FDAFTTGFGHN NFDEIDRSGFGFN"
+    )
+
+    # Family
     st.markdown('<div class="section-title">Family</div>', unsafe_allow_html=True)
-    family_options = sorted(df['Family'].dropna().unique())
-    family_selected = [opt for opt in family_options if st.checkbox(opt, key=f"fam_{opt}")]
+    family_opts     = sorted(df['Family'].dropna().unique())
+    family_selected = [opt for opt in family_opts if st.checkbox(opt, key=f"fam_{opt}")]
 
+    # Tissue
     st.markdown('<div class="section-title">Tissue</div>', unsafe_allow_html=True)
-    tissue_options = sorted(df['Tissue'].dropna().unique())
-    tissue_selected = [opt for opt in tissue_options if st.checkbox(opt, key=f"tiss_{opt}")]
+    tissue_opts     = sorted(df['Tissue'].dropna().unique())
+    tissue_selected = [opt for opt in tissue_opts if st.checkbox(opt, key=f"tiss_{opt}")]
 
+    # Existence
     st.markdown('<div class="section-title">Existence</div>', unsafe_allow_html=True)
-    existence_options = sorted(df['Existence'].dropna().unique())
-    existence_selected = [opt for opt in existence_options if st.checkbox(opt, key=f"ex_{opt}")]
+    exist_opts      = sorted(df['Existence'].dropna().unique())
+    existence_selected = [opt for opt in exist_opts if st.checkbox(opt, key=f"ex_{opt}")]
 
+    # Organisms
     st.markdown('<div class="section-title">Organisms</div>', unsafe_allow_html=True)
-    organism_options = sorted(df['OS'].dropna().unique())
-    organisms_selected = [opt for opt in organism_options if st.checkbox(opt, key=f"org_{opt}")]
+    org_opts        = sorted(df['OS'].dropna().unique())
+    organisms_selected = [opt for opt in org_opts if st.checkbox(opt, key=f"org_{opt}")]
 
 # Filtering logic
 df_filtered = df.copy()
