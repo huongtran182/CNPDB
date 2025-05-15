@@ -52,7 +52,7 @@ with col2:
     length_range = st.slider("Length (aa)", 3, 100, (3, 50))
     gravy_range = st.slider("GRAVY Score", -5.0, 5.0, (-5.0, 5.0))
     hydro_range = st.slider("% Hydrophobic Residue", 0, 100, (0, 100))
-    half_life_range = st.slider("Predicted Half-life (min)", 0, 120, (0, 60)))
+    half_life_range = st.slider("Predicted Half-life (min)", 0, 120, (0, 60))
 
 # Filtering
 df_filtered = df.copy()
@@ -122,11 +122,12 @@ if len(df_filtered) > 0:
             fasta_str = ""
             for idx in selected_indices:
                 row = df_filtered.loc[idx]
-                fasta_str += f">{row['id']}\n{row['Seq']}\n"
+                fasta_str += f">{idx}
+{row['Seq']}
+"
             st.download_button("Download FASTA", data=fasta_str, file_name="peptides.fasta", mime="text/plain")
 else:
     st.info("No peptides matched the search criteria.")
-
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
