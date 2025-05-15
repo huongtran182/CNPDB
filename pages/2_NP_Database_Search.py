@@ -12,63 +12,58 @@ render_sidebar()
 
 st.markdown("""
 <style>
-/* Centered title */
- h2.custom-title {
+/* Global text settings */
+body, .stTextInput label, .stSlider label, .stCheckbox label, .stSelectbox label {
+    font-family: 'Arial', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+    color: #4B0082 !important;
+}
+
+/* Custom title */
+h2.custom-title {
     text-align: center !important;
     margin-top: 10px !important;
     color: #29004c;
- }
- /* Container background */
+}
+
+/* Sliders */
+div[data-testid="stSlider"] .css-1n76uvr {  /* bar */
+    background-color: #6a51a3 !important;
+}
+div[data-testid="stSlider"] .css-14pt78w {  /* thumb */
+    background-color: #6a51a3 !important;
+    border: none !important;
+}
+
+/* Buttons */
+div[data-testid="stButton"] > button {
+    background-color: #6a51a3 !important;
+    color: white !important;
+    font-weight: bold !important;
+}
+
+/* Checkboxes */
+input[type="checkbox"] {
+    accent-color: #6a51a3 !important;
+}
+
+/* Card styling */
 div[data-testid="stColumns"] > div[data-testid="stColumn"] {
     background-color: #efedf5 !important;
     padding: 20px !important;
     border-radius: 10px !important;
- }
- /* Section titles */
-  .section-title {
+}
+
+/* Section titles */
+.section-title {
     color: #6a51a3;
     font-size: 16px;
     font-weight: bold;
     margin-top: 10px;
-  }
-  /* Checkbox accent color */
-  input[type="checkbox"] { accent-color: #6a51a3; }
-
-    /* —— SLIDER TRACK & THUMB —— */
-  /* The BaseWeb slider bar */
-  div[data-testid="stSlider"]
-    [data-baseweb="slider"] .base-slider-bar {
-      background-color: #6a51a3 !important;
-  }
-  /* The BaseWeb slider handle */
-  div[data-testid="stSlider"]
-    [data-baseweb="slider"] .base-slider-handle {
-      background-color: #6a51a3 !important;
-      border: none !important;
-  }
-
-  /* —— BUTTONS —— */
-  div[data-testid="stButton"] > button {
-    background-color: #6a51a3 !important;
-    color: white !important;
-  }
-
-  /* 1) Make slider & text-input labels purple & bold */
-  [data-testid="stSlider"] label,
-  [data-testid="stTextInput"] label {
-    color: #6a51a3 !important;
-    font-weight: bold !important;
-  }
-
-  /* 2) Wrap both filter & main columns in a purple-background box */
-  div[data-testid="stColumns"] > div[data-testid="stColumn"] {
-    background-color: #efedf5 !important;
-    padding: 20px !important;
-    border-radius: 10px !important;
- }
+}
 </style>
 """, unsafe_allow_html=True)
-
 # --- Centered, spaced title ---
 st.markdown(
     '<h2 class="custom-title">'
