@@ -46,7 +46,6 @@ with col1:
     existence_selected = st.multiselect("Existence", options=df['Existence'].dropna().unique())
 
 with col2:
-    pubmed_input = st.text_input("PubMED ID", placeholder="Separate by space, e.g. 19007832")
     organisms_selected = st.multiselect("Organisms", options=df['OS'].dropna().unique())
     mono_mass_range = st.slider("Monoisotopic mass (m/z)", 300.0, 1600.0, (300.0, 1600.0))
     length_range = st.slider("Length (aa)", 3, 100, (3, 50))
@@ -60,10 +59,6 @@ df_filtered = df.copy()
 if peptide_input:
     for pep in peptide_input.split():
         df_filtered = df_filtered[df_filtered['Seq'].str.contains(pep, na=False)]
-
-if pubmed_input:
-    for pmid in pubmed_input.split():
-        df_filtered = df_filtered[df_filtered['PubMed ID'].astype(str).str.contains(pmid, na=False)]
 
 if family_selected:
     df_filtered = df_filtered[df_filtered['Family'].isin(family_selected)]
