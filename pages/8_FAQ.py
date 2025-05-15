@@ -63,7 +63,7 @@ def render_card(faq):
         padding: 20px;
         display: flex;
         flex-direction: column;
-        min-height: 500px;
+        min-height: 300px;
     ">
       <!-- Header -->
       <div style="
@@ -82,13 +82,15 @@ def render_card(faq):
           <div style="
               border-bottom: 3px solid black;
               padding-bottom: 5px;
-              margin-bottom: 5px;
+              margin-bottom: 0;
+              margin-top: 50px;  
           ">
             <div style="
                 font-size: 18px;
                 font-weight: bold;
                 color: #29004c;
                 margin: 0;
+                line-height: 20px;
             ">{faq['question']}</div>
           </div>
         </div>
