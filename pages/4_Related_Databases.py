@@ -44,7 +44,6 @@ st.markdown("""
     background-color: #9e9ac8;
   }
   .related-table th:first-child {
-    background-color: #6a51a3;
     border-top-left-radius: 10px;
   }
   .related-table th:last-child {
