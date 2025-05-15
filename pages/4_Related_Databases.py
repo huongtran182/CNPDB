@@ -14,135 +14,14 @@ render_sidebar()
 # --- Section 1: Table of External Databases ---
 st.markdown("## ACCESSIBLE NEUROPEPTIDE DATABASES")
 
-# CSS for table styling
-st.markdown("""
-<style>
-.related-table {
-  background-color: #9e9ac8;
-  border-radius: 10px;
-  padding: 20px;
-}
-.related-table table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.related-table th, .related-table td {
-  padding: 12px;
-}
-.related-table th {
-  text-align: left;
-  font-weight: bold;
-  border-bottom: 2px solid #29004c;
-}
-.related-table tr + tr td {
-  border-top: 1px solid #29004c;
-}
-.related-table a {
-  color: #29004c;
-  text-decoration: none;
-  font-weight: bold;
-}
-.related-table a:hover {
-  text-decoration: underline;
-}
-</style>
-""", unsafe_allow_html=True)
+# --- helper to load an image as base64 ---
+def img_b64(path):
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
 
-# Table HTML
-st.markdown("""
-<div class="related-table">
-  <table>
-    <thead>
-      <tr>
-        <th>Website</th>
-        <th>Year Published</th>
-        <th>Database Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a href="http://neuropeptides.nl" target="_blank">neuropeptides.nl</a></td>
-        <td>20xx</td>
-        <td>The Neuropeptide Database is the internet resource to data about all known neuropeptides, their genes, precursors and expression in the brain.</td>
-      </tr>
-      <tr>
-        <td><a href="https://neuropep.org" target="_blank">NeuroPep</a></td>
-        <td>2015</td>
-        <td>NeuroPep holds 5949 non-redundant neuropeptide entries originating from 493 organisms belonging to 65 neuropeptide families.</td>
-      </tr>
-      <tr>
-        <td><a href="http://neuropepdia.org" target="_blank">Neuropepdia</a></td>
-        <td>20xx</td>
-        <td>abcxyz</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-""", unsafe_allow_html=True)
-
-# --- Section 2: Card Grid for Internal Tools/Resources ---
-st.markdown("## RESOURCES FOR NEUROPEPTIDE RESEARCH")
-
-# CSS for the card grid
-<style>
-.papers-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-  margin-top: 20px;
-}
-.paper-item {
-  background-color: #9e9ac8;
-  border-radius: 10px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  min-height: 500px;
-}
-.paper-item img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 5px;
-  margin-bottom: 15px;
-}
-.paper-item h3 {
-  color: #29004c;
-  margin: 0 0 10px 0;
-  text-align: center;
-  font-size: 1.25em;
-}
-.paper-item p {
-  flex: 1;
-  color: #555;
-  font-size: 0.9em;
-  margin-bottom: 15px;
-  line-height: 1.4;
-  text-align: left;
-  overflow: auto;
-}
-.paper-item .buttons {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-}
-.paper-item .buttons a {
-  background-color: #29004c;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 0.9em;
-}
-.paper-item .buttons a:hover {
-  background-color: #7c78a8;
-}
-</style>
-""", unsafe_allow_html=True)
-
-# — Your resources data —
-resources = [
-    {
+# --- your paper data ---
+papers = [
+     {
         "img": os.path.join("Assets", "Publication_TOC", "Endogenius TOC.png"),
         "title": "Endogenius",
         "summary": (
@@ -166,31 +45,81 @@ resources = [
         "explore_link": "https://yourdatabase.com/tools/motifquest"
     },
 ]
+st.markdown("### PI’s MAIN PUBLICATIONS ON NEUROPEPTIDES")
 
-# helper to base64-encode images
-def img_to_b64(path):
-    with open(path, "rb") as f:
-        return base64.b64encode(f.read()).decode()
+# create three equal columns
+cols = st.columns(3, gap="medium")
 
-# — Build & render the grid —
-cards = []
-for r in resources:
-    b64 = img_to_b64(r["img"])
-    cards.append(f"""
-    <div class="paper-item">
-      <img src="data:image/png;base64,{b64}" />
-      <h3>{r['title']}</h3>
-      <p>{r['summary']}</p>
-      <div class="buttons">
-        <a href="{r['read_link']}" target="_blank">Read More</a>
-        <a href="{r['explore_link']}" target="_blank">Explore</a>
-      </div>
-    </div>
-    """)
+for col, p in zip(cols, papers):
+    b64 = img_b64(p["img"])
+    with col:
+        st.markdown(f"""
+        <div style="
+            background-color: #9e9ac8;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 510px;
+        ">
+          <!-- fixed-height image block -->
+          <div style="height: 200px; flex-shrink: 0; display:flex; justify-content:center; align-items:center;">
+            <img src="data:image/png;base64,{b64}"
+                 style="max-height:100%; width:auto; object-fit:contain; border-radius:5px;" />
+          </div>
 
-grid_html = f'<div class="papers-grid">{"".join(cards)}</div>'
-st.markdown(grid_html, unsafe_allow_html=True)
+          <!-- title -->
+          <div style="
+            height: 80px;             /* reserve exactly 80px for the title */
+            overflow: hidden;         /* crop any extra if the text is very long */
+            margin-bottom: 10px;      /* gap before the summary */
+            display: flex;
+            align-items: center;      /* vertical centering within that 60px */
+            justify-content: center;  /* horizontal centering of the text */
+        ">
+          <h3 style="
+              color: #29004c;
+              margin: 0;
+              text-align: center;
+              font-size: 1.15em;
+              line-height: 1.2;
+          ">{p["title"]}</h3>
+        </div>
+          
+          <!-- flexible summary block -->
+          <div style="
+             flex: 1;
+              color: #555;
+              font-size: 0.9em;
+              line-height: 1.4;
+              margin: 5px 0 0 0;
+              overflow: auto; /* in case text is long */
+              text-align: left;
+          ">
+            {p["summary"]}
+          </div>
 
+          <!-- fixed-height button block -->
+          <div style="
+              height: 45px;
+              flex-shrink: 0;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          ">
+            <a href="{p["link"]}" target="_blank" style="
+                background-color: #29004c;
+                color: white;
+                text-decoration: none;
+                padding: 8px 16px;
+                border-radius: 5px;
+                font-size: 0.9em;
+            ">Read More</a>
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
