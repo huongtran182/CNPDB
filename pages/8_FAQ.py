@@ -73,7 +73,6 @@ def render_card(faq):
           left: 80px;
           right: 0px;
           border-bottom: 3px solid black;
-          margin-bottom: 0;
       "></div>
 
       <!-- Header -->
@@ -83,28 +82,21 @@ def render_card(faq):
           gap: 10px;
           min-height: 70px;
           margin-top: 0;            /* no extra top margin */
-          margin-bottom: 0; /* Reset bottom margin of the question/number container */
-          padding-bottom: 0; /* Reset bottom padding */
       ">
         <div style="
             font-size: 55px;
             font-weight: bold;
             color: black;
             flex-shrink: 0;
-            margin-top: 0; /* Reset top margin of the number */
-            margin-bottom: 0; /* Reset bottom margin of the number */
-            padding-bottom: 0; /* Reset bottom padding of the number */
         ">{faq['num']}</div>
-        <div style="flex:1;margin-top: 0; margin-bottom: 0; padding-bottom: 0;">
+        <div style="flex:1;">
           <!-- remove this inner border-bottom -->
           <div style="
               font-size: 22px;
               font-weight: bold;
               color: #29004c;
               margin: 0;
-              margin-bottom: 0; /* Reset bottom margin of the question */
               line-height: 25px;
-              padding-bottom: 0; /* Reset bottom padding of the question */
           ">{faq['question']}</div>
         </div>
       </div>
@@ -117,7 +109,6 @@ def render_card(faq):
           text-justify: inter-word;
           overflow-y: auto;
           min-height: 0;
-          margin-top: 0; 
       ">
         {faq['answer'].replace('\n', '<br>')}
       </div>
