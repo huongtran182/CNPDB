@@ -11,7 +11,7 @@ st.set_page_config(
 render_sidebar()
 
 # Page header
-st.markdown("# Frequently Asked Questions about CNPD")
+st.markdown("# Frequently Asked Questions")
 
 # Your FAQ data
 faqs = [
