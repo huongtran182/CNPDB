@@ -102,6 +102,8 @@ def render_card(faq):
       </div>
       <!-- Answer -->
       <div style="
+          position: absolute;
+          top: 120px;
           flex: 1;
           font-size: 17px;
           color: #333;
