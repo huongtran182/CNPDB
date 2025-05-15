@@ -126,6 +126,9 @@ for i in range(0, len(faqs), 3):
     for col, faq in zip(cols, row):
         with col:
             render_card(faq)
+    # after each row (except the last), insert a 40px tall spacer
+    if i + 3 < len(faqs):
+        st.markdown("<div style='height:40px'></div>", unsafe_allow_html=True)
 
 # footers
 st.markdown("""
