@@ -53,7 +53,7 @@ faqs = [
     },
 ]
 
-# 4. Helper to render one card
+# 4. Helper to render one card and return HTML
 def render_card(faq):
     html = f"""
     <div style="
@@ -64,70 +64,74 @@ def render_card(faq):
         display: flex;
         flex-direction: column;
         min-height: 400px;
-        min-width: 250px; 
+        min-width: 250px;
     ">
-      <!-- underline fixed at 50px down -->
-      <div style="
-          position: absolute;
-          top: 100px;
-          left: 40px;
-          right: 40px;
-          border-bottom: 3px solid black;
-      "></div>
-
-      <!-- Header -->
-      <div style="
-          display: flex;
-          align-items: flex-start;
-          gap: 10px;
-          min-height: 70px;
-          margin-top: 0;            /* no extra top margin */
-      ">
         <div style="
-            font-size: 50px;
-            font-weight: bold;
-            color: black;
-            flex-shrink: 0;
-        ">{faq['num']}</div>
-        <div style="flex:1;">
-          <!-- remove this inner border-bottom -->
-          <div style="
-              font-size: 18px;
-              font-weight: bold;
-              color: #29004c;
-              margin: 0;
-              line-height: 22px;
-          ">{faq['question']}</div>
+            position: absolute;
+            top: 100px;
+            left: 40px;
+            right: 40px;
+            border-bottom: 3px solid black;
+        "></div>
+
+        <div style="
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            min-height: 70px;
+            margin-top: 0;         /* no extra top margin */
+        ">
+            <div style="
+                font-size: 50px;
+                font-weight: bold;
+                color: black;
+                flex-shrink: 0;
+            ">{faq['num']}</div>
+            <div style="flex:1;">
+                <div style="
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: #29004c;
+                    margin: 0;
+                    line-height: 22px;
+                ">{faq['question']}</div>
+            </div>
         </div>
-      </div>
-      <!-- Answer -->
-      <div style="
-          flex: 1;
-          font-size: 14px;
-          color: #333;
-          text-align: justify;
-          text-justify: inter-word;
-          overflow: auto;
-      ">
-        {faq['answer'].replace('\n', '<br>')}
-      </div>
+        <div style="
+            flex: 1;
+            font-size: 14px;
+            color: #333;
+            text-align: justify;
+            text-justify: inter-word;
+            overflow: auto;
+        ">
+            {faq['answer'].replace('\n', '<br>')}
+        </div>
     </div>
     """
-  return html
+    return html
 
-# 5. Lay out in rows of 3
-for i in range(0, len(faqs), 3):
-    row = faqs[i:i+3]
-    cols = st.columns(3, gap="large")
-    for col, faq in zip(cols, row):
-        with col:
-            render_card(faq)
+# Inject grid CSS with 40px gaps
+st.markdown("""
+<style>
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 40px;
+  }
+</style>
+""", unsafe_allow_html=True)
+
+# Lay out in a grid
+st.markdown('<div class="faq-grid">', unsafe_allow_html=True)
+for faq in faqs:
+    st.markdown(render_card(faq), unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)
 
 
 # footers
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
-  <em>Last update: Jul 2025</em>
+    <em>Last update: Jul 2025</em>
 </div>
 """, unsafe_allow_html=True)
-
