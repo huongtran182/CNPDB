@@ -12,12 +12,29 @@ render_sidebar()
 
 st.markdown("""
 <style>
- /* 1) Centered title with10px top margin */
-  h2.custom-title {
+/* Centered title */
+ h2.custom-title {
     text-align: center !important;
     margin-top: 10px !important;
     color: #29004c;
-  }
+ }
+ /* Container background */
+ .main-search-container {
+    background-color: #efedf5;
+    padding: 20px;
+    border-radius: 10px;
+ }
+ /* Section titles */
+ .section-title {
+    color: #6a51a3;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+ }
+ /* Checkbox accent color */
+ input[type="checkbox"] {
+    accent-color: #6a51a3;
+ }
 </style>
 """, unsafe_allow_html=True)
 
@@ -29,57 +46,55 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Begin styled container
+st.markdown('<div class="main-search-container">', unsafe_allow_html=True)
+
 # Load data
 DF_PATH = "Assets/CNPD_Li.xlsx"
 df = pd.read_excel(DF_PATH, sheet_name="Example")
 
-# Ensure numeric columns are correctly typed
+# Ensure numeric columns are numeric
 numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (%)', 'Predicted Half Life (Min)']
 for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
-# Layout: 1/3 filters, 2/3 inputs
+# Layout: filters (1/3) and inputs (2/3)
 col_filter, col_main = st.columns([1, 2])
 
-# Filter sliders in left column
 with col_filter:
-    st.header("Filters")
+    st.markdown('<div class="section-title">Filters</div>', unsafe_allow_html=True)
     mono_mass_range = st.slider("Monoisotopic mass (m/z)", 300.0, 1600.0, (300.0, 1600.0))
     length_range = st.slider("Length (aa)", 3, 100, (3, 50))
     gravy_range = st.slider("GRAVY Score", -5.0, 5.0, (-5.0, 5.0))
     hydro_range = st.slider("% Hydrophobic Residue", 0, 100, (0, 100))
     half_life_range = st.slider("Predicted Half-life (min)", 0, 120, (0, 60))
 
-# Inputs on right column
 with col_main:
     peptide_input = st.text_input("Peptide Sequence", placeholder="Separate by space, e.g. FDAFTTGFGHN")
-
-    # Checkbox filters for categorical fields
-    st.subheader("Family")
+    # Categorical multi-select via checkboxes
+    st.markdown('<div class="section-title">Family</div>', unsafe_allow_html=True)
     family_options = sorted(df['Family'].dropna().unique())
     family_selected = [opt for opt in family_options if st.checkbox(opt, key=f"fam_{opt}")]
 
-    st.subheader("Tissue")
+    st.markdown('<div class="section-title">Tissue</div>', unsafe_allow_html=True)
     tissue_options = sorted(df['Tissue'].dropna().unique())
     tissue_selected = [opt for opt in tissue_options if st.checkbox(opt, key=f"tiss_{opt}")]
 
-    st.subheader("Existence")
+    st.markdown('<div class="section-title">Existence</div>', unsafe_allow_html=True)
     existence_options = sorted(df['Existence'].dropna().unique())
     existence_selected = [opt for opt in existence_options if st.checkbox(opt, key=f"ex_{opt}")]
 
-    st.subheader("Organisms")
+    st.markdown('<div class="section-title">Organisms</div>', unsafe_allow_html=True)
     organism_options = sorted(df['OS'].dropna().unique())
     organisms_selected = [opt for opt in organism_options if st.checkbox(opt, key=f"org_{opt}")]
 
 # Filtering logic
 df_filtered = df.copy()
 
-# Sequence filtering
 if peptide_input:
     for pep in peptide_input.split():
         df_filtered = df_filtered[df_filtered['Seq'].str.contains(pep, na=False)]
 
-# Categorical filtering
 if family_selected:
     df_filtered = df_filtered[df_filtered['Family'].isin(family_selected)]
 if tissue_selected:
@@ -135,6 +150,9 @@ if len(df_filtered) > 0:
             st.download_button("Download FASTA", data=fasta_str, file_name="peptides.fasta", mime="text/plain")
 else:
     st.info("No peptides matched the search criteria.")
+
+# End styled container
+st.markdown("</div>", unsafe_allow_html=True)
 
 # Footer
 st.markdown("""
