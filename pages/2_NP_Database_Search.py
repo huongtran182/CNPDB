@@ -32,29 +32,11 @@ st.markdown(
 # Load data
 df = pd.read_excel("Assets/CNPD_Li.xlsx", skiprows=1)
 
-st.write(df.columns.tolist())
-
-
-# Parse 'CNPD ID' for embedded info
-
-def parse_metadata(row):
-    metadata = row['id'] if pd.notna(row['id']) else ""
-    def extract(pattern):
-        match = re.search(pattern, metadata)
-        return match.group(1) if match else None
-
-    return pd.Series({
-        'Family': extract(r'Family=([^\s]+)'),
-        'OS': extract(r'OS=([^\s]+)'),
-        'Existence': extract(r'Existence=([^\s]+)'),
-        'Monoisotopic mass': float(extract(r'mz=([^\s]+)')) if extract(r'mz=([^\s]+)') else None,
-        'Tissue': extract(r'Tissue=([^\s]+)'),
-    })
-
-parsed = df.apply(parse_metadata, axis=1)
-df = pd.concat([df, parsed], axis=1)
-
 # Search inputs
+# Ensure numeric columns are correctly typed
+numeric_cols = ['GRAVY Score', 'Length', '% Hydrophobic Residue (%)', 'Predicted Half Life (Min)']
+for col in numeric_cols:
+    df[col] = pd.to_numeric(df[col], errors='coerce')
 col1, col2 = st.columns(2)
 
 with col1:
@@ -67,6 +49,10 @@ with col2:
     pubmed_input = st.text_input("PubMED ID", placeholder="Separate by space, e.g. 19007832")
     organisms_selected = st.multiselect("Organisms", options=df['OS'].dropna().unique())
     mono_mass_range = st.slider("Monoisotopic mass (m/z)", 300.0, 1600.0, (300.0, 1600.0))
+    length_range = st.slider("Length (aa)", 3, 100, (3, 50))
+    gravy_range = st.slider("GRAVY Score", -5.0, 5.0, (-5.0, 5.0))
+    hydro_range = st.slider("% Hydrophobic Residue", 0, 100, (0, 100))
+    half_life_range = st.slider("Predicted Half-life (min)", 0, 120, (0, 60)))
 
 # Filtering
 df_filtered = df.copy()
@@ -93,6 +79,10 @@ if existence_selected:
 
 # Apply numeric filters
 df_filtered = df_filtered[df_filtered['Monoisotopic mass'].between(*mono_mass_range)]
+df_filtered = df_filtered[df_filtered['Length'].between(*length_range)]
+df_filtered = df_filtered[df_filtered['GRAVY Score'].between(*gravy_range)]
+df_filtered = df_filtered[df_filtered['% Hydrophobic Residue (%)'].between(*hydro_range)]
+df_filtered = df_filtered[df_filtered['Predicted Half Life (Min)'].between(*half_life_range)]
 
 # Display results
 st.markdown("## Search Results")
@@ -132,10 +122,11 @@ if len(df_filtered) > 0:
             fasta_str = ""
             for idx in selected_indices:
                 row = df_filtered.loc[idx]
-                fasta_str += f">{row['CNPD ID']}\n{row['Seq']}\n"
+                fasta_str += f">{row['id']}\n{row['Seq']}\n"
             st.download_button("Download FASTA", data=fasta_str, file_name="peptides.fasta", mime="text/plain")
 else:
     st.info("No peptides matched the search criteria.")
+
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
