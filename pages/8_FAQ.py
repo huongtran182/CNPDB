@@ -113,6 +113,7 @@ def render_card(faq):
       </div>
     </div>
     """
+  return html
 st.markdown(html, unsafe_allow_html=True)
 
 # 5. Lay out in rows of 3
