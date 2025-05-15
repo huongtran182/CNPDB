@@ -106,6 +106,7 @@ def render_card(faq):
           top: 90px;
           flex: 1;
           font-size: 17px;
+          line-height: 20px;
           color: #333;
           text-align: justify;
           text-justify: inter-word;
