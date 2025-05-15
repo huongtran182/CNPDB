@@ -43,7 +43,7 @@ st.markdown("""
   /* 4) Cell padding */
   .related-table th,
   .related-table td {
-    padding: 12px;
+    padding: 0;
   }
 
   /* 5) Header row styling */
