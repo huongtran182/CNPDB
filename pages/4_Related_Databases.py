@@ -243,7 +243,6 @@ for col, p in zip(cols, papers):
           </div>
 
           <!-- buttons -->
-        st.markdown(f"""
  <div style="display:flex; gap:10px; justify-content:center;">
             <a href="{p["read_link"]}" target="_blank" style="
                 background-color:#29004c;
