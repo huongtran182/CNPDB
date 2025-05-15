@@ -32,6 +32,9 @@ st.markdown(
 # Load data
 df = pd.read_excel("Assets/CNPD_Li.xlsx", skiprows=1)
 
+st.write(df.columns.tolist())
+
+
 # Parse 'CNPD ID' for embedded info
 
 def parse_metadata(row):
