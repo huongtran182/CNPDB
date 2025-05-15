@@ -35,9 +35,6 @@ df = pd.read_excel(
     sheet_name="Example",   # Read the correct sheet
 )
 
-# Debug: Show column names to verify
-st.write("Actual columns in 'Example' sheet:", df.columns.tolist())
-
 # Search inputs
 # Ensure numeric columns are correctly typed
 numeric_cols = ['GRAVY', 'Length', '% Hydrophobic Residue (%)', 'Predicted Half Life (Min)']
