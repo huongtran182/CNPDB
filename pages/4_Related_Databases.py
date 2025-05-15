@@ -55,17 +55,17 @@ st.markdown("""
 
   /* 6) Vertical separators between header cells */
   .related-table th + th {
-    border-left: 2px solid #29004c;
+    border: 2px solid #29004c;
   }
 
   /* 7) Vertical separators between body cells */
   .related-table td + td {
-    border-left: 2px solid #29004c;
+    border: 2px solid #29004c;
   }
 
   /* 8) Horizontal separators between rows */
   .related-table tr + tr td {
-    border-top: 2px solid #29004c;
+    border: 2px solid #29004c;
   }
 
   /* 9) Link styling */
