@@ -47,6 +47,7 @@ st.markdown(
 )
 
 # --- Load Data ---
+# --- Load Data ---
 DF_PATH = "Assets/CNPD_Li.xlsx"
 df = pd.read_excel(DF_PATH, sheet_name="Example")
 
@@ -102,6 +103,10 @@ selected_indices = []
 
 if len(df_filtered) > 0:
     for idx, row in df_filtered.iterrows():
+        checked = st.checkbox(f"Select {row['Seq']}", key=f"chk_{idx}")
+        if checked:
+            selected_indices.append(idx)
+
         st.markdown(f"""
         <div class='card'>
             <div class='card-header'>{row['Seq']}</div>
@@ -118,17 +123,17 @@ if len(df_filtered) > 0:
 
     with col1:
         if st.button("📋 View Selected"):
-            st.dataframe(df_filtered)
+            st.dataframe(df_filtered.loc[selected_indices])
 
     with col2:
         if st.button("📥 Download FASTA"):
             fasta_str = ""
-            for idx, row in df_filtered.iterrows():
+            for idx in selected_indices:
+                row = df_filtered.loc[idx]
                 fasta_str += f">{row['ID']}\n{row['Seq']}\n"
             st.download_button("Download .fasta", data=fasta_str, file_name="peptides.fasta", mime="text/plain")
 else:
     st.info("No peptides matched the filters.")
-
 # Footer
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
