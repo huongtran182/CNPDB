@@ -95,6 +95,7 @@ def render_card(faq):
               font-weight: bold;
               color: #29004c;
               margin: 0;
+              line-height: 22px;
           ">{faq['question']}</div>
         </div>
       </div>
@@ -111,15 +112,22 @@ def render_card(faq):
       </div>
     </div>
     """
-    st.markdown(html, unsafe_allow_html=True)
+# Inject grid CSS with 40px gaps
+st.markdown("""
+<style>
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;       /* 40px both row and column gap */
+    margin-top: 20px;
+  }
+</style>
+""", unsafe_allow_html=True)
 
-# 5. Lay out in rows of 3
-for i in range(0, len(faqs), 3):
-    row = faqs[i:i+3]
-    cols = st.columns(3, gap="large")
-    for col, faq in zip(cols, row):
-        with col:
-            render_card(faq)
+# Build the entire grid HTML and render once
+cards = "".join(get_card_html(f) for f in faqs)
+grid_html = f'<div class="faq-grid">{cards}</div>'
+st.markdown(grid_html, unsafe_allow_html=True)
 
 # footers
 st.markdown("""
