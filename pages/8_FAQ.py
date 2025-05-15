@@ -107,7 +107,8 @@ def render_card(faq):
           color: #333;
           text-align: justify;
           text-justify: inter-word;
-          overflow: auto;
+          overflow-y: auto;
+          min-height: 0;
       ">
         {faq['answer'].replace('\n', '<br>')}
       </div>
