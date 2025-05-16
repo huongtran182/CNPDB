@@ -59,20 +59,19 @@ def display_peptide_details(row: pd.Series):
     # collect up to three MSI tissues
     msi_tissues = [row.get(f"MSI Tissue {i}") for i in range(1, 4)]
 
-    # ─── Begin lavender‐gray container ───
+      # 1) OPEN LAVENDER‐GRAY BOX (with extra top margin so it sits below your buttons)
     st.markdown(f"""
     <div style="
       position: relative;
       background-color: #efedf5;
       border-radius: 20px;
-      padding: 60px 20px 20px;  /* room for header */
-      margin: 30px 0;
+      padding: 60px 20px 20px;
+      margin: 80px 0 30px;   /* ← larger top margin */
     ">
-      <!-- overlapping header bar -->
+      <!-- Overlapping header bar -->
       <div style="
         position: absolute;
-        top: 0;
-        left: 50%;
+        top: 0; left: 50%;
         transform: translate(-50%, -50%);
         width: 66%;
         background-color: #54278f;
@@ -86,8 +85,8 @@ def display_peptide_details(row: pd.Series):
       </div>
     """, unsafe_allow_html=True)
 
-     # three columns: metadata | 3D | MSI
-    meta_col, col3d, colmsi = st.columns([4, 3, 3])
+    # 2) IMMEDIATELY CREATE THE THREE COLUMNS INSIDE THAT BOX
+    meta_col, col3d, colmsi = st.columns([4,3,3])
     with meta_col:
          # format GRAVY to two decimals if numeric
         gravy = row.get("GRAVY")
@@ -203,7 +202,7 @@ def display_peptide_details(row: pd.Series):
             </div>
             """, unsafe_allow_html=True)
 
-    # ─── Close lavender‐gray container ───
+ # 3) CLOSE THE LAVENDER‐GRAY BOX
     st.markdown("</div>", unsafe_allow_html=True)
     
     
