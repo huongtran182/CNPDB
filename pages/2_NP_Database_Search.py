@@ -197,10 +197,10 @@ if len(df_filtered) > 0:
 # 5) Centered buttons row
     b1, b2 = st.columns([1,1])
     with b1:
-       st.markdown("<div style='text-align: right;'>", unsafe_allow_html=True)
-       if st.button("View details"):
+       left_space, right_button = st.columns([3,1])
+       with right_button:
+           if st.button("View details"):
             st.dataframe(df_filtered.loc[selected_indices])
-       st.markdown("</div>", unsafe_allow_html=True)
     with b2:
         if st.button("Download Fasta File"):
             fasta_str = ""
