@@ -202,7 +202,7 @@ if len(df_filtered) > 0:
            if st.button("View details"):
             st.dataframe(df_filtered.loc[selected_indices])
     with b2:
-        if st.button("Download Fasta File"):
+        if st.button("Download FASTA File"):
             fasta_str = ""
             for idx in selected_indices:
                 row = df_filtered.loc[idx]
