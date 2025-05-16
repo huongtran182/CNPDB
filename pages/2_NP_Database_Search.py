@@ -26,10 +26,14 @@ div[data-testid="stColumns"] > div[data-testid="stColumn"] {
  }
   .results-container {
     background-color: #efedf5;
-    padding: 20px;
+    padding: 0;
+    margin: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: none;
     border-radius: 10px;
-    margin-bottom: 20px;
-      }
+    border: 2px solid #29004c;
+  }
  /* Section titles */
   .section-title {
     color: #6a51a3;
