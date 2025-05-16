@@ -63,7 +63,7 @@ def display_peptide_details(row: pd.Series):
       <div style="
         background-color: #efedf5;
         border-radius: 20px;
-        padding: 500px 0 0;   /* 40px top padding to make room for header */
+        padding: 60px 0 0;   /* 40px top padding to make room for header */
         margin: 30px 0;
       ">
     """, unsafe_allow_html=True)
