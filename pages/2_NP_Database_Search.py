@@ -86,7 +86,7 @@ st.markdown(f"""
 """, unsafe_allow_html=True)
 
     # three columns: metadata | 3D | MSI
-    meta_col, col3d, colmsi = st.columns([4, 3, 3])
+meta_col, col3d, colmsi = st.columns([4, 3, 3])
     with meta_col:
          # format GRAVY to two decimals if numeric
         gravy = row.get("GRAVY")
