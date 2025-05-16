@@ -148,15 +148,14 @@ def display_peptide_details(row: pd.Series):
         """, unsafe_allow_html=True)
 
     with colmsi:
-        tissues = []
+         # Loop through MSI Tissue 1–3
         for i in range(1, 4):
             col_name = f"MSI Tissue {i}"
-            t = disp(row.get(col_name))
-            if t:
-                tissues.append((i, t))
-        
-        if tissues:
-            # only show header once, using the first tissue name
+            tissue = disp(row.get(col_name))
+            if not tissue:
+                continue
+
+            # 1) Section header for this tissue
             st.markdown(f"""
             <div style="
               color: #6a51a3;
@@ -165,25 +164,26 @@ def display_peptide_details(row: pd.Series):
               margin-top: 10px;
               text-align: center;
             ">
-              MS Imaging – {tissues[0][1]}
+              MS Imaging – {tissue}
             </div>
             """, unsafe_allow_html=True)
 
-            # for each available image, render a dashed box
-            for i, tissue in tissues:
-                # file names are "MSI cNP{ID}.png", "MSI cNP{ID} 2.png", etc.
-                suffix = f" {i}" if i > 1 else ""
-                path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
-                st.markdown(f"""
-                <div style="
-                  border: 2px dashed #6a51a3;
-                  padding: 10px;
-                  text-align: center;
-                  margin-top:5px;
-                ">
-                  {img_html(path)}
-                </div>
-                """, unsafe_allow_html=True)
+
+            # 2) Dashed-box with the matching image
+            #    Filename is "MSI cNP{ID}.png" for i==1,
+            #    "MSI cNP{ID} 2.png" for i==2, etc.
+            suffix = f" {i}" if i > 1 else ""
+            path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
+            st.markdown(f"""
+            <div style="
+              border: 2px dashed #6a51a3;
+              padding: 10px;
+              text-align: center;
+              margin-top: 5px;
+            ">
+              {img_html(path)}
+            </div>
+            """, unsafe_allow_html=True)
     
 st.markdown("""
 <style>
