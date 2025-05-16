@@ -31,8 +31,8 @@ def display_peptide_details(row: pd.Series):
         unsafe_allow_html=True
     )
 
-    # two columns: metadata | images
-    meta_col, img_col = st.columns([2, 1])
+    # three columns: metadata | 3D | MSI
+    meta_col, col3d, colmsi = st.columns([1, 1, 1])
     with meta_col:
         # metadata table
         st.markdown(f"""
@@ -51,7 +51,7 @@ def display_peptide_details(row: pd.Series):
         </table>
         """, unsafe_allow_html=True)
 
-    with img_col:
+    with col3d:
         # 3D Structure
         st.markdown(
             "<div style='border:2px dashed #6A0DAD; padding:5px; text-align:center;'>"
@@ -60,19 +60,27 @@ def display_peptide_details(row: pd.Series):
         )
         img3d = f"Assets/3D Structure/3D cNP{cnpd_id}.jpg"
         if os.path.exists(img3d):
-            st.image(img3d, use_container_width=True)
+            # use an HTML <img> to enforce height
+            st.markdown(
+                f"<img src='{img3d}' style='height:500px; width:auto; margin-top:5px;'/>",
+                unsafe_allow_html=True
+            )
         else:
             st.info("No 3D image found")
 
+    with colmsi:
         # MS Imaging
         st.markdown(
-            f"<div style='border:2px dashed #6A0DAD; padding:5px; text-align:center; "
-            f"margin-top:10px;'>MS Imaging<br>Tissue: {tissue}</div>",
+            f"<div style='border:2px dashed #6A0DAD; padding:5px; text-align:center;'>"
+            f"MS Imaging<br><small>Tissue: {tissue}</small></div>",
             unsafe_allow_html=True
         )
         imgmsi = f"Assets/MSImaging/MSI cNP{cnpd_id}.png"
         if os.path.exists(imgmsi):
-            st.image(imgmsi, use_container_width=True)
+            st.markdown(
+                f"<img src='{imgmsi}' style='height:500px; width:auto; margin-top:5px;'/>",
+                unsafe_allow_html=True
+            )
         else:
             st.info("No MSI image found")
 
