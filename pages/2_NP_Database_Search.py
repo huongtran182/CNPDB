@@ -123,42 +123,64 @@ def display_peptide_details(row: pd.Series):
         """, unsafe_allow_html=True)
 
     with col3d:
-        # 3D Structure
         st.markdown(
-            "<div style='border:2px dashed #6A0DAD; padding:5px; text-align:center;'>"
-            "3D Structure</div>",
-            unsafe_allow_html=True
-        )
-        img3d_path = f"Assets/3D Structure/3D cNP{cnpd_id}.jpg"
-        if os.path.exists(img3d_path):
-            img3d = Image.open(img3d_path)
-            # scale so height ≤ metadata table height (roughly 300px here)
-            max_h = 300
-            w, h = img3d.size
-            new_w = int(w * (max_h / h))
-            st.image(img3d, width=new_w)
-        else:
-            st.info("No 3D image found")
-
-    with colmsi:
-        # MS Imaging
-        st.markdown(
-            f"<div style='border:2px dashed #6A0DAD; padding:5px; text-align:center;'>"
-            f"MS Imaging<br><small>Tissue: {tissue}</small></div>",
-            unsafe_allow_html=True
-        )
-        imgmsi_path = f"Assets/MSImaging/MSI cNP{cnpd_id}.png"
-        if os.path.exists(imgmsi_path):
-            imgmsi = Image.open(imgmsi_path)
-            max_h = 300
-            w, h = imgmsi.size
-            new_w = int(w * (max_h / h))
-            st.image(imgmsi, width=new_w)
-        else:
-            st.info("No MSI image found")
-
-    # close wrapper
+        "<div style='"
+        "color: #6a51a3;"
+        "font-size: 16px;"
+        "font-weight: bold;"
+        "margin-top: 10px;"
+        "'>3D Structure</div>",
+        unsafe_allow_html=True,
+    )
+    # dashed container
+    st.markdown(
+        "<div style='border:2px dashed #6a51a3; padding:10px; text-align:center;'>",
+        unsafe_allow_html=True,
+    )
+    # image itself
+    img3d_path = f"Assets/3D Structure/3D cNP{cnpd_id}.jpg"
+    if os.path.exists(img3d_path):
+        img3d = Image.open(img3d_path)
+        h = 300
+        w, orig_h = img3d.size
+        new_w = int(w * (h / orig_h))
+        st.image(img3d, width=new_w)
+    else:
+        st.info("No 3D image found")
+    # close dashed container
     st.markdown("</div>", unsafe_allow_html=True)
+
+with colmsi:
+    # 3rd-column header
+    st.markdown(
+        f"<div style='"
+        "color: #6a51a3;"
+        "font-size: 16px;"
+        "font-weight: bold;"
+        "margin-top: 10px;"
+        "'>MS Imaging<br><small>Tissue: {tissue}</small></div>",
+        unsafe_allow_html=True,
+    )
+    # dashed container
+    st.markdown(
+        "<div style='border:2px dashed #6a51a3; padding:10px; text-align:center;'>",
+        unsafe_allow_html=True,
+    )
+    # image
+    imgmsi_path = f"Assets/MSImaging/MSI cNP{cnpd_id}.png"
+    if os.path.exists(imgmsi_path):
+        imgmsi = Image.open(imgmsi_path)
+        h = 300
+        w, orig_h = imgmsi.size
+        new_w = int(w * (h / orig_h))
+        st.image(imgmsi, width=new_w)
+    else:
+        st.info("No MSI image found")
+    # close dashed container
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# close wrapper
+st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown("""
 <style>
