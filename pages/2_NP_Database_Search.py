@@ -12,6 +12,12 @@ st.set_page_config(
 
 render_sidebar()
 
+def disp(val):
+    """Return an empty string if val is NaN/None, else val itself."""
+    if pd.isna(val) or val is None:
+        return ""
+    return val
+
 def display_peptide_details(row: pd.Series):
     seq     = row["Seq"]
     cnpd_id = row["CNPD ID"]
@@ -27,7 +33,7 @@ def display_peptide_details(row: pd.Series):
     # header bar
     st.markdown(
         f"""
-        <div style='background-color:#6A0DAD; color:white; padding:10px; border-radius:5px; text-align:center; font-weight:bold'>
+        <div style='background-color:#54278f; color:white; padding:10px; border-radius:5px; text-align:center; font-weight:bold'>
             {seq}
         </div>
         """,
@@ -49,48 +55,48 @@ def display_peptide_details(row: pd.Series):
             margin-top:10px;
         ">
           <tr>
-            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">CNPD ID</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{cnpd_id}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">CNPD ID</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row.[cnpd_id])}</td>
           </tr>
           <tr>
-            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">Family</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('Family','')}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Family</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row.['Family'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">Organisms</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('OS','')}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Organisms</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row.['OS'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">Tissue</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{tissue}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Tissue</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row.[tissue])}</td>
           </tr>
           <tr>
-            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">Existence</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('Existence','')}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Existence</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row.['Existence'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">Monoisotopic Mass</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('Monoisotopic Mass','')}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Monoisotopic Mass</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row.['Monoisotopic Mass'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">Length (a.a.)</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('Length','')}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Length (a.a.)</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row.['Length'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">GRAVY Score</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{gravy_str}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">GRAVY Score</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row.[gravy_str])}</td>
           </tr>
           <tr>
-            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">% Hydrophobic Residues</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('% Hydrophobic Residue (%)','')}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">% Hydrophobic Residues</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row.['% Hydrophobic Residue (%)'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">Half-life (Min)</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('Predicted Half Life (Min)','')}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Half-life (Min)</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row.['Predicted Half Life (Min)'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">PTMs</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('PTMs','')}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">PTMs</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row.['PTMs'])}</td>
           </tr>
         </table>
         """, unsafe_allow_html=True)
