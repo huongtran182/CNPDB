@@ -179,7 +179,7 @@ if len(df_filtered) > 0:
     with b1:
        left_space, right_button = st.columns([3,1])
        with right_button:
-           if st.button("View details"):
+           if st.button("View details", type="primary"):
             st.dataframe(df_filtered.loc[selected_indices])
     with b2:
         if st.button("Download FASTA File"):
@@ -187,7 +187,7 @@ if len(df_filtered) > 0:
             for idx in selected_indices:
                 row = df_filtered.loc[idx]
                 fasta_str += f">{row['ID']}\n{row['Seq']}\n"
-            st.download_button("Download FASTA", data=fasta_str, file_name="peptides.fasta", mime="text/plain")
+            st.download_button("Download FASTA", data=fasta_str, file_name="peptides.fasta", mime="text/plain",type="primary")
 
 else:
     st.info("No peptides matched the search criteria.")
