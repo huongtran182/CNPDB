@@ -198,9 +198,9 @@ if len(df_filtered) > 0:
     b1, b2 = st.columns([1,1])
     with b1:
        st.markdown("<div style='text-align: right;'>", unsafe_allow_html=True)
-        if st.button("View details"):
+       if st.button("View details"):
             st.dataframe(df_filtered.loc[selected_indices])
-        st.markdown("</div>", unsafe_allow_html=True)
+       st.markdown("</div>", unsafe_allow_html=True)
     with b2:
         if st.button("Download Fasta File"):
             fasta_str = ""
