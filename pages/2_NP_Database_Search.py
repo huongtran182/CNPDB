@@ -59,14 +59,14 @@ def display_peptide_details(row: pd.Series):
     # collect up to three MSI tissues
     msi_tissues = [row.get(f"MSI Tissue {i}") for i in range(1, 4)]
 
-      # 1) OPEN LAVENDER‐GRAY BOX (with extra top margin so it sits below your buttons)
+  # 1) OPEN LAVENDER‐GRAY BOX (with extra top margin so it sits below your buttons)
     st.markdown(f"""
     <div style="
       position: relative;
       background-color: #efedf5;
       border-radius: 20px;
       padding: 60px 20px 20px;
-      margin: 60px 0 30px;   /* ← larger top margin */
+      margin: 80px 0 30px;
     ">
       <!-- Overlapping header bar -->
       <div style="
@@ -87,6 +87,7 @@ def display_peptide_details(row: pd.Series):
 
     # 2) IMMEDIATELY CREATE THE THREE COLUMNS INSIDE THAT BOX
     meta_col, col3d, colmsi = st.columns([4,3,3])
+    
     with meta_col:
          # format GRAVY to two decimals if numeric
         gravy = row.get("GRAVY")
