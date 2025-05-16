@@ -58,21 +58,21 @@ def display_peptide_details(row: pd.Series):
     cnpd_id = row["CNPD ID"]
     msi_tissue  = row.get("MSI Tissue (OS Tissue)", "")
 
-      # --- Outer lavender-gray box around everything ---
+      # 1) Open the outer lavender-gray box with extra top‐padding
     st.markdown("""
       <div style="
         background-color: #efedf5;
         border-radius: 20px;
-        padding: 20px;
+        padding: 40px 20px 20px;   /* 40px top padding to make room for header */
         margin: 30px 0;
       ">
     """, unsafe_allow_html=True)
 
-    # --- Centered header bar at 2/3 width ---
+    # 2) Emit the header bar *inside* that box but pull it upward
     st.markdown(f"""
       <div style="
         width: 66%;
-        margin: 0 auto;
+        margin: -30px auto 20px auto;   /* negative top margin to overlap box */
         background-color: #54278f;
         color: white;
         padding: 10px;
