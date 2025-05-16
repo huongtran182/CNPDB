@@ -164,6 +164,7 @@ def display_peptide_details(row: pd.Series):
             "'>
             MS Imaging<br><small>Tissue: {tissue}</small>
             </div>
+            """,
             unsafe_allow_html=True,
         )
         # dashed container
