@@ -1,6 +1,7 @@
 import streamlit as st
 from sidebar import render_sidebar
 import pandas as pd
+import os
 
 st.set_page_config(
     page_title="NP Database search",
