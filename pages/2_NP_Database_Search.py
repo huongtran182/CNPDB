@@ -250,9 +250,7 @@ if len(df_filtered) > 0:
     with b1:
        left_space, right_button = st.columns([3,1])
        with right_button:
-           if st.button("View details", type="primary"):
-            for idx in selected_indices:
-                    display_peptide_details(df_filtered.loc[idx])
+           view_clicked = st.button("View details", type="primary")
     with b2:
         fasta_str = ""
         for idx in selected_indices:
@@ -267,6 +265,11 @@ if len(df_filtered) > 0:
         )
 else:
     st.info("No peptides matched the search criteria.")
+
+# —— NOW at the top level, outside of any columns ——  
+if 'view_clicked' in locals() and view_clicked:
+    for idx in selected_indices:
+        display_peptide_details(df_filtered.loc[idx])
     
 # 5) Close container div
 st.markdown(
