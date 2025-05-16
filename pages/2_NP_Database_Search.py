@@ -162,7 +162,7 @@ def display_peptide_details(row: pd.Series):
                 margin-top: 10px;
                 text-align: center;
             ">
-            MS Imaging<br><small>Tissue: {tissue}</small>
+            MS Imaging<br><small>Tissue: {'MSI Tissue (OS Tissue)'}</small>
             </div>
             """,
             unsafe_allow_html=True,
