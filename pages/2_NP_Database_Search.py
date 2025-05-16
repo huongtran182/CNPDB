@@ -40,27 +40,7 @@ div[data-testid="stColumns"] > div[data-testid="stColumn"] {
   /* Checkbox accent color */
   input[type="checkbox"] { accent-color: #6a51a3; }
 
-    /* —— SLIDER TRACK & THUMB —— */
-  /* The BaseWeb slider bar */
-  div[data-testid="stSlider"]
-    [data-baseweb="slider"] .base-slider-bar {
-      background-color: #6a51a3 !important;
-  }
-  /* The BaseWeb slider handle */
-  div[data-testid="stSlider"]
-    [data-baseweb="slider"] .base-slider-handle {
-      background-color: #6a51a3 !important;
-      border: none !important;
-  }
-
-  /* —— BUTTONS —— */
-  div[data-testid="stButton"] > button {
-    background-color: #6a51a3 !important;
-    color: white !important;
-  }
-
   /* 1) Make slider & text-input labels purple & bold */
-  [data-testid="stSlider"] label,
   [data-testid="stTextInput"] label {
     color: #6a51a3 !important;
     font-weight: bold !important;
