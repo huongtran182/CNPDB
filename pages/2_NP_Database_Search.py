@@ -56,15 +56,15 @@ def display_peptide_details(row: pd.Series):
         ">
           <tr>
             <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">CNPD ID</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row['CNPD ID'])}</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius: 0 10px 10px 0; ">{disp(row['CNPD ID'])}</td>
           </tr>
           <tr>
             <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Family</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row['Family'])}</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius: 0 10px 10px 0; ">{disp(row['Family'])}</td>
           </tr>
           <tr>
             <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Organisms</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row['OS'])}</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius: 0 10px 10px 0; ">{disp(row['OS'])}</td>
           </tr>
           <tr>
             <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Tissue</td>
