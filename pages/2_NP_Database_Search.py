@@ -58,15 +58,32 @@ def display_peptide_details(row: pd.Series):
     cnpd_id = row["CNPD ID"]
     msi_tissue  = row.get("MSI Tissue (OS Tissue)", "")
 
-    # header bar
-    st.markdown(
-        f"""
-        <div style='background-color:#54278f; color:white; padding:10px; border-radius:5px; margin-top: 30px; text-align:center; font-weight:bold'>
-            {seq}
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+# ────────── Open a single, relative‐positioned lavender box ──────────
+st.markdown(f"""
+<div style="
+    position: relative;
+    background-color: #efedf5;
+    border-radius: 20px;
+    padding: 60px 20px 20px;  /* top padding makes room for header */
+    margin: 60px 0;
+">
+    <!-- Absolutely positioned header bar -->
+    <div style="
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 66%;
+    background-color: #54278f;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+">
+    {seq}
+    </div>
+""", unsafe_allow_html=True)
 
     # three columns: metadata | 3D | MSI
     meta_col, col3d, colmsi = st.columns([4, 3, 3])
@@ -184,6 +201,10 @@ def display_peptide_details(row: pd.Series):
               {img_html(path)}
             </div>
             """, unsafe_allow_html=True)
+
+ # --- Close the outer lavender-gray box ---
+st.markdown("</div>", unsafe_allow_html=True)
+    
     
 st.markdown("""
 <style>
