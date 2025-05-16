@@ -146,9 +146,11 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 2) Open your container div
-st.markdown("""
-<div class="results-container">
+# 1) Inject opening container div
+st.markdown(
+    "<div class='results-container'>",
+    unsafe_allow_html=True
+)
 
 # 3) Header row: left = checkbox, right = hit count
 col1, col2 = st.columns([1,1])
@@ -197,8 +199,11 @@ if len(df_filtered) > 0:
 else:
     st.info("No peptides matched the search criteria.")
     
-</div>
-""", unsafe_allow_html=True)
+# 5) Close container div
+st.markdown(
+    "</div>",
+    unsafe_allow_html=True
+)
 
 # Footer
 st.markdown("""
