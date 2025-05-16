@@ -24,14 +24,15 @@ div[data-testid="stColumns"] > div[data-testid="stColumn"] {
     padding: 20px !important;
     border-radius: 10px !important;
  }
-   .results-container {
-     display: block;
-     width: 100%;
-     background-color: #efedf5;
-     padding: 20px;
-     border-radius: 10px;
-     margin-bottom: 20px;
-  }
+   /* 
+         Find the div that Streamlit uses for a vertical block (data-testid="stVerticalBlock")
+         which immediately follows your <h2>SEARCH RESULTS</h2>, and give it a purple-gray background.
+      */
+      h2 + div[data-testid="stVerticalBlock"] {
+        background-color: #efedf5 !important;
+        padding: 20px !important;
+        border-radius: 10px !important;
+      }
  /* Section titles */
   .section-title {
     color: #6a51a3;
