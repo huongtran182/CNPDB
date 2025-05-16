@@ -34,7 +34,7 @@ st.markdown("""
 
 /* Term cell */
 .glossary-term {
-  background-color: #3e1a5e;
+  background-color: #7f6694;
   color: white;
   padding: 10px 20px;
   border-radius: 10px 0 0 10px;
@@ -47,7 +47,7 @@ st.markdown("""
   background-color: white;
   color: #333;
   padding: 10px 10px;
-  border: 3px solid #3e1a5e;
+  border: 3px solid #7f6694;
   border-radius: 0 10px 10px 0;
   display: flex;
   align-items: center;
