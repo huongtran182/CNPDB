@@ -156,7 +156,7 @@ def display_peptide_details(row: pd.Series):
           margin-top: 10px;
           text-align: center;
         ">
-          MS Imaging<br><small>Tissue: {disp(msi_tissue)}</small>
+          MS Imaging – {disp(msi_tissue)}
         </div>
         <div style="
           border: 2px dashed #6a51a3;
