@@ -14,7 +14,7 @@ st.markdown("""
 <style>
 /* Section heading */
 .section-heading {
-  color: #48115c;
+  color: #30073d;
   font-size: 30px;
   font-weight: bold;
   margin-top: 2rem;
@@ -34,7 +34,7 @@ st.markdown("""
 
 /* Term cell */
 .glossary-term {
-  background-color: #48115c;
+  background-color: #30073d;
   color: white;
   padding: 10px 20px;
   border-radius: 10px 0 0 10px;
@@ -47,7 +47,7 @@ st.markdown("""
   background-color: white;
   color: #333;
   padding: 10px 10px;
-  border: 3px solid #48115c;
+  border: 3px solid #30073d;
   border-radius: 0 10px 10px 0;
   display: flex;
   align-items: center;
