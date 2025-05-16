@@ -3,6 +3,7 @@ from sidebar import render_sidebar
 import pandas as pd
 import os
 from PIL import Image
+import base64
 
 st.set_page_config(
     page_title="NP Database search",
@@ -35,6 +36,16 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+def img_html(path):
+    """Return a base64 <img> tag filling 100% width of its container."""
+    if not os.path.exists(path):
+        return "<div style='color:#999; padding:20px;'>No image found</div>"
+    ext = os.path.splitext(path)[1].lower().replace(".", "")
+    mime = f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}"
+    data = base64.b64encode(open(path, "rb").read()).decode()
+    return f"<img src='data:{mime};base64,{data}' style='width:100%; height:auto;'/>"
+
 # Helper to blank out NaNs if there is no value in the cell of the column of excel file
 def disp(val):
     """Return an empty string if val is NaN/None, else val itself."""
@@ -46,13 +57,6 @@ def display_peptide_details(row: pd.Series):
     seq     = row["Seq"]
     cnpd_id = row["CNPD ID"]
     msi_tissue  = row.get("MSI Tissue (OS Tissue)", "")
-
-    # outer wrapper
-    st.markdown(
-        "<div style='background-color:#efedf5; padding:20px; "
-        "border-radius:10px; margin:20px 0;'>",
-        unsafe_allow_html=True
-    )
 
     # header bar
     st.markdown(
@@ -123,63 +127,47 @@ def display_peptide_details(row: pd.Series):
         """, unsafe_allow_html=True)
 
     with col3d:
-        st.markdown(
-        "<div style='"
-        "color: #6a51a3;"
-        "font-size: 20px;"
-        "font-weight: bold;"
-        "margin-top: 10px;"
-        "text-align: center;"
-        "'>3D Structure</div>",
-        unsafe_allow_html=True,
-    )
-    # dashed container
-    st.markdown(
-        "<div style='border:2px dashed #6a51a3; padding:10px; text-align:center;'>",
-        unsafe_allow_html=True,
-    )
-    # image itself
-    img3d_path = f"Assets/3D Structure/3D cNP{cnpd_id}.jpg"
-    if os.path.exists(img3d_path):
-        st.image(img3d_path, use_column_width=True)
-    else:
-        st.info("No 3D image found")
-    # close dashed container
-    st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown(f"""
+    <div style="
+      color: #6a51a3;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+    ">
+      3D Structure
+    </div>
+    <div style="
+      border: 2px dashed #6a51a3;
+      padding: 10px;
+      text-align: center;
+      margin-top:5px;
+    ">
+      {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
+    </div>
+    """, unsafe_allow_html=True)
 
-    with colmsi:
-        # 3rd-column header
-        st.markdown(
-            f"""
-            <div style="
-                color: #6a51a3;
-                font-size: 20px;
-                font-weight: bold;
-                margin-top: 10px;
-                text-align: center;
-            ">
-            MS Imaging<br><small>Tissue: {disp(msi_tissue)}</small>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        # dashed container
-        st.markdown(
-            "<div style='border:2px dashed #6a51a3; padding:10px; text-align:center;'>",
-            unsafe_allow_html=True,
-        )
-        # image
-        imgmsi_path = f"Assets/MSImaging/MSI cNP{cnpd_id}.png"
-        if os.path.exists(imgmsi_path):
-            st.image(imgmsi_path, use_column_width=True)
-        else:
-            st.info("No MSI image found")
-        # close dashed container
-        st.markdown("</div>", unsafe_allow_html=True)
-
-# close wrapper
-st.markdown("</div>", unsafe_allow_html=True)
-
+ with colmsi:
+    st.markdown(f"""
+    <div style="
+      color: #6a51a3;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+    ">
+      MS Imaging<br><small>Tissue: {disp(msi_tissue)}</small>
+    </div>
+    <div style="
+      border: 2px dashed #6a51a3;
+      padding: 10px;
+      text-align: center;
+      margin-top:5px;
+    ">
+      {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id}.png")}
+    </div>
+    """, unsafe_allow_html=True)
+    
 st.markdown("""
 <style>
 /* Centered title */
