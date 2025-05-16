@@ -45,7 +45,7 @@ def disp(val):
 def display_peptide_details(row: pd.Series):
     seq     = row["Seq"]
     cnpd_id = row["CNPD ID"]
-    tissue  = row["Tissue"]
+    msi_tissue  = row.get("MSI Tissue (OS Tissue)", "")
 
     # outer wrapper
     st.markdown(
@@ -162,7 +162,7 @@ def display_peptide_details(row: pd.Series):
                 margin-top: 10px;
                 text-align: center;
             ">
-            MS Imaging<br><small>Tissue: {'MSI Tissue (OS Tissue)'}</small>
+            MS Imaging<br><small>Tissue: {disp(msi_tissue)}</small>
             </div>
             """,
             unsafe_allow_html=True,
