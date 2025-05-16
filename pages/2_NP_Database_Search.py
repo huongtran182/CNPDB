@@ -25,7 +25,7 @@ div[data-testid="stColumns"] > div[data-testid="stColumn"] {
     border-radius: 10px !important;
  }
    /* Style every Streamlit vertical block with your lavender‐gray background */
-      div[data-testid="stVerticalBlock"] {
+      div[data-testid="stVerticalBlock"]:nth-of-type(2) {
         background-color: #efedf5 !important;
         padding: 20px !important;
         border-radius: 10px !important;
