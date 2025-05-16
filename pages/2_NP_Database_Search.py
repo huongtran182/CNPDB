@@ -195,19 +195,17 @@ if len(df_filtered) > 0:
             """, unsafe_allow_html=True)
 
 # 5) Centered buttons row
-    b1, b2, b3 = st.columns([1,2,1])
-    with b2:
-        col_view, col_down = st.columns(2)
-        with col_view:
-            if st.button("View details"):
-                st.dataframe(df_filtered.loc[selected_indices])
-        with col_down:
-            fasta_str = "\n".join(
-                f">{df_filtered.loc[idx,'ID']}\n{df_filtered.loc[idx,'Seq']}"
-                for idx in selected_indices
-            )
-            st.download_button("Download FASTA", data=fasta_str,
-                               file_name="peptides.fasta", mime="text/plain")
+    b1, b2 = st.columns([1,1])
+    with b1:
+        if st.button("View details"):
+            st.dataframe(df_filtered.loc[selected_indices])
+    with b2
+        if st.button("Download Fasta File"):
+            fasta_str = ""
+            for idx in selected_indices:
+                row = df_filtered.loc[idx]
+                fasta_str += f">{row['ID']}\n{row['Seq']}\n"
+            st.download_button("Download FASTA", data=fasta_str, file_name="peptides.fasta", mime="text/plain")
 
 else:
     st.info("No peptides matched the search criteria.")
