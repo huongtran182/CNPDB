@@ -116,19 +116,29 @@ def display_peptide_details(row: pd.Series):
     # 2) 3D Structure
     img_3d = img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")
     structure_html = f"""
-    <div style="margin-left:20px;">
-      <div style="color: #6a51a3; font-size:16px; font-weight:bold; text-align:center;">
-        3D Structure
-      </div>
-      <div style="border:2px dashed #6a51a3; padding:10px; text-align:center;">
-        {img_3d}
-      </div>
-    </div>
+    <div style="
+          color: #6a51a3;
+          font-size: 16px;
+          font-weight: bold;
+          margin-top: 10px;
+          text-align: center;
+        ">
+          3D Structure
+        </div>
+        <div style="
+          border: 2px dashed #6a51a3;
+          padding: 10px;
+          text-align: center;
+          margin-top:5px;
+        ">
+          {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
+        </div>
     """
     
     # 3) MSI Images
     msi_html = ""
     for i in range(1, 4):
+        col_name = f"MSI Tissue {i}"
         tissue = disp(row.get(f"MSI Tissue {i}"))
         if not tissue:
             continue
