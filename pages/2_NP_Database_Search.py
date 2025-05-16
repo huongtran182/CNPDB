@@ -141,11 +141,7 @@ def display_peptide_details(row: pd.Series):
     # image itself
     img3d_path = f"Assets/3D Structure/3D cNP{cnpd_id}.jpg"
     if os.path.exists(img3d_path):
-        img3d = Image.open(img3d_path)
-        h = 250
-        w, orig_h = img3d.size
-        new_w = int(w * (h / orig_h))
-        st.image(img3d, width=new_w)
+        st.image(img3d_path, use_column_width=True)
     else:
         st.info("No 3D image found")
     # close dashed container
@@ -175,11 +171,7 @@ def display_peptide_details(row: pd.Series):
         # image
         imgmsi_path = f"Assets/MSImaging/MSI cNP{cnpd_id}.png"
         if os.path.exists(imgmsi_path):
-            imgmsi = Image.open(imgmsi_path)
-            h = 250
-            w, orig_h = imgmsi.size
-            new_w = int(w * (h / orig_h))
-            st.image(imgmsi, width=new_w)
+            st.image(imgmsi_path, use_column_width=True)
         else:
             st.info("No MSI image found")
         # close dashed container
