@@ -68,7 +68,7 @@ def display_peptide_details(row: pd.Series):
           </tr>
           <tr>
             <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Tissue</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row[tissue])}</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row['Tissue'])}</td>
           </tr>
           <tr>
             <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Existence</td>
@@ -84,7 +84,7 @@ def display_peptide_details(row: pd.Series):
           </tr>
           <tr>
             <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">GRAVY Score</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{{gravy_str}}</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{gravy_str}</td>
           </tr>
           <tr>
             <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">% Hydrophobic Residues</td>
