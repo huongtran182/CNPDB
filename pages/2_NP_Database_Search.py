@@ -164,7 +164,7 @@ if len(df_filtered) > 0:
                 selected_indices.append(idx)
             st.markdown(f"""
                 <div style='border:1px solid #6A0DAD; padding:10px; margin:10px; border-radius:10px;'>
-                    <div style='font-weight:bold; background-color:#54278f; color:white; padding:5px;'>
+                    <div style='font-weight:bold; background-color:#6a51a3; color:white; padding:5px;'>
                         {row['Seq']}
                     </div>
                     <div style='padding:5px;'>
