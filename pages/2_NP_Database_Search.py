@@ -155,13 +155,13 @@ def display_peptide_details(row: pd.Series):
         # 3rd-column header
         st.markdown(
             f"""
-            <div style='"
+            <div style="
             "color: #6a51a3;"
             "font-size: 20px;"
             "font-weight: bold;"
             "margin-top: 10px;"
             "text-align: center;"
-            "'>
+            ">
             MS Imaging<br><small>Tissue: {tissue}</small>
             </div>
             """,
