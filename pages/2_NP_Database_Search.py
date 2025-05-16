@@ -34,7 +34,9 @@ def display_peptide_details(row: pd.Series):
     # three columns: metadata | 3D | MSI
     meta_col, col3d, colmsi = st.columns([1, 1, 1])
     with meta_col:
-        # metadata table
+        # format GRAVY to two decimals if numeric
+        gravy = row.get("GRAVY")
+        gravy_str = f"{gravy:.2f}" if pd.notna(gravy) else ""
         st.markdown(f"""
         <table style="width:100%; border-collapse:collapse; margin-top:10px;">
           <tr><td><b>CNPD ID</b></td><td>{cnpd_id}</td></tr>
