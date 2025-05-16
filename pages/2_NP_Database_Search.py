@@ -154,13 +154,16 @@ def display_peptide_details(row: pd.Series):
     with colmsi:
         # 3rd-column header
         st.markdown(
-            f"<div style='"
+            f"""
+            <div style='"
             "color: #6a51a3;"
             "font-size: 20px;"
             "font-weight: bold;"
             "margin-top: 10px;"
             "text-align: center;"
-            "'>MS Imaging<br><small>Tissue: {'Tissue'}</small></div>",
+            "'>
+            MS Imaging<br><small>Tissue: {tissue}</small>
+            </div>
             unsafe_allow_html=True,
         )
         # dashed container
