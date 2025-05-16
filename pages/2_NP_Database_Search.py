@@ -24,15 +24,13 @@ div[data-testid="stColumns"] > div[data-testid="stColumn"] {
     padding: 20px !important;
     border-radius: 10px !important;
  }
-  .results-container {
-    background-color: #efedf5;
-    padding: 0;
-    margin: auto;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    border: none;
-    border-radius: 10px;
-    border: 2px solid #29004c;
+   .results-container {
+     display: block;
+     width: 100%;
+     background-color: #efedf5;
+     padding: 20px;
+     border-radius: 10px;
+     margin-bottom: 20px;
   }
  /* Section titles */
   .section-title {
