@@ -32,7 +32,7 @@ def display_peptide_details(row: pd.Series):
     )
 
     # three columns: metadata | 3D | MSI
-    meta_col, col3d, colmsi = st.columns([3, 2, 2])
+    meta_col, col3d, colmsi = st.columns([4, 3, 3])
     with meta_col:
         # format GRAVY to two decimals if numeric
         gravy = row.get("GRAVY")
