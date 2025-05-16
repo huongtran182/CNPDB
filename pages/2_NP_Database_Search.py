@@ -63,7 +63,7 @@ def display_peptide_details(row: pd.Series):
             "3D Structure</div>",
             unsafe_allow_html=True
         )
-        img3d = f"Assets/3D Structure/3D cNP{cnpd_id}.jpg"
+        img3d_path = f"Assets/3D Structure/3D cNP{cnpd_id}.jpg"
         if os.path.exists(img3d_path):
             img3d = Image.open(img3d_path)
             # scale so height ≤ metadata table height (roughly 300px here)
@@ -81,7 +81,7 @@ def display_peptide_details(row: pd.Series):
             f"MS Imaging<br><small>Tissue: {tissue}</small></div>",
             unsafe_allow_html=True
         )
-        imgmsi = f"Assets/MSImaging/MSI cNP{cnpd_id}.png"
+        imgmsi_path = f"Assets/MSImaging/MSI cNP{cnpd_id}.png"
         if os.path.exists(imgmsi_path):
             imgmsi = Image.open(imgmsi_path)
             max_h = 300
