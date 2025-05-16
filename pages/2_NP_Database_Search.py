@@ -150,34 +150,34 @@ def display_peptide_details(row: pd.Series):
     # close dashed container
     st.markdown("</div>", unsafe_allow_html=True)
 
-with colmsi:
-    # 3rd-column header
-    st.markdown(
-        f"<div style='"
-        "color: #6a51a3;"
-        "font-size: 16px;"
-        "font-weight: bold;"
-        "margin-top: 10px;"
-        "'>MS Imaging<br><small>Tissue: {tissue}</small></div>",
-        unsafe_allow_html=True,
-    )
-    # dashed container
-    st.markdown(
-        "<div style='border:2px dashed #6a51a3; padding:10px; text-align:center;'>",
-        unsafe_allow_html=True,
-    )
-    # image
-    imgmsi_path = f"Assets/MSImaging/MSI cNP{cnpd_id}.png"
-    if os.path.exists(imgmsi_path):
-        imgmsi = Image.open(imgmsi_path)
-        h = 300
-        w, orig_h = imgmsi.size
-        new_w = int(w * (h / orig_h))
-        st.image(imgmsi, width=new_w)
-    else:
-        st.info("No MSI image found")
-    # close dashed container
-    st.markdown("</div>", unsafe_allow_html=True)
+    with colmsi:
+        # 3rd-column header
+        st.markdown(
+            f"<div style='"
+            "color: #6a51a3;"
+            "font-size: 16px;"
+            "font-weight: bold;"
+            "margin-top: 10px;"
+            "'>MS Imaging<br><small>Tissue: {tissue}</small></div>",
+            unsafe_allow_html=True,
+        )
+        # dashed container
+        st.markdown(
+            "<div style='border:2px dashed #6a51a3; padding:10px; text-align:center;'>",
+            unsafe_allow_html=True,
+        )
+        # image
+        imgmsi_path = f"Assets/MSImaging/MSI cNP{cnpd_id}.png"
+        if os.path.exists(imgmsi_path):
+            imgmsi = Image.open(imgmsi_path)
+            h = 300
+            w, orig_h = imgmsi.size
+            new_w = int(w * (h / orig_h))
+            st.image(imgmsi, width=new_w)
+        else:
+            st.info("No MSI image found")
+        # close dashed container
+        st.markdown("</div>", unsafe_allow_html=True)
 
 # close wrapper
 st.markdown("</div>", unsafe_allow_html=True)
