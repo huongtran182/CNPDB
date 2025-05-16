@@ -58,33 +58,16 @@ def display_peptide_details(row: pd.Series):
     cnpd_id = row["CNPD ID"]
     msi_tissue  = row.get("MSI Tissue (OS Tissue)", "")
 
-     # ────────── Open a single, relative‐positioned lavender box ──────────
-    st.markdown(f"""
-    <div style="
-      position: relative;
-      background-color: #efedf5;
-      border-radius: 20px;
-      padding: 60px 20px 20px;  /* top padding makes room for header */
-      margin: 60px 0;
-    ">
-      <!-- Absolutely positioned header bar -->
-      <div style="
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 66%;
-        background-color: #54278f;
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center;
-        font-weight: bold;
-      ">
-        {seq}
-      </div>
-    """, unsafe_allow_html=True)
-    
+    # header bar
+    st.markdown(
+        f"""
+        <div style='background-color:#54278f; color:white; padding:10px; border-radius:5px; margin-top: 30px; text-align:center; font-weight:bold'>
+            {seq}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
     # three columns: metadata | 3D | MSI
     meta_col, col3d, colmsi = st.columns([4, 3, 3])
     with meta_col:
@@ -142,7 +125,6 @@ def display_peptide_details(row: pd.Series):
             </table>
         </div>
         """, unsafe_allow_html=True)
-        pass
 
     with col3d:
         st.markdown(f"""
@@ -164,7 +146,6 @@ def display_peptide_details(row: pd.Series):
           {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
         </div>
         """, unsafe_allow_html=True)
-        pass
 
     with colmsi:
         st.markdown(f"""
@@ -186,10 +167,6 @@ def display_peptide_details(row: pd.Series):
           {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id}.png")}
         </div>
         """, unsafe_allow_html=True)
-        pass
-        
-    # --- Close the outer lavender-gray box ---
-    st.markdown("</div>", unsafe_allow_html=True)
     
 st.markdown("""
 <style>
