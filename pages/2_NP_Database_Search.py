@@ -61,7 +61,7 @@ def display_peptide_details(row: pd.Series):
     # header bar
     st.markdown(
         f"""
-        <div style='background-color:#54278f; color:white; padding:10px; border-radius:5px; margin-top: 20px; text-align:center; font-weight:bold'>
+        <div style='background-color:#54278f; color:white; padding:10px; border-radius:5px; margin-top: 30px; text-align:center; font-weight:bold'>
             {seq}
         </div>
         """,
