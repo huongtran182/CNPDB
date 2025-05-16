@@ -10,6 +10,75 @@ st.set_page_config(
 
 render_sidebar()
 
+def display_peptide_details(row: pd.Series):
+    seq     = row["Seq"]
+    cnpd_id = row["ID"]
+    tissue  = row["Tissue"]
+
+    # outer wrapper
+    st.markdown(
+        "<div style='background-color:#efedf5; padding:20px; "
+        "border-radius:10px; margin:20px 0;'>",
+        unsafe_allow_html=True
+    )
+
+    # header bar
+    st.markdown(
+        f"<div style='background-color:#6A0DAD; color:white; "
+        "padding:10px; border-radius:5px; text-align:center; "
+        "font-weight:bold;'>{seq}</div>",
+        unsafe_allow_html=True
+    )
+
+    # two columns: metadata | images
+    meta_col, img_col = st.columns([2, 1])
+    with meta_col:
+        # metadata table
+        st.markdown(f"""
+        <table style="width:100%; border-collapse:collapse; margin-top:10px;">
+          <tr><td><b>cNPD ID</b></td><td>{cnpd_id}</td></tr>
+          <tr><td><b>PubMed ID</b></td><td>{row.get('PubMed ID','')}</td></tr>
+          <tr><td><b>Family</b></td><td>{row.get('Family','')}</td></tr>
+          <tr><td><b>Organisms</b></td><td>{row.get('OS','')}</td></tr>
+          <tr><td><b>Tissue</b></td><td>{tissue}</td></tr>
+          <tr><td><b>Existence</b></td><td>{row.get('Existence','')}</td></tr>
+          <tr><td><b>Monoiso Mass</b></td><td>{row.get('Monoisotopic Mass','')}</td></tr>
+          <tr><td><b>Length</b></td><td>{row.get('Length','')}</td></tr>
+          <tr><td><b>GRAVY Score</b></td><td>{row.get('GRAVY','')}</td></tr>
+          <tr><td><b>% Hydrophobic</b></td><td>{row.get('% Hydrophobic Residue (%)','')}</td></tr>
+          <tr><td><b>Half-life</b></td><td>{row.get('Predicted Half Life (Min)','')}</td></tr>
+          <tr><td><b>PTMs</b></td><td>{row.get('PTMs','')}</td></tr>
+        </table>
+        """, unsafe_allow_html=True)
+
+    with img_col:
+        # 3D Structure
+        st.markdown(
+            "<div style='border:2px dashed #6A0DAD; padding:5px; text-align:center;'>"
+            "3D Structure</div>",
+            unsafe_allow_html=True
+        )
+        img3d = f"Assets/3D Structure/3D {cnpd_id}.png"
+        if os.path.exists(img3d):
+            st.image(img3d, use_column_width=True)
+        else:
+            st.info("No 3D image found")
+
+        # MS Imaging
+        st.markdown(
+            f"<div style='border:2px dashed #6A0DAD; padding:5px; text-align:center; "
+            f"margin-top:10px;'>MS Imaging<br>Tissue: {tissue}</div>",
+            unsafe_allow_html=True
+        )
+        imgmsi = f"Assets/MSImaging/MSI {cnpd_id}.png"
+        if os.path.exists(imgmsi):
+            st.image(imgmsi, use_column_width=True)
+        else:
+            st.info("No MSI image found")
+
+    # close wrapper
+    st.markdown("</div>", unsafe_allow_html=True)
+
 st.markdown("""
 <style>
 /* Centered title */
@@ -183,15 +252,20 @@ if len(df_filtered) > 0:
        left_space, right_button = st.columns([3,1])
        with right_button:
            if st.button("View details", type="primary"):
-            st.dataframe(df_filtered.loc[selected_indices])
-    with b2:
-        if st.button("Download FASTA File", type="primary"):
-            fasta_str = ""
             for idx in selected_indices:
-                row = df_filtered.loc[idx]
-                fasta_str += f">{row['ID']}\n{row['Seq']}\n"
-            st.download_button("Download FASTA", data=fasta_str, file_name="peptides.fasta", mime="text/plain",type="primary")
-
+                    display_peptide_details(df_filtered.loc[idx])
+    with b2:
+        fasta_str = ""
+        for idx in selected_indices:
+            r = df_filtered.loc[idx]
+            fasta_str += f">{r['ID']}\n{r['Seq']}\n"
+        st.download_button(
+            "Download FASTA File",
+            data=fasta_str,
+            file_name="peptides.fasta",
+            mime="text/plain",
+            type="primary"
+        )
 else:
     st.info("No peptides matched the search criteria.")
     
@@ -200,6 +274,9 @@ st.markdown(
     "</div>",
     unsafe_allow_html=True
 )
+
+
+
 
 # Footer
 st.markdown("""
