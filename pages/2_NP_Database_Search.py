@@ -93,24 +93,6 @@ def display_peptide_details(row: pd.Series):
             <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('PTMs','')}</td>
           </tr>
         </table>
-        
-        # format GRAVY to two decimals if numeric
-        gravy = row.get("GRAVY")
-        gravy_str = f"{gravy:.2f}" if pd.notna(gravy) else ""
-        st.markdown(f"""
-        <table style="width:100%; border-collapse:collapse; margin-top:10px;">
-          <tr><td><b>CNPD ID</b></td><td>{cnpd_id}</td></tr>
-          <tr><td><b>Family</b></td><td>{row.get('Family','')}</td></tr>
-          <tr><td><b>Organisms</b></td><td>{row.get('OS','')}</td></tr>
-          <tr><td><b>Tissue</b></td><td>{tissue}</td></tr>
-          <tr><td><b>Existence</b></td><td>{row.get('Existence','')}</td></tr>
-          <tr><td><b>Monoisotopic Mass</b></td><td>{row.get('Monoisotopic Mass','')}</td></tr>
-          <tr><td><b>Length (a.a.)</b></td><td>{row.get('Length','')}</td></tr>
-          <tr><td><b>GRAVY Score</b></td><td>{row.get('GRAVY','')}</td></tr>
-          <tr><td><b>% Hydrophobic Residues</b></td><td>{row.get('% Hydrophobic Residue (%)','')}</td></tr>
-          <tr><td><b>Predicted Half-life (Min)</b></td><td>{row.get('Predicted Half Life (Min)','')}</td></tr>
-          <tr><td><b>PTMs</b></td><td>{row.get('PTMs','')}</td></tr>
-        </table>
         """, unsafe_allow_html=True)
 
     with col3d:
