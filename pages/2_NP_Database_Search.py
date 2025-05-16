@@ -149,21 +149,27 @@ df_filtered = df_filtered[df_filtered['% Hydrophobic Residue (%)'].between(*hydr
 df_filtered = df_filtered[df_filtered['Predicted Half Life (Min)'].between(*half_life_range)]
 
 # Display results
-st.markdown("## Search Results")
+st.markdown(
+    '<h2 class="custom-title">'
+    'SEARCH RESULTS'
+    '</h2>',
+    unsafe_allow_html=True
+)
+
 st.write(f"Hit: {len(df_filtered)} peptides")
 
 selected_indices = []
 if len(df_filtered) > 0:
     check_all = st.checkbox("Check/Uncheck All")
-    cols = st.columns(2)
+    cols = st.columns(3)
     for i, (idx, row) in enumerate(df_filtered.iterrows()):
-        with cols[i % 2]:
+        with cols[i % 3]:
             checked = st.checkbox("", key=f"check_{idx}", value=check_all)
             if checked:
                 selected_indices.append(idx)
             st.markdown(f"""
-                <div style='border:1px solid #6A0DAD; padding:10px; margin:5px; border-radius:10px;'>
-                    <div style='font-weight:bold; background-color:#4B0082; color:white; padding:5px;'>
+                <div style='border:1px solid #6A0DAD; padding:10px; margin:10px; border-radius:10px;'>
+                    <div style='font-weight:bold; background-color:#6A0DAD; color:white; padding:5px;'>
                         {row['Seq']}
                     </div>
                     <div style='padding:5px;'>
@@ -173,7 +179,6 @@ if len(df_filtered) > 0:
                 </div>
             """, unsafe_allow_html=True)
 
-    st.markdown("### Actions")
     col_a, col_b = st.columns(2)
     with col_a:
         if st.button("View details"):
