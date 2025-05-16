@@ -24,6 +24,12 @@ div[data-testid="stColumns"] > div[data-testid="stColumn"] {
     padding: 20px !important;
     border-radius: 10px !important;
  }
+  .results-container {
+    background-color: #efedf5;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+      }
  /* Section titles */
   .section-title {
     color: #6a51a3;
@@ -156,12 +162,21 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.write(f"Hit: {len(df_filtered)} peptides")
+# 2) Open your container div
+st.markdown("<div class='results-container'>", unsafe_allow_html=True)
 
-selected_indices = []
-if len(df_filtered) > 0:
+# 3) Header row: left = checkbox, right = hit count
+col1, col2 = st.columns([1,1])
+with col1:
     check_all = st.checkbox("Check/Uncheck All")
+with col2:
+    # align right
+    st.markdown(f"<div style='text-align: right;'>Hit: {len(df_filtered)} peptides</div>", unsafe_allow_html=True)
+
+# 4) Peptide cards in three columns
+if len(df_filtered) > 0:
     cols = st.columns(3)
+    selected_indices = []
     for i, (idx, row) in enumerate(df_filtered.iterrows()):
         with cols[i % 3]:
             checked = st.checkbox("", key=f"check_{idx}", value=check_all)
@@ -179,20 +194,24 @@ if len(df_filtered) > 0:
                 </div>
             """, unsafe_allow_html=True)
 
-    col_a, col_b = st.columns(2)
-    with col_a:
-        if st.button("View details"):
-            st.dataframe(df_filtered.loc[selected_indices])
-    with col_b:
-        if st.button("Download Fasta File"):
-            fasta_str = ""
-            for idx in selected_indices:
-                row = df_filtered.loc[idx]
-                fasta_str += f">{row['ID']}\n{row['Seq']}\n"
-            st.download_button("Download FASTA", data=fasta_str, file_name="peptides.fasta", mime="text/plain")
+# 5) Centered buttons row
+    b1, b2, b3 = st.columns([1,2,1])
+    with b2:
+        col_view, col_down = st.columns(2)
+        with col_view:
+            if st.button("View details"):
+                st.dataframe(df_filtered.loc[selected_indices])
+        with col_down:
+            fasta_str = "\n".join(
+                f">{df_filtered.loc[idx,'ID']}\n{df_filtered.loc[idx,'Seq']}"
+                for idx in selected_indices
+            )
+            st.download_button("Download FASTA", data=fasta_str,
+                               file_name="peptides.fasta", mime="text/plain")
+
 else:
     st.info("No peptides matched the search criteria.")
-
+    
 # End styled container
 st.markdown("</div>", unsafe_allow_html=True)
 
