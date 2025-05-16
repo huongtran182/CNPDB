@@ -127,46 +127,46 @@ def display_peptide_details(row: pd.Series):
         """, unsafe_allow_html=True)
 
     with col3d:
-    st.markdown(f"""
-    <div style="
-      color: #6a51a3;
-      font-size: 16px;
-      font-weight: bold;
-      margin-top: 10px;
-      text-align: center;
-    ">
-      3D Structure
-    </div>
-    <div style="
-      border: 2px dashed #6a51a3;
-      padding: 10px;
-      text-align: center;
-      margin-top:5px;
-    ">
-      {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
-    </div>
-    """, unsafe_allow_html=True)
+        st.markdown(f"""
+        <div style="
+          color: #6a51a3;
+          font-size: 16px;
+          font-weight: bold;
+          margin-top: 10px;
+          text-align: center;
+        ">
+          3D Structure
+        </div>
+        <div style="
+          border: 2px dashed #6a51a3;
+          padding: 10px;
+          text-align: center;
+          margin-top:5px;
+        ">
+          {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
+        </div>
+        """, unsafe_allow_html=True)
 
- with colmsi:
-    st.markdown(f"""
-    <div style="
-      color: #6a51a3;
-      font-size: 16px;
-      font-weight: bold;
-      margin-top: 10px;
-      text-align: center;
-    ">
-      MS Imaging<br><small>Tissue: {disp(msi_tissue)}</small>
-    </div>
-    <div style="
-      border: 2px dashed #6a51a3;
-      padding: 10px;
-      text-align: center;
-      margin-top:5px;
-    ">
-      {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id}.png")}
-    </div>
-    """, unsafe_allow_html=True)
+    with colmsi:
+        st.markdown(f"""
+        <div style="
+          color: #6a51a3;
+          font-size: 16px;
+          font-weight: bold;
+          margin-top: 10px;
+          text-align: center;
+        ">
+          MS Imaging<br><small>Tissue: {disp(msi_tissue)}</small>
+        </div>
+        <div style="
+          border: 2px dashed #6a51a3;
+          padding: 10px;
+          text-align: center;
+          margin-top:5px;
+        ">
+          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id}.png")}
+        </div>
+        """, unsafe_allow_html=True)
     
 st.markdown("""
 <style>
