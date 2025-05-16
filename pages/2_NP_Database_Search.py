@@ -126,9 +126,10 @@ def display_peptide_details(row: pd.Series):
         st.markdown(
         "<div style='"
         "color: #6a51a3;"
-        "font-size: 16px;"
+        "font-size: 20px;"
         "font-weight: bold;"
         "margin-top: 10px;"
+        "text-align: center;"
         "'>3D Structure</div>",
         unsafe_allow_html=True,
     )
@@ -155,10 +156,11 @@ def display_peptide_details(row: pd.Series):
         st.markdown(
             f"<div style='"
             "color: #6a51a3;"
-            "font-size: 16px;"
+            "font-size: 20px;"
             "font-weight: bold;"
             "margin-top: 10px;"
-            "'>MS Imaging<br><small>Tissue: {tissue}</small></div>",
+            "text-align: center;"
+            "'>MS Imaging<br><small>Tissue: {'Tissue'}</small></div>",
             unsafe_allow_html=True,
         )
         # dashed container
