@@ -2,6 +2,7 @@ import streamlit as st
 from sidebar import render_sidebar
 import pandas as pd
 import os
+from PIL import Image
 
 st.set_page_config(
     page_title="NP Database search",
@@ -25,9 +26,11 @@ def display_peptide_details(row: pd.Series):
 
     # header bar
     st.markdown(
-        f"<div style='background-color:#6A0DAD; color:white; "
-        "padding:10px; border-radius:5px; text-align:center; "
-        "font-weight:bold;'>{seq}</div>",
+        f"""
+        <div style='background-color:#6A0DAD; color:white; padding:10px; border-radius:5px; text-align:center; font-weight:bold'>
+            {seq}
+        </div>
+        """,
         unsafe_allow_html=True
     )
 
@@ -61,12 +64,13 @@ def display_peptide_details(row: pd.Series):
             unsafe_allow_html=True
         )
         img3d = f"Assets/3D Structure/3D cNP{cnpd_id}.jpg"
-        if os.path.exists(img3d):
-            # use an HTML <img> to enforce height
-            st.markdown(
-                f"<img src='{img3d}' style='height:500px; width:auto; margin-top:5px;'/>",
-                unsafe_allow_html=True
-            )
+        if os.path.exists(img3d_path):
+            img3d = Image.open(img3d_path)
+            # scale so height ≤ metadata table height (roughly 300px here)
+            max_h = 300
+            w, h = img3d.size
+            new_w = int(w * (max_h / h))
+            st.image(img3d, width=new_w)
         else:
             st.info("No 3D image found")
 
@@ -78,11 +82,12 @@ def display_peptide_details(row: pd.Series):
             unsafe_allow_html=True
         )
         imgmsi = f"Assets/MSImaging/MSI cNP{cnpd_id}.png"
-        if os.path.exists(imgmsi):
-            st.markdown(
-                f"<img src='{imgmsi}' style='height:500px; width:auto; margin-top:5px;'/>",
-                unsafe_allow_html=True
-            )
+        if os.path.exists(imgmsi_path):
+            imgmsi = Image.open(imgmsi_path)
+            max_h = 300
+            w, h = imgmsi.size
+            new_w = int(w * (max_h / h))
+            st.image(imgmsi, width=new_w)
         else:
             st.info("No MSI image found")
 
