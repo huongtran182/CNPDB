@@ -58,21 +58,22 @@ def display_peptide_details(row: pd.Series):
     cnpd_id = row["CNPD ID"]
     msi_tissue  = row.get("MSI Tissue (OS Tissue)", "")
 
-      # 1) Open the outer lavender-gray box with extra top‐padding
-    st.markdown("""
-      <div style="
-        background-color: #efedf5;
-        border-radius: 20px;
-        padding: 60px 0 0;   /* 40px top padding to make room for header */
-        margin: 30px 0;
-      ">
-    """, unsafe_allow_html=True)
-
-    # 2) Emit the header bar *inside* that box but pull it upward
+     # ────────── Open a single, relative‐positioned lavender box ──────────
     st.markdown(f"""
+    <div style="
+      position: relative;
+      background-color: #efedf5;
+      border-radius: 20px;
+      padding: 60px 20px 20px;  /* top padding makes room for header */
+      margin: 30px 0;
+    ">
+      <!-- Absolutely positioned header bar -->
       <div style="
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 66%;
-        margin: -30px auto 20px auto;   /* negative top margin to overlap box */
         background-color: #54278f;
         color: white;
         padding: 10px;
@@ -83,7 +84,7 @@ def display_peptide_details(row: pd.Series):
         {seq}
       </div>
     """, unsafe_allow_html=True)
-
+    
     # three columns: metadata | 3D | MSI
     meta_col, col3d, colmsi = st.columns([4, 3, 3])
     with meta_col:
@@ -141,6 +142,7 @@ def display_peptide_details(row: pd.Series):
             </table>
         </div>
         """, unsafe_allow_html=True)
+        pass
 
     with col3d:
         st.markdown(f"""
@@ -162,6 +164,7 @@ def display_peptide_details(row: pd.Series):
           {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
         </div>
         """, unsafe_allow_html=True)
+        pass
 
     with colmsi:
         st.markdown(f"""
@@ -183,6 +186,7 @@ def display_peptide_details(row: pd.Series):
           {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id}.png")}
         </div>
         """, unsafe_allow_html=True)
+        pass
         
     # --- Close the outer lavender-gray box ---
     st.markdown("</div>", unsafe_allow_html=True)
