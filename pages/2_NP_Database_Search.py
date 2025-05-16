@@ -24,11 +24,8 @@ div[data-testid="stColumns"] > div[data-testid="stColumn"] {
     padding: 20px !important;
     border-radius: 10px !important;
  }
-   /* 
-         Find the div that Streamlit uses for a vertical block (data-testid="stVerticalBlock")
-         which immediately follows your <h2>SEARCH RESULTS</h2>, and give it a purple-gray background.
-      */
-      h2 + div[data-testid="stVerticalBlock"] {
+   /* Style every Streamlit vertical block with your lavender‐gray background */
+      div[data-testid="stVerticalBlock"] {
         background-color: #efedf5 !important;
         padding: 20px !important;
         border-radius: 10px !important;
