@@ -51,52 +51,52 @@ def display_peptide_details(row: pd.Series):
         <table style="
             width:100%;
             border-collapse: separate;
-            border-spacing: 0 1px;
+            border-spacing: 0 3px;
             margin-top:10px;
         ">
           <tr>
-            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">CNPD ID</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius: 10px 0 0 10px; ">CNPD ID</td>
             <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius: 0 10px 10px 0; ">{disp(row['CNPD ID'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Family</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius: 10px 0 0 10px; ">Family</td>
             <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius: 0 10px 10px 0; ">{disp(row['Family'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Organisms</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius: 10px 0 0 10px; ">Organisms</td>
             <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius: 0 10px 10px 0; ">{disp(row['OS'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Tissue</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row['Tissue'])}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius: 10px 0 0 10px; ">Tissue</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius: 0 10px 10px 0; ">{disp(row['Tissue'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Existence</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row['Existence'])}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius: 10px 0 0 10px; ">Existence</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius: 0 10px 10px 0; ">{disp(row['Existence'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Monoisotopic Mass</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row['Monoisotopic Mass'])}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius: 10px 0 0 10px; ">Monoisotopic Mass</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius: 0 10px 10px 0; ">{disp(row['Monoisotopic Mass'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Length (a.a.)</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row['Length'])}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius: 10px 0 0 10px; ">Length (a.a.)</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius: 0 10px 10px 0; ">{disp(row['Length'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">GRAVY Score</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{gravy_str}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius: 10px 0 0 10px; ">GRAVY Score</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius: 0 10px 10px 0; ">{gravy_str}</td>
           </tr>
           <tr>
-            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">% Hydrophobic Residues</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row['% Hydrophobic Residue (%)'])}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius: 10px 0 0 10px; ">% Hydrophobic Residues</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius: 0 10px 10px 0; ">{disp(row['% Hydrophobic Residue (%)'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">Half-life (Min)</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row['Predicted Half Life (Min)'])}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius: 10px 0 0 10px; ">Half-life (Min)</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius: 0 10px 10px 0; ">{disp(row['Predicted Half Life (Min)'])}</td>
           </tr>
           <tr>
-            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius:5px; ">PTMs</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius:5px; ">{disp(row['PTMs'])}</td>
+            <td style="background-color:#54278f; color:white; padding:8px 12px; border-radius: 10px 0 0 10px; ">PTMs</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px; border-radius: 0 10px 10px 0; ">{disp(row['PTMs'])}</td>
           </tr>
         </table>
         """, unsafe_allow_html=True)
