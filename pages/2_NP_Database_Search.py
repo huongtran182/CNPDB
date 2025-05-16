@@ -12,7 +12,7 @@ render_sidebar()
 
 def display_peptide_details(row: pd.Series):
     seq     = row["Seq"]
-    cnpd_id = row["ID"]
+    cnpd_id = row["CNPD ID"]
     tissue  = row["Tissue"]
 
     # outer wrapper
@@ -36,17 +36,16 @@ def display_peptide_details(row: pd.Series):
         # metadata table
         st.markdown(f"""
         <table style="width:100%; border-collapse:collapse; margin-top:10px;">
-          <tr><td><b>cNPD ID</b></td><td>{cnpd_id}</td></tr>
-          <tr><td><b>PubMed ID</b></td><td>{row.get('PubMed ID','')}</td></tr>
+          <tr><td><b>CNPD ID</b></td><td>{cnpd_id}</td></tr>
           <tr><td><b>Family</b></td><td>{row.get('Family','')}</td></tr>
           <tr><td><b>Organisms</b></td><td>{row.get('OS','')}</td></tr>
           <tr><td><b>Tissue</b></td><td>{tissue}</td></tr>
           <tr><td><b>Existence</b></td><td>{row.get('Existence','')}</td></tr>
-          <tr><td><b>Monoiso Mass</b></td><td>{row.get('Monoisotopic Mass','')}</td></tr>
-          <tr><td><b>Length</b></td><td>{row.get('Length','')}</td></tr>
+          <tr><td><b>Monoisotopic Mass</b></td><td>{row.get('Monoisotopic Mass','')}</td></tr>
+          <tr><td><b>Length (a.a.)</b></td><td>{row.get('Length','')}</td></tr>
           <tr><td><b>GRAVY Score</b></td><td>{row.get('GRAVY','')}</td></tr>
-          <tr><td><b>% Hydrophobic</b></td><td>{row.get('% Hydrophobic Residue (%)','')}</td></tr>
-          <tr><td><b>Half-life</b></td><td>{row.get('Predicted Half Life (Min)','')}</td></tr>
+          <tr><td><b>% Hydrophobic Residues</b></td><td>{row.get('% Hydrophobic Residue (%)','')}</td></tr>
+          <tr><td><b>Predicted Half-life (Min)</b></td><td>{row.get('Predicted Half Life (Min)','')}</td></tr>
           <tr><td><b>PTMs</b></td><td>{row.get('PTMs','')}</td></tr>
         </table>
         """, unsafe_allow_html=True)
@@ -58,9 +57,9 @@ def display_peptide_details(row: pd.Series):
             "3D Structure</div>",
             unsafe_allow_html=True
         )
-        img3d = f"Assets/3D Structure/3D {cnpd_id}.png"
+        img3d = f"Assets/3D Structure/3D cNP{cnpd_id}.jpg"
         if os.path.exists(img3d):
-            st.image(img3d, use_column_width=True)
+            st.image(img3d, use_container_width=True)
         else:
             st.info("No 3D image found")
 
@@ -70,9 +69,9 @@ def display_peptide_details(row: pd.Series):
             f"margin-top:10px;'>MS Imaging<br>Tissue: {tissue}</div>",
             unsafe_allow_html=True
         )
-        imgmsi = f"Assets/MSImaging/MSI {cnpd_id}.png"
+        imgmsi = f"Assets/MSImaging/MSI cNP{cnpd_id}.png"
         if os.path.exists(imgmsi):
-            st.image(imgmsi, use_column_width=True)
+            st.image(imgmsi, use_container_width=True)
         else:
             st.info("No MSI image found")
 
@@ -148,8 +147,8 @@ for col in numeric_cols:
 col_filter, col_main = st.columns([1, 3])
 
 with col_filter:
-    mono_mass_range  = st.slider("Monoisotopic mass (m/z)", 300.0, 1600.0, (300.0, 1600.0))
-    length_range     = st.slider("Length (aa)", 3, 100, (3, 50))
+    mono_mass_range  = st.slider("Monoisotopic mass (m/z)", 300.0, 2000.0, (300.0, 2000.0))
+    length_range     = st.slider("Length (aa)", 3, 100, (3, 100))
     gravy_range      = st.slider("GRAVY Score", -5.0, 5.0, (-5.0, 5.0))
     hydro_range      = st.slider("% Hydrophobic Residue", 0, 100, (0, 100))
     half_life_range  = st.slider("Predicted Half-life (min)", 0, 120, (0, 60))
@@ -235,7 +234,7 @@ if len(df_filtered) > 0:
             if checked:
                 selected_indices.append(idx)
             st.markdown(f"""
-                <div style='border:1px solid #6A0DAD; padding:10px; margin:0px 10px 10px 0; border-radius:10px;'>
+                <div style='border:1px solid #6A0DAD; padding:10px; margin:0px 10px 20px 0; border-radius:10px;'>
                     <div style='font-weight:bold; background-color:#6a51a3; color:white; padding:10px;'>
                         {row['Seq']}
                     </div>
