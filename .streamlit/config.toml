@@ -1,0 +1,5 @@
+primaryColor = "#6A0DAD"          # your purple
+backgroundColor = "#efedf5"       # optional, matches your container
+secondaryBackgroundColor = "#ffffff"
+textColor = "#000000"
+font = "sans serif"
