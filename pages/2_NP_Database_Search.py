@@ -70,117 +70,72 @@ def display_peptide_details(row: pd.Series):
       </div>
     """, unsafe_allow_html=True)
 
-    # ─── Three‐column layout ───
+     # three columns: metadata | 3D | MSI
     meta_col, col3d, colmsi = st.columns([4, 3, 3])
-
-    # 1) Metadata table
     with meta_col:
+         # format GRAVY to two decimals if numeric
         gravy = row.get("GRAVY")
         gravy_str = f"{gravy:.2f}" if pd.notna(gravy) else ""
+    
         st.markdown(f"""
         <div class="peptide-details">
-          <table>
-            <tr>
-              <td style="background:#6a51a3;color:white;padding:4px 8px;
-                         border-radius:10px 0 0 10px;">CNPD ID</td>
-              <td style="background:white;border:1px solid #6A0DAD;
-                         padding:4px 8px;border-radius:0 10px 10px 0;">
-                {disp(row["CNPD ID"])}
-              </td>
-            </tr>
-            <tr>
-              <td style="background:#6a51a3;color:white;padding:4px 8px;
-                         border-radius:10px 0 0 10px;">Family</td>
-              <td style="background:white;border:1px solid #6A0DAD;
-                         padding:4px 8px;border-radius:0 10px 10px 0;">
-                {disp(row["Family"])}
-              </td>
-            </tr>
-            <tr>
-              <td style="background:#6a51a3;color:white;padding:4px 8px;
-                         border-radius:10px 0 0 10px;">Organisms</td>
-              <td style="background:white;border:1px solid #6A0DAD;
-                         padding:4px 8px;border-radius:0 10px 10px 0;">
-                {disp(row["OS"])}
-              </td>
-            </tr>
-            <tr>
-              <td style="background:#6a51a3;color:white;padding:4px 8px;
-                         border-radius:10px 0 0 10px;">Tissue</td>
-              <td style="background:white;border:1px solid #6A0DAD;
-                         padding:4px 8px;border-radius:0 10px 10px 0;">
-                {disp(row["Tissue"])}
-              </td>
-            </tr>
-            <tr>
-              <td style="background:#6a51a3;color:white;padding:4px 8px;
-                         border-radius:10px 0 0 10px;">Existence</td>
-              <td style="background:white;border:1px solid #6A0DAD;
-                         padding:4px 8px;border-radius:0 10px 10px 0;">
-                {disp(row["Existence"])}
-              </td>
-            </tr>
-            <tr>
-              <td style="background:#6a51a3;color:white;padding:4px 8px;
-                         border-radius:10px 0 0 10px;">Monoisotopic Mass</td>
-              <td style="background:white;border:1px solid #6A0DAD;
-                         padding:4px 8px;border-radius:0 10px 10px 0;">
-                {disp(row["Monoisotopic Mass"])}
-              </td>
-            </tr>
-            <tr>
-              <td style="background:#6a51a3;color:white;padding:4px 8px;
-                         border-radius:10px 0 0 10px;">Length (a.a.)</td>
-              <td style="background:white;border:1px solid #6A0DAD;
-                         padding:4px 8px;border-radius:0 10px 10px 0;">
-                {disp(row["Length"])}
-              </td>
-            </tr>
-            <tr>
-              <td style="background:#6a51a3;color:white;padding:4px 8px;
-                         border-radius:10px 0 0 10px;">GRAVY Score</td>
-              <td style="background:white;border:1px solid #6A0DAD;
-                         padding:4px 8px;border-radius:0 10px 10px 0;">
-                {gravy_str}
-              </td>
-            </tr>
-            <tr>
-              <td style="background:#6a51a3;color:white;padding:4px 8px;
-                         border-radius:10px 0 0 10px;">% Hydrophobic Residues</td>
-              <td style="background:white;border:1px solid #6A0DAD;
-                         padding:4px 8px;border-radius:0 10px 10px 0;">
-                {disp(row["% Hydrophobic Residue (%)"])}
-              </td>
-            </tr>
-            <tr>
-              <td style="background:#6a51a3;color:white;padding:4px 8px;
-                         border-radius:10px 0 0 10px;">Half-life (Min)</td>
-              <td style="background:white;border:1px solid #6A0DAD;
-                         padding:4px 8px;border-radius:0 10px 10px 0;">
-                {disp(row["Predicted Half Life (Min)"])}
-              </td>
-            </tr>
-            <tr>
-              <td style="background:#6a51a3;color:white;padding:4px 8px;
-                         border-radius:10px 0 0 10px;">PTMs</td>
-              <td style="background:white;border:1px solid #6A0DAD;
-                         padding:4px 8px;border-radius:0 10px 10px 0;">
-                {disp(row["PTMs"])}
-              </td>
-            </tr>
-          </table>
+             <table>
+              <tr>
+                <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">CNPD ID</td>
+                <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['CNPD ID'])}</td>
+              </tr>
+              <tr>
+                <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Family</td>
+                <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Family'])}</td>
+              </tr>
+              <tr>
+                <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Organisms</td>
+                <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2;; border-radius: 0 10px 10px 0; ">{disp(row['OS'])}</td>
+              </tr>
+              <tr>
+                <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Tissue</td>
+                <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Tissue'])}</td>
+              </tr>
+              <tr>
+                <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Existence</td>
+                <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Existence'])}</td>
+              </tr>
+              <tr>
+                <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Monoisotopic Mass</td>
+                <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Monoisotopic Mass'])}</td>
+              </tr>
+              <tr>
+                <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Length (a.a.)</td>
+                <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Length'])}</td>
+              </tr>
+              <tr>
+                <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">GRAVY Score</td>
+                <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{gravy_str}</td>
+              </tr>
+              <tr>
+                <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">% Hydrophobic Residues</td>
+                <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['% Hydrophobic Residue (%)'])}</td>
+              </tr>
+              <tr>
+                <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Half-life (Min)</td>
+                <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Predicted Half Life (Min)'])}</td>
+              </tr>
+              <tr>
+                <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">PTMs</td>
+                <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['PTMs'])}</td>
+              </tr>
+            </table>
         </div>
         """, unsafe_allow_html=True)
 
-    # 2) 3D Structure block
     with col3d:
         st.markdown(f"""
         <div style="
           color: #6a51a3;
           font-size: 16px;
           font-weight: bold;
+          margin-top: 10px;
           text-align: center;
-          margin-bottom: 5px;
         ">
           3D Structure
         </div>
@@ -188,34 +143,47 @@ def display_peptide_details(row: pd.Series):
           border: 2px dashed #6a51a3;
           padding: 10px;
           text-align: center;
+          margin-top:5px;
         ">
           {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
         </div>
         """, unsafe_allow_html=True)
 
-    # 3) MSI blocks (one per non-empty tissue)
     with colmsi:
-        for i, t in enumerate(msi_tissues, start=1):
-            if not disp(t):
+         # Loop through MSI Tissue 1–3
+        for i in range(1, 4):
+            col_name = f"MSI Tissue {i}"
+            tissue = disp(row.get(col_name))
+            if not tissue:
                 continue
-            suffix = f" {i}" if i > 1 else ""
+
+            # 1) Section header for this tissue
             st.markdown(f"""
             <div style="
               color: #6a51a3;
               font-size: 16px;
               font-weight: bold;
+              margin-top: 10px;
               text-align: center;
-              margin-top:10px;
             ">
-              MS Imaging – {t}
+              MS Imaging – {tissue}
             </div>
+            """, unsafe_allow_html=True)
+
+
+            # 2) Dashed-box with the matching image
+            #    Filename is "MSI cNP{ID}.png" for i==1,
+            #    "MSI cNP{ID} 2.png" for i==2, etc.
+            suffix = f" {i}" if i > 1 else ""
+            path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
+            st.markdown(f"""
             <div style="
               border: 2px dashed #6a51a3;
               padding: 10px;
               text-align: center;
-              margin-bottom:10px;
+              margin-top: 5px;
             ">
-              {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png")}
+              {img_html(path)}
             </div>
             """, unsafe_allow_html=True)
 
