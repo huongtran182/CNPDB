@@ -37,6 +37,63 @@ def display_peptide_details(row: pd.Series):
     # three columns: metadata | 3D | MSI
     meta_col, col3d, colmsi = st.columns([4, 3, 3])
     with meta_col:
+         # format GRAVY to two decimals if numeric
+        gravy = row.get("GRAVY")
+        gravy_str = f"{gravy:.2f}" if pd.notna(gravy) else ""
+    
+        st.markdown(f"""
+        <table style="
+            width:100%;
+            border-collapse: separate;
+            border-spacing: 0 1px;
+            margin-top:10px;
+        ">
+          <tr>
+            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">CNPD ID</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{cnpd_id}</td>
+          </tr>
+          <tr>
+            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">Family</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('Family','')}</td>
+          </tr>
+          <tr>
+            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">Organisms</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('OS','')}</td>
+          </tr>
+          <tr>
+            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">Tissue</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{tissue}</td>
+          </tr>
+          <tr>
+            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">Existence</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('Existence','')}</td>
+          </tr>
+          <tr>
+            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">Monoisotopic Mass</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('Monoisotopic Mass','')}</td>
+          </tr>
+          <tr>
+            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">Length (a.a.)</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('Length','')}</td>
+          </tr>
+          <tr>
+            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">GRAVY Score</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{gravy_str}</td>
+          </tr>
+          <tr>
+            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">% Hydrophobic Residues</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('% Hydrophobic Residue (%)','')}</td>
+          </tr>
+          <tr>
+            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">Half-life (Min)</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('Predicted Half Life (Min)','')}</td>
+          </tr>
+          <tr>
+            <td style="background-color:#6A0DAD; color:white; padding:8px 12px;">PTMs</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:8px 12px;">{row.get('PTMs','')}</td>
+          </tr>
+        </table>
+        
         # format GRAVY to two decimals if numeric
         gravy = row.get("GRAVY")
         gravy_str = f"{gravy:.2f}" if pd.notna(gravy) else ""
