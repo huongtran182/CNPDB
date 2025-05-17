@@ -37,7 +37,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-def img_html(path):
+def img_html(path, alt_text=""):
     """Return a base64 <img> tag filling 100% width of its container."""
     if not os.path.exists(path):
         return "<div style='color:#999; padding:20px;'>No image found</div>"
@@ -132,7 +132,7 @@ def display_peptide_details(row: pd.Series):
           text-align: center;
           margin-top:5px;
         ">
-          {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
+          {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg", f"3D Structure of cNP{cnpd_id}")}
         </div>
     """
     
