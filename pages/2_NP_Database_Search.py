@@ -37,7 +37,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-def img_html(path, alt_text=""):
+def img_html(path):
     """Return a base64 <img> tag filling 100% width of its container."""
     if not os.path.exists(path):
         return "<div style='color:#999; padding:20px;'>No image found</div>"
@@ -45,7 +45,7 @@ def img_html(path, alt_text=""):
     mime = f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}"
     with open(path, "rb") as f:
         data = base64.b64encode(f.read()).decode("utf-8")
-    return f"<img src='data:{mime};base64,{data}' alt='{alt_text}' style='width:100%; border-radius:8px;'/>"
+    return f"<img src='data:{mime};base64,{data}' style='width:100%; border-radius:8px;'/>"
 
 # Helper to blank out NaNs if there is no value in the cell of the column of excel file
 def disp(val):
@@ -132,7 +132,7 @@ def display_peptide_details(row: pd.Series):
           text-align: center;
           margin-top:5px;
         ">
-          {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg", f"3D Structure of cNP{cnpd_id}")}
+          {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
         </div>
     """
     
@@ -153,7 +153,7 @@ def display_peptide_details(row: pd.Series):
             MS Imaging – {tissue}
           </div>
           <div style="border:2px dashed #6a51a3; padding:10px; text-align:center;">
-            {img_html(img_path, f'MS Imaging – {tissue}')}
+            {img_html(img_path)}
           </div>
         </div>
         """
