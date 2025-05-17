@@ -40,11 +40,19 @@ st.markdown(
 def img_html(path):
     """Return a base64 <img> tag filling 100% width of its container."""
     if not os.path.exists(path):
+        st.write(f"**Debugging - img_html - File NOT found:** {path}")
         return "<div style='color:#999; padding:20px;'>No image found</div>"
-    ext = os.path.splitext(path)[1].lower().replace(".", "")
-    mime = f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}"
-    data = base64.b64encode(open(path, "rb").read()).decode()
-    return f"<img src='data:{mime};base64,{data}' style='width:100%; height:auto;'/>"
+     try:
+        with open(path, "rb") as f:
+            img_bytes = f.read()
+            st.write(f"**Debugging - img_html - File read successfully. Size:** {len(img_bytes)} bytes")
+            data = base64.b64encode(img_bytes).decode("utf-8")
+            ext = os.path.splitext(path)[1].lower().replace(".", "")
+            mime = f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}"
+            return f"<img src='data:{mime};base64,{data}' style='width:100%; height:auto;'/>"
+    except Exception as e:
+        st.error(f"**Debugging - img_html - Error reading file:** {e}")
+        return "<div style='color:red; padding:20px;'>Error loading image</div>"
 
 # Helper to blank out NaNs if there is no value in the cell of the column of excel file
 def disp(val):
@@ -148,6 +156,7 @@ def display_peptide_details(row: pd.Series):
         else:
             suffix = f" {i}"
         img_path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
+        st.write(f"**Debugging - Path being passed to img_html:** {img_path}")
         
         msi_html += f"""
         <div style="margin-left:20px; margin-top:{'20px' if i>1 else '0px'}">
