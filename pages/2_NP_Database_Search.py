@@ -166,6 +166,7 @@ def display_peptide_details(row: pd.Series):
       padding: 60px 20px 20px;
       margin: 80px 0 30px;
       display: flex;  /* Use flexbox for layout */
+      gap: 20px; /* Space between columns */
     ">
       <!-- Header -->
       <div style="
