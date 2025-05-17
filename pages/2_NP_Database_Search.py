@@ -156,7 +156,6 @@ def display_peptide_details(row: pd.Series):
         else:
             suffix = f" {i}"
         img_path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
-        st.write(f"**Debugging - Path being passed to img_html:** {img_path}")
         
         msi_html += f"""
         <div style="margin-left:20px; margin-top:{'20px' if i>1 else '0px'}">
