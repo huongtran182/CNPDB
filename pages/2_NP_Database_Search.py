@@ -146,8 +146,11 @@ def display_peptide_details(row: pd.Series):
         if not tissue:
             continue
             
-        suffix = f" {i}" if i > 1 else ""
-        img_path = f"Assets/MSImaging/MSI cNP{cnpd_id} {suffix}.png"
+        if i == 1:
+            suffix = ""
+        else:
+            suffix = f" {i}"
+        img_path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
         st.write(f"**Debugging - MSI Image Path (i={i}):** {img_path}") # Check MSI image path
         
         msi_html += f"""
