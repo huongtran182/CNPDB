@@ -44,8 +44,8 @@ def img_html(path):
     ext = os.path.splitext(path)[1].lower().replace(".", "")
     mime = f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}"
     with open(path, "rb") as f:
-        data = base64.b64encode(f.read()).decode("utf-8")
-    return f"<img src='data:{mime};base64,{data}' style='width:100%; border-radius:8px;'/>"
+        data = base64.b64encode(open(path, "rb").read()).decode()
+    return f"<img src='data:{mime};base64,{data}' style='width:100%; height:auto;'/>"
 
 # Helper to blank out NaNs if there is no value in the cell of the column of excel file
 def disp(val):
@@ -57,8 +57,6 @@ def disp(val):
 def display_peptide_details(row: pd.Series):
     seq        = row["Seq"]
     cnpd_id    = row["CNPD ID"]
-
-    st.write(f"**Debugging - CNPD ID:** {cnpd_id}")  # Check the CNPD ID
 
 # Prepare all content as HTML strings first
     # 1) Metadata table
@@ -151,7 +149,6 @@ def display_peptide_details(row: pd.Series):
         else:
             suffix = f" {i}"
         img_path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
-        st.write(f"**Debugging - MSI Image Path (i={i}):** {img_path}") # Check MSI image path
         
         msi_html += f"""
         <div style="margin-left:20px; margin-top:{'20px' if i>1 else '0px'}">
