@@ -145,7 +145,7 @@ def display_peptide_details(row: pd.Series):
             continue
             
         suffix = f" {i}" if i > 1 else ""
-        img_path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
+        img_path = f"Assets/MSImaging/MSI cNP{cnpd_id} {suffix}.png"
         
         msi_html += f"""
         <div style="margin-left:20px; margin-top:{'20px' if i>1 else '0px'}">
