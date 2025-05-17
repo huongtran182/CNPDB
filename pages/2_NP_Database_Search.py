@@ -44,8 +44,8 @@ def img_html(path):
     ext = os.path.splitext(path)[1].lower().replace(".", "")
     mime = f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}"
     with open(path, "rb") as f:
-        data = base64.b64encode(f.read()).decode("utf-8")
-    return f"<img src='data:{mime};base64,{data}' alt='{alt_text}' style='width:100%; border-radius:8px;'/>"
+        data = base64.b64encode(open(path, "rb").read()).decode()
+    return f"<img src='data:{mime};base64,{data}' style='width:100%; height:auto;'/>"
 
 # Helper to blank out NaNs if there is no value in the cell of the column of excel file
 def disp(val):
@@ -153,7 +153,7 @@ def display_peptide_details(row: pd.Series):
             MS Imaging – {tissue}
           </div>
           <div style="border:2px dashed #6a51a3; padding:10px; text-align:center;">
-            {img_html(img_path,  alt_text=f"MSI Tissue {i}")}
+            {img_html(img_path, f'MS Imaging – {tissue}')}
           </div>
         </div>
         """
