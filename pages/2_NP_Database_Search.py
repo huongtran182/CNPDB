@@ -43,8 +43,8 @@ def img_html(path):
         return "<div style='color:#999; padding:20px;'>No image found</div>"
     ext = os.path.splitext(path)[1].lower().replace(".", "")
     mime = f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}"
-    data = base64.b64encode(open(path, "rb").read()).decode()
-    return f"<img src='data:{mime};base64,{data}' style='width:100%; height:auto;'/>"
+    data = base64.b64encode(f.read()).decode("utf-8")
+    return f"<img src='data:{mime};base64,{data}' alt='{alt_text}' style='width:100%; max-width:500px; border-radius:8px;'/>"
 
 # Helper to blank out NaNs if there is no value in the cell of the column of excel file
 def disp(val):
