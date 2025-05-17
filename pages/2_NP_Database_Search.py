@@ -152,7 +152,7 @@ def display_peptide_details(row: pd.Series):
             MS Imaging – {tissue}
           </div>
           <div style="border:2px dashed #6a51a3; padding:10px; text-align:center;">
-            {img_html(img_path)}
+            {img_html(img_path, f'MS Imaging – {tissue}')}
           </div>
         </div>
         """
