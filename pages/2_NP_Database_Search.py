@@ -40,7 +40,6 @@ st.markdown(
 def img_html(path):
     """Return a base64 <img> tag filling 100% width of its container."""
     if not os.path.exists(path):
-        st.write(f"**Debugging - img_html - File NOT found:** {path}")
         return "<div style='color:#999; padding:20px;'>No image found</div>"
     ext = os.path.splitext(path)[1].lower().replace(".", "")
     mime = f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}"
