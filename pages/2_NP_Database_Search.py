@@ -58,6 +58,8 @@ def display_peptide_details(row: pd.Series):
     seq        = row["Seq"]
     cnpd_id    = row["CNPD ID"]
 
+    st.write(f"**Debugging - CNPD ID:** {cnpd_id}")  # Check the CNPD ID
+
 # Prepare all content as HTML strings first
     # 1) Metadata table
     gravy = row.get("GRAVY")
@@ -146,6 +148,7 @@ def display_peptide_details(row: pd.Series):
             
         suffix = f" {i}" if i > 1 else ""
         img_path = f"Assets/MSImaging/MSI cNP{cnpd_id} {suffix}.png"
+        st.write(f"**Debugging - MSI Image Path (i={i}):** {img_path}") # Check MSI image path
         
         msi_html += f"""
         <div style="margin-left:20px; margin-top:{'20px' if i>1 else '0px'}">
