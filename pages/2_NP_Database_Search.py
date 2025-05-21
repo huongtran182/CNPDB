@@ -134,8 +134,7 @@ def display_peptide_details(row: pd.Series):
         </div>
     """
     
-# Prepare MSI HTML block    
- # Prepare MSI HTML blocks
+    # Prepare MSI HTML blocks
     tissue_1 = disp(row.get("MSI Tissue 1"))
     msi_html_1 = f"""
     <div style="
@@ -197,11 +196,8 @@ def display_peptide_details(row: pd.Series):
           {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png")}
         </div>
     """
-
-
-
  # Build the COMPLETE box as one HTML block
-full_html = f"""
+    full_html = f"""
     <div style="
       position: relative;
       background-color: #efedf5;
@@ -242,7 +238,7 @@ full_html = f"""
     </div>
     """
  # Render everything at once
-st.markdown(full_html, unsafe_allow_html=True)    
+    st.markdown(full_html, unsafe_allow_html=True)    
     
 st.markdown("""
 <style>
