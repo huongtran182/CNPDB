@@ -135,7 +135,7 @@ def display_peptide_details(row: pd.Series):
     """
     
 # Prepare MSI HTML block    
-def build_msi_html(label: str, path: str, fallback: bool = False) -> str:
+def build_msi_html(tissue_label: str, img_path: str, fallback: bool = False) -> str:
     if fallback:
         return """
         <div style="color:#6a51a3;font-size:16px;font-weight:bold;margin-top:10px;text-align:center;">
@@ -148,31 +148,44 @@ def build_msi_html(label: str, path: str, fallback: bool = False) -> str:
     return f"""
     <div>
         <div style="color:#6a51a3;font-size:16px;font-weight:bold;text-align:center;">
-            MS Imaging – {label}
+            MS Imaging – {tissue_label}
         </div>
         <div style="border:2px dashed #6a51a3;padding:10px;text-align:center;margin-top:5px;">
-            {img_html(path)}
+            {img_html(img_path)}
         </div>
     </div>
     """
 
-# MSI Tissue 1
-tissue_1 = row.get("MSI Tissue 1")
-if pd.notna(tissue_1) and str(tissue_1).strip():
-    path_1 = f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png"
-    msi_html_1 = build_msi_html(tissue_1, path_1) if os.path.exists(path_1) else build_msi_html("", "", fallback=True)
-else:
+def render_peptide_card(row):
+    cnpd_id = row["CNPD ID"]
+    seq = row["Seq"]
+
+    # Assume metadata_html and structure_html are defined above this call
+    global metadata_html, structure_html
+
     msi_html_1 = ""
+    tissue_1_raw = row.get("MSI Tissue 1")
+    if pd.notna(tissue_1_raw) and str(tissue_1_raw).strip():
+        path_1 = f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png"
+        if os.path.exists(path_1):
+            msi_html_1 = build_msi_html(tissue_1_raw, path_1)
+        else:
+            msi_html_1 = build_msi_html("", "", fallback=True)
 
-# MSI Tissue 2
-tissue_2 = row.get("MSI Tissue 2")
-path_2 = f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png"
-msi_html_2 = build_msi_html(tissue_2, path_2) if pd.notna(tissue_2) and str(tissue_2).strip() and os.path.exists(path_2) else ""
+    msi_html_2 = ""
+    tissue_2_raw = row.get("MSI Tissue 2")
+    if pd.notna(tissue_2_raw) and str(tissue_2_raw).strip():
+        path_2 = f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png"
+        if os.path.exists(path_2):
+            msi_html_2 = build_msi_html(tissue_2_raw, path_2)
 
-# MSI Tissue 3
-tissue_3 = row.get("MSI Tissue 3")
-path_3 = f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png"
-msi_html_3 = build_msi_html(tissue_3, path_3) if pd.notna(tissue_3) and str(tissue_3).strip() and os.path.exists(path_3) else ""
+    msi_html_3 = ""
+    tissue_3_raw = row.get("MSI Tissue 3")
+    if pd.notna(tissue_3_raw) and str(tissue_3_raw).strip():
+        path_3 = f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png"
+        if os.path.exists(path_3):
+            msi_html_3 = build_msi_html(tissue_3_raw, path_3)
+
 
  # Build the COMPLETE box as one HTML block
 full_html = f"""
