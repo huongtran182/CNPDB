@@ -39,12 +39,22 @@ st.markdown(
 
 def img_html(path):
     """Return a base64 <img> tag filling 100% width of its container."""
+    # Print the absolute path that os.path.exists will try to check
+    absolute_path = os.path.abspath(path)
+    st.write(f"**DEBUG (img_html):** Attempting to access: `{absolute_path}`")
+
     if not os.path.exists(path):
+        st.write(f"**DEBUG (img_html):** File NOT found at: `{absolute_path}`")
         return "<div style='color:#999; padding:20px;'>No image found</div>"
     ext = os.path.splitext(path)[1].lower().replace(".", "")
     mime = f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}"
-    data = base64.b64encode(open(path, "rb").read()).decode()
-    return f"<img src='data:{mime};base64,{data}' style='width:100%; height:auto;'/>"
+   try:
+        with open(path, "rb") as f:
+            data = base64.b64encode(f.read()).decode()
+        return f"<img src='data:{mime};base64,{data}' style='width:100%; height:auto;'/>"
+    except Exception as e:
+        st.error(f"**ERROR (img_html):** Could not read file `{absolute_path}`: {e}")
+        return "<div style='color:red; padding:20px;'>Error loading image</div>"
 
 # Helper to blank out NaNs if there is no value in the cell of the column of excel file
 def disp(val):
@@ -150,11 +160,11 @@ def display_peptide_details(row: pd.Series):
         img_path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
         
         msi_html += f"""
-        <div style="margin-left:20px; margin-top:{'20px' if i>1 else '0px'}">
+        <div style="margin-left:20px; margin-top:{'20px' if i>1 else '10px'}">
           <div style="color: #6a51a3; font-size:16px; font-weight:bold; text-align:center;">
             MS Imaging – {tissue}
           </div>
-          <div style="border:2px dashed #6a51a3; padding:10px; text-align:center;">
+          <div style="border:2px dashed #6a51a3; padding:10px; text-align:center;margin-top:5px;">
             {img_html(img_path)}
           </div>
         </div>
