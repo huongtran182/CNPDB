@@ -134,54 +134,58 @@ def display_peptide_details(row: pd.Series):
         </div>
     """
         
+   
     tissue_1 = disp(row.get("MSI Tissue 1"))
     path_1 = f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png"
-    if os.path.exists(path_1):
-        msi_html_1 = f"""
-        <div style="
-              color: #6a51a3;
-              font-size: 16px;
-              font-weight: bold;
-              margin-top: 10px;
-              text-align: center;
-            ">
-            MS Imaging – {tissue_1}
-        </div>
-        <div style="
-              border: 2px dashed #6a51a3;
-              padding: 10px;
-              text-align: center;
-              margin-top:5px;
-            ">
-              {img_html(path_1)}
-        </div>
-        """
+    if tissue_1:
+        if os.path.exists(path_1):
+            msi_html_1 = f"""
+            <div style="
+                  color: #6a51a3;
+                  font-size: 16px;
+                  font-weight: bold;
+                  margin-top: 10px;
+                  text-align: center;
+                ">
+                MS Imaging – {tissue_1}
+            </div>
+            <div style="
+                  border: 2px dashed #6a51a3;
+                  padding: 10px;
+                  text-align: center;
+                  margin-top:5px;
+                ">
+                  {img_html(path_1)}
+            </div>
+            """
+        else:
+            msi_html_1 = f"""
+            <div style="
+                  color: #6a51a3;
+                  font-size: 16px;
+                  font-weight: bold;
+                  margin-top: 10px;
+                  text-align: center;
+                ">
+                MS Imaging – {tissue_1}
+            </div>
+            <div style="
+                  padding: 10px;
+                  text-align: center;
+                  color: gray;
+                  font-style: italic;
+                  margin-top:5px;
+                ">
+                  MS Imaging data not available
+            </div>
+            """
     else:
-        msi_html_1 = f"""
-        <div style="
-              color: #6a51a3;
-              font-size: 16px;
-              font-weight: bold;
-              margin-top: 10px;
-              text-align: center;
-            ">
-            MS Imaging – {tissue_1}
-        </div>
-        <div style="
-              padding: 10px;
-              text-align: center;
-              color: gray;
-              font-style: italic;
-              margin-top:5px;
-            ">
-              MS Imaging data not available
-        </div>
-        """
+        msi_html_1 = ""
 
     msi_html_2 = ""
     tissue_2 = disp(row.get("MSI Tissue 2"))
     path_2 = f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png"
-    if os.path.exists(path_2):
+    if tissue_2 and os.path.exists(path_2):
         msi_html_2 = f"""
         <div>
             <div style="color: #6a51a3; font-size: 16px; font-weight: bold; text-align: center;">
@@ -196,7 +200,7 @@ def display_peptide_details(row: pd.Series):
     msi_html_3 = ""
     tissue_3 = disp(row.get("MSI Tissue 3"))
     path_3 = f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png"
-    if os.path.exists(path_3):
+    if tissue_3 and os.path.exists(path_3):
         msi_html_3 = f"""
         <div>
             <div style="color: #6a51a3; font-size: 16px; font-weight: bold; text-align: center;">
