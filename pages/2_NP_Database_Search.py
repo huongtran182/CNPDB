@@ -175,7 +175,7 @@ path_3 = f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png"
 msi_html_3 = build_msi_html(tissue_3, path_3) if pd.notna(tissue_3) and str(tissue_3).strip() and os.path.exists(path_3) else ""
 
  # Build the COMPLETE box as one HTML block
-    full_html = f"""
+full_html = f"""
     <div style="
       position: relative;
       background-color: #efedf5;
