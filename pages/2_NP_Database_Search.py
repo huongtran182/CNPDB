@@ -133,31 +133,30 @@ def display_peptide_details(row: pd.Series):
           {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
         </div>
     """
-        
-   
-    tissue_1 = disp(row.get("MSI Tissue 1"))
-    path_1 = f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png"
-    if tissue_1:
-        if os.path.exists(path_1):
-            msi_html_1 = f"""
-            <div style="
-                  color: #6a51a3;
-                  font-size: 16px;
-                  font-weight: bold;
-                  margin-top: 10px;
-                  text-align: center;
-                ">
-                MS Imaging – {tissue_1}
+    
+# Prepare MSI HTML block    
+    tissue_1_raw = row.get("MSI Tissue 1")
+    tissue_1 = disp(tissue_1_raw)
+    if pd.notna(tissue_1_raw) 
+        msi_html_1 = f"""
+        <div style="
+              color: #6a51a3;
+              font-size: 16px;
+              font-weight: bold;
+              margin-top: 10px;
+              text-align: center;
+            ">
+            MS Imaging – {tissue_1}
             </div>
             <div style="
-                  border: 2px dashed #6a51a3;
-                  padding: 10px;
-                  text-align: center;
-                  margin-top:5px;
-                ">
-                  {img_html(path_1)}
+              border: 2px dashed #6a51a3;
+              padding: 10px;
+              text-align: center;
+              margin-top:5px;
+            ">
+              {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png")}
             </div>
-            """
+        """
         else:
             msi_html_1 = f"""
             <div style="
@@ -167,50 +166,51 @@ def display_peptide_details(row: pd.Series):
                   margin-top: 10px;
                   text-align: center;
                 ">
-                MS Imaging – {tissue_1}
-            </div>
-            <div style="
-                  padding: 10px;
-                  text-align: center;
-                  color: gray;
-                  font-style: italic;
-                  margin-top:5px;
-                ">
                   MS Imaging data not available
             </div>
             """
-    else:
-        msi_html_1 = ""
-
-    msi_html_2 = ""
     tissue_2 = disp(row.get("MSI Tissue 2"))
-    path_2 = f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png"
-    if tissue_2 and os.path.exists(path_2):
-        msi_html_2 = f"""
-        <div>
-            <div style="color: #6a51a3; font-size: 16px; font-weight: bold; text-align: center;">
-                MS Imaging – {tissue_2}
-            </div>
-            <div style="border: 2px dashed #6a51a3; padding: 10px; text-align: center; margin-top: 5px;">
-                {img_html(path_2)}
-            </div>
+    msi_html_2 = f"""
+    <div style="
+          color: #6a51a3;
+          font-size: 16px;
+          font-weight: bold;
+          margin-top: 10px;
+          text-align: center;
+        ">
+        MS Imaging – {tissue_2}
         </div>
-        """
-
-    msi_html_3 = ""
+        <div style="
+          border: 2px dashed #6a51a3;
+          padding: 10px;
+          text-align: center;
+          margin-top:5px;
+        ">
+          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png")}
+        </div>
+    """
+    
     tissue_3 = disp(row.get("MSI Tissue 3"))
-    path_3 = f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png"
-    if tissue_3 and os.path.exists(path_3):
-        msi_html_3 = f"""
-        <div>
-            <div style="color: #6a51a3; font-size: 16px; font-weight: bold; text-align: center;">
-                MS Imaging – {tissue_3}
-            </div>
-            <div style="border: 2px dashed #6a51a3; padding: 10px; text-align: center; margin-top: 5px;">
-                {img_html(path_3)}
-            </div>
+    msi_html_3 = f"""
+    <div style="
+          color: #6a51a3;
+          font-size: 16px;
+          font-weight: bold;
+          margin-top: 10px;
+          text-align: center;
+        ">
+        MS Imaging – {tissue_3}
         </div>
-        """
+        <div style="
+          border: 2px dashed #6a51a3;
+          padding: 10px;
+          text-align: center;
+          margin-top:5px;
+        ">
+          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png")}
+        </div>
+    """
+
  # Build the COMPLETE box as one HTML block
     full_html = f"""
     <div style="
