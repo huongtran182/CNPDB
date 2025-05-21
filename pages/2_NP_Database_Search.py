@@ -157,16 +157,16 @@ def display_peptide_details(row: pd.Series):
               {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png")}
             </div>
         """
-        else:
-            msi_html_1 = f"""
-            <div style="
-                  color: #6a51a3;
-                  font-size: 16px;
-                  font-weight: bold;
-                  margin-top: 10px;
-                  text-align: center;
-                ">
-                  MS Imaging data not available
+    else:
+        msi_html_1 = f"""
+        <div style="
+            color: #6a51a3;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: center;
+            ">
+            MS Imaging data not available
             </div>
             """
     tissue_2 = disp(row.get("MSI Tissue 2"))
