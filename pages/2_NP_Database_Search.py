@@ -135,40 +135,53 @@ def display_peptide_details(row: pd.Series):
     """
     
 # Prepare MSI HTML block    
-    tissue_1_raw = row.get("MSI Tissue 1")
+   tissue_1_raw = row.get("MSI Tissue 1")
     tissue_1 = disp(tissue_1_raw)
-    if pd.notna(tissue_1_raw): 
-        msi_html_1 = f"""
-        <div style="
-              color: #6a51a3;
-              font-size: 16px;
-              font-weight: bold;
-              margin-top: 10px;
-              text-align: center;
-            ">
-            MS Imaging – {tissue_1}
+    path_1 = f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png"
+    if pd.notna(tissue_1_raw) and tissue_1:
+        if os.path.exists(path_1):
+            msi_html_1 = f"""
+            <div style="
+                  color: #6a51a3;
+                  font-size: 16px;
+                  font-weight: bold;
+                  margin-top: 10px;
+                  text-align: center;
+                ">
+                MS Imaging – {tissue_1}
             </div>
             <div style="
-              border: 2px dashed #6a51a3;
-              padding: 10px;
-              text-align: center;
-              margin-top:5px;
-            ">
-              {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png")}
-            </div>
-        """
-    else:
-        msi_html_1 = f"""
-        <div style="
-            color: #6a51a3;
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 10px;
-            text-align: center;
-            ">
-            MS Imaging data not available
+                  border: 2px dashed #6a51a3;
+                  padding: 10px;
+                  text-align: center;
+                  margin-top:5px;
+                ">
+                  {img_html(path_1)}
             </div>
             """
+        else:
+            msi_html_1 = f"""
+            <div style="
+                  color: #6a51a3;
+                  font-size: 16px;
+                  font-weight: bold;
+                  margin-top: 10px;
+                  text-align: center;
+                ">
+                MS Imaging
+            </div>
+            <div style="
+                  padding: 10px;
+                  text-align: center;
+                  color: gray;
+                  font-style: italic;
+                  margin-top:5px;
+                ">
+                  MS Imaging data not available
+            </div>
+            """
+    else:
+        msi_html_1 = ""
     tissue_2 = disp(row.get("MSI Tissue 2"))
     msi_html_2 = f"""
     <div style="
