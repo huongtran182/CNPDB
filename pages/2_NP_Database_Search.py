@@ -216,7 +216,7 @@ full_html = f"""
     </div>
     """
  # Render everything at once
-    st.markdown(full_html, unsafe_allow_html=True)    
+st.markdown(full_html, unsafe_allow_html=True)    
     
 st.markdown("""
 <style>
