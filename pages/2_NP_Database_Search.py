@@ -372,158 +372,77 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-import datetime
-
-# Initialize session state for checkboxes if not exists
-if 'check_all' not in st.session_state:
-    st.session_state.check_all = False
-
-# Create the master checkbox (visible)
-check_all = st.checkbox(
-    "Check/Uncheck All", 
-    key="master_checkbox",
-    value=st.session_state.check_all
-)
-
-# Update all checkboxes when master changes
-if check_all != st.session_state.check_all:
-    st.session_state.check_all = check_all
-    for idx in df_filtered.index:
-        st.session_state[f'check_{idx}'] = check_all
-# Build the HTML structure
-results_html = f"""
-<div style="
-    background-color: #efedf5;
-    border-radius: 20px;
-    padding: 30px;
-    margin: 20px 0;
-    font-family: Arial, sans-serif;
-">
-    <!-- Header Row -->
-    <div style="
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 25px;
-    ">
-        <div>
-            <input type="checkbox" id="html_check_all" {'checked' if st.session_state.check_all else ''}
-                   onclick="document.getElementById('master_checkbox').click()">
-            <label for="html_check_all">Check/Uncheck All</label>
-        </div>
-        <div style="text-align: right; font-weight: bold;">
-            Hit: {len(df_filtered)} peptides
-        </div>
+# 3) Header HTML Block: left = checkbox, right = hit count
+header_html = f"""
+<div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;'>
+    <div>
+        <input type='checkbox' id='check_all' disabled /> Check/Uncheck All
     </div>
-    
-    <!-- Peptide Cards -->
-    <div style="margin-bottom: 30px;">
+    <div style='text-align: right;'>Hit: {len(df_filtered)} peptides</div>
+</div>
 """
 
-# Add peptide cards
+# 4) Peptide Cards in 3 columns HTML Block ---
+peptide_cards_html = "<div style='display: flex; flex-wrap: wrap; gap: 20px;'>"
+selected_indices = []
 if len(df_filtered) > 0:
-    selected_indices = []
-    fasta_str = ""
-    
-    for idx, row in df_filtered.iterrows():
-        # Initialize checkbox state if not exists
-        if f'check_{idx}' not in st.session_state:
-            st.session_state[f'check_{idx}'] = st.session_state.check_all
-            
-        # Create the checkbox
-        checked = st.checkbox(
-            "",
-            key=f"check_{idx}",
-            value=st.session_state[f'check_{idx}']
-        )
-        
-        if checked:
-            selected_indices.append(idx)
-            fasta_str += f">{row['ID']}\n{row['Seq']}\n"
-            
-        results_html += f"""
-        <div style="
-            border: 1px solid #6A0DAD;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            background: white;
-            overflow: hidden;
-        ">
-            <div style="
-                background-color: #6a51a3;
-                color: white;
-                padding: 12px;
-                font-weight: bold;
-                font-size: 1.1em;
-            ">
-                {row['Seq']}
+    for i in range(0, len(df_filtered), 3):
+        row_cards = df_filtered.iloc[i:i+3]
+        peptide_cards_html += "<div style='display: flex; gap: 20px; margin-bottom: 20px;'>"
+        for _, row in row_cards.iterrows():
+            # Escape the data before injecting into HTML
+            seq = row['Seq']
+            family = row['Family']
+            os = row['OS']
+            peptide_cards_html += f"""
+            <div style='flex: 1; border:1px solid #6A0DAD; padding:10px; border-radius:10px;'>
+                <div style='font-weight:bold; background-color:#6a51a3; color:white; padding:10px;'>
+                    {seq}
+                </div>
+                <div style='padding:5px;'>
+                    Family: {family}<br>
+                    OS: {os}
+                </div>
             </div>
-            <div style="padding: 12px;">
-                <div><strong>Family:</strong> {row['Family']}</div>
-                <div><strong>OS:</strong> {row['OS']}</div>
-            </div>
-        </div>
-        """
+            """
+        peptide_cards_html += "</div>"
 else:
-    results_html += """
-    <div style="
-        padding: 20px;
-        text-align: center;
-        color: #666;
-    ">
-        No peptides matched the search criteria.
-    </div>
-    """
+    peptide_cards_html = "<div>No peptides matched the search criteria.</div>"
 
-# Add buttons and footer
-results_html += """
-    </div>
-    
-    <!-- Button Row -->
-    <div style="
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-top: 20px;
-    ">
-"""
 
-if len(df_filtered) > 0:
-    col1, col2 = st.columns(2)
-    with col1:
-        view_clicked = st.button("View details", type="primary")
-    with col2:
-        st.download_button(
-            "Download FASTA File",
-            data=fasta_str,
-            file_name="peptides.fasta",
-            mime="text/plain",
-            type="primary"
-        )
-
-results_html += """
+# 5) Button Row HTML Block 
+button_row_html = """
+<div style='display: flex; justify-content: space-between; margin-top: 30px;'>
+    <div style='text-align: right;'>
+        <button disabled style='background-color: #6a51a3; color: white; padding: 8px 16px; border: none; border-radius: 5px;'>View details</button>
     </div>
-    
-    <!-- Footer -->
-    <div style="
-        text-align: center;
-        margin-top: 30px;
-        color: #888;
-        font-size: 0.9em;
-    ">
-        Last update: {current_date}
+    <div style='text-align: right;'>
+        <button disabled style='background-color: #6a51a3; color: white; padding: 8px 16px; border: none; border-radius: 5px;'>Download FASTA File</button>
     </div>
 </div>
-""".format(current_date=datetime.datetime.now().strftime("%b %Y"))
+"""
 
-# Render the HTML
-st.markdown(results_html, unsafe_allow_html=True)
+# --- Full Lavender Results Container ---
+resultscontainer_html = f"""
+<div style="
+  background-color: #efedf5;
+  border-radius: 20px;
+  padding: 30px 20px;
+  margin: 40px 0 30px;
+">
+  {header_html}
+  {peptide_cards_html}
+  {button_row_html}
+</div>
+"""
 
-# Handle view clicked
-if len(df_filtered) > 0 and view_clicked and selected_indices:
+st.markdown(resultscontainer_html, unsafe_allow_html=True)
+
+# —— NOW at the top level, outside of any columns ——  
+if 'view_clicked' in locals() and view_clicked:
     for idx in selected_indices:
         display_peptide_details(df_filtered.loc[idx])
-        
+       
 # Footer
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
