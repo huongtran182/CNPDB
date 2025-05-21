@@ -372,6 +372,16 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Start lavender wrapper
+st.markdown("""
+<div style="
+  background-color: #efedf5;
+  border-radius: 20px;
+  padding: 30px 20px;
+  margin: 40px 0 30px;
+">
+""", unsafe_allow_html=True)
+
 # 1) Inject opening container div
 st.markdown(
     "<div class='results-container'>",
@@ -428,19 +438,15 @@ if len(df_filtered) > 0:
 else:
     st.info("No peptides matched the search criteria.")
 
+# End lavender wrapper
+st.markdown("""
+</div>
+""", unsafe_allow_html=True)
+
 # —— NOW at the top level, outside of any columns ——  
 if 'view_clicked' in locals() and view_clicked:
     for idx in selected_indices:
         display_peptide_details(df_filtered.loc[idx])
-    
-# 5) Close container div
-st.markdown(
-    "</div>",
-    unsafe_allow_html=True
-)
-
-
-
 
 # Footer
 st.markdown("""
