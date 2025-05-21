@@ -136,66 +136,94 @@ def display_peptide_details(row: pd.Series):
     
     # Prepare MSI HTML blocks
     tissue_1 = disp(row.get("MSI Tissue 1"))
-    msi_html_1 = f"""
-    <div style="
-          color: #6a51a3;
-          font-size: 16px;
-          font-weight: bold;
-          margin-top: 10px;
-          text-align: center;
-        ">
-        MS Imaging – {tissue_1}
-        </div>
+    image_path_1 = f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png"
+    if os.path.exists(image_path_1):
+        msi_html_1 = f"""
         <div style="
-          border: 2px dashed #6a51a3;
-          padding: 10px;
-          text-align: center;
-          margin-top:5px;
+              color: #6a51a3;
+              font-size: 16px;
+              font-weight: bold;
+              margin-top: 10px;
+              text-align: center;
+            ">
+            MS Imaging – {tissue_1}
+            </div>
+            <div style="
+              border: 2px dashed #6a51a3;
+              padding: 10px;
+              text-align: center;
+              margin-top:5px;
+            ">
+              {img_html(image_path_1)}
+            </div>
+        """
+        msi_html_blocks.append(msi_html_1)
+    else:
+        msi_html_1_unavailable = f"""
+        <div style="
+            color: #6a51a3;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: center;
         ">
-          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png")}
+        MSImaging data is not available
         </div>
-    """
+        """
+        msi_html_blocks.append(msi_html_1_unavailable)
+
+    # MSI Tissue 2
     tissue_2 = disp(row.get("MSI Tissue 2"))
-    msi_html_2 = f"""
-    <div style="
-          color: #6a51a3;
-          font-size: 16px;
-          font-weight: bold;
-          margin-top: 10px;
-          text-align: center;
-        ">
-        MS Imaging – {tissue_2}
-        </div>
+    image_path_2 = f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png"
+    if os.path.exists(image_path_2):
+        msi_html_2 = f"""
         <div style="
-          border: 2px dashed #6a51a3;
-          padding: 10px;
-          text-align: center;
-          margin-top:5px;
-        ">
-          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png")}
-        </div>
-    """
-    
+              color: #6a51a3;
+              font-size: 16px;
+              font-weight: bold;
+              margin-top: 10px;
+              text-align: center;
+            ">
+            MS Imaging – {tissue_2}
+            </div>
+            <div style="
+              border: 2px dashed #6a51a3;
+              padding: 10px;
+              text-align: center;
+              margin-top:5px;
+            ">
+              {img_html(image_path_2)}
+            </div>
+            """
+            msi_html_blocks.append(msi_html_2)
+
+    # MSI Tissue 3
     tissue_3 = disp(row.get("MSI Tissue 3"))
-    msi_html_3 = f"""
-    <div style="
-          color: #6a51a3;
-          font-size: 16px;
-          font-weight: bold;
-          margin-top: 10px;
-          text-align: center;
-        ">
-        MS Imaging – {tissue_3}
-        </div>
+    image_path_3 = f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png"
+    if os.path.exists(image_path_3):
+        msi_html_3 = f"""
         <div style="
-          border: 2px dashed #6a51a3;
-          padding: 10px;
-          text-align: center;
-          margin-top:5px;
-        ">
-          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png")}
-        </div>
-    """
+              color: #6a51a3;
+              font-size: 16px;
+              font-weight: bold;
+              margin-top: 10px;
+              text-align: center;
+            ">
+            MS Imaging – {tissue_3}
+            </div>
+            <div style="
+              border: 2px dashed #6a51a3;
+              padding: 10px;
+              text-align: center;
+              margin-top:5px;
+            ">
+              {img_html(image_path_3)}
+            </div>
+            """
+            msi_html_blocks.append(msi_html_3)
+    # Combine all available MSI HTML blocks
+    msi_combined_html = "".join(msi_html_blocks)
+
  # Build the COMPLETE box as one HTML block
     full_html = f"""
     <div style="
@@ -231,9 +259,7 @@ def display_peptide_details(row: pd.Series):
         {structure_html}
       </div>
       <div style="flex:3; padding:0 10px; display: flex; flex-direction: column; gap: 0px;">
-        {msi_html_1}
-        {msi_html_2}
-        {msi_html_3}
+        {msi_combined_html}
       </div>
     </div>
     """
