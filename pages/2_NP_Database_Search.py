@@ -435,7 +435,7 @@ resultscontainer_html = f"""
 </div>
 """
 
-st.markdown(full_html, unsafe_allow_html=True)
+st.markdown(resultscontainer_html, unsafe_allow_html=True)
 
 # —— NOW at the top level, outside of any columns ——  
 if 'view_clicked' in locals() and view_clicked:
