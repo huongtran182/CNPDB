@@ -194,8 +194,8 @@ def display_peptide_details(row: pd.Series):
             ">
             {img_html(image_path_2)}
             </div>
-            """
-            msi_html_blocks.append(msi_html_2)
+        """
+        msi_html_blocks.append(msi_html_2)
 
     # MSI Tissue 3
     tissue_3 = disp(row.get("MSI Tissue 3"))
@@ -219,8 +219,8 @@ def display_peptide_details(row: pd.Series):
             ">
             {img_html(image_path_3)}
             </div>
-            """
-            msi_html_blocks.append(msi_html_3)
+        """
+        msi_html_blocks.append(msi_html_3)
     # Combine all available MSI HTML blocks
     msi_combined_html = "".join(msi_html_blocks)
 
