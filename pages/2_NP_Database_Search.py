@@ -373,20 +373,24 @@ st.markdown(
 )
 
 import datetime
-import streamlit as st
 
 # Initialize session state for checkboxes if not exists
 if 'check_all' not in st.session_state:
     st.session_state.check_all = False
 
-# 1) Create the master checkbox (hidden from view but controls state)
-st.session_state.check_all = st.checkbox(
+# Create the master checkbox (visible)
+check_all = st.checkbox(
     "Check/Uncheck All", 
     key="master_checkbox",
-    label_visibility="collapsed"
+    value=st.session_state.check_all
 )
 
-# 2) Build the HTML structure
+# Update all checkboxes when master changes
+if check_all != st.session_state.check_all:
+    st.session_state.check_all = check_all
+    for idx in df_filtered.index:
+        st.session_state[f'check_{idx}'] = check_all
+# Build the HTML structure
 results_html = f"""
 <div style="
     background-color: #efedf5;
@@ -404,7 +408,7 @@ results_html = f"""
     ">
         <div>
             <input type="checkbox" id="html_check_all" {'checked' if st.session_state.check_all else ''}
-                   onclick="document.querySelector('input[data-testid=\"stCheckbox\"]').click()">
+                   onclick="document.getElementById('master_checkbox').click()">
             <label for="html_check_all">Check/Uncheck All</label>
         </div>
         <div style="text-align: right; font-weight: bold;">
@@ -418,10 +422,24 @@ results_html = f"""
 
 # Add peptide cards
 if len(df_filtered) > 0:
+    selected_indices = []
+    fasta_str = ""
+    
     for idx, row in df_filtered.iterrows():
-        # Initialize individual checkbox state
+        # Initialize checkbox state if not exists
         if f'check_{idx}' not in st.session_state:
             st.session_state[f'check_{idx}'] = st.session_state.check_all
+            
+        # Create the checkbox
+        checked = st.checkbox(
+            "",
+            key=f"check_{idx}",
+            value=st.session_state[f'check_{idx}']
+        )
+        
+        if checked:
+            selected_indices.append(idx)
+            fasta_str += f">{row['ID']}\n{row['Seq']}\n"
             
         results_html += f"""
         <div style="
@@ -438,9 +456,6 @@ if len(df_filtered) > 0:
                 font-weight: bold;
                 font-size: 1.1em;
             ">
-                <input type="checkbox" id="html_check_{idx}" name="check_{idx}" 
-                       {'checked' if st.session_state[f'check_{idx}'] else ''}
-                       onchange="document.getElementById('st_check_{idx}').click()">
                 {row['Seq']}
             </div>
             <div style="padding: 12px;">
@@ -449,17 +464,6 @@ if len(df_filtered) > 0:
             </div>
         </div>
         """
-        
-        # Create hidden Streamlit checkbox for state management
-        st.session_state[f'check_{idx}'] = st.checkbox(
-            "", 
-            key=f"check_{idx}", 
-            value=st.session_state.check_all,
-            label_visibility="collapsed",
-            # Use a div with specific ID instead of checkbox ID
-            help="",
-            kwargs={'id': f'st_check_{idx}'}  # This approach may need adjustment
-        )
 else:
     results_html += """
     <div style="
@@ -485,34 +489,17 @@ results_html += """
 """
 
 if len(df_filtered) > 0:
-    results_html += """
-        <div>
-            <button onclick="document.querySelector('button[data-testid=\"baseButton-primary\"]').click()" 
-                    style="
-                        background-color: #6a51a3;
-                        color: white;
-                        border: none;
-                        padding: 10px 20px;
-                        border-radius: 5px;
-                        cursor: pointer;
-                    ">
-                View details
-            </button>
-        </div>
-        <div>
-            <button onclick="document.querySelector('button[data-testid=\"baseButton-secondary\"]').click()" 
-                    style="
-                        background-color: #6a51a3;
-                        color: white;
-                        border: none;
-                        padding: 10px 20px;
-                        border-radius: 5px;
-                        cursor: pointer;
-                    ">
-                Download FASTA File
-            </button>
-        </div>
-    """
+    col1, col2 = st.columns(2)
+    with col1:
+        view_clicked = st.button("View details", type="primary")
+    with col2:
+        st.download_button(
+            "Download FASTA File",
+            data=fasta_str,
+            file_name="peptides.fasta",
+            mime="text/plain",
+            type="primary"
+        )
 
 results_html += """
     </div>
@@ -531,32 +518,6 @@ results_html += """
 
 # Render the HTML
 st.markdown(results_html, unsafe_allow_html=True)
-
-# Create actual Streamlit buttons (hidden from view)
-if len(df_filtered) > 0:
-    # Prepare FASTA data
-    fasta_str = ""
-    selected_indices = []
-    for idx, row in df_filtered.iterrows():
-        if st.session_state.get(f'check_{idx}', False):
-            selected_indices.append(idx)
-            fasta_str += f">{row['ID']}\n{row['Seq']}\n"
-    
-    # View details button
-    view_clicked = st.button(
-        "View details", 
-        key="view_details",
-        type="primary"
-    )
-    
-    # Download button
-    st.download_button(
-        "Download FASTA", 
-        data=fasta_str, 
-        file_name="peptides.fasta", 
-        mime="text/plain",
-        key="download_fasta"
-    )
 
 # Handle view clicked
 if len(df_filtered) > 0 and view_clicked and selected_indices:
