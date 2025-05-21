@@ -410,7 +410,7 @@ else:
 
 
 # 5) Button Row HTML Block 
-    button_row_html = """
+button_row_html = """
 <div style='display: flex; justify-content: space-between; margin-top: 30px;'>
     <div style='text-align: right;'>
         <button disabled style='background-color: #6a51a3; color: white; padding: 8px 16px; border: none; border-radius: 5px;'>View details</button>
