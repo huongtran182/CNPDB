@@ -372,99 +372,77 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# First define the check_all variable
-check_all = st.checkbox("Check/Uncheck All", key="master_checkbox")
-                        
-# Main lavender container with all components
-st.markdown(f"""
+st.markdown("""
 <div style="
-    background-color: lavender;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    background-color: #efedf5;
+    border-radius: 20px;
+    padding: 30px 20px;
+    margin: 40px 0 30px;
 ">
-    <!-- Header Block -->
-    <div style="
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    ">
-        <div>
-            <input type="checkbox" id="check_all" {'checked' if check_all else ''}>
-            <label for="check_all">Check/Uncheck All</label>
-        </div>
-        <div style="text-align: right;">
-            Hit: {len(df_filtered)} peptides
-        </div>
-    </div>
-    
-    <!-- Peptide Cards Block -->
-    <div style="
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
-        margin-bottom: 20px;
-    ">
 """, unsafe_allow_html=True)
 
-# Peptide cards generation
+# --- 2) Header Block ---
+col1, col2 = st.columns([1,1])
+with col1:
+    check_all = st.checkbox("Check/Uncheck All", key="master_checkbox")
+with col2:
+    st.markdown(f"<div style='text-align: right;'>Hit: {len(df_filtered)} peptides</div>", 
+               unsafe_allow_html=True)
+
+# --- 3) Peptide Cards ---
 if len(df_filtered) > 0:
     selected_indices = []
-    for i, (idx, row) in enumerate(df_filtered.iterrows()):
-        checked = st.checkbox("", key=f"check_{idx}", value=check_all)
-        if checked:
-            selected_indices.append(idx)
-            
-        st.markdown(f"""
-        <div style="
-            flex: 1 1 30%;
-            min-width: 250px;
-            border: 1px solid #6A0DAD;
-            padding: 10px;
-            border-radius: 10px;
-            background-color: white;
-        ">
-            <div style="
-                font-weight: bold;
-                background-color: #6a51a3;
-                color: white;
-                padding: 10px;
-                margin: -10px -10px 10px -10px;
-                border-radius: 5px 5px 0 0;
-            ">
-                {row['Seq']}
-            </div>
-            <div style="padding: 5px;">
-                Family: {row['Family']}<br>
-                OS: {row['OS']}
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-# Close peptide cards block and open button block
-st.markdown("""
-    </div>
+    cols = st.columns(3)
     
-    <!-- Button Row Block -->
-    <div style="
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-top: 20px;
-    ">
-""", unsafe_allow_html=True)
+    for i, (idx, row) in enumerate(df_filtered.iterrows()):
+        with cols[i % 3]:
+            # Create card with checkbox
+            checked = st.checkbox("", key=f"check_{idx}", value=check_all)
+            if checked:
+                selected_indices.append(idx)
+                
+            st.markdown(f"""
+            <div style='
+                border: 1px solid #6A0DAD;
+                padding: 10px;
+                margin-bottom: 20px;
+                border-radius: 10px;
+                background-color: white;
+            '>
+                <div style='
+                    font-weight: bold;
+                    background-color: #6a51a3;
+                    color: white;
+                    padding: 10px;
+                    margin: -10px -10px 10px -10px;
+                    border-radius: 5px 5px 0 0;
+                '>
+                    {row['Seq']}
+                </div>
+                <div style='padding: 5px;'>
+                    Family: {row['Family']}<br>
+                    OS: {row['OS']}
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+else:
+    st.info("No peptides matched the search criteria.")
 
-# Buttons
+# --- 4) Button Row ---
 if len(df_filtered) > 0:
     col1, col2 = st.columns(2)
     with col1:
-        view_clicked = st.button("View details", type="primary")
+        # Right-aligned View Details button
+        _, button_col = st.columns([3,1])
+        with button_col:
+            view_clicked = st.button("View details", type="primary")
     with col2:
+        # Prepare FASTA data
         fasta_str = ""
         for idx in selected_indices:
             r = df_filtered.loc[idx]
             fasta_str += f">{r['ID']}\n{r['Seq']}\n"
+        
         st.download_button(
             "Download FASTA File",
             data=fasta_str,
@@ -472,19 +450,15 @@ if len(df_filtered) > 0:
             mime="text/plain",
             type="primary"
         )
-else:
-    st.info("No peptides matched the search criteria.")
 
-# Close button block and main container
-st.markdown("""
-    </div>
-</div>
-""", unsafe_allow_html=True)
+# Close the lavender container
+st.markdown("</div>", unsafe_allow_html=True)
 
-# Handle view clicked
-if 'view_clicked' in locals() and view_clicked:
+# --- 5) Handle View Clicked ---
+if 'view_clicked' in locals() and view_clicked and selected_indices:
     for idx in selected_indices:
         display_peptide_details(df_filtered.loc[idx])
+        
 # Footer
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
