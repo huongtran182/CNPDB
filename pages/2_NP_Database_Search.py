@@ -174,6 +174,7 @@ def display_peptide_details(row: pd.Series):
     
         # Add image
         suffix = f" {i}" if i > 1 else ""
+        path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
         msi_html += f'<img src="{path}" style="max-width:100%; height:auto;">'
         
         # Close tissue section
