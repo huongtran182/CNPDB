@@ -156,10 +156,6 @@ def build_msi_html(tissue_label: str, img_path: str, fallback: bool = False) -> 
     </div>
     """
 
-def render_peptide_card(row, metadata_html, structure_html):
-    cnpd_id = row["CNPD ID"]
-    seq = row["Seq"]
-
     msi_html_1 = ""
     tissue_1_raw = row.get("MSI Tissue 1")
     if pd.notna(tissue_1_raw) and str(tissue_1_raw).strip():
