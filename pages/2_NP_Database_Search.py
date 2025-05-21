@@ -141,7 +141,6 @@ def display_peptide_details(row: pd.Series):
       flex-direction: column;
       gap: 15px;
     ">
-    """
     
     # Loop through MSI Tissue 1-3
     for i in range(1, 4):
@@ -170,15 +169,11 @@ def display_peptide_details(row: pd.Series):
               text-align: center;
               margin-top: 5px;
             ">
-        """
     
         # Add image
         suffix = f" {i}" if i > 1 else ""
         path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
-        msi_html += f'<img src="{path}" style="max-width:100%; height:auto;">'
-        
-        # Close tissue section
-        msi_html += """
+        msi_html += f'<img src="{path}">'
             </div>
         </div>
         """
