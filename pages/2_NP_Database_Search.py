@@ -135,7 +135,7 @@ def display_peptide_details(row: pd.Series):
     """
     
 # Prepare MSI HTML block    
-   tissue_1_raw = row.get("MSI Tissue 1")
+    tissue_1_raw = row.get("MSI Tissue 1")
     tissue_1 = disp(tissue_1_raw)
     path_1 = f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png"
     if pd.notna(tissue_1_raw) and tissue_1:
