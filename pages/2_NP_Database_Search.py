@@ -372,6 +372,9 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# First define the check_all variable
+check_all = st.checkbox("Check/Uncheck All", key="master_checkbox")
+                        
 # Main lavender container with all components
 st.markdown(f"""
 <div style="
