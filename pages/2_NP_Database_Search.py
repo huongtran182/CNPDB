@@ -45,7 +45,6 @@ def img_html(path):
     mime = f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}"
     with open(path, "rb") as f:
         data = base64.b64encode(f.read()).decode()
-
     return f"""\n<img src="data:{mime};base64,{data}" style="width:100%; height:auto;">\n"""
 
 # Helper to blank out NaNs if there is no value in the cell of the column of excel file
