@@ -134,78 +134,68 @@ def display_peptide_details(row: pd.Series):
         </div>
     """
     
-    # Prepare MSI HTML blocks (fixed f-string syntax)
-    msi_html_1 = ""
+    # Prepare MSI HTML blocks
     tissue_1 = disp(row.get("MSI Tissue 1"))
-    if tissue_1:
-        msi_html_1 = f"""
-        <div>
-            <div style="
-                color: #6a51a3;
-                font-size: 16px;
-                font-weight: bold;
-                text-align: center;
-            ">
-                MS Imaging – {tissue_1}
-            </div>
-            <div style="
-                border: 2px dashed #6a51a3;
-                padding: 10px;
-                text-align: center;
-                margin-top: 5px;
-            ">
-                {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png")}
-            </div>
+    msi_html_1 = f"""
+    <div style="
+          color: #6a51a3;
+          font-size: 16px;
+          font-weight: bold;
+          margin-top: 10px;
+          text-align: center;
+        ">
+        MS Imaging – {tissue_1}
         </div>
-        """
-
-    msi_html_2 = ""
+        <div style="
+          border: 2px dashed #6a51a3;
+          padding: 10px;
+          text-align: center;
+          margin-top:5px;
+        ">
+          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png)}
+        </div>
+    """
     tissue_2 = disp(row.get("MSI Tissue 2"))
-    if tissue_2:
-        msi_html_2 = f"""
-        <div>
-            <div style="
-                color: #6a51a3;
-                font-size: 16px;
-                font-weight: bold;
-                text-align: center;
-            ">
-                MS Imaging – {tissue_2}
-            </div>
-            <div style="
-                border: 2px dashed #6a51a3;
-                padding: 10px;
-                text-align: center;
-                margin-top: 5px;
-            ">
-                {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png")}
-            </div>
+    msi_html_2 = f"""
+    <div style="
+          color: #6a51a3;
+          font-size: 16px;
+          font-weight: bold;
+          margin-top: 10px;
+          text-align: center;
+        ">
+        MS Imaging – {tissue_2}
         </div>
-        """
-
-    msi_html_3 = ""
+        <div style="
+          border: 2px dashed #6a51a3;
+          padding: 10px;
+          text-align: center;
+          margin-top:5px;
+        ">
+          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png)}
+        </div>
+    """
+    
     tissue_3 = disp(row.get("MSI Tissue 3"))
-    if tissue_3:
-        msi_html_3 = f"""
-        <div>
-            <div style="
-                color: #6a51a3;
-                font-size: 16px;
-                font-weight: bold;
-                text-align: center;
-            ">
-                MS Imaging – {tissue_3}
-            </div>
-            <div style="
-                border: 2px dashed #6a51a3;
-                padding: 10px;
-                text-align: center;
-                margin-top: 5px;
-            ">
-                {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png")}
-            </div>
+    msi_html_3 = f"""
+    <div style="
+          color: #6a51a3;
+          font-size: 16px;
+          font-weight: bold;
+          margin-top: 10px;
+          text-align: center;
+        ">
+        MS Imaging – {tissue_3}
         </div>
-        """
+        <div style="
+          border: 2px dashed #6a51a3;
+          padding: 10px;
+          text-align: center;
+          margin-top:5px;
+        ">
+          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png)}
+        </div>
+    """
  # Build the COMPLETE box as one HTML block
     full_html = f"""
     <div style="
