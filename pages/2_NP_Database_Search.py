@@ -134,6 +134,11 @@ def display_peptide_details(row: pd.Series):
         </div>
     """
     
+    # Initialize MSI HTML blocks to empty strings
+    msi_html_1 = ""
+    msi_html_2 = ""
+    msi_html_3 = ""
+    
     # MSI Tissue 1
     tissue_1 = disp(row.get("MSI Tissue 1"))
     image_path_1 = f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png"
@@ -158,7 +163,7 @@ def display_peptide_details(row: pd.Series):
         </div>
         """
     else:
-        msi_html_1_unavailable = f"""
+        msi_html_1 = f"""
         <div style="
             color: #6a51a3;
             font-size: 16px;
@@ -254,7 +259,6 @@ def display_peptide_details(row: pd.Series):
       </div>
       <div style="flex:3; padding:0 10px; display: flex; flex-direction: column; gap: 0px;">
         {msi_html_1}
-        {msi_html_1_unavailable}
         {msi_html_2}
         {msi_html_3}
       </div>
