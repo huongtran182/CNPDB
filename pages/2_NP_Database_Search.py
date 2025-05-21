@@ -137,7 +137,7 @@ def display_peptide_details(row: pd.Series):
 # Prepare MSI HTML block    
     tissue_1_raw = row.get("MSI Tissue 1")
     tissue_1 = disp(tissue_1_raw)
-    if pd.notna(tissue_1_raw) 
+    if pd.notna(tissue_1_raw): 
         msi_html_1 = f"""
         <div style="
               color: #6a51a3;
