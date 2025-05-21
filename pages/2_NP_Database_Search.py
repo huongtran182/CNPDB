@@ -152,7 +152,7 @@ def display_peptide_details(row: pd.Series):
           text-align: center;
           margin-top:5px;
         ">
-          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png)}
+          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png")}
         </div>
     """
     tissue_2 = disp(row.get("MSI Tissue 2"))
@@ -172,7 +172,7 @@ def display_peptide_details(row: pd.Series):
           text-align: center;
           margin-top:5px;
         ">
-          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png)}
+          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png")}
         </div>
     """
     
@@ -193,7 +193,7 @@ def display_peptide_details(row: pd.Series):
           text-align: center;
           margin-top:5px;
         ">
-          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png)}
+          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png")}
         </div>
     """
  # Build the COMPLETE box as one HTML block
