@@ -1,8 +1,8 @@
 import streamlit as st
-from sidebar import render_sidebar # Assuming sidebar.py exists and works
+from sidebar import render_sidebar
 import pandas as pd
 import os
-from PIL import Image # PIL is imported but not directly used in img_html, keeping it for other potential uses
+from PIL import Image
 import base64
 
 st.set_page_config(
@@ -11,10 +11,8 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Call render_sidebar function from sidebar.py
 render_sidebar()
 
-# Custom CSS for styling
 st.markdown(
     """
     <style>
@@ -34,97 +32,19 @@ st.markdown(
       .peptide-details td:last-child {
         background-color: white;
       }
-
-    /* Centered title */
-    h2.custom-title {
-        text-align: center !important;
-        margin-top: 10px !important;
-        color: #29004c;
-    }
-    /* Container background for filters and main section */
-    div[data-testid="stColumns"] > div[data-testid="stColumn"] {
-        background-color: #efedf5 !important;
-        padding: 20px !important;
-        border-radius: 10px !important;
-    }
-    /* Style every Streamlit vertical block with your lavender-gray background */
-    div[data-testid="stVerticalBlock"]:nth-of-type(3) {
-        background-color: #efedf5 !important;
-        padding: 20px !important;
-        border-radius: 10px !important;
-    }
-    /* Section titles */
-    .section-title {
-        color: #6a51a3;
-        font-size: 16px;
-        font-weight: bold;
-        margin-top: 10px;
-    }
-    /* Checkbox accent color */
-    input[type="checkbox"] { accent-color: #6a51a3; }
-
-    /* Make slider & text-input labels purple & bold */
-    [data-testid="stTextInput"] label,
-    .stSlider label { /* Added .stSlider label for slider labels */
-        color: #6a51a3 !important;
-        font-weight: bold !important;
-    }
-
-    /* Added styles for the full details box */
-    .peptide-details-box {
-        position: relative;
-        background-color: #efedf5;
-        border-radius: 20px;
-        padding: 60px 20px 20px;
-        margin: 80px 0 30px;
-        display: flex;
-        gap: 20px;
-    }
-    .peptide-details-box-header {
-        position: absolute;
-        top: 0; left: 50%;
-        transform: translate(-50%, -50%);
-        width: 66%;
-        background-color: #54278f;
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center;
-        font-weight: bold;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Add some shadow */
-    }
-
     </style>
     """,
     unsafe_allow_html=True,
 )
 
 def img_html(path):
-    """Return a base64 <img> tag filling 100% width of its container."""    
-    # --- IMPORTANT DEBUGGING LINES ---
-    # Convert to absolute path to see the full, resolved path
-    absolute_path = os.path.abspath(path)
-    # st.write(f"DEBUG (img_html): Attempting to access: `{absolute_path}`") # Uncomment for verbose path checking
-    # --- END IMPORTANT DEBUGGING LINES ---
-
+    """Return a base64 <img> tag filling 100% width of its container."""   
     if not os.path.exists(path):
-        # --- IMPORTANT DEBUGGING LINES ---
-        st.error(f"DEBUG (img_html): File NOT FOUND for path: `{absolute_path}`")
-        # --- END IMPORTANT DEBUGGING LINES ---
         return "<div style='color:#999; padding:20px;'>No image found</div>"
-    
     ext = os.path.splitext(path)[1].lower().replace(".", "")
     mime = f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}"
-    
-    try:
-        with open(path, "rb") as f:
-            data = base64.b64encode(f.read()).decode()
-        return f"<img src='data:{mime};base64,{data}' style='width:100%; height:auto;'/>"
-    except Exception as e:
-        # --- IMPORTANT DEBUGGING LINES ---
-        st.error(f"DEBUG (img_html): Error reading or encoding file `{absolute_path}`: {e}")
-        # --- END IMPORTANT DEBUGGING LINES ---
-        return "<div style='color:red; padding:20px;'>Error loading image</div>"
+    data = base64.b64encode(open(path, "rb").read()).decode()
+    return f"<img src='data:{mime};base64,{data}' style='width:100%; height:auto;'/>"
 
 # Helper to blank out NaNs if there is no value in the cell of the column of excel file
 def disp(val):
@@ -133,12 +53,16 @@ def disp(val):
         return ""
     return val
 
-# Helper function to encapsulate metadata HTML for clarity
-def metadata_html_content(row: pd.Series):
+def display_peptide_details(row: pd.Series):
+    seq        = row["Seq"]
+    cnpd_id    = row["CNPD ID"]
+
+# Prepare all content as HTML strings first
+    # 1) Metadata table
     gravy = row.get("GRAVY")
     gravy_str = f"{gravy:.2f}" if pd.notna(gravy) else ""
 
-    return f"""
+    metadata_html = f"""
     <div class="peptide-details">
         <table>
             <tr>
@@ -189,93 +113,42 @@ def metadata_html_content(row: pd.Series):
     </div>
     """
 
-def display_peptide_details(row: pd.Series):
-    seq         = row["Seq"]
-    cnpd_id     = row["CNPD ID"]
-
-    # Open the main styled box for the details
-    st.markdown(f"""
-    <div class="peptide-details-box">
-        <div class="peptide-details-box-header">
-            {seq}
-        </div>
-    """, unsafe_allow_html=True) 
-
-    # Create the Streamlit columns for the content
-    col_meta, col_3d, col_msi = st.columns([4, 3, 3])
-
-    # --- Column 1: Metadata ---
-    with col_meta:
-        st.markdown(f"""
-        <div style="
-            color: #6a51a3;
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 10px;
-            text-align: center;
+    # 2) 3D Structure
+    structure_html = f"""
+    <div style="
+          color: #6a51a3;
+          font-size: 16px;
+          font-weight: bold;
+          margin-top: 10px;
+          text-align: center;
         ">
-            Metadata
-        </div>
-        {metadata_html_content(row)}
-        """, unsafe_allow_html=True)
-
-    # --- Column 2: 3D Structure ---
-    with col_3d:
-        st.markdown(f"""
-        <div style="
-            color: #6a51a3;
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 10px;
-            text-align: center;
-        ">
-            3D Structure
+          3D Structure
         </div>
         <div style="
-            border: 2px dashed #6a51a3;
-            padding: 10px;
-            text-align: center;
-            margin-top:5px;
+          border: 2px dashed #6a51a3;
+          padding: 10px;
+          text-align: center;
+          margin-top:5px;
         ">
-            {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
+          {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
         </div>
-        """, unsafe_allow_html=True)
-
-    # --- Column 3: MS Imaging ---
-    with col_msi:
-        st.markdown(f"""
-        <div style="
-            color: #6a51a3;
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 10px;
-            text-align: center;
-        ">
-            MS Imaging
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # Loop through MSI Tissue 1–3, rendering each image block directly within this column
-        for i in range(1, 4):
-            col_name = f"MSI Tissue {i}"
-            tissue_name = disp(row.get(col_name))
-
-            if not tissue_name:
-                # st.info(f"DEBUG: No tissue data for MSI Tissue {i} for CNPD ID {cnpd_id}. Skipping.") # Uncomment for debug messages
-                continue
-
-            image_filename = f"MSI cNP{cnpd_id} {i}.png"
-            msi_image_path = os.path.join("Assets", "MSImaging", image_filename)
-            
-            st.markdown(f"""
+    """
+    
+    # Prepare MSI HTML blocks
+    msi_html_1 = ""
+    tissue_1 = disp(row.get("MSI Tissue 1"))
+    if tissue_1:
+        path_1 = f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png"
+        img_block_1 = img_html(path_1)
+        msi_html_1 = f"""
+        <div>
             <div style="
                 color: #6a51a3;
-                font-size: 14px;
+                font-size: 16px;
                 font-weight: bold;
                 text-align: center;
-                margin-top: {'15px' if i > 1 else '5px'};
             ">
-                – {tissue_name} –
+                MS Imaging – {tissue_1}
             </div>
             <div style="
                 border: 2px dashed #6a51a3;
@@ -283,12 +156,312 @@ def display_peptide_details(row: pd.Series):
                 text-align: center;
                 margin-top: 5px;
             ">
-                {img_html(msi_image_path)}
+                {img_block_1}
             </div>
+        </div>
+        """
+    
+    msi_html_2 = ""
+    tissue_2 = disp(row.get("MSI Tissue 2"))
+    if tissue_2:
+        path_2 = f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png"
+        img_block_2 = img_html(path_2)
+        msi_html_2 = f"""
+        <div>
+            <div style="
+                color: #6a51a3;
+                font-size: 16px;
+                font-weight: bold;
+                text-align: center;
+            ">
+                MS Imaging – {tissue_2}
+            </div>
+            <div style="
+                border: 2px dashed #6a51a3;
+                padding: 10px;
+                text-align: center;
+                margin-top: 5px;
+            ">
+                {img_block_2}
+            </div>
+        </div>
+        """
+    
+    msi_html_3 = ""
+    tissue_3 = disp(row.get("MSI Tissue 3"))
+    if tissue_3:
+        path_3 = f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png"
+        img_block_3 = img_html(path_3)
+        msi_html_3 = f"""
+        <div>
+            <div style="
+                color: #6a51a3;
+                font-size: 16px;
+                font-weight: bold;
+                text-align: center;
+            ">
+                MS Imaging – {tissue_3}
+            </div>
+            <div style="
+                border: 2px dashed #6a51a3;
+                padding: 10px;
+                text-align: center;
+                margin-top: 5px;
+            ">
+                {img_block_3}
+            </div>
+        </div>
+        """
+
+ # Build the COMPLETE box as one HTML block
+    full_html = f"""
+    <div style="
+      position: relative;
+      background-color: #efedf5;
+      border-radius: 20px;
+      padding: 60px 20px 20px;
+      margin: 80px 0 30px;
+      display: flex;  /* Use flexbox for layout */
+      gap: 20px; /* Space between columns */
+    ">
+      <!-- Header -->
+      <div style="
+        position: absolute;
+        top: 0; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 66%;
+        background-color: #54278f;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        font-weight: bold;
+      ">
+        {seq}
+      </div>
+      
+      <!-- Three-column content -->
+      <div style="flex:4; padding:0 10px;">
+        {metadata_html}
+      </div>
+      <div style="flex:3; padding:0 10px;">
+        {structure_html}
+      </div>
+      <div style="flex:3; padding:0 10px; display: flex; flex-direction: column; gap: 15px;">
+        {msi_html_1}
+        {msi_html_2}
+        {msi_html_3}
+      </div>
+    </div>
+    """
+ # Render everything at once
+    st.markdown(full_html, unsafe_allow_html=True)    
+    
+st.markdown("""
+<style>
+/* Centered title */
+ h2.custom-title {
+    text-align: center !important;
+    margin-top: 10px !important;
+    color: #29004c;
+ }
+ /* Container background */
+div[data-testid="stColumns"] > div[data-testid="stColumn"] {
+    background-color: #efedf5 !important;
+    padding: 20px !important;
+    border-radius: 10px !important;
+ }
+   /* Style every Streamlit vertical block with your lavender‐gray background */
+      div[data-testid="stVerticalBlock"]:nth-of-type(3) {
+        background-color: #efedf5 !important;
+        padding: 20px !important;
+        border-radius: 10px !important;
+      }
+ /* Section titles */
+  .section-title {
+    color: #6a51a3;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  /* Checkbox accent color */
+  input[type="checkbox"] { accent-color: #6a51a3; }
+
+  /* 1) Make slider & text-input labels purple & bold */
+  [data-testid="stTextInput"] label {
+    color: #6a51a3 !important;
+    font-weight: bold !important;
+  }
+
+  /* 2) Wrap both filter & main columns in a purple-background box */
+  div[data-testid="stColumns"] > div[data-testid="stColumn"] {
+    background-color: #efedf5 !important;
+    padding: 20px !important;
+    border-radius: 10px !important;
+ }
+</style>
+""", unsafe_allow_html=True)
+
+# --- Centered, spaced title ---
+st.markdown(
+    '<h2 class="custom-title">'
+    'NEUROPEPTIDE SEARCH ENGINE'
+    '</h2>',
+    unsafe_allow_html=True
+)
+
+# Begin styled container
+st.markdown('<div class="main-search-container">', unsafe_allow_html=True)
+
+# Load data
+DF_PATH = "Assets/CNPD_Li.xlsx"
+df = pd.read_excel(DF_PATH, sheet_name="Example")
+
+# Ensure numeric columns are numeric
+numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (%)', 'Predicted Half Life (Min)']
+for col in numeric_cols:
+    df[col] = pd.to_numeric(df[col], errors='coerce')
+
+# Layout: filters (1/4) and inputs (3/4)
+col_filter, col_main = st.columns([1, 3])
+
+with col_filter:
+    mono_mass_range  = st.slider("Monoisotopic mass (m/z)", 300.0, 2000.0, (300.0, 2000.0))
+    length_range     = st.slider("Length (aa)", 3, 100, (3, 100))
+    gravy_range      = st.slider("GRAVY Score", -5.0, 5.0, (-5.0, 5.0))
+    hydro_range      = st.slider("% Hydrophobic Residue", 0, 100, (0, 100))
+    half_life_range  = st.slider("Predicted Half-life (min)", 0, 120, (0, 60))
+
+with col_main:
+    peptide_input = st.text_input(
+        "Peptide Sequence",
+        placeholder="Separate by space, e.g. FDAFTTGFGHN NFDEIDRSGFGFN"
+    )
+
+    # Family
+    st.markdown('<div class="section-title">Family</div>', unsafe_allow_html=True)
+    family_opts     = sorted(df['Family'].dropna().unique())
+    family_selected = [opt for opt in family_opts if st.checkbox(opt, key=f"fam_{opt}")]
+
+    # Tissue
+    st.markdown('<div class="section-title">Tissue</div>', unsafe_allow_html=True)
+    tissue_opts     = sorted(df['Tissue'].dropna().unique())
+    tissue_selected = [opt for opt in tissue_opts if st.checkbox(opt, key=f"tiss_{opt}")]
+
+    # Existence
+    st.markdown('<div class="section-title">Existence</div>', unsafe_allow_html=True)
+    exist_opts      = sorted(df['Existence'].dropna().unique())
+    existence_selected = [opt for opt in exist_opts if st.checkbox(opt, key=f"ex_{opt}")]
+
+    # Organisms
+    st.markdown('<div class="section-title">Organisms</div>', unsafe_allow_html=True)
+    org_opts        = sorted(df['OS'].dropna().unique())
+    organisms_selected = [opt for opt in org_opts if st.checkbox(opt, key=f"org_{opt}")]
+
+# Filtering logic
+df_filtered = df.copy()
+
+if peptide_input:
+    for pep in peptide_input.split():
+        df_filtered = df_filtered[df_filtered['Seq'].str.contains(pep, na=False)]
+
+if family_selected:
+    df_filtered = df_filtered[df_filtered['Family'].isin(family_selected)]
+if tissue_selected:
+    df_filtered = df_filtered[df_filtered['Tissue'].isin(tissue_selected)]
+if existence_selected:
+    df_filtered = df_filtered[df_filtered['Existence'].isin(existence_selected)]
+if organisms_selected:
+    df_filtered = df_filtered[df_filtered['OS'].isin(organisms_selected)]
+
+# Numeric filtering
+df_filtered = df_filtered[df_filtered['Monoisotopic Mass'].between(*mono_mass_range)]
+df_filtered = df_filtered[df_filtered['Length'].between(*length_range)]
+df_filtered = df_filtered[df_filtered['GRAVY'].between(*gravy_range)]
+df_filtered = df_filtered[df_filtered['% Hydrophobic Residue (%)'].between(*hydro_range)]
+df_filtered = df_filtered[df_filtered['Predicted Half Life (Min)'].between(*half_life_range)]
+
+# Display results
+st.markdown(
+    '<h2 class="custom-title">'
+    'SEARCH RESULTS'
+    '</h2>',
+    unsafe_allow_html=True
+)
+
+# 1) Inject opening container div
+st.markdown(
+    "<div class='results-container'>",
+    unsafe_allow_html=True
+)
+
+# 3) Header row: left = checkbox, right = hit count
+col1, col2 = st.columns([1,1])
+with col1:
+    check_all = st.checkbox("Check/Uncheck All")
+with col2:
+    # align right
+    st.markdown(f"<div style='text-align: right;'>Hit: {len(df_filtered)} peptides</div>", unsafe_allow_html=True)
+
+# 4) Peptide cards in three columns
+if len(df_filtered) > 0:
+    cols = st.columns(3)
+    selected_indices = []
+    for i, (idx, row) in enumerate(df_filtered.iterrows()):
+        with cols[i % 3]:
+            checked = st.checkbox("", key=f"check_{idx}", value=check_all)
+            if checked:
+                selected_indices.append(idx)
+            st.markdown(f"""
+                <div style='border:1px solid #6A0DAD; padding:10px; margin:0px 10px 20px 0; border-radius:10px;'>
+                    <div style='font-weight:bold; background-color:#6a51a3; color:white; padding:10px;'>
+                        {row['Seq']}
+                    </div>
+                    <div style='padding:5px;'>
+                        Family: {row['Family']}<br>
+                        OS: {row['OS']}
+                    </div>
+                </div>
             """, unsafe_allow_html=True)
-            
-    # Close the main peptide-details-box div after all columns are rendered
-    st.markdown("</div>", unsafe_allow_html=True)
+
+# 5) Centered buttons row
+    b1, b2 = st.columns([1,1])
+    with b1:
+       left_space, right_button = st.columns([3,1])
+       with right_button:
+           view_clicked = st.button("View details", type="primary")
+    with b2:
+        fasta_str = ""
+        for idx in selected_indices:
+            r = df_filtered.loc[idx]
+            fasta_str += f">{r['ID']}\n{r['Seq']}\n"
+        st.download_button(
+            "Download FASTA File",
+            data=fasta_str,
+            file_name="peptides.fasta",
+            mime="text/plain",
+            type="primary"
+        )
+else:
+    st.info("No peptides matched the search criteria.")
+
+# —— NOW at the top level, outside of any columns ——  
+if 'view_clicked' in locals() and view_clicked:
+    for idx in selected_indices:
+        display_peptide_details(df_filtered.loc[idx])
+    
+# 5) Close container div
+st.markdown(
+    "</div>",
+    unsafe_allow_html=True
+)
 
 
-# --- Main application logic ---
+
+
+# Footer
+st.markdown("""
+<div style="text-align: center; font-size:14px; color:#2a2541;">
+  <em>Last update: Jul 2025</em>
+</div>
+""", unsafe_allow_html=True)
