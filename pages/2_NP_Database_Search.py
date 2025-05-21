@@ -135,7 +135,7 @@ def display_peptide_details(row: pd.Series):
     """
     
 # Prepare MSI HTML block    
-  def build_msi_html(label: str, path: str, fallback: bool = False) -> str:
+def build_msi_html(label: str, path: str, fallback: bool = False) -> str:
     if fallback:
         return """
         <div style="color:#6a51a3;font-size:16px;font-weight:bold;margin-top:10px;text-align:center;">
