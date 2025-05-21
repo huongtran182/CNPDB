@@ -145,17 +145,17 @@ def display_peptide_details(row: pd.Series):
               font-weight: bold;
               margin-top: 10px;
               text-align: center;
-            ">
-            MS Imaging – {tissue_1}
-            </div>
-            <div style="
-              border: 2px dashed #6a51a3;
-              padding: 10px;
-              text-align: center;
-              margin-top:5px;
-            ">
-              {img_html(image_path_1)}
-            </div>
+        ">
+        MS Imaging – {tissue_1}
+        </div>
+        <div style="
+            border: 2px dashed #6a51a3;
+            padding: 10px;
+            text-align: center;
+            margin-top:5px;
+        ">
+        {img_html(image_path_1)}
+        </div>
         """
         msi_html_blocks.append(msi_html_1)
     else:
@@ -192,7 +192,7 @@ def display_peptide_details(row: pd.Series):
               text-align: center;
               margin-top:5px;
             ">
-              {img_html(image_path_2)}
+            {img_html(image_path_2)}
             </div>
             """
             msi_html_blocks.append(msi_html_2)
@@ -217,7 +217,7 @@ def display_peptide_details(row: pd.Series):
               text-align: center;
               margin-top:5px;
             ">
-              {img_html(image_path_3)}
+            {img_html(image_path_3)}
             </div>
             """
             msi_html_blocks.append(msi_html_3)
