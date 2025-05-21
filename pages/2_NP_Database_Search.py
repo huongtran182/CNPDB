@@ -230,7 +230,7 @@ def display_peptide_details(row: pd.Series):
       <div style="flex:3; padding:0 10px;">
         {structure_html}
       </div>
-      <div style="flex:3; padding:0 10px; display: flex; flex-direction: column; gap: 15px;">
+      <div style="flex:3; padding:0 10px; display: flex; flex-direction: column; gap: 0px;">
         {msi_html_1}
         {msi_html_2}
         {msi_html_3}
