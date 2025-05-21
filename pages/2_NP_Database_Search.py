@@ -135,6 +135,9 @@ def display_peptide_details(row: pd.Series):
     """
     
     # Prepare MSI HTML blocks
+    msi_html_blocks = []
+    
+    # MSI Tissue 1
     tissue_1 = disp(row.get("MSI Tissue 1"))
     image_path_1 = f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png"
     if os.path.exists(image_path_1):
