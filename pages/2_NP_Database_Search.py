@@ -153,22 +153,22 @@ def display_peptide_details(row: pd.Series):
     
         msi_html += f"""
         <div>
-            <div style="
-              color: #6a51a3;
-              font-size: 16px;
-              font-weight: bold;
-              text-align: center;
-            ">
-              MS Imaging – {tissue}
-            </div>
-            <div style="
-              border: 2px dashed #6a51a3;
-              padding: 10px;
-              text-align: center;
-              margin-top: 5px;
-            ">
-              <img src="{path}">
-            </div>
+          <div style="
+            color: #6a51a3;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+          ">
+            MS Imaging – {tissue}
+          </div>
+          <div style="
+            border: 2px dashed #6a51a3;
+            padding: 10px;
+            text-align: center;
+            margin-top: 5px;
+          ">
+            <img src="{path}">
+          </div>
         </div>
         """
     
