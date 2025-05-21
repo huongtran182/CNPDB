@@ -156,12 +156,9 @@ def build_msi_html(tissue_label: str, img_path: str, fallback: bool = False) -> 
     </div>
     """
 
-def render_peptide_card(row):
+def render_peptide_card(row, metadata_html, structure_html):
     cnpd_id = row["CNPD ID"]
     seq = row["Seq"]
-
-    # Assume metadata_html and structure_html are defined above this call
-    global metadata_html, structure_html
 
     msi_html_1 = ""
     tissue_1_raw = row.get("MSI Tissue 1")
