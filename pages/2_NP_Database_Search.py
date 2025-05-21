@@ -152,6 +152,7 @@ def display_peptide_details(row: pd.Series):
     
         suffix = f" {i}" if i > 1 else ""
         path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
+        img_block = img_html(path)
         
         msi_html += f"""
         <div>
@@ -169,7 +170,7 @@ def display_peptide_details(row: pd.Series):
             text-align: center;
             margin-top: 5px;
           ">
-            {img_html(path)}
+            {img_block}
           </div>
         </div>
         """
