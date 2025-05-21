@@ -134,9 +134,6 @@ def display_peptide_details(row: pd.Series):
         </div>
     """
     
-    # Prepare MSI HTML blocks
-    msi_html_blocks = []
-    
     # MSI Tissue 1
     tissue_1 = disp(row.get("MSI Tissue 1"))
     image_path_1 = f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png"
@@ -160,7 +157,6 @@ def display_peptide_details(row: pd.Series):
         {img_html(image_path_1)}
         </div>
         """
-        msi_html_blocks.append(msi_html_1)
     else:
         msi_html_1_unavailable = f"""
         <div style="
@@ -173,7 +169,6 @@ def display_peptide_details(row: pd.Series):
         MSImaging data is not available
         </div>
         """
-        msi_html_blocks.append(msi_html_1_unavailable)
 
     # MSI Tissue 2
     tissue_2 = disp(row.get("MSI Tissue 2"))
@@ -198,8 +193,7 @@ def display_peptide_details(row: pd.Series):
             {img_html(image_path_2)}
             </div>
         """
-        msi_html_blocks.append(msi_html_2)
-
+        
     # MSI Tissue 3
     tissue_3 = disp(row.get("MSI Tissue 3"))
     image_path_3 = f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png"
@@ -223,9 +217,6 @@ def display_peptide_details(row: pd.Series):
             {img_html(image_path_3)}
             </div>
         """
-        msi_html_blocks.append(msi_html_3)
-    # Combine all available MSI HTML blocks
-    msi_combined_html = "".join(msi_html_blocks)
 
  # Build the COMPLETE box as one HTML block
     full_html = f"""
@@ -262,7 +253,9 @@ def display_peptide_details(row: pd.Series):
         {structure_html}
       </div>
       <div style="flex:3; padding:0 10px; display: flex; flex-direction: column; gap: 0px;">
-        {msi_combined_html}
+        {msi_html_1}
+        {msi_html_2}
+        {msi_html_3}
       </div>
     </div>
     """
