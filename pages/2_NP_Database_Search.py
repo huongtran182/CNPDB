@@ -38,13 +38,8 @@ st.markdown(
 )
 
 def img_html(path):
-    """Return a base64 <img> tag filling 100% width of its container."""
-    # Print the absolute path that os.path.exists will try to check
-    absolute_path = os.path.abspath(path)
-    st.write(f"**DEBUG (img_html):** Attempting to access: `{absolute_path}`")
-
+    """Return a base64 <img> tag filling 100% width of its container."""   
     if not os.path.exists(path):
-        st.write(f"**DEBUG (img_html):** File NOT found at: `{absolute_path}`")
         return "<div style='color:#999; padding:20px;'>No image found</div>"
     ext = os.path.splitext(path)[1].lower().replace(".", "")
     mime = f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}"
@@ -144,7 +139,7 @@ def display_peptide_details(row: pd.Series):
     msi_html = ""
     for i in range(1, 4):
         col_name = f"MSI Tissue {i}"
-        tissue = disp(row.get(f"MSI Tissue {i}"))
+        tissue = disp(row.get(col_name))
         if not tissue:
             continue
             
@@ -155,7 +150,7 @@ def display_peptide_details(row: pd.Series):
         img_path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
         
         msi_html += f"""
-        <div style="margin-left:20px; margin-top:{'20px' if i>1 else '10px'}">
+        <div style="margin-left:0px; margin-right:0px; margin-top:{'20px' if i>1 else '10px'}">
           <div style="color: #6a51a3; font-size:16px; font-weight:bold; text-align:center;">
             MS Imaging – {tissue}
           </div>
