@@ -562,7 +562,6 @@ if len(df_filtered) > 0:
 if len(df_filtered) > 0 and view_clicked and selected_indices:
     for idx in selected_indices:
         display_peptide_details(df_filtered.loc[idx])
-Key changes to fix the issue:
         
 # Footer
 st.markdown("""
