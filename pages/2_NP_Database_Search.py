@@ -396,14 +396,18 @@ if len(df_filtered) > 0:
         row_cards = df_filtered.iloc[i:i+3]
         peptide_cards_html += "<div style='display: flex; gap: 20px; margin-bottom: 20px;'>"
         for _, row in row_cards.iterrows():
+            # Escape the data before injecting into HTML
+            seq = row['Seq']
+            family = row['Family']
+            os = row['OS']
             peptide_cards_html += f"""
             <div style='flex: 1; border:1px solid #6A0DAD; padding:10px; border-radius:10px;'>
                 <div style='font-weight:bold; background-color:#6a51a3; color:white; padding:10px;'>
-                    {row['Seq']}
+                    {seq}
                 </div>
                 <div style='padding:5px;'>
-                    Family: {row['Family']}<br>
-                    OS: {row['OS']}
+                    Family: {family}<br>
+                    OS: {os}
                 </div>
             </div>
             """
