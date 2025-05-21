@@ -38,13 +38,32 @@ st.markdown(
 )
 
 def img_html(path):
-    """Return a base64 <img> tag filling 100% width of its container."""   
+    """Return a base64 <img> tag filling 100% width of its container."""    
+    # --- IMPORTANT DEBUGGING LINES ---
+    # Convert to absolute path to see the full, resolved path
+    absolute_path = os.path.abspath(path)
+    # st.write(f"DEBUG (img_html): Attempting to access: `{absolute_path}`") 
+    # --- END IMPORTANT DEBUGGING LINES ---
+
     if not os.path.exists(path):
+        # --- IMPORTANT DEBUGGING LINES ---
+        st.error(f"DEBUG (img_html): File NOT FOUND for path: `{absolute_path}`")
+        # --- END IMPORTANT DEBUGGING LINES ---
         return "<div style='color:#999; padding:20px;'>No image found</div>"
+    
     ext = os.path.splitext(path)[1].lower().replace(".", "")
     mime = f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}"
-    data = base64.b64encode(open(path, "rb").read()).decode()
-    return f"<img src='data:{mime};base64,{data}' style='width:100%; height:auto;'/>"
+    
+    try:
+        with open(path, "rb") as f:
+            data = base64.b64encode(f.read()).decode()
+        return f"<img src='data:{mime};base64,{data}' style='width:100%; height:auto;'/>"
+    except Exception as e:
+        # --- IMPORTANT DEBUGGING LINES ---
+        st.error(f"DEBUG (img_html): Error reading or encoding file `{absolute_path}`: {e}")
+        # --- END IMPORTANT DEBUGGING LINES ---
+        return "<div style='color:red; padding:20px;'>Error loading image</div>"
+
 
 # Helper to blank out NaNs if there is no value in the cell of the column of excel file
 def disp(val):
@@ -54,15 +73,101 @@ def disp(val):
     return val
 
 def display_peptide_details(row: pd.Series):
-    seq        = row["Seq"]
-    cnpd_id    = row["CNPD ID"]
+    seq         = row["Seq"]
+    cnpd_id     = row["CNPD ID"]
 
-# Prepare all content as HTML strings first
-    # 1) Metadata table
+    st.header(f"Details for {seq} (CNPD ID: {cnpd_id})") # A more prominent header for details
+
+    # --- Use Streamlit columns directly for better control and immediate feedback ---
+    col_meta, col_3d, col_msi = st.columns([4, 3, 3]) # Adjust column ratios if needed
+ with col_meta:
+        st.markdown(f"""
+        <div style="
+            color: #6a51a3;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: center;
+        ">
+            Metadata
+        </div>
+        {metadata_html_content(row)} {/* Call a helper function for metadata HTML */}
+        """, unsafe_allow_html=True)
+
+    with col_3d:
+        st.markdown(f"""
+        <div style="
+            color: #6a51a3;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: center;
+        ">
+            3D Structure
+        </div>
+        <div style="
+            border: 2px dashed #6a51a3;
+            padding: 10px;
+            text-align: center;
+            margin-top:5px;
+        ">
+            {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col_msi:
+        st.markdown(f"""
+        <div style="
+            color: #6a51a3;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            text-align: center;
+        ">
+            MS Imaging
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Loop through MSI Tissue 1–3
+        for i in range(1, 4):
+            col_name = f"MSI Tissue {i}"
+            tissue_name = disp(row.get(col_name)) # Renamed 'tissue' to 'tissue_name' to avoid confusion
+
+            if not tissue_name:
+                st.info(f"DEBUG: No tissue data for MSI Tissue {i} for CNPD ID {cnpd_id}. Skipping.")
+                continue
+
+            # This is the path for the files you confirmed: MSI cNP<ID> <NUMBER>.png
+            image_filename = f"MSI cNP{cnpd_id} {i}.png" 
+            msi_image_path = os.path.join("Assets", "MSImaging", image_filename)
+            
+            # Print the exact path being checked for each MSI image
+            st.markdown(f"""
+            <div style="
+                color: #6a51a3;
+                font-size: 14px;
+                font-weight: bold;
+                text-align: center;
+                margin-top: {'15px' if i > 1 else '5px'}; /* Add vertical spacing between MSI images */
+            ">
+                – {tissue_name} –
+            </div>
+            <div style="
+                border: 2px dashed #6a51a3;
+                padding: 10px;
+                text-align: center;
+                margin-top: 5px;
+            ">
+                {img_html(msi_image_path)}
+            </div>
+            """, unsafe_allow_html=True)
+            
+# Helper function to encapsulate metadata HTML for clarity
+def metadata_html_content(row: pd.Series):
     gravy = row.get("GRAVY")
     gravy_str = f"{gravy:.2f}" if pd.notna(gravy) else ""
 
-    metadata_html = f"""
+    return f"""
     <div class="peptide-details">
         <table>
             <tr>
