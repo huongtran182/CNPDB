@@ -392,19 +392,22 @@ header_html = f"""
 peptide_cards_html = "<div style='display: flex; flex-wrap: wrap; gap: 20px;'>"
 selected_indices = []
 if len(df_filtered) > 0:
-    for i, (idx, row) in enumerate(df_filtered.iterrows()):
-        peptide_cards_html += f"""
-        <div style='flex: 1 1 calc(33% - 20px); border:1px solid #6A0DAD; padding:10px; border-radius:10px;'>
-            <div style='font-weight:bold; background-color:#6a51a3; color:white; padding:10px;'>
-                {row['Seq']}
+    for i in range(0, len(df_filtered), 3):
+        row_cards = df_filtered.iloc[i:i+3]
+        peptide_cards_html += "<div style='display: flex; gap: 20px; margin-bottom: 20px;'>"
+        for _, row in row_cards.iterrows():
+            peptide_cards_html += f"""
+            <div style='flex: 1; border:1px solid #6A0DAD; padding:10px; border-radius:10px;'>
+                <div style='font-weight:bold; background-color:#6a51a3; color:white; padding:10px;'>
+                    {row['Seq']}
+                </div>
+                <div style='padding:5px;'>
+                    Family: {row['Family']}<br>
+                    OS: {row['OS']}
+                </div>
             </div>
-            <div style='padding:5px;'>
-                Family: {row['Family']}<br>
-                OS: {row['OS']}
-            </div>
-        </div>
-        """
-    peptide_cards_html += "</div>"
+            """
+        peptide_cards_html += "</div>"
 else:
     peptide_cards_html = "<div>No peptides matched the search criteria.</div>"
 
