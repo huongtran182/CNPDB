@@ -184,9 +184,6 @@ def display_peptide_details(row: pd.Series):
         </div>
         """
 
-    # Close MSI HTML block
-    msi_html += "</div>"
-    st.markdown(msi_html, unsafe_allow_html=True)
 
  # Build the COMPLETE box as one HTML block
     full_html = f"""
