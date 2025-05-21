@@ -114,7 +114,6 @@ def display_peptide_details(row: pd.Series):
     """
 
     # 2) 3D Structure
-    img_3d = img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")
     structure_html = f"""
     <div style="
           color: #6a51a3;
@@ -175,8 +174,7 @@ def display_peptide_details(row: pd.Series):
     
         # Add image
         suffix = f" {i}" if i > 1 else ""
-        path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
-        msi_html += img_html(path)
+        msi_html += img_html(f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png")
         
         # Close tissue section
         msi_html += """
