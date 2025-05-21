@@ -134,25 +134,25 @@ def display_peptide_details(row: pd.Series):
         </div>
     """
     
-    # 3) MSI Images
     msi_html = """
     <div style="
       display: flex;
       flex-direction: column;
       gap: 15px;
     ">
+    """
     
-    # Loop through MSI Tissue 1-3
     for i in range(1, 4):
         col_name = f"MSI Tissue {i}"
         tissue = disp(row.get(col_name))
         if not tissue:
             continue
-            
-       # Add tissue section
+    
+        suffix = f" {i}" if i > 1 else ""
+        path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
+    
         msi_html += f"""
         <div>
-            <!-- Section header for this tissue -->
             <div style="
               color: #6a51a3;
               font-size: 16px;
@@ -161,23 +161,18 @@ def display_peptide_details(row: pd.Series):
             ">
               MS Imaging – {tissue}
             </div>
-            
-            <!-- Dashed-box with the matching image -->
             <div style="
               border: 2px dashed #6a51a3;
               padding: 10px;
               text-align: center;
               margin-top: 5px;
             ">
-    
-        # Add image
-        suffix = f" {i}" if i > 1 else ""
-        path = f"Assets/MSImaging/MSI cNP{cnpd_id}{suffix}.png"
-        msi_html += f'<img src="{path}">'
+              <img src="{path}">
             </div>
         </div>
         """
-
+    
+    msi_html += "</div>"
  # Build the COMPLETE box as one HTML block
     full_html = f"""
     <div style="
