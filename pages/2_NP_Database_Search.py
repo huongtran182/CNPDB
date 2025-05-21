@@ -133,95 +133,101 @@ def display_peptide_details(row: pd.Series):
           {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
         </div>
     """
-    
-    # Initialize MSI HTML blocks to empty strings
-    msi_html_1 = ""
-    msi_html_2 = ""
-    msi_html_3 = ""
-    
-    # MSI Tissue 1
-    tissue_1 = disp(row.get("MSI Tissue 1"))
-    image_path_1 = f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png"
-    if os.path.exists(image_path_1):
-        msi_html_1 = f"""
-        <div style="
-              color: #6a51a3;
-              font-size: 16px;
-              font-weight: bold;
-              margin-top: 10px;
-              text-align: center;
-        ">
-        MS Imaging – {tissue_1}
-        </div>
-        <div style="
-            border: 2px dashed #6a51a3;
-            padding: 10px;
-            text-align: center;
-            margin-top:5px;
-        ">
-        {img_html(image_path_1)}
-        </div>
-        """
-    else:
-        msi_html_1 = f"""
-        <div style="
-            color: #6a51a3;
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 10px;
-            text-align: center;
-        ">
-        MSImaging data is not available
-        </div>
-        """
-
-    # MSI Tissue 2
-    tissue_2 = disp(row.get("MSI Tissue 2"))
-    image_path_2 = f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png"
-    if os.path.exists(image_path_2):
-        msi_html_2 = f"""
-        <div style="
-              color: #6a51a3;
-              font-size: 16px;
-              font-weight: bold;
-              margin-top: 10px;
-              text-align: center;
-            ">
-            MS Imaging – {tissue_2}
-            </div>
-            <div style="
-              border: 2px dashed #6a51a3;
-              padding: 10px;
-              text-align: center;
-              margin-top:5px;
-            ">
-            {img_html(image_path_2)}
-            </div>
-        """
         
-    # MSI Tissue 3
-    tissue_3 = disp(row.get("MSI Tissue 3"))
-    image_path_3 = f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png"
-    if os.path.exists(image_path_3):
-        msi_html_3 = f"""
-        <div style="
-              color: #6a51a3;
-              font-size: 16px;
-              font-weight: bold;
-              margin-top: 10px;
-              text-align: center;
-            ">
-            MS Imaging – {tissue_3}
-            </div>
+    # Prepare MSI HTML blocks
+    msi_blocks = []
+    
+    # Check and add MSI Tissue 1
+    tissue_1 = disp(row.get("MSI Tissue 1"))
+    if tissue_1:
+        img_path = f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png"
+        if os.path.exists(img_path):  # Assuming you can check file existence
+            msi_html_1 = f"""
             <div style="
-              border: 2px dashed #6a51a3;
-              padding: 10px;
-              text-align: center;
-              margin-top:5px;
-            ">
-            {img_html(image_path_3)}
-            </div>
-        """
+                  color: #6a51a3;
+                  font-size: 16px;
+                  font-weight: bold;
+                  margin-top: 10px;
+                  text-align: center;
+                ">
+                MS Imaging – {tissue_1}
+                </div>
+                <div style="
+                  border: 2px dashed #6a51a3;
+                  padding: 10px;
+                  text-align: center;
+                  margin-top:5px;
+                ">
+                  {img_html(img_path)}
+                </div>
+            """
+            msi_blocks.append(msi_html_1)
+        else:
+            msi_html_1 = """
+            <div style="
+                  color: #6a51a3;
+                  font-size: 16px;
+                  font-weight: bold;
+                  margin-top: 10px;
+                  text-align: center;
+                ">
+                MS Imaging data is not available
+                </div>
+            """
+            msi_blocks.append(msi_html_1)
+    
+    # Check and add MSI Tissue 2 if available
+    tissue_2 = disp(row.get("MSI Tissue 2"))
+    if tissue_2:
+        img_path = f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png"
+        if os.path.exists(img_path):
+            msi_html_2 = f"""
+            <div style="
+                  color: #6a51a3;
+                  font-size: 16px;
+                  font-weight: bold;
+                  margin-top: 10px;
+                  text-align: center;
+                ">
+                MS Imaging – {tissue_2}
+                </div>
+                <div style="
+                  border: 2px dashed #6a51a3;
+                  padding: 10px;
+                  text-align: center;
+                  margin-top:5px;
+                ">
+                  {img_html(img_path)}
+                </div>
+            """
+            msi_blocks.append(msi_html_2)
+    
+    # Check and add MSI Tissue 3 if available
+    tissue_3 = disp(row.get("MSI Tissue 3"))
+    if tissue_3:
+        img_path = f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png"
+        if os.path.exists(img_path):
+            msi_html_3 = f"""
+            <div style="
+                  color: #6a51a3;
+                  font-size: 16px;
+                  font-weight: bold;
+                  margin-top: 10px;
+                  text-align: center;
+                ">
+                MS Imaging – {tissue_3}
+                </div>
+                <div style="
+                  border: 2px dashed #6a51a3;
+                  padding: 10px;
+                  text-align: center;
+                  margin-top:5px;
+                ">
+                  {img_html(img_path)}
+                </div>
+            """
+            msi_blocks.append(msi_html_3)
+
 
  # Build the COMPLETE box as one HTML block
     full_html = f"""
@@ -258,9 +264,7 @@ def display_peptide_details(row: pd.Series):
         {structure_html}
       </div>
       <div style="flex:3; padding:0 10px; display: flex; flex-direction: column; gap: 0px;">
-        {msi_html_1}
-        {msi_html_2}
-        {msi_html_3}
+        {''.join(msi_blocks)}
       </div>
     </div>
     """
