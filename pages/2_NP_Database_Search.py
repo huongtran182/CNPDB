@@ -167,7 +167,7 @@ def display_peptide_details(row: pd.Series):
             text-align: center;
             margin-top: 5px;
           ">
-            <img src="{path}">
+            {img_html(path)
           </div>
         </div>
         """
