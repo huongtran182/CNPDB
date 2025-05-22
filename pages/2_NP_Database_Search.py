@@ -255,20 +255,27 @@ st.markdown("""
     font-size: 16px;
     font-weight: bold;
     margin-top: 0px;
+    margin-bottom: 2px !important; 
   }
   /* Checkbox accent color */
   input[type="checkbox"] { accent-color: #6a51a3; }
   
     /* Adjusting space for sliders in col_filter */
   .stSlider { 
-      margin-top: -30px;
-      margin-bottom: 5px;
+      margin-top: -10px;
+      margin-bottom: 15px;
    }
    
-   /* Custom class for smaller top margin for subsequent titles in col_filter */
-.small-margin-top {
-    margin-top: 0px !important; /* Make subsequent titles closer */
-}
+   /* Custom columns layout: 20px gap between filter and main */
+    .custom-col-container {
+        display: flex;
+        gap: 20px;
+    }
+    
+    /* Force equal height by filling both columns */
+    .fill-height {
+        flex: 1;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -292,37 +299,47 @@ numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (
 for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
-# Layout: filters (1/4) and inputs (3/4)
-col_filter, col_main = st.columns([1, 3], gap="40px")
+# Custom container with manual gap
+st.markdown('<div class="custom-col-container">', unsafe_allow_html=True)
 
-with col_filter:
-    st.markdown('<div class="section-title">Monoisotopic mass (m/z)</div>', unsafe_allow_html=True)
-    mono_mass_range = st.slider("", 300.0, 2000.0, (300.0, 2000.0), label_visibility="collapsed")
+# Filter column (1/4 width)
+with st.container():
+    with col_filter:
+        st.markdown('<div class="fill-height">', unsafe_allow_html=True)
 
-    st.markdown('<div class="section-title small-margin-top">Length (amino acids)</div>', unsafe_allow_html=True)
-    length_range = st.slider("", 3, 100, (3, 100), label_visibility="collapsed")
+        st.markdown('<div class="section-title">Monoisotopic mass (m/z)</div>', unsafe_allow_html=True)
+        mono_mass_range = st.slider("", 300.0, 2000.0, (300.0, 2000.0), label_visibility="collapsed")
 
-    st.markdown('<div class="section-title small-margin-top">GRAVY Score</div>', unsafe_allow_html=True)
-    gravy_range = st.slider("", -5.0, 5.0, (-5.0, 5.0), label_visibility="collapsed")
+        st.markdown('<div class="section-title">Length (amino acids)</div>', unsafe_allow_html=True)
+        length_range = st.slider("", 3, 100, (3, 100), label_visibility="collapsed")
 
-    st.markdown('<div class="section-title small-margin-top">% Hydrophobic Residue</div>', unsafe_allow_html=True)
-    hydro_range = st.slider("", 0, 100, (0, 100), label_visibility="collapsed")
+        st.markdown('<div class="section-title">GRAVY Score</div>', unsafe_allow_html=True)
+        gravy_range = st.slider("", -5.0, 5.0, (-5.0, 5.0), label_visibility="collapsed")
 
-    st.markdown('<div class="section-title small-margin-top">Predicted Half-life (min)</div>', unsafe_allow_html=True)
-    half_life_range = st.slider("", 0, 120, (0, 60), label_visibility="collapsed")
+        st.markdown('<div class="section-title">% Hydrophobic Residue</div>', unsafe_allow_html=True)
+        hydro_range = st.slider("", 0, 100, (0, 100), label_visibility="collapsed")
 
+        st.markdown('<div class="section-title">Predicted Half-life (min)</div>', unsafe_allow_html=True)
+        half_life_range = st.slider("", 0, 120, (0, 60), label_visibility="collapsed")
+
+        # Add spacer to force full height
+        st.markdown('<div style="height:100%"></div>', unsafe_allow_html=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+        
+# Main column (3/4 width)
 with col_main:
-    # Inject a small margin top for the input label itself
+    st.markdown('<div class="fill-height">', unsafe_allow_html=True)
+
     st.markdown("""
     <div style="margin-bottom: 0px;" class="section-title">Peptide Sequence</div>
     <div style="margin-top: -55px;margin-bottom: -15px;">
     """, unsafe_allow_html=True)
-    
+
     peptide_input = st.text_input(
-        label=" ",  # Invisible label
+        label=" ",
         placeholder="Separate by space, e.g. FDAFTTGFGHN NFDEIDRSGFGFN"
     )
-    
+
     st.markdown("</div>", unsafe_allow_html=True)
 
     # Family
@@ -344,6 +361,11 @@ with col_main:
     st.markdown('<div class="section-title">Organisms</div>', unsafe_allow_html=True)
     org_opts        = sorted(df['OS'].dropna().unique())
     organisms_selected = [opt for opt in org_opts if st.checkbox(opt, key=f"org_{opt}")]
+
+     st.markdown('</div>', unsafe_allow_html=True)
+
+# Close outer flex div
+st.markdown('</div>', unsafe_allow_html=True)
 
 # Filtering logic
 df_filtered = df.copy()
