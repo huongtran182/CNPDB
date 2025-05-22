@@ -17,7 +17,7 @@ col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     st.markdown("""
-    <div style="text-align: center; padding: 10px;">
+    <div style="text-align: center; padding: 10px; background-color: #29004c;">
         <h2 style="color:#4a3666;">12,354</h2>
         <p style="margin: 0; font-weight: bold;">Peptide Entries</p>
     </div>
