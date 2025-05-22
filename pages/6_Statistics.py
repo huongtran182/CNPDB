@@ -38,7 +38,6 @@ st.markdown("""
 st.markdown("""
 <h4 style="margin-bottom: 10px;">1. Composition of Neuropeptides per Organism in cNPD</h4>
 """, unsafe_allow_html=True)
-
 image_path = os.path.join("Assets", "Statistics", "Composition.png")
 if os.path.exists(image_path):
     st.markdown(f"""
@@ -52,6 +51,7 @@ else:
 st.markdown("""
 <h4 style="margin-top: 20px; margin-bottom: 10px;">2. Proteolytic Cleavage Patterns from all Peptides in cNPD</h4>
 """, unsafe_allow_html=True)
+image_path2 = os.path.join("Assets", "Statistics", "Sequence Logo draft.png")
 if os.path.exists(image_path):
     st.markdown(f"""
         <div style="width: 70%; margin: 0 auto; text-align: center;">
@@ -61,7 +61,9 @@ if os.path.exists(image_path):
 else:
     st.error(f"Image not found at {image_path}")
 
-st.markdown("## 3. Peptide Properties from all Peptides in cNPD")
+st.markdown("""
+<h4 style="margin-top: 20px; margin-bottom: 10px;">3. Peptide Properties from all Peptides in cNPD</h4>
+""", unsafe_allow_html=True)
 image_path = os.path.join("Assets", "Statistics", "Peptide Properties draft.png")
 if os.path.exists(image_path):
     st.markdown(f"""
@@ -72,7 +74,9 @@ if os.path.exists(image_path):
 else:
     st.error(f"Image not found at {image_path}")
 
-st.markdown("## 4. Distribution of Sequence Lengths from all Peptides in cNPD")
+st.markdown("""
+<h4 style="margin-top: 20px; margin-bottom: 10px;">4. Distribution of Sequence Lengths from all Peptides in cNPD</h4>
+""", unsafe_allow_html=True)
 image_path = os.path.join("Assets", "Statistics", "Sequence Length Distribution.png")
 if os.path.exists(image_path):
     st.markdown(f"""
@@ -83,7 +87,9 @@ if os.path.exists(image_path):
 else:
     st.error(f"Image not found at {image_path}")
 
-st.markdown("## 5. Amino Acids Composition from all Peptides in cNPD")
+st.markdown("""
+<h4 style="margin-top: 20px; margin-bottom: 10px;">5. Amino Acids Composition from all Peptides in cNPD</h4>
+""", unsafe_allow_html=True)
 image_path = os.path.join("Assets", "Statistics", "Amino Acids Composition.png")
 if os.path.exists(image_path):
     st.markdown(f"""
