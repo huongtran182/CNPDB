@@ -115,6 +115,9 @@ def render_sidebar():
             text-align: center !important;
             width: 100% !important;
             display: block !important;
+            font-family: 'Arial', sans-serif !important;
+            font-size: 30px !important;
+            font-weight: bold !important;
         }
 
     </style>
