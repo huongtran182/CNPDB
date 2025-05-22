@@ -10,11 +10,6 @@ st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
 render_sidebar()
 
-def image_to_base64(image):
-    buffered = BytesIO()
-    image.save(buffered, format="PNG")
-    return base64.b64encode(buffered.getvalue()).decode()
-
 # Main content area
 st.markdown("""<div style="padding:0;margin:0;">""", unsafe_allow_html=True)
 
