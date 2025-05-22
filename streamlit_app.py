@@ -10,24 +10,6 @@ st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
 render_sidebar()
 
-# Custom CSS for logo and nav
-st.markdown("""
-<style>
-    html, body, .stApp {
-        height: 100% !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    header[data-testid="stHeader"] {
-        height: 0 !important;
-    }
-    [data-testid="stSidebarNav"] {
-        display: none;
-    }
-</style>
-""", unsafe_allow_html=True)
-
-
 def image_to_base64(image):
     buffered = BytesIO()
     image.save(buffered, format="PNG")
