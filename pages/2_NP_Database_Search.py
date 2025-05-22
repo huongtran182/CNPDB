@@ -299,32 +299,32 @@ numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (
 for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
+# Create two columns with a 20px gap using Streamlit's built-in layout
+col_filter, col_main = st.columns([1, 3], gap="large")
+
 # Custom container with manual gap
 st.markdown('<div class="custom-col-container">', unsafe_allow_html=True)
 
 # Filter column (1/4 width)
-with st.container():
-    with col_filter:
-        st.markdown('<div class="fill-height">', unsafe_allow_html=True)
+with col_filter:
+    st.markdown('<div class="fill-height">', unsafe_allow_html=True)
 
-        st.markdown('<div class="section-title">Monoisotopic mass (m/z)</div>', unsafe_allow_html=True)
-        mono_mass_range = st.slider("", 300.0, 2000.0, (300.0, 2000.0), label_visibility="collapsed")
+    st.markdown('<div class="section-title">Monoisotopic mass (m/z)</div>', unsafe_allow_html=True)
+    mono_mass_range = st.slider("", 300.0, 2000.0, (300.0, 2000.0), label_visibility="collapsed")
 
-        st.markdown('<div class="section-title">Length (amino acids)</div>', unsafe_allow_html=True)
-        length_range = st.slider("", 3, 100, (3, 100), label_visibility="collapsed")
+    st.markdown('<div class="section-title">Length (amino acids)</div>', unsafe_allow_html=True)
+    length_range = st.slider("", 3, 100, (3, 100), label_visibility="collapsed")
 
-        st.markdown('<div class="section-title">GRAVY Score</div>', unsafe_allow_html=True)
-        gravy_range = st.slider("", -5.0, 5.0, (-5.0, 5.0), label_visibility="collapsed")
+    st.markdown('<div class="section-title">GRAVY Score</div>', unsafe_allow_html=True)
+    gravy_range = st.slider("", -5.0, 5.0, (-5.0, 5.0), label_visibility="collapsed")
 
-        st.markdown('<div class="section-title">% Hydrophobic Residue</div>', unsafe_allow_html=True)
-        hydro_range = st.slider("", 0, 100, (0, 100), label_visibility="collapsed")
+    st.markdown('<div class="section-title">% Hydrophobic Residue</div>', unsafe_allow_html=True)
+    hydro_range = st.slider("", 0, 100, (0, 100), label_visibility="collapsed")
 
-        st.markdown('<div class="section-title">Predicted Half-life (min)</div>', unsafe_allow_html=True)
-        half_life_range = st.slider("", 0, 120, (0, 60), label_visibility="collapsed")
+    st.markdown('<div class="section-title">Predicted Half-life (min)</div>', unsafe_allow_html=True)
+    half_life_range = st.slider("", 0, 120, (0, 60), label_visibility="collapsed")
 
-        # Add spacer to force full height
-        st.markdown('<div style="height:100%"></div>', unsafe_allow_html=True)
-        st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
         
 # Main column (3/4 width)
 with col_main:
