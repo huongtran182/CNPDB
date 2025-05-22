@@ -319,7 +319,7 @@ with col_main:
     # Inject a small margin top for the input label itself
     st.markdown("""
     <div style="margin-bottom: 0px;" class="section-title">Peptide Sequence</div>
-    <div style="margin-top: -35px;margin-bottom: -15px;">
+    <div style="margin-top: -45px;margin-bottom: -15px;">
     """, unsafe_allow_html=True)
     
     peptide_input = st.text_input(
@@ -330,7 +330,7 @@ with col_main:
     st.markdown("</div>", unsafe_allow_html=True)
 
     # Family
-    st.markdown('<div class="section-title">Family</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: 0px;">Family</div>', unsafe_allow_html=True)
     family_opts     = sorted(df['Family'].dropna().unique())
     family_selected = [opt for opt in family_opts if st.checkbox(opt, key=f"fam_{opt}")]
 
