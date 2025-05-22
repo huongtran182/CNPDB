@@ -366,7 +366,7 @@ df_filtered = df_filtered[df_filtered['Predicted Half Life (Min)'].between(*half
 
 # --- Separator Line ---
 st.markdown("""
-<hr style='border: none; border-top: 2px solid #6a51a3; margin: 30px 100px;'>
+<hr style='border: none; border-top: 2px solid #6a51a3; margin: 30px 200px;'>
 """, unsafe_allow_html=True)
 
 # Display results
