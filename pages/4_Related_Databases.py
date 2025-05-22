@@ -23,7 +23,7 @@ st.markdown("""
 
   /* 2) Wrapper with border and rounded corners */
   .table-wrapper {
-    border: 1px solid #29004c;
+    border: 0.5px solid #29004c;
     border-radius: 10px;
     overflow: hidden;
     margin-top: 0;
