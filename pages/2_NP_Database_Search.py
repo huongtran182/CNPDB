@@ -152,7 +152,7 @@ def display_peptide_details(row: pd.Series):
           text-align: center;
           margin-top:5px;
         ">
-          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 1.png")}
+          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id}.png")}
         </div>
     """
     tissue_2 = disp(row.get("MSI Tissue 2"))
@@ -336,7 +336,7 @@ with col_main:
 
     st.markdown("""
     <div style="margin-bottom: 0px;" class="section-title">Peptide Sequence</div>
-    <div style="margin-top: -55px;margin-bottom: -15px;">
+    <div style="margin-top: -70px;margin-bottom: -15px;">
     """, unsafe_allow_html=True)
 
     peptide_input = st.text_input(
