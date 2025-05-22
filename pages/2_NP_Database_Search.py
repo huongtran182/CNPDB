@@ -260,9 +260,14 @@ st.markdown("""
   input[type="checkbox"] { accent-color: #6a51a3; }
   
     /* Adjusting space for sliders in col_filter */
-  .stSlider .stSlider-0 { /* Target the Streamlit slider container */
-      margin-top: -10px; /* Reduce space above the slider */
-      margin-bottom: 5px; /* Reduce space below the slider */
+  .stSlider { 
+      margin-top: -30px;
+      margin-bottom: 5px;
+   }
+   
+   /* Custom class for smaller top margin for subsequent titles in col_filter */
+.small-margin-top {
+    margin-top: 0px !important; /* Make subsequent titles closer */
 }
 </style>
 """, unsafe_allow_html=True)
@@ -288,22 +293,22 @@ for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
 # Layout: filters (1/4) and inputs (3/4)
-col_filter, col_main = st.columns([1, 3], gap="20px")
+col_filter, col_main = st.columns([1, 3], gap="40px")
 
 with col_filter:
-    st.markdown('<div class="section-title" style="margin-bottom: -35px;">Monoisotopic mass (m/z)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">Monoisotopic mass (m/z)</div>', unsafe_allow_html=True)
     mono_mass_range = st.slider("", 300.0, 2000.0, (300.0, 2000.0), label_visibility="collapsed")
 
-    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: -35px;">Length (aa)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title small-margin-top">Length (amino acids)</div>', unsafe_allow_html=True)
     length_range = st.slider("", 3, 100, (3, 100), label_visibility="collapsed")
 
-    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: -35px;">GRAVY Score</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title small-margin-top">GRAVY Score</div>', unsafe_allow_html=True)
     gravy_range = st.slider("", -5.0, 5.0, (-5.0, 5.0), label_visibility="collapsed")
 
-    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: -35px;">% Hydrophobic Residue</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title small-margin-top">% Hydrophobic Residue</div>', unsafe_allow_html=True)
     hydro_range = st.slider("", 0, 100, (0, 100), label_visibility="collapsed")
 
-    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: -35px;">Predicted Half-life (min)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title small-margin-top">Predicted Half-life (min)</div>', unsafe_allow_html=True)
     half_life_range = st.slider("", 0, 120, (0, 60), label_visibility="collapsed")
 
 with col_main:
