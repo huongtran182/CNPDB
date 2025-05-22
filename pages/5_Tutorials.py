@@ -10,13 +10,26 @@ st.set_page_config(
 render_sidebar()
 
 st.markdown("""
-## OVERVIEW
+<h3 style="margin-top: 10px; margin-bottom: 10px; text-align: center;">
+1. How to navigate cNPD website
+</h3>
+""", unsafe_allow_html=True)
+video_path = os.path.join("Assets", "Statistics", "example.mp4")
+if os.path.exists(video_path):
+    st.video(video_path)
+else:
+    st.error(f"Video not found at {video_path}")
 
-The current release of **CNPD (Version 1.0, 2025)** contains **[X]** curated neuropeptide entries from **[Y]** crustacean species, organized into **[Z]** neuropeptide families.
-
-Data is manually curated from peer-reviewed literature, mass spectrometry-based peptidomics, and public protein databases such as **UniProt** and **NCBI**.
-""")
-
+st.markdown("""
+<h3 style="margin-top: 10px; margin-bottom: 10px; text-align: center;">
+2. How to use Database Search Engine to search for your desired peptides and download FASTA file
+</h3>
+""", unsafe_allow_html=True)
+video_path = os.path.join("Assets", "Statistics", "search_tutorial.mp4")
+if os.path.exists(video_path):
+    st.video(video_path)
+else:
+    st.error(f"Video not found at {video_path}")
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
