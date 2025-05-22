@@ -300,7 +300,7 @@ for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
 # Create two columns with a 20px gap using Streamlit's built-in layout
-col_filter, col_main = st.columns([1, 3], gap: 15px)
+col_filter, col_main = st.columns([1, 3], gap= "large")
 
 # Custom container with manual gap
 st.markdown('<div class="custom-col-container">', unsafe_allow_html=True)
