@@ -316,8 +316,9 @@ with col_filter:
     half_life_range  = st.slider("Predicted Half-life (min)", 0, 120, (0, 60))
 
 with col_main:
+    st.markdown('<div class="section-title">Peptide Sequence</div>', unsafe_allow_html=True)
     peptide_input = st.text_input(
-        "Peptide Sequence",
+        "",
         placeholder="Separate by space, e.g. FDAFTTGFGHN NFDEIDRSGFGFN"
     )
 
