@@ -35,7 +35,7 @@ st.markdown("""
     width: 100%;
     border-radius: 10px;
     overflow: hidden; /* clips interior cells at rounded corners */
-    border-collapse: collapse;
+    border-collapse: separate;
   }
 
   /* 4) Cell padding */
