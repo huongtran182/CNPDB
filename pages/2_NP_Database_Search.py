@@ -262,8 +262,8 @@ st.markdown("""
   
     /* Adjusting space for sliders in col_filter */
   .stSlider { 
-      margin-top: 0px;
-      margin-bottom: 15px;
+      margin-top: 5px;
+      margin-bottom: 12px;
    }
    
    /* Custom columns layout: 20px gap between filter and main */
@@ -300,7 +300,7 @@ for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
 # Create two columns with a 20px gap using Streamlit's built-in layout
-col_filter, col_main = st.columns([1, 3], gap="large")
+col_filter, col_main = st.columns([1, 3], gap="20x")
 
 # Custom container with manual gap
 st.markdown('<div class="custom-col-container">', unsafe_allow_html=True)
