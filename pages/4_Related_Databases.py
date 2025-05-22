@@ -29,6 +29,7 @@ st.markdown("""
     margin-top: 0px;
     margin-bottom: 0px;
     border: none;
+    border-radius: 10px;
     border: 2px solid #29004c;
   }
 
@@ -37,7 +38,6 @@ st.markdown("""
     width: 100%;
     border: 2px solid #29004c;
     border-radius: 10px;
-    border-spacing: 0;
     overflow: hidden; /* clips interior cells at rounded corners */
     border-collapse: collapse;
   }
