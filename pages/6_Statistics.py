@@ -2,6 +2,7 @@ import streamlit as st
 from sidebar import render_sidebar
 from PIL import Image
 import os
+import base64
 
 st.set_page_config(
     page_title="Statistics",
