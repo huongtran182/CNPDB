@@ -95,10 +95,12 @@ def render_sidebar():
             background-color: #3a2d5a !important;
             color: #ffcc00 !important;
             text-decoration: none !important;
+            font-weight: bold !important;
         }
     
         .stPageLink a:active {
             background-color: #4a3666 !important;
+            font-weight: bold !important;
         }
     
         /* Add separator between nav items */
