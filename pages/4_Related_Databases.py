@@ -35,6 +35,7 @@ st.markdown("""
   .related-table table {
     width: 100%;
     border: 2px solid #29004c;
+    padding: 0;
     border-radius: 10px;
     overflow: hidden; /* clips interior cells at rounded corners */
     border-collapse: collapse;
@@ -43,7 +44,7 @@ st.markdown("""
   /* 4) Cell padding */
   .related-table th,
   .related-table td {
-    padding: 12px;
+    padding: 0px;
   }
 
   /* 5) Header row styling */
