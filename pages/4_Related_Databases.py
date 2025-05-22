@@ -40,6 +40,7 @@ st.markdown("""
     border-radius: 10px;
     border-spacing: 0;
     overflow: hidden; /* clips interior cells at rounded corners */
+    border-collapse: collapse;
   }
 
   /* 4) Cell padding */
