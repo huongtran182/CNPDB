@@ -14,23 +14,21 @@ render_sidebar()
 # ---- Horizontal Stats Bar ----
 st.markdown("""
 <div style="display: flex; width: 100%;">
-        <div style="flex: 1; background-color: #dadaeb; text-align: center; padding: 20px 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <h2 style="color:#4a3666; margin: 0; padding: 0; font-size: 30px; font-weight: bold; font-family: 'Arial', sans-serif;">12,354</h2>
-            <p style="margin: 0; padding: 0; font-weight: bold; color:#4a3666; font-family: 'Arial', sans-serif;">Peptide Entries</p>
+        <div style="flex: 1; background-color: #dadaeb; text-align: center; padding: 20px 0;align-items: center; justify-content: center;">
+            <h2 style="color:#4a3666; margin: 0;">12,354</h2>
+            <p style="margin: 0; font-weight: bold; color:#4a3666;">Peptide Entries</p>
         </div>
-        <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <h2 style="color:#4a3666; margin: 0; padding: 0; font-size: 30px; font-weight: bold; font-family: 'Arial', sans-serif;">47</h2>
-            <p style="margin: 0; padding: 0; font-weight: bold; color:#4a3666; font-family: 'Arial', sans-serif;">Organisms</p>
+        <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0;align-items: center; justify-content: center;">
+            <h2 style="color:#4a3666; margin: 0;">47</h2>
+            <p style="margin: 0; font-weight: bold; color:#4a3666;">Organisms</p>
         </div>
-    
-        <div style="flex: 1; background-color: #dadaeb; text-align: center; padding: 20px 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <h2 style="color:#4a3666; margin: 0; padding: 0; font-size: 30px; font-weight: bold; font-family: 'Arial', sans-serif;">39</h2>
-            <p style="margin: 0; padding: 0; font-weight: bold; color:#4a3666; font-family: 'Arial', sans-serif;">Neuropeptide Families</p>
+        <div style="flex: 1; background-color: #dadaeb; text-align: center; padding: 20px 0;align-items: center; justify-content: center;">
+            <h2 style="color:#4a3666; margin: 0;">39</h2>
+            <p style="margin: 0; font-weight: bold; color:#4a3666;">Neuropeptide Families</p>
         </div>
-    
-        <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <h2 style="color:#4a3666; margin: 0; padding: 0; font-size: 30px; font-weight: bold; font-family: 'Arial', sans-serif;">3,218</h2>
-            <p style="margin: 0; padding: 0; font-weight: bold; color:#4a3666; font-family: 'Arial', sans-serif;">Page Views</p>
+        <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0;align-items: center; justify-content: center;">
+            <h2 style="color:#4a3666; margin: 0;">3,218</h2>
+            <p style="margin: 0; font-weight: bold; color:#4a3666;">Page Views</p>
         </div>
     </div>
 """, unsafe_allow_html=True)
