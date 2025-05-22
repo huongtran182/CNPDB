@@ -111,7 +111,7 @@ def render_sidebar():
 
         /* Ensure the text inside page links is white and centered */
         section[data-testid="stSidebar"] a span {
-            color: white !important;
+            color: #dadaeb !important;
             text-align: center !important;
             width: 100% !important;
             display: block !important;
@@ -150,7 +150,7 @@ def render_sidebar():
         pages = [
             st.page_link("streamlit_app.py", label="Home"),
             st.page_link("pages/1_About.py", label="About"),
-            st.page_link("pages/2_NP_Database_Search.py", label="Neuropeptide Database Search Engine"),
+            st.page_link("pages/2_NP_Database_Search.py", label="Database Search Engine"),
             st.page_link("pages/3_Tools.py", label="Tools"),
             st.page_link("pages/4_Related_Databases.py", label="Related Resources"),
             st.page_link("pages/5_Tutorials.py", label="Tutorials"),
