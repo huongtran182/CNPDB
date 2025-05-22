@@ -322,17 +322,16 @@ with col_main:
     
     # Inject a small margin top for the input label itself
     st.markdown("""
-    <style>
-    div[data-testid="stTextInput"] label {
-        margin-top: 0px !important;
-    }
-    </style>
+    <div style="margin-bottom: 0px;" class="section-title">Peptide Sequence</div>
+    <div style="margin-top: -15px;">
     """, unsafe_allow_html=True)
     
     peptide_input = st.text_input(
-        "",  # no label since we already have custom title
+        label=" ",  # Invisible label
         placeholder="Separate by space, e.g. FDAFTTGFGHN NFDEIDRSGFGFN"
     )
+    
+    st.markdown("</div>", unsafe_allow_html=True)
 
     # Family
     st.markdown('<div class="section-title">Family</div>', unsafe_allow_html=True)
