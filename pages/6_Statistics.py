@@ -18,15 +18,15 @@ col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.markdown("""
     <div style="text-align: center; padding: 10px; background-color: #29004c;">
-        <h2 style="color:#4a3666;">12,354</h2>
+        <h2 style="color: white;">12,354</h2>
         <p style="margin: 0; font-weight: bold;">Peptide Entries</p>
     </div>
     """, unsafe_allow_html=True)
 
 with col2:
     st.markdown("""
-    <div style="text-align: center; padding: 10px;">
-        <h2 style="color:#4a3666;">47</h2>
+    <div style="text-align: center; padding: 10px; background-color: #4a3666;">
+        <h2 style="color:white;">47</h2>
         <p style="margin: 0; font-weight: bold;">Organisms</p>
     </div>
     """, unsafe_allow_html=True)
