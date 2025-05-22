@@ -28,12 +28,14 @@ st.markdown("""
     overflow: hidden;
     margin-top: 0;
     margin-bottom: 0;
+    display: block;
   }
 
   /* 3) Inner table */
   .related-table table {
     width: 100%;
     border-collapse: collapse;     
+    margin-bottom: 0 !important;
   }
 
   /* 4) Cell padding */
