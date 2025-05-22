@@ -372,7 +372,21 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 3) Header HTML Block: left = checkbox, right = hit count
+# Initialize session state for checkboxes
+if 'check_all' not in st.session_state:
+    st.session_state.check_all = False
+
+# Start lavender container
+st.markdown("""
+<div style="
+    background-color: #efedf5;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 20px 0;
+">
+""", unsafe_allow_html=True)
+
+# --- HEADER ROW ---
 header_html = f"""
 <div style="
     display: flex;
@@ -381,77 +395,62 @@ header_html = f"""
     margin-bottom: 20px;
 ">
     <div>
-        <input type="checkbox" id="check_all">
-        <label for="check_all">Check/Uncheck All</label>
+        <input type="checkbox" id="html_check_all" {'checked' if st.session_state.check_all else ''}
+               onclick="document.getElementById('master_checkbox').click()">
+        <label for="html_check_all">Check/Uncheck All</label>
     </div>
-    <div style="text-align: right;">
+    <div style="text-align: right; font-weight: bold;">
         Hit: {len(df_filtered)} peptides
     </div>
 </div>
 """
-
 st.markdown(header_html, unsafe_allow_html=True)
+check_all = st.checkbox("Check/Uncheck All", key="master_checkbox", label_visibility="collapsed")
 
-# Still need the actual Streamlit checkbox for functionality
-check_all = st.checkbox(
-    "Check/Uncheck All", 
-    key="master_checkbox",
-    label_visibility="collapsed"  # Hidden since we're using the HTML version
-)
-
-# 4) Peptide Cards in 3 columns HTML Block ---
-# Initialize variables
-selected_indices = []
-fasta_str = ""
-
+# --- PEPTIDE CARDS ---
 if len(df_filtered) > 0:
-    # Start container with proper styling
+    selected_indices = []
+    fasta_str = ""
+    
+    # Grid container
     st.markdown("""
     <style>
-        .peptide-grid {
+        .peptide-grid {{
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             margin-bottom: 30px;
-        }
-        .peptide-card {
-            border: 1px solid #6A0DAD;
-            border-radius: 10px;
-            overflow: hidden;
-            background: white;
-        }
-        .peptide-header {
-            background-color: #6a51a3;
-            color: white;
-            padding: 12px;
-            font-weight: bold;
-            position: relative;
-        }
+        }}
     </style>
     <div class="peptide-grid">
     """, unsafe_allow_html=True)
-
-    # Create each card with proper Streamlit integration
+    
     for idx, row in df_filtered.iterrows():
-        # Create Streamlit checkbox (hidden but controls state)
-        checked = st.checkbox(
-            "",
-            key=f"check_{idx}",
-            value=check_all,
-            label_visibility="collapsed"
-        )
+        # Create hidden Streamlit checkbox
+        checked = st.checkbox("", key=f"check_{idx}", value=st.session_state.check_all, label_visibility="collapsed")
         if checked:
             selected_indices.append(idx)
             fasta_str += f">{row['ID']}\n{row['Seq']}\n"
-
+        
         # Card HTML
         st.markdown(f"""
-        <div class="peptide-card">
-            <div class="peptide-header">
+        <div style="
+            border: 1px solid #6A0DAD;
+            border-radius: 10px;
+            background: white;
+            overflow: hidden;
+        ">
+            <div style="
+                background-color: #6a51a3;
+                color: white;
+                padding: 12px;
+                font-weight: bold;
+                position: relative;
+            ">
                 <input type="checkbox" 
-                       style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);"
                        {'checked' if checked else ''}
-                       onclick="document.getElementById('stCheckbox_{idx}').click()">
+                       onclick="document.getElementById('stCheckbox_{idx}').click()"
+                       style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);">
                 <span style="margin-left: 25px;">{row['Seq']}</span>
             </div>
             <div style="padding: 12px;">
@@ -460,101 +459,75 @@ if len(df_filtered) > 0:
             </div>
         </div>
         """, unsafe_allow_html=True)
-
-    # Close container
+    
     st.markdown("</div>", unsafe_allow_html=True)
-
 else:
     st.markdown("""
     <div style="
         padding: 20px;
         text-align: center;
         color: #666;
-        background-color: #efedf5;
-        border-radius: 10px;
     ">
         No peptides matched the search criteria.
     </div>
     """, unsafe_allow_html=True)
 
-
-# 5) Button Row HTML Block 
-# Prepare the FASTA string if peptides exist
-fasta_str = ""
+# --- BUTTON ROW ---
 if len(df_filtered) > 0:
-    for idx in selected_indices:
-        r = df_filtered.loc[idx]
-        fasta_str += f">{r['ID']}\n{r['Seq']}\n"
-
-# Button row HTML
-button_html = f"""
-<div style="
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-">
-    <!-- View Details Button -->
-    <div style="text-align: left;">
-        <button onclick="document.getElementById('view_details_button').click()"
-                style="
-                    background-color: #6a51a3;
-                    color: white;
-                    border: none;
-                    padding: 10px 20px;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-weight: bold;
-                ">
-            View details
-        </button>
+    button_html = """
+    <div style="
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    ">
+        <div>
+            <button onclick="document.getElementById('view_details_btn').click()"
+                    style="
+                        background-color: #6a51a3;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-weight: bold;
+                    ">
+                View details
+            </button>
+        </div>
+        <div>
+            <button onclick="document.getElementById('download_btn').click()"
+                    style="
+                        background-color: #6a51a3;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-weight: bold;
+                    ">
+                Download FASTA File
+            </button>
+        </div>
     </div>
+    """
+    st.markdown(button_html, unsafe_allow_html=True)
     
-    <!-- Download Button -->
-    <div style="text-align: right;">
-        <button onclick="document.getElementById('download_fasta_button').click()"
-                style="
-                    background-color: #6a51a3;
-                    color: white;
-                    border: none;
-                    padding: 10px 20px;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    font-weight: bold;
-                ">
-            Download FASTA File
-        </button>
-    </div>
-</div>
-"""
-
-# Render the HTML
-st.markdown(button_html, unsafe_allow_html=True)
-
-# Hidden Streamlit buttons for actual functionality
-if len(df_filtered) > 0:
-    # View Details button
-    view_clicked = st.button(
-        "View details", 
-        key="view_details_button",
-        type="primary",
-        label_visibility="collapsed"
-    )
-    
-    # Download button
+    # Hidden functional buttons
+    view_clicked = st.button("View details", key="view_details_btn", type="primary", label_visibility="collapsed")
     st.download_button(
-        "Download FASTA File",
-        data=fasta_str,
-        file_name="peptides.fasta",
+        "Download FASTA", 
+        data=fasta_str, 
+        file_name="peptides.fasta", 
         mime="text/plain",
-        key="download_fasta_button",
+        key="download_btn",
         type="primary",
         label_visibility="collapsed"
     )
 
-else:
-    st.info("No peptides matched the search criteria.")
+# Close lavender container
+st.markdown("</div>", unsafe_allow_html=True)
 
-# Handle view clicked action
+# Handle view clicked
 if len(df_filtered) > 0 and view_clicked and selected_indices:
     for idx in selected_indices:
         display_peptide_details(df_filtered.loc[idx])
