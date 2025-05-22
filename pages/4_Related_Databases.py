@@ -63,6 +63,13 @@ st.markdown("""
     border: 2px solid #29004c;
   }
 
+  /* Add Left Border to First Column */
+  .related-table td:first-child,
+  .related-table th:first-child {
+  border-left: 2px solid #29004c;
+  }
+
+
   /* 8) Horizontal separators between rows */
   .related-table tr + tr {
     border: 2px solid #29004c;
