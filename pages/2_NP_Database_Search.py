@@ -309,19 +309,19 @@ for col in numeric_cols:
 col_filter, col_main = st.columns([1, 3])
 
 with col_filter:
-    st.markdown('<div class="section-title" style="margin-bottom: 4px;">Monoisotopic mass (m/z)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-bottom: 0px;">Monoisotopic mass (m/z)</div>', unsafe_allow_html=True)
     mono_mass_range = st.slider("", 300.0, 2000.0, (300.0, 2000.0))
 
-    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: 4px;">Length (aa)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: 0px;">Length (aa)</div>', unsafe_allow_html=True)
     length_range = st.slider("", 3, 100, (3, 100))
 
-    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: 4px;">GRAVY Score</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: 0px;">GRAVY Score</div>', unsafe_allow_html=True)
     gravy_range = st.slider("", -5.0, 5.0, (-5.0, 5.0))
 
-    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: 4px;">% Hydrophobic Residue</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: 0px;">% Hydrophobic Residue</div>', unsafe_allow_html=True)
     hydro_range = st.slider("", 0, 100, (0, 100))
 
-    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: 4px;">Predicted Half-life (min)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: 0px;">Predicted Half-life (min)</div>', unsafe_allow_html=True)
     half_life_range = st.slider("", 0, 120, (0, 60))
 
 with col_main:
