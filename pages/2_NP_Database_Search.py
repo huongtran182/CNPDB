@@ -255,7 +255,6 @@ st.markdown("""
     font-size: 16px;
     font-weight: bold;
     margin-top: 0px;
-    margin-bottom: 2px !important; 
   }
   /* Checkbox accent color */
   input[type="checkbox"] { accent-color: #6a51a3; }
