@@ -248,18 +248,7 @@ st.markdown("""
     margin-top: 10px !important;
     color: #29004c;
  }
- /* Container background */
-div[data-testid="stColumns"] > div[data-testid="stColumn"] {
-    background-color: #efedf5 !important;
-    padding: 20px !important;
-    border-radius: 10px !important;
- }
-   /* Style every Streamlit vertical block with your lavender‐gray background */
-      div[data-testid="stVerticalBlock"]:nth-of-type(3) {
-        background-color: #efedf5 !important;
-        padding: 20px !important;
-        border-radius: 10px !important;
-      }
+ 
  /* Section titles */
   .section-title {
     color: #6a51a3;
@@ -269,23 +258,26 @@ div[data-testid="stColumns"] > div[data-testid="stColumn"] {
   }
   /* Checkbox accent color */
   input[type="checkbox"] { accent-color: #6a51a3; }
-
-  /* 1) Make slider & text-input labels purple & bold */
-  [data-testid="stTextInput"] label {
-    color: #6a51a3 !important;
-    font-weight: bold !important;
-  }
-
-  /* 2) Wrap both filter & main columns in a purple-background box */
-  div[data-testid="stColumns"] > div[data-testid="stColumn"] {
-    background-color: #efedf5 !important;
-    padding: 20px !important;
-    border-radius: 10px !important;
-  }
+  
     /* Adjust column spacing */
     div[data-testid="stColumns"] {
         gap: 20px !important;  /* Space between columns */
     }
+
+    /* Make sliders full width */
+ [data-testid="stSlider"] {
+    width: 100% !important;
+ }
+ 
+ /* Adjust slider track appearance */
+ [data-testid="stSlider"] .st-eb {
+    width: 100% !important;
+ }
+ 
+ /* Reduce space below sliders */
+ [data-testid="stVerticalBlock"] > div:has([data-testid="stSlider"]) {
+    margin-bottom: -10px !important;
+ }
 </style>
 """, unsafe_allow_html=True)
 
