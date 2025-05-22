@@ -21,20 +21,18 @@ st.markdown("""
     color: #29004c;
   }
 
-  /* 2) Container reset */
-  .related-table {
-    background: none;
-    padding: 0;
-    margin-top: 0px;
-    margin-bottom: 0px;
+  /* 2) Wrapper with border and rounded corners */
+  .table-wrapper {
+    border: 2px solid #29004c;
     border-radius: 10px;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 0;
   }
 
-  /* 3) Full 2px border + 10px rounding on the table itself */
+  /* 3) Inner table */
   .related-table table {
     width: 100%;
-    border-radius: 10px;
-    overflow: hidden; /* clips interior cells at rounded corners */
     border-collapse: collapse;     
   }
 
@@ -42,6 +40,7 @@ st.markdown("""
   .related-table th,
   .related-table td {
   padding: 10px;
+  border: 2px solid #29004c;
   }
 
   /* 5) Header row styling */
@@ -103,33 +102,35 @@ st.markdown(
 
 # --- Your table HTML unchanged except for class name ---
 st.markdown("""
-<div class="related-table">
-  <table>
-    <thead>
-      <tr>
-        <th>Website</th>
-        <th>Year Published</th>
-        <th>Database Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a href="http://neuropeptides.nl" target="_blank">neuropeptides.nl</a></td>
-        <td>20xx</td>
-        <td>The Neuropeptide Database is the internet resource to data about all known neuropeptides, their genes, precursors and expression in the brain.</td>
-      </tr>
-      <tr>
-        <td><a href="https://neuropep.org" target="_blank">NeuroPep</a></td>
-        <td>2015</td>
-        <td>NeuroPep holds 5949 non-redundant neuropeptide entries originating from 493 organisms belonging to 65 neuropeptide families.</td>
-      </tr>
-      <tr>
-        <td><a href="http://neuropepdia.org" target="_blank">Neuropepdia</a></td>
-        <td>20xx</td>
-        <td>ABCZYXNeuroPep holds 5949 non-redundant neuropeptide entries originating from 493 organisms belonging to 65 neuropeptide families.</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="table-wrapper">
+    <div class="related-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Website</th>
+            <th>Year Published</th>
+            <th>Database Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="http://neuropeptides.nl" target="_blank">neuropeptides.nl</a></td>
+            <td>20xx</td>
+            <td>The Neuropeptide Database is the internet resource to data about all known neuropeptides, their genes, precursors and expression in the brain.</td>
+          </tr>
+          <tr>
+            <td><a href="https://neuropep.org" target="_blank">NeuroPep</a></td>
+            <td>2015</td>
+            <td>NeuroPep holds 5949 non-redundant neuropeptide entries originating from 493 organisms belonging to 65 neuropeptide families.</td>
+          </tr>
+          <tr>
+            <td><a href="http://neuropepdia.org" target="_blank">Neuropepdia</a></td>
+            <td>20xx</td>
+            <td>ABCZYXNeuroPep holds 5949 non-redundant neuropeptide entries originating from 493 organisms belonging to 65 neuropeptide families.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
