@@ -37,7 +37,7 @@ st.markdown("""
 st.markdown("---")
 # ---- Section: Composition Chart ----
 st.markdown("""
-<h4 style="margin-top: 40px; margin-bottom: 10px;">1. Composition of Neuropeptides per Organism in cNPD</h4>
+<h4 style="margin-bottom: 10px;">1. Composition of Neuropeptides per Organism in cNPD</h4>
 """, unsafe_allow_html=True)
 image_path = os.path.join("Assets", "Statistics", "Composition.png")
 if os.path.exists(image_path):
