@@ -444,7 +444,7 @@ if len(df_filtered) > 0:
                     </div>
                     <div style='padding:5px;'>
                         Family: {row['Family']}<br>
-                        OS: {row['OS']}
+                        Organism: {row['OS']}
                     </div>
                 </div>
             """, unsafe_allow_html=True)
