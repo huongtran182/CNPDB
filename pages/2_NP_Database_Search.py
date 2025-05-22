@@ -265,7 +265,7 @@ div[data-testid="stColumns"] > div[data-testid="stColumn"] {
     color: #6a51a3;
     font-size: 16px;
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 0px;
   }
   /* Checkbox accent color */
   input[type="checkbox"] { accent-color: #6a51a3; }
