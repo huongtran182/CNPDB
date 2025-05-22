@@ -279,7 +279,8 @@ st.markdown("""
 
     /* Reduce space between checkboxes */
 div.stCheckbox {
-    margin-bottom: 2px;  /* adjust to your preference */
+    margin-top: 0px;  /* adjust to your preference */
+    margin-bottom: 0px;
     }
 </style>
 """, unsafe_allow_html=True)
