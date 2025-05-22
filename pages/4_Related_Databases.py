@@ -43,7 +43,6 @@ st.markdown("""
   .related-table th,
   .related-table td {
   padding: 10px;
-  border: 2px solid #29004c;
   }
 
   /* 5) Header row styling */
