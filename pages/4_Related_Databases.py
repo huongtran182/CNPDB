@@ -36,7 +36,7 @@ st.markdown("""
     width: 100%;
     border-collapse: collapse;     
     margin-bottom: 0 !important;
-    border: 2px solid #29004c;
+    border: none;
   }
 
   /* 4) Cell padding */
