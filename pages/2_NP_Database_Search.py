@@ -336,7 +336,7 @@ with col_main:
 
     st.markdown("""
     <div style="margin-bottom: 0px;" class="section-title">Peptide Sequence</div>
-    <div style="margin-top: -70px;margin-bottom: -15px;">
+    <div style="margin-top: -30px;margin-bottom: -15px;">
     """, unsafe_allow_html=True)
 
     peptide_input = st.text_input(
