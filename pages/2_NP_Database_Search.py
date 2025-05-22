@@ -309,11 +309,20 @@ for col in numeric_cols:
 col_filter, col_main = st.columns([1, 3])
 
 with col_filter:
-    mono_mass_range  = st.slider("Monoisotopic mass (m/z)", 300.0, 2000.0, (300.0, 2000.0))
-    length_range     = st.slider("Length (aa)", 3, 100, (3, 100))
-    gravy_range      = st.slider("GRAVY Score", -5.0, 5.0, (-5.0, 5.0))
-    hydro_range      = st.slider("% Hydrophobic Residue", 0, 100, (0, 100))
-    half_life_range  = st.slider("Predicted Half-life (min)", 0, 120, (0, 60))
+    st.markdown('<div class="section-title" style="margin-bottom: 4px;">Monoisotopic mass (m/z)</div>', unsafe_allow_html=True)
+    mono_mass_range = st.slider("", 300.0, 2000.0, (300.0, 2000.0))
+
+    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: 4px;">Length (aa)</div>', unsafe_allow_html=True)
+    length_range = st.slider("", 3, 100, (3, 100))
+
+    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: 4px;">GRAVY Score</div>', unsafe_allow_html=True)
+    gravy_range = st.slider("", -5.0, 5.0, (-5.0, 5.0))
+
+    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: 4px;">% Hydrophobic Residue</div>', unsafe_allow_html=True)
+    hydro_range = st.slider("", 0, 100, (0, 100))
+
+    st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: 4px;">Predicted Half-life (min)</div>', unsafe_allow_html=True)
+    half_life_range = st.slider("", 0, 120, (0, 60))
 
 with col_main:
     # Inject a small margin top for the input label itself
@@ -330,7 +339,7 @@ with col_main:
     st.markdown("</div>", unsafe_allow_html=True)
 
     # Family
-    st.markdown('<div class="section-title" style="margin-top: -15px;">Family</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: -10px;">Family</div>', unsafe_allow_html=True)
     family_opts     = sorted(df['Family'].dropna().unique())
     family_selected = [opt for opt in family_opts if st.checkbox(opt, key=f"fam_{opt}")]
 
