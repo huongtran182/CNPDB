@@ -262,7 +262,7 @@ st.markdown("""
   
     /* Adjusting space for sliders in col_filter */
   .stSlider { 
-      margin-top: -10px;
+      margin-top: 0px;
       margin-bottom: 15px;
    }
    
