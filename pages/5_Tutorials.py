@@ -1,6 +1,7 @@
 import streamlit as st
 from sidebar import render_sidebar
 import os
+import base64
 
 st.set_page_config(
     page_title="Tutorials",
@@ -11,26 +12,48 @@ st.set_page_config(
 render_sidebar()
 
 st.markdown("""
-<h3 style="margin-top: 10px; margin-bottom: 10px; text-align: center;">
+<h3 style="margin-top: 10px; margin-bottom: 10px;">
 1. How to navigate cNPD website
 </h3>
 """, unsafe_allow_html=True)
 video_path = os.path.join("Assets", "Statistics", "example.mp4")
 if os.path.exists(video_path):
-    st.video(video_path)
+    video_bytes = open(video_path, "rb").read()
+    video_base64 = base64.b64encode(video_bytes).decode()
+
+    st.markdown(f"""
+        <div style="width: 400px; height: 200px; margin: 0 auto; display: flex; justify-content: center; align-items: center;">
+            <video width="400" height="200" controls>
+                <source src="data:video/mp4;base64,{video_base64}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    """, unsafe_allow_html=True)
 else:
     st.error(f"Video not found at {video_path}")
 
+
 st.markdown("""
-<h3 style="margin-top: 10px; margin-bottom: 10px; text-align: center;">
+<h3 style="margin-top: 10px; margin-bottom: 10px;">
 2. How to use Database Search Engine to search for your desired peptides and download FASTA file
 </h3>
 """, unsafe_allow_html=True)
 video_path = os.path.join("Assets", "Statistics", "search_tutorial.mp4")
 if os.path.exists(video_path):
-    st.video(video_path)
+    video_bytes = open(video_path, "rb").read()
+    video_base64 = base64.b64encode(video_bytes).decode()
+
+    st.markdown(f"""
+        <div style="width: 400px; height: 200px; margin: 0 auto; display: flex; justify-content: center; align-items: center;">
+            <video width="400" height="200" controls>
+                <source src="data:video/mp4;base64,{video_base64}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    """, unsafe_allow_html=True)
 else:
     st.error(f"Video not found at {video_path}")
+
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
