@@ -109,6 +109,14 @@ def render_sidebar():
             margin: 0 auto;
         }
 
+        /* Ensure the text inside page links is white and centered */
+        section[data-testid="stSidebar"] a span {
+            color: white !important;
+            text-align: center !important;
+            width: 100% !important;
+            display: block !important;
+        }
+
     </style>
     """, unsafe_allow_html=True)
 
