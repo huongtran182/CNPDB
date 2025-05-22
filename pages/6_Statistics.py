@@ -14,19 +14,19 @@ render_sidebar()
 # ---- Horizontal Stats Bar ----
 st.markdown("""
 <div style="display: flex; width: 100%;">
-        <div style="flex: 1; background-color: #dadaeb; text-align: center; padding: 20px 0;">
+        <div style="flex: 1; background-color: #dadaeb; text-align: center; padding: 20px 0; flex-direction: column;">
             <h2 style="color:#4a3666; margin: 0; align-items: center; justify-content: center;">12,354</h2>
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Peptide Entries</p>
         </div>
-        <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0;">
+        <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0; flex-direction: column;">
             <h2 style="color:#4a3666; margin: 0; align-items: center; justify-content: center;">47</h2>
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Organisms</p>
         </div>
-        <div style="flex: 1; background-color: #dadaeb; text-align: center; padding: 20px 0;">
+        <div style="flex: 1; background-color: #dadaeb; text-align: center; padding: 20px 0; flex-direction: column;">
             <h2 style="color:#4a3666; margin: 0; align-items: center; justify-content: center;">39</h2>
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Neuropeptide Families</p>
         </div>
-        <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0;">
+        <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0; flex-direction: column;">
             <h2 style="color:#4a3666; margin: 0; align-items: center; justify-content: center;">3,218</h2>
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Page Views</p>
         </div>
