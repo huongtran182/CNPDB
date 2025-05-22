@@ -281,7 +281,11 @@ div[data-testid="stColumns"] > div[data-testid="stColumn"] {
     background-color: #efedf5 !important;
     padding: 20px !important;
     border-radius: 10px !important;
- }
+  }
+    /* Adjust column spacing */
+    div[data-testid="stColumns"] {
+        gap: 20px !important;  /* Space between columns */
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -306,23 +310,23 @@ for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
 # Layout: filters (1/4) and inputs (3/4)
-col_filter, col_main = st.columns([1, 3])
+col_filter, col_main = st.columns([1, 3], gap="large")
 
 with col_filter:
     st.markdown('<div class="section-title" style="margin-bottom: -15px;">Monoisotopic mass (m/z)</div>', unsafe_allow_html=True)
-    mono_mass_range = st.slider("", 300.0, 2000.0, (300.0, 2000.0))
+    mono_mass_range = st.slider("", 300.0, 2000.0, (300.0, 2000.0), label_visibility="collapsed")
 
     st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: -15px;">Length (aa)</div>', unsafe_allow_html=True)
-    length_range = st.slider("", 3, 100, (3, 100))
+    length_range = st.slider("", 3, 100, (3, 100), label_visibility="collapsed")
 
     st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: -15px;">GRAVY Score</div>', unsafe_allow_html=True)
-    gravy_range = st.slider("", -5.0, 5.0, (-5.0, 5.0))
+    gravy_range = st.slider("", -5.0, 5.0, (-5.0, 5.0), label_visibility="collapsed")
 
     st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: -15px;">% Hydrophobic Residue</div>', unsafe_allow_html=True)
-    hydro_range = st.slider("", 0, 100, (0, 100))
+    hydro_range = st.slider("", 0, 100, (0, 100), label_visibility="collapsed")
 
     st.markdown('<div class="section-title" style="margin-top: 10px; margin-bottom: -15px;">Predicted Half-life (min)</div>', unsafe_allow_html=True)
-    half_life_range = st.slider("", 0, 120, (0, 60))
+    half_life_range = st.slider("", 0, 120, (0, 60), label_visibility="collapsed")
 
 with col_main:
     # Inject a small margin top for the input label itself
