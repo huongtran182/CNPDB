@@ -35,7 +35,6 @@ st.markdown("""
     width: 100%;
     border-radius: 10px;
     overflow: hidden; /* clips interior cells at rounded corners */
-    border-collapse: collapse;
     border: 2px solid #29004c;
   }
 
