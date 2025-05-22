@@ -364,6 +364,11 @@ df_filtered = df_filtered[df_filtered['GRAVY'].between(*gravy_range)]
 df_filtered = df_filtered[df_filtered['% Hydrophobic Residue (%)'].between(*hydro_range)]
 df_filtered = df_filtered[df_filtered['Predicted Half Life (Min)'].between(*half_life_range)]
 
+# --- Separator Line ---
+st.markdown("""
+<hr style='border: 1px solid #ccc; margin: 30px 0;'>
+""", unsafe_allow_html=True)
+
 # Display results
 st.markdown(
     '<h2 class="custom-title">'
