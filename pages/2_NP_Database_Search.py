@@ -481,7 +481,7 @@ if len(df_filtered) > 0:
         margin-top: 20px;
     ">
         <div>
-            <button onclick="document.getElementById('view_details_btn').click()"
+            <button onclick="document.querySelector('button[data-testid=\"baseButton-primary\"]').click()"
                     style="
                         background-color: #6a51a3;
                         color: white;
@@ -495,7 +495,7 @@ if len(df_filtered) > 0:
             </button>
         </div>
         <div>
-            <button onclick="document.getElementById('download_btn').click()"
+            <button onclick="document.querySelector('button[data-testid=\"baseButton-secondary\"]').click()"
                     style="
                         background-color: #6a51a3;
                         color: white;
@@ -512,18 +512,18 @@ if len(df_filtered) > 0:
     """
     st.markdown(button_html, unsafe_allow_html=True)
     
-    # Hidden functional buttons
-    view_clicked = st.button("View details", key="view_details_btn", type="primary", label_visibility="collapsed")
-    st.download_button(
-        "Download FASTA", 
-        data=fasta_str, 
-        file_name="peptides.fasta", 
-        mime="text/plain",
-        key="download_btn",
-        type="primary",
-        label_visibility="collapsed"
-    )
-
+    # Create actual Streamlit buttons (they'll be hidden by the HTML buttons)
+    col1, col2 = st.columns(2)
+    with col1:
+        view_clicked = st.button("View details", key="view_details", type="primary")
+    with col2:
+        st.download_button(
+            "Download FASTA", 
+            data=fasta_str, 
+            file_name="peptides.fasta", 
+            mime="text/plain",
+            type="primary"
+        )
 # Close lavender container
 st.markdown("</div>", unsafe_allow_html=True)
 
