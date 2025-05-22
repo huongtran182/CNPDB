@@ -353,17 +353,17 @@ with col_main:
     family_selected = [opt for opt in family_opts if st.checkbox(opt, key=f"fam_{opt}")]
 
     # Tissue
-    st.markdown('<div class="section-title style="margin-top: -10px; margin-bottom: 8px">Tissue</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: -10px; margin-bottom: 8px">Tissue</div>', unsafe_allow_html=True)
     tissue_opts     = sorted(df['Tissue'].dropna().unique())
     tissue_selected = [opt for opt in tissue_opts if st.checkbox(opt, key=f"tiss_{opt}")]
 
     # Existence
-    st.markdown('<div class="section-title style="margin-top: -10px; margin-bottom: 8px">Existence</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: -10px; margin-bottom: 8px">Existence</div>', unsafe_allow_html=True)
     exist_opts      = sorted(df['Existence'].dropna().unique())
     existence_selected = [opt for opt in exist_opts if st.checkbox(opt, key=f"ex_{opt}")]
 
     # Organisms
-    st.markdown('<div class="section-title style="margin-top: -10px; margin-bottom: 8px">Organisms</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: -10px; margin-bottom: 8px">Organisms</div>', unsafe_allow_html=True)
     org_opts        = sorted(df['OS'].dropna().unique())
     organisms_selected = [opt for opt in org_opts if st.checkbox(opt, key=f"org_{opt}")]
 
