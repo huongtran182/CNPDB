@@ -17,7 +17,7 @@ st.markdown("""
  /* 1) Centered title with10px top margin */
   h2.custom-title {
     text-align: center !important;
-    margin-top: 10px !important;
+    margin-top: 0px !important;
     color: #29004c;
   }
 
@@ -25,7 +25,6 @@ st.markdown("""
   .related-table {
     background: none;
     padding: 0;
-    margin: auto;
     margin-top: 0px;
     margin-bottom: 0px;
     border: none;
