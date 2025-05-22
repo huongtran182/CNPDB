@@ -37,40 +37,55 @@ st.markdown("""
 st.markdown("## 1. Composition of Neuropeptides per Organism in cNPD")
 image_path = os.path.join("Assets", "Statistics", "Composition.png")
 if os.path.exists(image_path):
-    image = Image.open(image_path)
-    st.image(image, use_column_width=True)
+    st.markdown(f"""
+        <div style="width: 70%; margin: 0 auto; text-align: center;">
+            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: 100%; height: auto;" />
+        </div>
+    """, unsafe_allow_html=True)
 else:
     st.error(f"Image not found at {image_path}")
 
 st.markdown("## 2. Proteolytic Cleavage Patterns from all Peptides in cNPD")
 image_path = os.path.join("Assets", "Statistics", "Sequence Logo draft.png")
 if os.path.exists(image_path):
-    image = Image.open(image_path)
-    st.image(image, use_column_width=True)
+    st.markdown(f"""
+        <div style="width: 70%; margin: 0 auto; text-align: center;">
+            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: 100%; height: auto;" />
+        </div>
+    """, unsafe_allow_html=True)
 else:
     st.error(f"Image not found at {image_path}")
 
 st.markdown("## 3. Peptide Properties from all Peptides in cNPD")
 image_path = os.path.join("Assets", "Statistics", "Peptide Properties draft.png")
 if os.path.exists(image_path):
-    image = Image.open(image_path)
-    st.image(image, use_column_width=True)
+    st.markdown(f"""
+        <div style="width: 70%; margin: 0 auto; text-align: center;">
+            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: 100%; height: auto;" />
+        </div>
+    """, unsafe_allow_html=True)
 else:
     st.error(f"Image not found at {image_path}")
 
 st.markdown("## 4. Distribution of Sequence Lengths from all Peptides in cNPD")
 image_path = os.path.join("Assets", "Statistics", "Sequence Length Distribution.png")
 if os.path.exists(image_path):
-    image = Image.open(image_path)
-    st.image(image, use_column_width=True)
+    st.markdown(f"""
+        <div style="width: 70%; margin: 0 auto; text-align: center;">
+            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: 100%; height: auto;" />
+        </div>
+    """, unsafe_allow_html=True)
 else:
     st.error(f"Image not found at {image_path}")
 
 st.markdown("## 5. Amino Acids Composition from all Peptides in cNPD")
 image_path = os.path.join("Assets", "Statistics", "Amino Acids Composition.png")
 if os.path.exists(image_path):
-    image = Image.open(image_path)
-    st.image(image, use_column_width=True)
+    st.markdown(f"""
+        <div style="width: 70%; margin: 0 auto; text-align: center;">
+            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: 100%; height: auto;" />
+        </div>
+    """, unsafe_allow_html=True)
 else:
     st.error(f"Image not found at {image_path}")
 
