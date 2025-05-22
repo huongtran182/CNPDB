@@ -341,7 +341,7 @@ with col_main:
 
     peptide_input = st.text_input(
         label=" ",
-        placeholder="Separate by space, e.g. FDAFTTGFGHN NFDEIDRSGFGFN"
+        placeholder="Separate by space, No PTMs included. e.g. FDAFTTGFGHN NFDEIDRSGFGFN"
     )
 
     st.markdown("</div>", unsafe_allow_html=True)
@@ -366,6 +366,11 @@ with col_main:
     org_opts        = sorted(df['OS'].dropna().unique())
     organisms_selected = [opt for opt in org_opts if st.checkbox(opt, key=f"org_{opt}")]
 
+    # PTMs
+    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Post-translational modifications (PTMs)</div>', unsafe_allow_html=True)
+    ptm_opts        = sorted(df['PTMs'].dropna().unique())
+    ptm_selected = [opt for opt in ptm_opts if st.checkbox(opt, key=f"ptm_{opt}")]
+
     st.markdown('</div>', unsafe_allow_html=True)
 
 # Close outer flex div
@@ -386,6 +391,8 @@ if existence_selected:
     df_filtered = df_filtered[df_filtered['Existence'].isin(existence_selected)]
 if organisms_selected:
     df_filtered = df_filtered[df_filtered['OS'].isin(organisms_selected)]
+if ptm_selected:
+    df_filtered = df_filtered[df_filtered['PTMs'].isin(ptm_selected)]
 
 # Numeric filtering
 df_filtered = df_filtered[df_filtered['Monoisotopic Mass'].between(*mono_mass_range)]
