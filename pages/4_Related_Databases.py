@@ -44,7 +44,7 @@ st.markdown("""
   /* 4) Cell padding */
   .related-table th,
   .related-table td {
-    padding: 10px;
+  padding: 10px;
   }
 
   /* 5) Header row styling */
@@ -68,7 +68,7 @@ st.markdown("""
   /* 8) Horizontal separators between rows */
   .related-table tr + tr td {
     border: 2px solid #29004c;
-    padding: 0;
+    padding: 10px;
   }
 
   /* 9) Link styling */
