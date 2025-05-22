@@ -63,7 +63,7 @@ st.markdown("""
   }
 
   /* 8) Horizontal separators between rows */
-  .related-table tr + tr td {
+  .related-table tr + tr {
     border: 2px solid #29004c;
     padding: 10px;
   }
