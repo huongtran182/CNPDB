@@ -34,8 +34,6 @@ st.markdown("""
   /* 3) Full 2px border + 10px rounding on the table itself */
   .related-table table {
     width: 100%;
-    border: 2px solid #29004c;
-    padding: 0;
     border-radius: 10px;
     overflow: hidden; /* clips interior cells at rounded corners */
     border-collapse: collapse;
