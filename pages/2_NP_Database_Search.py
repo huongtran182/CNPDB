@@ -362,7 +362,7 @@ with col_main:
     org_opts        = sorted(df['OS'].dropna().unique())
     organisms_selected = [opt for opt in org_opts if st.checkbox(opt, key=f"org_{opt}")]
 
-     st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Close outer flex div
 st.markdown('</div>', unsafe_allow_html=True)
