@@ -317,7 +317,7 @@ with col_filter:
 
 with col_main:
     st.markdown("""
-    <div class="section-title" style="margin-bottom: 4px;">Peptide Sequence</div>
+    <div class="section-title" style="margin-bottom: 0px;">Peptide Sequence</div>
     """, unsafe_allow_html=True)
     
     # Inject a small margin top for the input label itself
