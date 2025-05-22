@@ -15,19 +15,19 @@ render_sidebar()
 st.markdown("""
 <div style="display: flex; width: 100%;">
         <div style="flex: 1; background-color: #dadaeb; text-align: center; padding: 20px 0; flex-direction: column; align-items: center; justify-content: center;">
-            <h2 style="color:#4a3666; margin: 0;">12,354</h2>
+            <h2 style="color:#4a3666; margin-left: 5px;">12,354</h2>
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Peptide Entries</p>
         </div>
         <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0; flex-direction: column; align-items: center; justify-content: center;">
-            <h2 style="color:#4a3666; margin: 0;">47</h2>
+            <h2 style="color:#4a3666; margin-left: 5px;">47</h2>
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Organisms</p>
         </div>
         <div style="flex: 1; background-color: #dadaeb; text-align: center; padding: 20px 0; flex-direction: column; align-items: center; justify-content: center;">
-            <h2 style="color:#4a3666; margin: 0;">39</h2>
+            <h2 style="color:#4a3666; margin-left: 5px;">39</h2>
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Neuropeptide Families</p>
         </div>
         <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0; flex-direction: column; align-items: center; justify-content: center;">
-            <h2 style="color:#4a3666; margin: 0;">3,218</h2>
+            <h2 style="color:#4a3666; margin-left: 5px;">3,218</h2>
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Page Views</p>
         </div>
     </div>
