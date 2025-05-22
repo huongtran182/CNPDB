@@ -463,7 +463,7 @@ if len(df_filtered) > 0:
         st.download_button(
             "Download FASTA File",
             data=fasta_str,
-            file_name="peptides.fasta",
+            file_name="cNPD_SearchResult.fasta",
             mime="text/plain",
             type="primary"
         )
