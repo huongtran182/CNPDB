@@ -69,7 +69,6 @@ st.markdown("""
   /* 8) Horizontal separators between rows */
   .related-table tr + tr td {
     border: 2px solid #29004c;
-    border-spacing: 0;
   }
 
   /* 9) Link styling */
