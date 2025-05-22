@@ -35,9 +35,39 @@ st.markdown("""
 
 # ---- Section: Composition Chart ----
 st.markdown("## 1. Composition of Neuropeptides per Organism in cNPD")
-
-# Load and display the image
 image_path = os.path.join("Assets", "Statistics", "Composition.png")
+if os.path.exists(image_path):
+    image = Image.open(image_path)
+    st.image(image, use_column_width=True)
+else:
+    st.error(f"Image not found at {image_path}")
+
+st.markdown("## 2. Proteolytic Cleavage Patterns from all Peptides in cNPD")
+image_path = os.path.join("Assets", "Statistics", "Sequence Logo draft.png")
+if os.path.exists(image_path):
+    image = Image.open(image_path)
+    st.image(image, use_column_width=True)
+else:
+    st.error(f"Image not found at {image_path}")
+
+st.markdown("## 3. Peptide Properties from all Peptides in cNPD")
+image_path = os.path.join("Assets", "Statistics", "Peptide Properties draft.png")
+if os.path.exists(image_path):
+    image = Image.open(image_path)
+    st.image(image, use_column_width=True)
+else:
+    st.error(f"Image not found at {image_path}")
+
+st.markdown("## 4. Distribution of Sequence Lengths from all Peptides in cNPD")
+image_path = os.path.join("Assets", "Statistics", "Sequence Length Distribution.png")
+if os.path.exists(image_path):
+    image = Image.open(image_path)
+    st.image(image, use_column_width=True)
+else:
+    st.error(f"Image not found at {image_path}")
+
+st.markdown("## 5. Amino Acids Composition from all Peptides in cNPD")
+image_path = os.path.join("Assets", "Statistics", "Amino Acids Composition.png")
 if os.path.exists(image_path):
     image = Image.open(image_path)
     st.image(image, use_column_width=True)
