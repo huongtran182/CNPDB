@@ -3,9 +3,12 @@ from PIL import Image, ImageDraw
 import os
 import base64
 from io import BytesIO
+from sidebar import render_sidebar
 
 # Set page config
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
+
+render_sidebar()
 
 # Custom CSS for logo and nav
 st.markdown("""
