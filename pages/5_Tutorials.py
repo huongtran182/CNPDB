@@ -22,8 +22,8 @@ if os.path.exists(video_path):
     video_base64 = base64.b64encode(video_bytes).decode()
 
     st.markdown(f"""
-        <div style="width: 400px; height: 200px; margin: 0 auto; display: flex; justify-content: center; align-items: center;">
-            <video width="400" height="200" controls>
+        <div style="width: 700px; height: 400px; margin: 0 auto; display: flex; justify-content: center; align-items: center;">
+            <video width="700" height="400" controls>
                 <source src="data:video/mp4;base64,{video_base64}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -44,8 +44,8 @@ if os.path.exists(video_path):
     video_base64 = base64.b64encode(video_bytes).decode()
 
     st.markdown(f"""
-        <div style="width: 400px; height: 200px; margin: 0 auto; display: flex; justify-content: center; align-items: center;">
-            <video width="400" height="200" controls>
+        <div style="width: 700px; height: 400px; margin: 0 auto; display: flex; justify-content: center; align-items: center;">
+            <video width="700" height="400" controls>
                 <source src="data:video/mp4;base64,{video_base64}" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
