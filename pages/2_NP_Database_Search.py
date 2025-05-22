@@ -316,10 +316,6 @@ with col_filter:
     half_life_range  = st.slider("Predicted Half-life (min)", 0, 120, (0, 60))
 
 with col_main:
-    st.markdown("""
-    <div class="section-title" style="margin-bottom: 0px;">Peptide Sequence</div>
-    """, unsafe_allow_html=True)
-    
     # Inject a small margin top for the input label itself
     st.markdown("""
     <div style="margin-bottom: 0px;" class="section-title">Peptide Sequence</div>
