@@ -75,6 +75,16 @@ def img_b64(path):
 # --- your paper data ---
 papers = [
     {
+        "img": "Assets/Publication_TOC/DecodingNeuropeptideComplexity.jpeg",
+        "title": "Decoding Neuropeptide Complexity: Advancing Neurobiological Insights from Invertebrates to Vertebrates through Evolutionary Perspectives",
+        "summary": (
+            "The complexity of vertebrate neural networks poses significant challenges for functional studies of neuropeptides. Invertebrate models "
+            "offer simplified neural circuits, well-characterized systems, and experimental tools for elucidating their functional roles, "
+            "uncovering fundamental biological principles and their relevance to vertebrate systems."
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/acschemneuro.5c00053"
+    },
+    {
         "img": "Assets/Publication_TOC/Gaoyuan AmericanLobster TOC.jpeg",
         "title": "Neuropeptidomics of the American Lobster",
         "summary": (
@@ -84,14 +94,32 @@ papers = [
         ),
         "link": "https://pubs.acs.org/doi/10.1021/jasms.4c00192"
     },
-    {
-        "img": "Assets/Publication_TOC/Endogenius TOC.png",
-        "title": "EndoGenius: Optimized Neuropeptide Identification from Mass Spectrometry Datasets",
+     {
+        "img": "Assets/Publication_TOC/UpdatedGuideNeuropeptideProcess.jpeg",
+        "title": "An Updated Guide to the Identification, Quantitation, and Imaging of the Crustacean Neuropeptidome",
         "summary": (
             "EndoGenius leverages optimized peptide–spectrum matching, an expansive motif database, "
             "and a novel scoring algorithm to broaden neuropeptidome coverage and minimize re-identification."
         ),
+        "link": "https://link.springer.com/protocol/10.1007/978-1-0716-3646-6_14"
+    },
+    {
+        "img": "Assets/Publication_TOC/Endogenius TOC.png",
+        "title": "EndoGenius: Optimized Neuropeptide Identification from Mass Spectrometry Datasets",
+        "summary": (
+            "A general workflow and detailed multi-faceted approaches for MS-based neuropeptidomic analysis of crustacean tissue samples and circulating fluids."
+        ),
         "link": "https://pubs.acs.org/doi/full/10.1021/acs.jproteome.3c00758"
+    },
+    {
+        "img": "Assets/Publication_TOC/AcuteCocaine.jpeg",
+        "title": "Cocaine-Induced Remodeling of the Rat Brain Peptidome: Quantitative Mass Spectrometry Reveals Anatomically Specific Patterns of Cocaine-Regulated Peptide Changes",
+        "summary": (
+            "Mass spectrometry (MS) methods were employed to characterize acute cocaine-induced peptidomic changes in the rat brain.  "
+            "These findings offer new insights into the region-specific effects of cocaine and could pave the way for developing new therapies "
+            "to treat substance use disorders and related psychiatric conditions."
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/acschemneuro.4c00327"
     }
 ]
 
