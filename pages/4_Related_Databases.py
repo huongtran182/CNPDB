@@ -243,7 +243,7 @@ for row_index in range(num_rows):
                   </div>
 
                   <div style="
-                    height: 80px;
+                    height: 50px;
                     overflow: hidden;
                     margin-bottom: 0px;
                     display: flex;
@@ -252,9 +252,9 @@ for row_index in range(num_rows):
                   ">
                     <h3 style="
                         color: #29004c;
-                        margin: 10px 0 0 0;
+                        margin: 0 0 0 0;
                         text-align: center;
-                        font-size: 1em;
+                        font-size: 1.15em;
                         line-height: 1.2;
                     ">{p["title"]}</h3>
                   </div>
