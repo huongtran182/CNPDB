@@ -212,7 +212,7 @@ papers = [
         "img": "Assets/Publication_TOC/Feeding2crab.jpeg",
         "title": "A Multifaceted Mass Spectrometric Method to Probe Feeding Related Neuropeptide Changes in Callinectes sapidus and Carcinus maenas",
         "summary": (
-            "we report a comparative neuropeptidomic analysis of the brain and pericardial organ in response to feeding in two well-studied "
+            "We reported a comparative neuropeptidomic analysis of the brain and pericardial organ in response to feeding in two well-studied "
             "crustacean physiology model organisms, Callinectes sapidus and Carcinus maenas, using mass spectrometry techniques."
         ),
         "link": "https://pubs.acs.org/doi/full/10.1007/s13361-017-1888-4"
