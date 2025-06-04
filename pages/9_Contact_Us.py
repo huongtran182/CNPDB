@@ -221,13 +221,13 @@ papers = [
         "img": "Assets/Publication_TOC/LobsterDevelopmental.jpeg",
         "title": "Relative Quantitation of Neuropeptides at Multiple Developmental Stages of the American Lobster Using N,N-Dimethyl Leucine Isobaric Tandem Mass Tags",
         "summary": (
-            "With reduced cost and higher labeling efficiency, we employed a set of custom-developed N,N-dimethyl leucine (DiLeu) 4-plex isobaric tandem mass tags as "
+            "With reduced cost and higher labeling efficiency, we employed custom-developed N,N-dimethyl leucine (DiLeu) 4-plex isobaric tandem mass tags as "
             "an attractive alternative for the relative quantitation of neuropeptides in brain tissue of American lobster Homarus americanus at multiple developmental stages."
         ),
         "link": "https://pubs.acs.org/doi/full/10.1021/acschemneuro.7b00521"
     },
     {
-        "img": "Assets/Publication_TOC/FeedingRat.jpeg",
+        "img": "Assets/Publication_TOC/FeedingRat.jpg",
         "title": "Quantitative MS Reveals Food Intake-Induced Neuropeptide Level Changes in Rat Brain: Functional Assessment of Selected Neuropeptides as Feeding Regulators",
         "summary": (
             "To directly monitor neuropeptidomic changes in response to food intake in the rat nucleus accumbens (NAc), and other key brain regions, we employed a combination "
