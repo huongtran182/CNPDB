@@ -159,7 +159,7 @@ for row_index in range(num_rows):
                   <div style="
                     height: 80px;
                     overflow: hidden;
-                    margin-bottom: 20px;
+                    margin-bottom: 10px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -168,7 +168,7 @@ for row_index in range(num_rows):
                         color: #29004c;
                         margin: 0;
                         text-align: center;
-                        font-size: 1.15em;
+                        font-size: 1em;
                         line-height: 1.2;
                     ">{p["title"]}</h3>
                   </div>
