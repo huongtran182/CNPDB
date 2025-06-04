@@ -78,8 +78,8 @@ papers = [
         "img": "Assets/Publication_TOC/DecodingNeuropeptideComplexity.jpeg",
         "title": "Decoding Neuropeptide Complexity: Advancing Neurobiological Insights from Invertebrates to Vertebrates through Evolutionary Perspectives",
         "summary": (
-            "The complexity of vertebrate neural networks poses significant challenges for neuropeptide functional studies. Invertebrate models "
-            "offer simplified, well-characterized neural circuits for elucidating their functional roles, "
+            "The complex vertebrate neural networks poses significant challenges for neuropeptide functional studies. Invertebrate models "
+            "offer simplified, well-characterized neural circuits for "
             "uncovering fundamental biological principles and their relevance to vertebrate systems."
         ),
         "link": "https://pubs.acs.org/doi/full/10.1021/acschemneuro.5c00053"
@@ -115,9 +115,8 @@ papers = [
         "img": "Assets/Publication_TOC/AcuteCocaine.jpeg",
         "title": "Cocaine-Induced Remodeling of the Rat Brain Peptidome: Quantitative Mass Spectrometry Reveals Anatomically Specific Patterns of Cocaine-Regulated Peptide Changes",
         "summary": (
-            "Mass spectrometry (MS) methods were employed to characterize acute cocaine-induced peptidomic changes in the rat brain.  "
-            "These findings offer new insights into the region-specific effects of cocaine and could pave the way for developing new therapies "
-            "to treat substance use disorders and related psychiatric conditions."
+            "Mass spectrometry (MS) methods were employed to characterize acute cocaine-induced peptidomic changes in the rat brain, "
+            "paving the way for developing new therapies to treat substance use disorders and related psychiatric conditions."
         ),
         "link": "https://pubs.acs.org/doi/full/10.1021/acschemneuro.4c00327"
     }
