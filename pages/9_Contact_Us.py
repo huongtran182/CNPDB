@@ -172,6 +172,24 @@ papers = [
         ),
         "link": "https://pubs.acs.org/doi/full/10.1021/acschemneuro.1c00007"
     },
+    {
+        "img": "Assets/Publication_TOC/Hypoxia.jpeg",
+        "title": "Mass Spectrometric Profiling of Neuropeptides in Callinectes sapidus during Hypoxia Stress",
+        "summary": (
+            "Beyond being a neurological model organism, crustaceans are regularly exposed to hypoxia (low O2 levels). "
+             "This study revealed that neuropeptides play a critical role in how crustaceans adapt due to hypoxic stress."
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/acschemneuro.0c00439"
+    },
+    {
+        "img": "Assets/Publication_TOC/oxoniumiontriggeredEThCD.jpeg",
+        "title": "Signature-Ion-Triggered Mass Spectrometry Approach Enabled Discovery of N- and O-Linked Glycosylated Neuropeptides in the Crustacean Nervous System",
+        "summary": (
+            "The hybrid oxonium ion-triggered EThcD approach, coupling a shotgun method for neuropeptide discovery and targeted strategy for glycosylation characterization, "
+            "enables the first report on glycosylated neuropeptides in crustaceans and the discovery of additional neuropeptides simultaneously."
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/acs.jproteome.9b00525"
+    },
 ]
 
 st.markdown("### PI’s MAIN PUBLICATIONS ON NEUROPEPTIDES")
