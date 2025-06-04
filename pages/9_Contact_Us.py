@@ -230,7 +230,7 @@ papers = [
         "img": "Assets/Publication_TOC/FeedingRat.jpg",
         "title": "Quantitative MS Reveals Food Intake-Induced Neuropeptide Level Changes in Rat Brain: Functional Assessment of Neuropeptides as Feeding Regulators",
         "summary": (
-            "To monitor neuropeptidomic changes in response to food intake in the rat nucleus accumbens (NAc), we employed a combination "
+            "To monitor neuropeptidomic changes in response to food intake in the rat nucleus accumbens, we employed a combination "
             "of cryostat dissection, heat stabilization, neuropeptide extraction and label-free quantitative neuropeptidomics via LC-MS platform."
         ),
         "link": "https://www.sciencedirect.com/science/article/pii/S1535947620323276"
