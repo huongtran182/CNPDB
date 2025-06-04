@@ -203,6 +203,8 @@ for row_index in range(num_rows):
                   </div>
                 </div>
                 """, unsafe_allow_html=True)
+                
+    st.markdown('<div style="height: 10px;"></div>', unsafe_allow_html=True)
 
 # ─── Footer ───────────────────────────────────────────────────────────────
 st.markdown("""
