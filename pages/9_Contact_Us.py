@@ -98,8 +98,7 @@ papers = [
         "img": "Assets/Publication_TOC/UpdatedGuideNeuropeptideProcess.jpeg",
         "title": "An Updated Guide to the Identification, Quantitation, and Imaging of the Crustacean Neuropeptidome",
         "summary": (
-            "EndoGenius leverages optimized peptide–spectrum matching, an expansive motif database, "
-            "and a novel scoring algorithm to broaden neuropeptidome coverage and minimize re-identification."
+            "A general workflow and detailed multi-faceted approaches for MS-based neuropeptidomic analysis of crustacean tissue samples and circulating fluids."
         ),
         "link": "https://link.springer.com/protocol/10.1007/978-1-0716-3646-6_14"
     },
@@ -107,7 +106,8 @@ papers = [
         "img": "Assets/Publication_TOC/Endogenius TOC.png",
         "title": "EndoGenius: Optimized Neuropeptide Identification from Mass Spectrometry Datasets",
         "summary": (
-            "A general workflow and detailed multi-faceted approaches for MS-based neuropeptidomic analysis of crustacean tissue samples and circulating fluids."
+            "EndoGenius leverages optimized peptide–spectrum matching, an expansive motif database, "
+            "and a novel scoring algorithm to broaden neuropeptidome coverage and minimize re-identification."
         ),
         "link": "https://pubs.acs.org/doi/full/10.1021/acs.jproteome.3c00758"
     },
