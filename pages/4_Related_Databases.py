@@ -171,7 +171,7 @@ papers = [
         "img": os.path.join("Assets", "Publication_TOC", "Endogenius TOC.png"),
         "title": "Endogenius",
         "summary": (
-            "EndoGenius, a database searching strategy designed specifically for elucidating "
+            "EndoGenius is designed specifically for "
             "neuropeptide identifications from mass spectra by leveraging optimized peptide–spectrum "
             "matching approaches, an expansive motif database, and a novel scoring algorithm to "
             "achieve broader representation of the neuropeptidome and minimize reidentification."
