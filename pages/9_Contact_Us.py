@@ -235,6 +235,33 @@ papers = [
         ),
         "link": "https://www.sciencedirect.com/science/article/pii/S1535947620323276"
     },
+    {
+        "img": "Assets/Publication_TOC/Temperature.jpeg",
+        "title": "Quantitative Neuropeptidomics Study of the Effects of Temperature Change in the Crab Cancer borealis",
+        "summary": (
+            "We employed a MS-based approach to investigate the neuropeptide changes associated with "
+            "acute temperature elevation in three neural tissues from the Jonah crab Cancer borealis. "
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/pr500742q"
+    },
+    {
+        "img": "Assets/Publication_TOC/DIAMicrodialysis.jpeg",
+        "title": "Data-Independent MS/MS Quantification of Neuropeptides for Determination of Putative Feeding-Related Neurohormones in Microdialysate",
+        "summary": (
+            "An untargeted DIA MSE quantification method using Skyline software for multiplexed, discovery-driven "
+            "relative quantification of the crab Cancer borealis neuropeptidome was possible in microdialysates from 8 replicate feeding experiments"
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/cn500253u"
+    },
+    {
+        "img": "Assets/Publication_TOC/AffinityMicrodialysis.jpeg",
+        "title": "Mass Spectrometric Detection of Neuropeptides Using Affinity-Enhanced Microdialysis with Antibody-Coated Magnetic Nanoparticles",
+        "summary": (
+            "A variety of affinity agents have been investigated for Affinity-enhanced microdialysis (AE-MD) of neuropeptides in vitro and in vivo,  "
+            "including particles with C18 surface functionality and antibody-coated particles."
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/ac302403e?casa_token=ftr79hnHFdUAAAAA%3AO0hUliSWMkexOmTorrV7pj9HAPIIvABMww14dKH5loTsXJSSyvaRyUzMiqZMzrKkRyd1QCkM6pm0C7k"
+    },
 ]
 
 st.markdown("### PI’s MAIN PUBLICATIONS ON NEUROPEPTIDES")
