@@ -68,6 +68,17 @@ species = [
     ("H. americanus", "Homarus americanus – the American lobster, a model organism for neuropeptide studies."),
 ]
 
+tissues = [
+    ("br",     "Brain - Modulates and initiates signalling commands and responses"),
+    ("SG",     "Sinus Gland - Located in the crustacean eyestalks, the SG stores and releases neurohormones that regulate molting, reproduction, and metabolism"),
+    ("OG",     "Oesophageal Ganglion - Integrates neural signals between the brain and lower ganglia"),
+    ("CoG",    "Commissural Ganglion - Coordinates signals between the brain and the stomatogastric ganglion for gut motility"),
+    ("STG",    "Stomatogastric Ganglion - Located in the foregut region, the SG controls rhythmic muscle contractions for stomach and gut function"),
+    ("PO",     "Pericardial Organ - Located at two sides of the heart, secreted neuropeptides into the hemolymph to reach distant organs, affecting cardiac and downstream physiological processes"),
+    ("CG",     "Cardiac Ganglion - Embedded inside the heart muscle, the CG regulates cardiac muscle contractions and heartbeat"),
+    ("TG",     "Thoracic Ganglion - Situated in the thorax, the TG manages motor control of walking legs and other appendages."),
+]
+
 families = [
     ("Allatostatin", "A family of neuropeptides that regulate juvenile hormone biosynthesis."),
     ("FMRFamide",      "A neuropeptide involved in muscle contraction and neurotransmission."),
