@@ -259,7 +259,7 @@ for row_index in range(num_rows):
                     background-color: #9e9ac8;
                     border-radius: 10px;
                     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-                    padding: 20px;
+                    padding: 15px;
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
@@ -273,7 +273,7 @@ for row_index in range(num_rows):
                   </div>
 
                   <div style="
-                    height: 80px;
+                    height: 85px;
                     overflow: hidden;
                     margin-bottom: 0px;
                     display: flex;
@@ -312,7 +312,7 @@ for row_index in range(num_rows):
                         background-color: #29004c;
                         color: white;
                         text-decoration: none;
-                        padding: 8px 8px;
+                        padding: 8px 16px;
                         border-radius: 5px;
                         font-size: 0.9em;
                     ">Read More</a>
