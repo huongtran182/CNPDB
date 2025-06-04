@@ -227,7 +227,7 @@ papers = [
         "link": "https://pubs.acs.org/doi/full/10.1021/acschemneuro.7b00521"
     },
     {
-        "img": "Assets/Publication_TOC/.jpeg",
+        "img": "Assets/Publication_TOC/FeedingRat.jpeg",
         "title": "Quantitative MS Reveals Food Intake-Induced Neuropeptide Level Changes in Rat Brain: Functional Assessment of Selected Neuropeptides as Feeding Regulators",
         "summary": (
             "To directly monitor neuropeptidomic changes in response to food intake in the rat nucleus accumbens (NAc), and other key brain regions, we employed a combination "
