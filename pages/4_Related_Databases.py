@@ -264,7 +264,7 @@ for row_index in range(num_rows):
                       color: #555;
                       font-size: 0.9em;
                       line-height: 1.4;
-                      margin: 5px 0 0 0;
+                      margin: 0 0 0 0;
                       overflow: auto;
                       text-align: left;
                   ">
