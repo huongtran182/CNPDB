@@ -183,7 +183,7 @@ papers = [
     },
     {
         "img": "Assets/Publication_TOC/oxoniumiontriggeredEThCD.jpeg",
-        "title": "Signature-Ion-Triggered Mass Spectrometry Approach Enabled Discovery of N- and O-Linked Glycosylated Neuropeptides in the Crustacean Nervous System",
+        "title": "Signature-Ion-Triggered MS Approach Enabled Discovery of N- and O-Linked Glycosylated Neuropeptides in the Crustacean Nervous System",
         "summary": (
             "The hybrid oxonium ion-triggered EThcD approach, coupling a shotgun method for neuropeptide discovery and targeted strategy for glycosylation characterization, "
             "enables the first report on glycosylated neuropeptides in crustaceans and the discovery of additional neuropeptides simultaneously."
