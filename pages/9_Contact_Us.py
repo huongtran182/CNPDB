@@ -147,7 +147,7 @@ for row_index in range(num_rows):
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-                    min-height: 505px;
+                    min-height: 500px;
                 ">
                   <div class="resource-item">
                     <div class="toc-container">
@@ -166,7 +166,7 @@ for row_index in range(num_rows):
                   ">
                     <h3 style="
                         color: #29004c;
-                        margin: 0;
+                        margin: 5px 0 0 0;
                         text-align: center;
                         font-size: 1em;
                         line-height: 1.2;
