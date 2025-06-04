@@ -186,7 +186,25 @@ papers = [
             "with EndoGenius – a program optimized for database searching of endogenous peptides – and is "
             "powered by a motif database to capitalize on biological context for confident identifications."
         ),
-        "link": "https://yourdatabase.com/publications/motifquest",
+        "link": "https://pubs.acs.org/doi/10.1021/jasms.4c00192",
+    },
+    {
+        "img": os.path.join("Assets", "Publication_TOC", "HyPep.jpeg"),
+        "title": "HyPep",
+        "summary": (
+            "HyPep utilizes sequence homology searching for peptide identification."
+            "HyPep aligns de novo sequenced peptides, generated through PEAKS software, with neuropeptide database sequences and identifies neuropeptides based on the alignment score."
+        ),
+        "link": "https://pubs.acs.org/doi/abs/10.1021/acs.jproteome.2c00597",
+    },
+    {
+        "img": os.path.join("Assets", "Publication_TOC", "PRESnovo.jpeg"),
+        "title": "PRESnovo",
+        "summary": (
+            "PRESnovo (prescreening precursors prior to de novo sequencing) is designed to predict the neuropeptide motif from a MS/MS spectrum"
+            " to improve accuracy and sensitivity of neuropeptide identification"
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/jasms.0c00013",
     },
 ]
 
