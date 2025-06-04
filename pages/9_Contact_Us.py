@@ -78,8 +78,8 @@ papers = [
         "img": "Assets/Publication_TOC/DecodingNeuropeptideComplexity.jpeg",
         "title": "Decoding Neuropeptide Complexity: Advancing Neurobiological Insights from Invertebrates to Vertebrates through Evolutionary Perspectives",
         "summary": (
-            "The complexity of vertebrate neural networks poses significant challenges for functional studies of neuropeptides. Invertebrate models "
-            "offer simplified neural circuits, well-characterized systems, and experimental tools for elucidating their functional roles, "
+            "The complexity of vertebrate neural networks poses significant challenges for neuropeptide functional studies. Invertebrate models "
+            "offer simplified, well-characterized neural circuits for elucidating their functional roles, "
             "uncovering fundamental biological principles and their relevance to vertebrate systems."
         ),
         "link": "https://pubs.acs.org/doi/full/10.1021/acschemneuro.5c00053"
