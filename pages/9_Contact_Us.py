@@ -159,19 +159,18 @@ papers = [
         "img": "Assets/Publication_TOC/CopperToxicity.jpeg",
         "title": "Mass Spectrometric Profiling of Neuropeptides in Response to Copper Toxicity via Isobaric Tagging",
         "summary": (
-            "mass spectrometry (MS)-based qualitative and quantitative analytical strategies to determine peptidomic alterations in rats exposed to "
-            "predator odor (an ethologically relevant analogue of trauma-like stress)"
+            "This study incorporates custom N,N-dimethyl leucine isobaric tags to characterize the neuropeptidomic changes after "
+            "different time points (1, 2, and 4 h) of copper exposure in a model organism, blue crab, Callinectes sapidus."
         ),
-        "link": "https://pubs.acs.org/doi/full/10.1021/jasms.3c00027"
+        "link": "https://pubs.acs.org/doi/full/10.1021/acs.chemrestox.0c00521"
     },
     {
-        "img": "Assets/Publication_TOC/PTSD.jpeg",
-        "title": "Global Neuropeptidome Profiling in Response to Predator Stress in Rat: Implications for Post-Traumatic Stress Disorder",
+        "img": "Assets/Publication_TOC/FeedingHemolymph.jpeg",
+        "title": "Mass Spectrometry Quantification, Localization, and Discovery of Feeding-Related Neuropeptides in Cancer borealis",
         "summary": (
-            "mass spectrometry (MS)-based qualitative and quantitative analytical strategies to determine peptidomic alterations in rats exposed to "
-            "predator odor (an ethologically relevant analogue of trauma-like stress)"
+            "A multifaceted mass spectrometry (MS) method to identify neuropeptides that differentiate the unfed and fed states."
         ),
-        "link": "https://pubs.acs.org/doi/full/10.1021/jasms.3c00027"
+        "link": "https://pubs.acs.org/doi/full/10.1021/acschemneuro.1c00007"
     },
 ]
 
