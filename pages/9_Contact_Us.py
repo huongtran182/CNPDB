@@ -147,7 +147,7 @@ for row_index in range(num_rows):
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
-                    min-height: 510px;
+                    min-height: 505px;
                 ">
                   <div class="resource-item">
                     <div class="toc-container">
@@ -157,7 +157,7 @@ for row_index in range(num_rows):
                   </div>
 
                   <div style="
-                    height: 100px;
+                    height: 80px;
                     overflow: hidden;
                     margin-bottom: 0px;
                     display: flex;
