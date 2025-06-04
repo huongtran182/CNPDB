@@ -118,7 +118,61 @@ papers = [
             "paving the way for developing new therapies to treat substance use disorders and related psychiatric conditions."
         ),
         "link": "https://pubs.acs.org/doi/full/10.1021/acschemneuro.4c00327"
-    }
+    },
+    {
+        "img": "Assets/Publication_TOC/PTSD.jpeg",
+        "title": "Global Neuropeptidome Profiling in Response to Predator Stress in Rat: Implications for Post-Traumatic Stress Disorder",
+        "summary": (
+            "Mass spectrometry (MS)-based qualitative and quantitative analytical strategies to determine peptidomic alterations in rats exposed to "
+            "predator odor (an ethologically relevant analogue of trauma-like stress)"
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/jasms.3c00027"
+    },
+    {
+        "img": "Assets/Publication_TOC/GlycosylationBlueCrab.jpeg",
+        "title": "Enrichment and fragmentation approaches for enhanced detection and characterization of endogenous glycosylated neuropeptides",
+        "summary": (
+            "The use of hydrophilic interaction liquid chromatography (HILIC) enrichment and different fragmentation methods to probe the "
+            "expression of glycosylated neuropeptides in blue crab, Callinectes sapidus"
+        ),
+        "link": "https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/abs/10.1002/pmic.202100375"
+    },
+    {
+        "img": "Assets/Publication_TOC/FeedingHemolymphDIA.jpeg",
+        "title": "Mass spectrometry profiling and quantitation of changes in circulating hormones secreted over time in Cancer borealis hemolymph due to feeding behavior",
+        "summary": (
+            "A data-independent acquisition (DIA) MS method was implemented to profile neuropeptides at different stages of the feeding process,"
+            " including hemolymph from crabs that were unfed, or 0 min, 15 min, 1 h, and 2 h post-feeding"
+        ),
+        "link": "https://link.springer.com/article/10.1007/s00216-021-03479-1"
+    },
+    {
+        "img": "Assets/Publication_TOC/SexualDimorphismNP.jpeg",
+        "title": "Exploring the Sexual Dimorphism of Crustacean Neuropeptide Expression Using Callinectes sapidus as a Model Organism",
+        "summary": (
+            "Studying the variation of neuropeptidomic profiles between males and females in a crustacean model organism "
+            "by using high-resolution mass spectrometry with two complementary ionization sources and quantitative chemical labeling"
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/acs.jproteome.1c00023"
+    },
+    {
+        "img": "Assets/Publication_TOC/CopperToxicity.jpeg",
+        "title": "Mass Spectrometric Profiling of Neuropeptides in Response to Copper Toxicity via Isobaric Tagging",
+        "summary": (
+            "mass spectrometry (MS)-based qualitative and quantitative analytical strategies to determine peptidomic alterations in rats exposed to "
+            "predator odor (an ethologically relevant analogue of trauma-like stress)"
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/jasms.3c00027"
+    },
+    {
+        "img": "Assets/Publication_TOC/PTSD.jpeg",
+        "title": "Global Neuropeptidome Profiling in Response to Predator Stress in Rat: Implications for Post-Traumatic Stress Disorder",
+        "summary": (
+            "mass spectrometry (MS)-based qualitative and quantitative analytical strategies to determine peptidomic alterations in rats exposed to "
+            "predator odor (an ethologically relevant analogue of trauma-like stress)"
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/jasms.3c00027"
+    },
 ]
 
 st.markdown("### PI’s MAIN PUBLICATIONS ON NEUROPEPTIDES")
