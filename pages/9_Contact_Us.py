@@ -190,6 +190,51 @@ papers = [
         ),
         "link": "https://pubs.acs.org/doi/full/10.1021/acs.jproteome.9b00525"
     },
+    {
+        "img": "Assets/Publication_TOC/pHStress.jpeg",
+        "title": "Multifaceted Mass Spectrometric Investigation of Neuropeptide Changes in Atlantic Blue Crab, Callinectes sapidus, in Response to Low pH Stress",
+        "summary": (
+            "To understand the modulatory function of neuropeptides in crustaceans when encountering drops in pH level, we developed and implemented a multifaceted "
+            "mass spectrometric platform to investigate the global neuropeptide changes in response to water acidification in the Atlantic blue crab."
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/acs.jproteome.9b00026"
+    },
+    {
+        "img": "Assets/Publication_TOC/HabenularNuclei.jpeg",
+        "title": "Neuropeptidomics of the Rat Habenular Nuclei",
+        "summary": (
+            "Conserved across vertebrates, the habenular nuclei are a pair of small symmetrical structures in the epithalamus. "
+            " These subnuclei are associated with different physiological processes and disorders, such as depression, nicotine addiction, and encoding aversive stimuli or omitting expected rewarding stimuli."
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/acs.jproteome.7b00811"
+    },
+    {
+        "img": "Assets/Publication_TOC/Feeding2crab.jpeg",
+        "title": "A Multifaceted Mass Spectrometric Method to Probe Feeding Related Neuropeptide Changes in Callinectes sapidus and Carcinus maenas",
+        "summary": (
+            "we report a comparative neuropeptidomic analysis of the brain and pericardial organ in response to feeding in two well-studied "
+            "crustacean physiology model organisms, Callinectes sapidus and Carcinus maenas, using mass spectrometry techniques."
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1007/s13361-017-1888-4"
+    },
+    {
+        "img": "Assets/Publication_TOC/LobsterDevelopmental.jpeg",
+        "title": "Relative Quantitation of Neuropeptides at Multiple Developmental Stages of the American Lobster Using N,N-Dimethyl Leucine Isobaric Tandem Mass Tags",
+        "summary": (
+            "With reduced cost and higher labeling efficiency, we employed a set of custom-developed N,N-dimethyl leucine (DiLeu) 4-plex isobaric tandem mass tags as "
+            "an attractive alternative for the relative quantitation of neuropeptides in brain tissue of American lobster Homarus americanus at multiple developmental stages."
+        ),
+        "link": "https://pubs.acs.org/doi/full/10.1021/acschemneuro.7b00521"
+    },
+    {
+        "img": "Assets/Publication_TOC/.jpeg",
+        "title": "Quantitative MS Reveals Food Intake-Induced Neuropeptide Level Changes in Rat Brain: Functional Assessment of Selected Neuropeptides as Feeding Regulators",
+        "summary": (
+            "To directly monitor neuropeptidomic changes in response to food intake in the rat nucleus accumbens (NAc), and other key brain regions, we employed a combination "
+            "of cryostat dissection, heat stabilization, neuropeptide extraction and label-free quantitative neuropeptidomics via LC- platform."
+        ),
+        "link": "https://www.sciencedirect.com/science/article/pii/S1535947620323276"
+    },
 ]
 
 st.markdown("### PI’s MAIN PUBLICATIONS ON NEUROPEPTIDES")
