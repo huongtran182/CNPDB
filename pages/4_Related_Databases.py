@@ -209,74 +209,88 @@ papers = [
 ]
 
 # create three equal columns
-cols = st.columns(3, gap="medium")
+# create three equal columns
+from math import ceil
 
-for col, p in zip(cols, papers):
-    b64 = img_b64(p["img"])
-    with col:
-        st.markdown(f"""
-        <div style="
-            background-color: #9e9ac8;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 510px;
-        ">
-          <!-- fixed-height image block -->
-          <div class="resource-item">
-            <div class="toc-container">
-              <img src="data:image/png;base64,{b64}"
-                   style="max-height:100%; width:auto; object-fit:contain; border-radius:5px;" />
-            </div>
-          </div>
+# display papers in rows of 3
+num_columns = 3
+num_rows = ceil(len(papers) / num_columns)
 
-          <!-- title -->
-          <div style="
-              height: 50px;
-              overflow: hidden;
-              margin-bottom: 0px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-          ">
-            <h3 style="
-                color: #29004c;
-                margin: 0;
-                text-align: center;
-                font-size: 1.15em;
-                line-height: 1.2;
-            ">{p["title"]}</h3>
-          </div>
-          
-          <!-- flexible summary block -->
-          <div style="
-              flex: 1;
-              color: #555;
-              font-size: 0.9em;
-              line-height: 1.4;
-              margin: 5px 0 0 0;
-              overflow: auto;
-              text-align: left;
-          ">
-            {p["summary"]}
-          </div>
+for row_index in range(num_rows):
+    cols = st.columns(num_columns, gap="medium")
+    for col_index in range(num_columns):
+        paper_index = row_index * num_columns + col_index
+        if paper_index < len(papers):
+            p = papers[paper_index]
+            b64 = img_b64(p["img"])
+            with cols[col_index]:
+                st.markdown(f"""
+                <div style="
+                    background-color: #9e9ac8;
+                    border-radius: 10px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                    padding: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    min-height: 490px;
+                ">
+                  <div class="resource-item">
+                    <div class="toc-container">
+                      <img src="data:image/png;base64,{b64}"
+                           style="max-height:100%; width:auto; object-fit:contain; border-radius:5px;" />
+                    </div>
+                  </div>
 
-          <!-- buttons -->
-          <div style="display:flex; gap:10px; justify-content:center;">
-             <a href="{p["link"]}" target="_blank" style="
-                background-color: #29004c;
-                color: white;
-                text-decoration: none;
-                padding: 8px 16px;
-                border-radius: 5px;
-                font-size: 0.9em;
-            ">Read More</a>
-          </div>
-        </div>
-        """, unsafe_allow_html=True)
+                  <div style="
+                    height: 80px;
+                    overflow: hidden;
+                    margin-bottom: 0px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  ">
+                    <h3 style="
+                        color: #29004c;
+                        margin: 10px 0 0 0;
+                        text-align: center;
+                        font-size: 1em;
+                        line-height: 1.2;
+                    ">{p["title"]}</h3>
+                  </div>
+                  
+                  <div style="
+                     flex: 1;
+                      color: #555;
+                      font-size: 0.9em;
+                      line-height: 1.4;
+                      margin: 5px 0 0 0;
+                      overflow: auto;
+                      text-align: left;
+                  ">
+                    {p["summary"]}
+                  </div>
+
+                  <div style="
+                      height: 45px;
+                      flex-shrink: 0;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                  ">
+                    <a href="{p["link"]}" target="_blank" style="
+                        background-color: #29004c;
+                        color: white;
+                        text-decoration: none;
+                        padding: 8px 16px;
+                        border-radius: 5px;
+                        font-size: 0.9em;
+                    ">Read More</a>
+                  </div>
+                </div>
+                """, unsafe_allow_html=True)
+                
+    st.markdown('<div style="height: 10px;"></div>', unsafe_allow_html=True)
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
