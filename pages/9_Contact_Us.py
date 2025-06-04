@@ -112,7 +112,7 @@ papers = [
     },
     {
         "img": "Assets/Publication_TOC/AcuteCocaine.jpeg",
-        "title": "Cocaine-Induced Remodeling of the Rat Brain Peptidome: Quantitative Mass Spectrometry Reveals Anatomically Specific Patterns of Cocaine-Regulated Peptide Changes",
+        "title": "Cocaine-Induced Remodeling of the Rat Brain Peptidome: Quantitative MS Reveals Anatomically Specific Patterns of Cocaine-Regulated Peptide Changes",
         "summary": (
             "Mass spectrometry (MS) methods were employed to characterize acute cocaine-induced peptidomic changes in the rat brain, "
             "paving the way for developing new therapies to treat substance use disorders and related psychiatric conditions."
