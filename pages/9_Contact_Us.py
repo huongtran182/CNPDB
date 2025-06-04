@@ -139,7 +139,7 @@ papers = [
     },
     {
         "img": "Assets/Publication_TOC/FeedingHemolymphDIA.jpeg",
-        "title": "Mass spectrometry profiling and quantitation of changes in circulating hormones secreted over time in Cancer borealis hemolymph due to feeding behavior",
+        "title": "MS profiling and quantitation of changes in circulating hormones secreted over time in C.borealis hemolymph due to feeding behavior",
         "summary": (
             "A data-independent acquisition (DIA) MS method was implemented to profile neuropeptides at different stages of the feeding process,"
             " including hemolymph from crabs that were unfed, or 0 min, 15 min, 1 h, and 2 h post-feeding"
