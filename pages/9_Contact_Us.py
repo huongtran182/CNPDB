@@ -231,7 +231,7 @@ papers = [
         "title": "Quantitative MS Reveals Food Intake-Induced Neuropeptide Level Changes in Rat Brain: Functional Assessment of Neuropeptides as Feeding Regulators",
         "summary": (
             "To directly monitor neuropeptidomic changes in response to food intake in the rat nucleus accumbens (NAc), and other key brain regions, we employed a combination "
-            "of cryostat dissection, heat stabilization, neuropeptide extraction and label-free quantitative neuropeptidomics via LC- platform."
+            "of cryostat dissection, heat stabilization, neuropeptide extraction and label-free quantitative neuropeptidomics via LC-MS platform."
         ),
         "link": "https://www.sciencedirect.com/science/article/pii/S1535947620323276"
     },
@@ -294,7 +294,7 @@ for row_index in range(num_rows):
                       color: #555;
                       font-size: 0.9em;
                       line-height: 1.4;
-                      margin: 5px 0 0 0;
+                      margin: 5px 0 0 5px;
                       overflow: auto;
                       text-align: left;
                   ">
