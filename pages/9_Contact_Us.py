@@ -312,7 +312,7 @@ for row_index in range(num_rows):
                         background-color: #29004c;
                         color: white;
                         text-decoration: none;
-                        padding: 8px 16px;
+                        padding: 8px 8px;
                         border-radius: 5px;
                         font-size: 0.9em;
                     ">Read More</a>
