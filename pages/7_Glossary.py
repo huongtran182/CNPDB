@@ -104,6 +104,7 @@ def render_section(title, entries):
 
 # Render each glossary section
 render_section("Species", species)
+render_section("Tissues", tissues)
 render_section("Neuropeptide Family", families)
 render_section("Tools", tools)
 
