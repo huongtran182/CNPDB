@@ -69,13 +69,15 @@ species = [
 ]
 
 tissues = [
-    ("br",     "Brain - Modulates and initiates signalling commands and responses"),
-    ("SG",     "Sinus Gland - Located in the crustacean eyestalks, the SG stores and releases neurohormones that regulate molting, reproduction, and metabolism"),
-    ("OG",     "Oesophageal Ganglion - Integrates neural signals between the brain and lower ganglia"),
+    ("Br",     "Brain - Modulates and initiates signalling communications and responses to external stimuli"),
+    ("CG",     "Cardiac Ganglion - Embeds inside the heart muscle, regulates cardiac muscle contractions and heartbeat"),
+    ("CNS",    "Central Nervous System - Controls and coordinates sensory input, motor functions, and behavior"),
     ("CoG",    "Commissural Ganglion - Coordinates signals between the brain and the stomatogastric ganglion for gut motility"),
-    ("STG",    "Stomatogastric Ganglion - Located in the foregut region, the SG controls rhythmic muscle contractions for stomach and gut function"),
-    ("PO",     "Pericardial Organ - Located at two sides of the heart, secreted neuropeptides into the hemolymph to reach distant organs, affecting cardiac and downstream physiological processes"),
-    ("CG",     "Cardiac Ganglion - Embedded inside the heart muscle, the CG regulates cardiac muscle contractions and heartbeat"),
+    ("OG",     "Oesophageal Ganglion - Integrates neural signals between the brain and lower ganglia"),
+    ("PO",     "Pericardial Organ - Locates at two sides of the heart, secretes neuropeptides into the hemolymph to reach distant organs, affecting cardiac and downstream physiological processes"),
+    ("SG",     "Sinus Gland - Locates in the eyestalks, stores and releases neurohormones that regulate molting, reproduction, and metabolism"),
+    ("STG",    "Stomatogastric Ganglion - Locates in the foregut region, controls rhythmic muscle contractions for stomach and gut function"),
+    
     ("TG",     "Thoracic Ganglion - Situated in the thorax, the TG manages motor control of walking legs and other appendages."),
 ]
 
