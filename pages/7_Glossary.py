@@ -82,8 +82,11 @@ tissues = [
 ]
 
 families = [
+    ("AKH",    "Adipokinetic Hormone"),
+    ("CCAP",   "Crustacean CardioActive Peptide"),
     ("CP2",    "Cerebral peptide 2"),
     ("CPRP",   "Crustacean hyperglycemic hormone Precursor Related Peptide"),
+    ("DH",     "Diuretic Hormone"),
     ("DH31",   "Diuretic Hormone 31"),
     ("DH44",   "Diuretic Hormone 44"),
     ("ETH",    "Ecdysis Triggering Hormone"),
