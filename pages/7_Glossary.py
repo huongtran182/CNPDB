@@ -77,8 +77,8 @@ tissues = [
     ("PO",     "Pericardial Organ - Locates at two sides of the heart, secretes neuropeptides into the hemolymph to reach distant organs, affecting cardiac and downstream physiological processes"),
     ("SG",     "Sinus Gland - Locates in the eyestalks, stores and releases neurohormones that regulate molting, reproduction, and metabolism"),
     ("STG",    "Stomatogastric Ganglion - Locates in the foregut region, controls rhythmic muscle contractions for stomach and gut function"),
-    
-    ("TG",     "Thoracic Ganglion - Situated in the thorax, the TG manages motor control of walking legs and other appendages."),
+    ("TG",     "Thoracic Ganglion - Situates in the thorax, manages motor control of walking legs and other appendages"),
+    ("VNC",    "Ventral Nerve cord - Locates along the ventral side of the crustacean's body, coordinates sensory input and motor output for the body segments"),
 ]
 
 families = [
