@@ -82,9 +82,15 @@ tissues = [
 ]
 
 families = [
-    ("Allatostatin", "A family of neuropeptides that regulate juvenile hormone biosynthesis."),
-    ("FMRFamide",      "A neuropeptide involved in muscle contraction and neurotransmission."),
-    ("Tachykinin",     "A family of neuropeptides involved in pain perception and inflammation."),
+    ("CP2",    "Cerebral peptide 2"),
+    ("CPRP",   "Crustacean hyperglycemic hormone Precursor Related Peptide"),
+    ("DH31",   "Diuretic Hormone 31"),
+    ("DH44",   "Diuretic Hormone 44"),
+    ("ETH",    "Ecdysis Triggering Hormone"),
+    ("EH",     "Eclosion Hormone"),
+    ("PDH",    "Pigment Dispersing Hormone"),
+    ("RPCH",   "Red Pigment Concentrating Hormone"),
+    ("sNPF",   "short Neuropeptide F"),
 ]
 
 tools = [
