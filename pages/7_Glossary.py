@@ -62,12 +62,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Define your glossary content
-species = [
-    ("C. elegans", "<i>Caenorhabditis elegans</i> – roundworm"),
-    ("D. melanogaster", "<i>Drosophila melanogaster</i> – Fruit fly"),
-    ("H. americanus", "<i>Homarus americanus</i> – American lobster"),
-]
-
 tissues = [
     ("Br",     "Brain - Modulates and initiates signalling communications and responses to external stimuli"),
     ("CG",     "Cardiac Ganglion - Embeds inside the heart muscle, regulates cardiac muscle contractions and heartbeat"),
@@ -107,6 +101,56 @@ tools = [
     ("Peptide Calculator",    "Computes GRAVY, hydrophobicity, charge, half-life, and more."),
 ]
 
+species = [
+    ("C. elegans", "<i>Caenorhabditis elegans</i> – Roundworm"),
+    ("D. melanogaster", "<i>Drosophila melanogaster</i> – Fruit fly"),
+    ("Ahi", "<i>Homarus americanus</i> – American lobster"),
+    ("Arm", "<i>Homarus americanus</i> – American lobster"),
+    ("Asu", "<i>Homarus americanus</i> – American lobster"),
+    ("Bdi", "<i>Homarus americanus</i> – American lobster"),
+    ("Bthe", "<i>Homarus americanus</i> – American lobster"),
+    ("Cama", "<i>Homarus americanus</i> – American lobster"),
+    ("Capa", "<i>Homarus americanus</i> – American lobster"),
+    ("Cbo", "<i>Homarus americanus</i> – American lobster"),
+    ("Cila", "<i>Homarus americanus</i> – American lobster"),
+    ("Cmaen", "<i>Homarus americanus</i> – American lobster"),
+    ("Cmag", "<i>Homarus americanus</i> – American lobster"),
+    ("Coe", "<i>Homarus americanus</i> – American lobster"),
+    ("Cpag", "<i>Homarus americanus</i> – American lobster"),
+    ("Cpro", "<i>Homarus americanus</i> – American lobster"),
+    ("Csap", "<i>Homarus americanus</i> – American lobster"),
+    ("Dappu", "<i>Homarus americanus</i> – American lobster"),
+    ("Dpul", "<i>Homarus americanus</i> – American lobster"),
+    ("Ede", "<i>Homarus americanus</i> – American lobster"),
+    ("Eol", "<i>Homarus americanus</i> – American lobster"),
+    ("Eor", "<i>Homarus americanus</i> – American lobster"),
+    ("Ese", "<i>Homarus americanus</i> – American lobster"),
+    ("Eur", "<i>Homarus americanus</i> – American lobster"),
+    ("Gli", "<i>Homarus americanus</i> – American lobster"),
+    ("Insect", "<i>Homarus americanus</i> – American lobster"),
+    ("Iva", "<i>Homarus americanus</i> – American lobster"),
+    ("Lep", "<i>Homarus americanus</i> – American lobster"),
+    ("Lpol", "<i>Homarus americanus</i> – American lobster"),
+    ("Lva", "<i>Homarus americanus</i> – American lobster"),
+    ("Mens", "<i>Homarus americanus</i> – American lobster"),
+    ("Mjap", "<i>Homarus americanus</i> – American lobster"),
+    ("Mlan", "<i>Homarus americanus</i> – American lobster"),
+    ("Mros", "<i>Homarus americanus</i> – American lobster"),
+    ("Mse", "<i>Homarus americanus</i> – American lobster"),
+    ("Mto", "<i>Homarus americanus</i> – American lobster"),
+    ("Nnor", "<i>Homarus americanus</i> – American lobster"),
+    ("Nvi", "<i>Homarus americanus</i> – American lobster"),
+    ("Oce", "<i>Homarus americanus</i> – American lobster"),
+    ("Olim", "<i>Homarus americanus</i> – American lobster"),
+    ("Orc", "<i>Homarus americanus</i> – American lobster"),
+    ("Paz", "<i>Homarus americanus</i> – American lobster"),
+    ("Pbo", "<i>Homarus americanus</i> – American lobster"),
+    ("Pcla", "<i>Homarus americanus</i> – American lobster"),
+    ("Pint", "<i>Homarus americanus</i> – American lobster"),
+    ("Rne", "<i>Homarus americanus</i> – American lobster"),
+    ("Sser", "<i>Homarus americanus</i> – American lobster"),
+]
+
 # Helper to render one section
 def render_section(title, entries):
     st.markdown(f'<div class="section-heading">{title}</div>', unsafe_allow_html=True)
@@ -119,10 +163,10 @@ def render_section(title, entries):
         """, unsafe_allow_html=True)
 
 # Render each glossary section
-render_section("Species", species)
 render_section("Tissues", tissues)
 render_section("Neuropeptide Family", families)
 render_section("Tools", tools)
+render_section("Species", species)
 
 
 st.markdown("""
