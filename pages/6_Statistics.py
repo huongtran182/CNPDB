@@ -17,15 +17,15 @@ st.markdown("---")
 st.markdown("""
 <div style="display: flex; width: 100%;">
         <div style="flex: 1; background-color: #dadaeb; text-align: center; padding: 20px 0;">
-            <h2 style="color:#4a3666; margin-left: 15px;">12,354</h2>
+            <h2 style="color:#4a3666; margin-left: 15px;">1250</h2>
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Peptide Entries</p>
         </div>
         <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0;">
-            <h2 style="color:#4a3666; margin-left: 15px;">47</h2>
+            <h2 style="color:#4a3666; margin-left: 15px;">25</h2>
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Organisms</p>
         </div>
         <div style="flex: 1; background-color: #dadaeb; text-align: center; padding: 20px 0;">
-            <h2 style="color:#4a3666; margin-left: 15px;">39</h2>
+            <h2 style="color:#4a3666; margin-left: 15px;">40</h2>
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Neuropeptide Families</p>
         </div>
         <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0;">
