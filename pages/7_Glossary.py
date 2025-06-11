@@ -73,6 +73,7 @@ tissues = [
     ("CG",     "Cardiac Ganglion - Embeds inside the heart muscle, regulates cardiac muscle contractions and heartbeat"),
     ("CNS",    "Central Nervous System - Controls and coordinates sensory input, motor functions, and behavior"),
     ("CoG",    "Commissural Ganglion - Coordinates signals between the brain and the stomatogastric ganglion for gut motility"),
+    ("ES",     "Eyestalk Ganglia - Acts as a neurosecretory center, contains neurosecretory cells (also called X-organ) that synthesize neuropeptides and hormones"),
     ("IMN",    "Inhibitory Motorneuron"),
     ("OG",     "Oesophageal Ganglion - Integrates neural signals between the brain and lower ganglia"),
     ("PO",     "Pericardial Organ - Locates at two sides of the heart, secretes neuropeptides into the hemolymph to reach distant organs, affecting cardiac and downstream physiological processes"),
@@ -83,7 +84,6 @@ tissues = [
 ]
 
 families = [
-    ("AKH",    "Adipokinetic Hormone"),
     ("CCAP",   "Crustacean Cardioactive Peptide"),
     ("CCAP_PRP",   "Crustacean Cardioactive Peptide Precursor Related Peptide"),
     ("CHH",    "Crustacean Hyperglycemic Hormone"),
