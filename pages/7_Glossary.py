@@ -90,6 +90,7 @@ families = [
     ("MIH",    "Molt Inhibiting Hormone"),
     ("MOIH",   "Mandibular Organ Inhibiting Hormone"),
     ("PDH",    "Pigment Dispersing Hormone"),
+    ("RFamide_PRP",   "RFamide Precursor Related Peptide"),
     ("RPCH",   "Red Pigment Concentrating Hormone"),
     ("sNPF",   "short Neuropeptide F"),
 ]
