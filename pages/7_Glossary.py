@@ -121,14 +121,13 @@ species = [
     ("Mlan", "<i>Homarus americanus</i> – American lobster"),
     ("Mros", "<i>Macrobrachium rosenbergii</i> – Giant river prawn or Giant freshwater prawn"),
     ("Nnor", "<i>Neomysis norvegica</i> – Opossum shrimp"),
-    ("Oce", "<i>Homarus americanus</i> – American lobster"),
+    ("Oce", "<i>Ocypode ceratophthalmus</i> – Horned ghost crab"),
     ("Olim", "<i>Orconectes limosus</i> – Spinycheek crayfish"),
-    ("Orc", "<i>Homarus americanus</i> – American lobster"),
-    ("Paz", "<i>Homarus americanus</i> – American lobster"),
-    ("Pbo", "<i>Homarus americanus</i> – American lobster"),
-    ("Pcla", "<i>Homarus americanus</i> – American lobster"),
-    ("Pint", "<i>Homarus americanus</i> – American lobster"),
-    ("Sser", "<i>Homarus americanus</i> – American lobster"),
+    ("Paz", "<i>Penaeus aztecus</i> – Brown shrimp"),
+    ("Pbo", "<i>Pandalus_borealis</i> – Northern prawn"),
+    ("Pcla", "<i>Procambarus clarkii</i> – Red swamp crayfish"),
+    ("Pint", "<i>Panulirus interruptus</i> – California spiny lobster"),
+    ("Sser", "<i>Scylla serrata</i> – Giant mud crab"),
 ]
 
 # Helper to render one section
