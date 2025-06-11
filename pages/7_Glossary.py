@@ -84,6 +84,8 @@ tissues = [
 families = [
     ("AKH",    "Adipokinetic Hormone"),
     ("CCAP",   "Crustacean CardioActive Peptide"),
+    ("CHH",    "Crustacean Hyperglycemic Hormone"),
+    ("CLDH",   "Calcitonin-like Diuretic Hormone"),
     ("CP2",    "Cerebral peptide 2"),
     ("CPRP",   "Crustacean hyperglycemic hormone Precursor Related Peptide"),
     ("DH",     "Diuretic Hormone"),
@@ -91,6 +93,8 @@ families = [
     ("DH44",   "Diuretic Hormone 44"),
     ("ETH",    "Ecdysis Triggering Hormone"),
     ("EH",     "Eclosion Hormone"),
+    ("MIH",    "Molt Inhibiting Hormone"),
+    ("MOIH",   "Mandibular Organ Inhibiting Hormone"),
     ("PDH",    "Pigment Dispersing Hormone"),
     ("RPCH",   "Red Pigment Concentrating Hormone"),
     ("sNPF",   "short Neuropeptide F"),
