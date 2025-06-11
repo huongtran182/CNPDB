@@ -101,8 +101,6 @@ tools = [
 ]
 
 species = [
-    ("C. elegans", "<i>Caenorhabditis elegans</i> – Roundworm"),
-    ("D. melanogaster", "<i>Drosophila melanogaster</i> – Fruit fly"),
     ("Arm", "<i>Armadillidium</i> – Woodlouse"),
     ("Bthe", "<i>Homarus americanus</i> – American lobster"),
     ("Cmae", "<i>Carcinus maenas</i> – European green crab"),
@@ -118,7 +116,7 @@ species = [
     ("Lva", "<i>Litopenaeus vannamei</i> – Pacific white shrimp"),
     ("Mens", "<i>Metapenaeus ensis</i> – Greasyback shrimp or Sand shrimp"),
     ("Mjap", "<i>Marsupenaeus japonicus</i> – Kuruma shrimp, Kuruma prawn, or Japanese tiger prawn"),
-    ("Mlan", "<i>Homarus americanus</i> – American lobster"),
+    ("Mlan", "<i>Macrobrachium lanchesteri</i> – Freshwater prawn or Riceland prawn"),
     ("Mros", "<i>Macrobrachium rosenbergii</i> – Giant river prawn or Giant freshwater prawn"),
     ("Nnor", "<i>Neomysis norvegica</i> – Opossum shrimp"),
     ("Oce", "<i>Ocypode ceratophthalmus</i> – Horned ghost crab"),
