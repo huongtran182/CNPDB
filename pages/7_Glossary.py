@@ -63,9 +63,9 @@ st.markdown("""
 
 # Define your glossary content
 species = [
-    ("C. elegans", "*Caenorhabditis elegans* – roundworm"),
-    ("D. melanogaster", "*Drosophila melanogaster* – Fruit fly"),
-    ("H. americanus", "*Homarus americanus* – American lobster"),
+    ("C. elegans", "<i>Caenorhabditis elegans</i> – roundworm"),
+    ("D. melanogaster", "<i>Drosophila melanogaster</i> – Fruit fly"),
+    ("H. americanus", "<i>Homarus americanus</i> – American lobster"),
 ]
 
 tissues = [
