@@ -63,9 +63,9 @@ st.markdown("""
 
 # Define your glossary content
 species = [
-    ("C. elegans", "Caenorhabditis elegans – a nematode used as a model organism in biological research."),
-    ("D. melanogaster", "Drosophila melanogaster – the common fruit fly, widely used in genetic and neuropeptide research."),
-    ("H. americanus", "Homarus americanus – the American lobster, a model organism for neuropeptide studies."),
+    ("C. elegans", "*Caenorhabditis elegans* – roundworm"),
+    ("D. melanogaster", "*Drosophila melanogaster* – Fruit fly"),
+    ("H. americanus", "*Homarus americanus* – American lobster"),
 ]
 
 tissues = [
