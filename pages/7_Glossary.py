@@ -87,7 +87,6 @@ families = [
     ("CCAP",   "Crustacean Cardioactive Peptide"),
     ("CCAP_PRP",   "Crustacean Cardioactive Peptide Precursor Related Peptide"),
     ("CHH",    "Crustacean Hyperglycemic Hormone"),
-    ("CLDH",   "Calcitonin-like Diuretic Hormone"),
     ("CP2",    "Cerebral peptide 2"),
     ("CPRP",   "Crustacean hyperglycemic hormone Precursor Related Peptide"),
     ("DH",     "Diuretic Hormone"),
