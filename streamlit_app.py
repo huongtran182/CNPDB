@@ -57,7 +57,7 @@ Each cNPD search entry provides:
 - Predicted 3D Structure 
 - Experimental Mass Spectrometry Imaging data of the peptide showing their spatial  distribution in tissues
 
-For detailed instructions on how to navigate cNPD, please refer to the “Tutorial” page from the left sidebar. 
+For detailed instructions on how to navigate cNPD, please refer to the “Tutorials” page from the left sidebar. 
 """)
 
 st.markdown("""
@@ -75,8 +75,9 @@ st.markdown("""
 As genomic and experimental data become available for more crustacean species, new entries will be added to our database. Additional bioinformatics tools will be developed for tailored mass spectrometric data analysis to support the discovery and identification of neuropeptides. Experimental data provided by the community will be uploaded promptly upon receipt.
 
 Stay updated on the latest cNPD developments by following us on our social media:
-- X and Bluesky: @LiResearch
-- Facebook and LinkedIn: Lingjun Li Lab
+- [X](https://x.com/LiResearch) and [Bluesky](https://bsky.app/profile/liresearch.bsky.social): @LiResearch  
+- [Facebook](https://www.facebook.com/profile.php?id=100057624782828) and [LinkedIn](https://www.linkedin.com/company/lingjun-li-lab/): Lingjun Li Lab
+""")
 
 """)
 
