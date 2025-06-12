@@ -119,7 +119,7 @@ species = [
     ("Mjap", "<i>Marsupenaeus japonicus</i> – Kuruma shrimp, Kuruma prawn, or Japanese tiger prawn"),
     ("Mlan", "<i>Macrobrachium lanchesteri</i> – Freshwater prawn or Riceland prawn"),
     ("Mros", "<i>Macrobrachium rosenbergii</i> – Giant river prawn or Giant freshwater prawn"),
-    ("Nnor", "<i>Neomysis norvegica</i> – Opossum shrimp"),
+    ("Nnor", "<i>Nephrops norvegicus</i> – Norway lobster"),
     ("Oce", "<i>Ocypode ceratophthalmus</i> – Horned ghost crab"),
     ("Olim", "<i>Orconectes limosus</i> – Spinycheek crayfish"),
     ("Paz", "<i>Penaeus aztecus</i> – Brown shrimp"),
