@@ -55,7 +55,7 @@ def disp(val):
 
 def display_peptide_details(row: pd.Series):
     seq        = row["Seq"]
-    cnpd_id    = row["CNPD ID"]
+    CNPDB_id    = row["CNPDB ID"]
 
 # Prepare all content as HTML strings first
     # 1) Metadata table
@@ -66,8 +66,8 @@ def display_peptide_details(row: pd.Series):
     <div class="peptide-details">
         <table>
             <tr>
-            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">CNPD ID</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['CNPD ID'])}</td>
+            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">CNPDB ID</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['CNPDB ID'])}</td>
             </tr>
             <tr>
             <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Family</td>
@@ -130,7 +130,7 @@ def display_peptide_details(row: pd.Series):
           text-align: center;
           margin-top:5px;
         ">
-          {img_html(f"Assets/3D Structure/3D cNP{cnpd_id}.jpg")}
+          {img_html(f"Assets/3D Structure/3D cNP{CNPDB_id}.jpg")}
         </div>
     """
     
@@ -152,7 +152,7 @@ def display_peptide_details(row: pd.Series):
           text-align: center;
           margin-top:5px;
         ">
-          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id}.png")}
+          {img_html(f"Assets/MSImaging/MSI cNP{CNPDB_id}.png")}
         </div>
     """
     tissue_2 = disp(row.get("MSI Tissue 2"))
@@ -172,7 +172,7 @@ def display_peptide_details(row: pd.Series):
           text-align: center;
           margin-top:5px;
         ">
-          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 2.png")}
+          {img_html(f"Assets/MSImaging/MSI cNP{CNPDB_id} 2.png")}
         </div>
     """
     
@@ -193,7 +193,7 @@ def display_peptide_details(row: pd.Series):
           text-align: center;
           margin-top:5px;
         ">
-          {img_html(f"Assets/MSImaging/MSI cNP{cnpd_id} 3.png")}
+          {img_html(f"Assets/MSImaging/MSI cNP{CNPDB_id} 3.png")}
         </div>
     """
  # Build the COMPLETE box as one HTML block
@@ -295,7 +295,7 @@ st.markdown(
 st.markdown('<div class="main-search-container">', unsafe_allow_html=True)
 
 # Load data
-DF_PATH = "Assets/CNPD_Li.xlsx"
+DF_PATH = "Assets/CNPDB_Li.xlsx"
 df = pd.read_excel(DF_PATH, sheet_name="Example")
 
 # Ensure numeric columns are numeric
@@ -463,7 +463,7 @@ if len(df_filtered) > 0:
         st.download_button(
             "Download FASTA File",
             data=fasta_str,
-            file_name="cNPD_SearchResult.fasta",
+            file_name="CNPDB_SearchResult.fasta",
             mime="text/plain",
             type="primary"
         )
