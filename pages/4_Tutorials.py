@@ -13,7 +13,7 @@ render_sidebar()
 
 st.markdown("""
 <h3 style="margin-top: 10px; margin-bottom: 10px;">
-1. How to navigate cNPD website
+1. How to navigate cNPDB website
 </h3>
 """, unsafe_allow_html=True)
 video_path = os.path.join("Assets", "Statistics", "example.mp4")
