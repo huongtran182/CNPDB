@@ -27,7 +27,7 @@ faqs = [
     },
     {
         "num": "02",
-        "question": "How do I search for neuropeptides in the CNPD?",
+        "question": "How do I search for neuropeptides in the cNPDB?",
         "answer": textwrap.dedent("""
             To find a specific neuropeptide, enter the peptide name, sequence, or molecular weight in the search bar.
             Visit the <a href="https://yourdatabase.com/search" target="_blank">CNPD search page</a> for more details.
@@ -43,7 +43,7 @@ faqs = [
     },
     {
         "num": "04",
-        "question": "What species are included in the CNPD?",
+        "question": "What species are included in the cNPDB?",
         "answer": textwrap.dedent("""
             The CNPD includes crustaceans such as <i>Homarus americanus</i> (American lobster),
             <i>Callinectes sapidus</i> (Blue Crab), and <i>Cancer borealis</i> (Jonah Crab).

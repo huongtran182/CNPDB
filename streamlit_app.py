@@ -20,24 +20,24 @@ except:
     st.error("Banner image not found")
 
 st.markdown("""
-## WELCOME TO cNPD: THE CRUSTACEAN NEUROPEPTIDE DATABASE
+## WELCOME TO cNPDB: THE CRUSTACEAN NEUROPEPTIDE DATABASE
 
 Neuropeptides are cell-to-cell signaling molecules involved in numerous physiological processes, including metabolism, development, reproduction, and behavior. They are highly conserved both structurally and functionally across the animal kingdom, making the neuropeptide study in simple invertebrate models advantageous for gaining insights into basic neurobiology principles, drug discoveries, and functional investigations that are translatable to mammalian systems.  Crustaceans are profound model organisms for neuropeptide studies and have long been used to investigate the robustness of rhythmic central pattern generator, feeding behavior, and neural responses to external stimuli.
 
-Despite their significance, crustacean neuropeptides remain underrepresented in existing neuropeptide databases. To address this gap, we introduce the **Crustacean Neuropeptide Database (cNPD)** – A comprehensive resource for neuropeptide research in crustacean species. cNPD systematically curates experimentally confirmed and predicted neuropeptides from various crustacean species using genome-derived in silico mining, peer-reviewed literature, mass spectrometry-based peptidomics, and public protein databases. This database provides detailed annotations and sequences to support a range of endeavors, including comparative neurobiology, functional studies, education, and computational peptide discovery.
+Despite their significance, crustacean neuropeptides remain underrepresented in existing neuropeptide databases. To address this gap, we introduce the **Crustacean Neuropeptide Database (cNPDB)** – A comprehensive resource for neuropeptide research in crustacean species. cNPDB systematically curates experimentally confirmed and predicted neuropeptides from various crustacean species using genome-derived in silico mining, peer-reviewed literature, mass spectrometry-based peptidomics, and public protein databases. This database provides detailed annotations and sequences to support a range of endeavors, including comparative neurobiology, functional studies, education, and computational peptide discovery.
 
 """)
 
 st.markdown("""
 ### TOOLS & FEATURES
-The current release of cNPD (Version 1.0, 2025) contains 2000 curated neuropeptide entries from 26 crustacean species, organized into 40 neuropeptide families. Some representative species include *Homarus americanus*  (American Lobster), *Callinectes sapidus*  (Blue Crab), *Cancer borealis*  (Jonah Crab), *Carcinus maenas*  (European green crab), and *Panulirus interruptus*  (California spiny lobster). cNPD offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
+The current release of cNPDB (Version 1.0, 2025) contains 2000 curated neuropeptide entries from 26 crustacean species, organized into 40 neuropeptide families. Some representative species include *Homarus americanus*  (American Lobster), *Callinectes sapidus*  (Blue Crab), *Cancer borealis*  (Jonah Crab), *Carcinus maenas*  (European green crab), and *Panulirus interruptus*  (California spiny lobster). cNPDB offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
 - **Custom Search Engine** – Find neuropeptides by sequence, species, families, tissues, post-translational modifications (PTMs), and desired peptide physiological properties, with an option to download the resulted FASTA file.
 - **Sequence Alignment & Homology Search** – Identify conserved motifs and sequence similarities.
 - **Peptide Property Calculator** – Compute GRAVY scores, hydrophobicity, half-life, 3D structures, and other physiological properties.
 
-Each cNPD search entry provides:
+Each cNPDB search entry provides:
 - Neuropeptide sequence (downloadable FASTA format)
-- cNPD ID
+- cNPDB ID
 - Neuropeptide Family
 - Species taxonomy 
 - Existence (MS/MS, *Denovo* Sequencing, Predicted)
@@ -46,12 +46,12 @@ Each cNPD search entry provides:
 - Predicted 3D Structure 
 - Experimental Mass Spectrometry Imaging data of the peptide showing their spatial  distribution in tissues
 
-For detailed instructions on how to navigate cNPD, please refer to the “Tutorials” page from the left sidebar. 
+For detailed instructions on how to navigate cNPDB, please refer to the “Tutorials” page from the left sidebar. 
 """)
 
 st.markdown("""
 ### DATABASE SOURCES AND CURATION
-cNPD integrates data from peer-reviewed studies and public proteomics repositories:
+cNPDB integrates data from peer-reviewed studies and public proteomics repositories:
 - Experimental Data – Mass spectrometry and other bioassays
 - Literature Mining – Curated from PubMed and primary research papers
 - Public Databases – Cross-linked with UniProt, NCBI, and NeuroPep
@@ -63,7 +63,7 @@ Every neuropeptide entry undergoes manual examination to ensure accuracy and rel
 st.markdown("""
 ### GET INVOLVED & CONTRIBUTE
 
-cNPD is a community-driven initiative! We welcome contributions from researchers in the field of peptidomics, neurobiology, and comparative physiology. Here are some ways to contribute:
+cNPDB is a community-driven initiative! We welcome contributions from researchers in the field of peptidomics, neurobiology, and comparative physiology. Here are some ways to contribute:
 - Submit new neuropeptide sequences
 - Report missing or updated annotations
 - Share mass spectrometry datasets
@@ -74,17 +74,17 @@ st.markdown("""
 ### FUTURE UPDATES
 As genomic and experimental data become available for more crustacean species, new entries will be added to our database. Additional bioinformatics tools will be developed for tailored mass spectrometric data analysis to support the discovery and identification of neuropeptides. Experimental data provided by the community will be uploaded promptly upon receipt.
 
-Stay updated on the latest cNPD developments by following us on our social media:
+Stay updated on the latest cNPDB developments by following us on our social media:
 - [X](https://x.com/LiResearch) and [Bluesky](https://bsky.app/profile/liresearch.bsky.social): @LiResearch  
 - [Facebook](https://www.facebook.com/profile.php?id=100057624782828) and [LinkedIn](https://www.linkedin.com/company/lingjun-li-lab): Lingjun Li Lab
 """)
 
 st.markdown("""
 ### CITATION AND FUNDING
-If you use cNPD in your research, please cite: 
+If you use cNPDB in your research, please cite: 
 
 <div style="margin-left: 1cm;">
-    cNPD: A Comprehensive Empirical Neuropeptide Database Extended by <i>In Silico</i> Predictions from <i>Callinectes sapidus</i> and <i>Cancer borealis</i> Genomes. Duong, T.U.; Fields, L.; Tran, V.N.H.; Beaver, M.; Tourlouskis, K.; and Li, L. <b>Nucleic Acids Research</b>. 2025.
+    cNPDB: A Comprehensive Empirical Neuropeptide Database Extended by <i>In Silico</i> Predictions from <i>Callinectes sapidus</i> and <i>Cancer borealis</i> Genomes. Duong, T.U.; Fields, L.; Tran, V.N.H.; Beaver, M.; Tourlouskis, K.; and Li, L. <b>Nucleic Acids Research</b>. 2025.
 </div>
 
 <br>
