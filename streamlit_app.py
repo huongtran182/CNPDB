@@ -87,6 +87,7 @@ If you use cNPD in your research, please cite:
     cNPD: A Comprehensive Empirical Neuropeptide Database Extended by <i>In Silico</i> Predictions from <i>Callinectes sapidus</i> and <i>Cancer borealis</i> Genomes. Duong, T.U.; Fields, L.; Tran, V.N.H.; Beaver, M.; Tourlouskis, K.; and Li, L. <b>Nucleic Acids Research</b>. 2025.
 </div>
 
+
 **Funding:** This work is supported by [Funding Agencies]
 
 For other tools developed by the Li Lab, please visit **[www.lilabs.org/resources](http://www.lilabs.org/resources)**
