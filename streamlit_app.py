@@ -93,6 +93,7 @@ For other tools developed by the Li Lab, please visit **www.lilabs.org/resources
 st.markdown("""
 ### COPYRIGHTS
 Copyright 2025 Department of Pharmaceutical Sciences, University of Wisconsin-Madison, **All Rights Reserved**
+
 """)
 
 st.markdown("""
