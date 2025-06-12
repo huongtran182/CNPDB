@@ -29,17 +29,6 @@ Despite their significance, crustacean neuropeptides remain underrepresented in 
 """)
 
 st.markdown("""
-### DATABASE SOURCES AND CURATION
-cNPD integrates data from peer-reviewed studies and public proteomics repositories:
-- Experimental Data – Mass spectrometry and other bioassays
-- Literature Mining – Curated from PubMed and primary research papers
-- Public Databases – Cross-linked with UniProt, NCBI, and NeuroPep
-- Computational Predictions – *In silico* prediction from genomics data
-
-Every neuropeptide entry undergoes manual examination to ensure accuracy and reliability.
-""")
-
-st.markdown("""
 ### TOOLS & FEATURES
 The current release of cNPD (Version 1.0, 2025) contains 2000 curated neuropeptide entries from 26 crustacean species, organized into 40 neuropeptide families. Some representative species include *Homarus americanus*  (American Lobster), *Callinectes sapidus*  (Blue Crab), *Cancer borealis*  (Jonah Crab), *Carcinus maenas*  (European green crab), and *Panulirus interruptus*  (California spiny lobster). cNPD offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
 - **Custom Search Engine** – Find neuropeptides by sequence, species, families, tissues, post-translational modifications (PTMs), and desired peptide physiological properties, with an option to download the resulted FASTA file.
@@ -58,6 +47,17 @@ Each cNPD search entry provides:
 - Experimental Mass Spectrometry Imaging data of the peptide showing their spatial  distribution in tissues
 
 For detailed instructions on how to navigate cNPD, please refer to the “Tutorials” page from the left sidebar. 
+""")
+
+st.markdown("""
+### DATABASE SOURCES AND CURATION
+cNPD integrates data from peer-reviewed studies and public proteomics repositories:
+- Experimental Data – Mass spectrometry and other bioassays
+- Literature Mining – Curated from PubMed and primary research papers
+- Public Databases – Cross-linked with UniProt, NCBI, and NeuroPep
+- Computational Predictions – *In silico* prediction from genomics data
+
+Every neuropeptide entry undergoes manual examination to ensure accuracy and reliability.
 """)
 
 st.markdown("""
