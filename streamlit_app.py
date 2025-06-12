@@ -56,7 +56,7 @@ Each cNPD search entry provides:
 - Predicted 3D Structure 
 - Experimental Mass Spectrometry Imaging data of the peptide showing their spatial  distribution in tissues
 
-For detailed instructions on how to navigate cNPD, please refer to the “Tutorial” page. 
+For detailed instructions on how to navigate cNPD, please refer to the “Tutorial” page from the left sidebar. 
 """)
 
 st.markdown("""
@@ -81,8 +81,10 @@ Stay updated on the latest cNPD developments by following us on our social media
 st.markdown("""
 ### CITATION AND FUNDING
 If you use cNPD in your research, please cite: 
-    cNPD: A Comprehensive Empirical Neuropeptide Database Extended by In Silico Predictions from *Callinectes sapidus* and *Cancer borealis* Genomes. Duong, T.U.; Fields, L.; Tran, V.N.H.; Beaver, M.; Tourlouskis, K.; and Li, L. Nucleic Acids Research. 2025. 
+    cNPD: A Comprehensive Empirical Neuropeptide Database Extended by *In Silico* Predictions from *Callinectes sapidus* and *Cancer borealis* Genomes. Duong, T.U.; Fields, L.; Tran, V.N.H.; Beaver, M.; Tourlouskis, K.; and Li, L. Nucleic Acids Research. 2025. 
+
 **Funding:** This work is supported by [Funding Agencies]
+
 For other tools developed by the Li Lab, please visit **www.lilabs.org/resources**
 """)
 
