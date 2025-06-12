@@ -76,7 +76,7 @@ As genomic and experimental data become available for more crustacean species, n
 
 Stay updated on the latest cNPD developments by following us on our social media:
 - [X](https://x.com/LiResearch) and [Bluesky](https://bsky.app/profile/liresearch.bsky.social): @LiResearch  
-- [Facebook](https://www.facebook.com/profile.php?id=100057624782828) and [LinkedIn](https://www.linkedin.com/company/lingjun-li-lab/): Lingjun Li Lab
+- [Facebook](https://www.facebook.com/profile.php?id=100057624782828) and [LinkedIn](https://www.linkedin.com/company/lingjun-li-lab): Lingjun Li Lab
 """)
 
 """)
