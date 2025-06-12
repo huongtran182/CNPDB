@@ -154,7 +154,6 @@ def render_sidebar():
         st.markdown('<div class="nav-container">', unsafe_allow_html=True)
         pages = [
             st.page_link("streamlit_app.py", label="Home"),
-            st.page_link("pages/1_About.py", label="About"),
             st.page_link("pages/2_NP_Database_Search.py", label="Database Search Engine"),
             st.page_link("pages/3_Tools.py", label="Tools"),
             st.page_link("pages/4_Related_Databases.py", label="Related Resources"),
