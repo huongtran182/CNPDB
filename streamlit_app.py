@@ -40,7 +40,7 @@ Every neuropeptide entry undergoes manual examination to ensure accuracy and rel
 
 st.markdown("""
 ### TOOLS & FEATURES
-The current release of cNPD (Version 1.0, 2025) contains 2000 curated neuropeptide entries from 26 crustacean species, organized into 40 neuropeptide families. Some representative species include <i>Homarus americanus</i>  (American Lobster), <i>Callinectes sapidus</i>  (Blue Crab), <i>Cancer borealis</i>  (Jonah Crab), <i>Carcinus maenas</i>  (European green crab), and <i>Panulirus interruptus</i>  (California spiny lobster). cNPD offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
+The current release of cNPD (Version 1.0, 2025) contains 2000 curated neuropeptide entries from 26 crustacean species, organized into 40 neuropeptide families. Some representative species include *Homarus americanus*  (American Lobster), *Callinectes sapidus*  (Blue Crab), *Cancer borealis*  (Jonah Crab), *Carcinus maenas*  (European green crab), and *Panulirus interruptus*  (California spiny lobster). cNPD offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
 - **Custom Search Engine** – Find neuropeptides by sequence, species, families, tissues, post-translational modifications (PTMs), and desired peptide physiological properties, with an option to download the resulted FASTA file.
 - **Sequence Alignment & Homology Search** – Identify conserved motifs and sequence similarities.
 - **Peptide Property Calculator** – Compute GRAVY scores, hydrophobicity, half-life, 3D structures, and other physiological properties.
@@ -50,7 +50,7 @@ Each cNPD search entry provides:
 - cNPD ID
 - Neuropeptide Family
 - Species taxonomy 
-- Existence (MS/MS, Denovo Sequencing, Predicted)
+- Existence (MS/MS, *Denovo* Sequencing, Predicted)
 - Physicochemical properties (monoisotopic mass, length, hydrophobicity, predicted Half-life)
 - Post-translational modifications (PTMs)
 - Predicted 3D Structure 
@@ -81,14 +81,14 @@ Stay updated on the latest cNPD developments by following us on our social media
 st.markdown("""
 ### CITATION AND FUNDING
 If you use cNPD in your research, please cite: 
-    cNPD: A Comprehensive Empirical Neuropeptide Database Extended by In Silico Predictions from <i>Callinectes sapidus</i> and <i>Cancer borealis</i> Genomes. Duong, T.U.; Fields, L.; Tran, V.N.H.; Beaver, M.; Tourlouskis, K.; and Li, L. Nucleic Acids Research. 2025. 
+    cNPD: A Comprehensive Empirical Neuropeptide Database Extended by In Silico Predictions from *Callinectes sapidus* and *Cancer borealis* Genomes. Duong, T.U.; Fields, L.; Tran, V.N.H.; Beaver, M.; Tourlouskis, K.; and Li, L. Nucleic Acids Research. 2025. 
 **Funding:** This work is supported by [Funding Agencies]
 For other tools developed by the Li Lab, please visit **www.lilabs.org/resources**
 """)
 
 st.markdown("""
 ### COPYRIGHTS
-Copyright 2025 Department of Pharmaceutical Sciences, University of Wisconsin-Madison,**All Rights Reserved**
+Copyright 2025 Department of Pharmaceutical Sciences, University of Wisconsin-Madison, **All Rights Reserved**
 """)
 
 st.markdown("""
