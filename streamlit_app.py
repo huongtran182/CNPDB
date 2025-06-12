@@ -83,12 +83,14 @@ st.markdown("""
 ### CITATION AND FUNDING
 If you use cNPD in your research, please cite: 
 
-    cNPD: A Comprehensive Empirical Neuropeptide Database Extended by *In Silico* Predictions from *Callinectes sapidus* and *Cancer borealis* Genomes. Duong, T.U.; Fields, L.; Tran, V.N.H.; Beaver, M.; Tourlouskis, K.; and Li, L. Nucleic Acids Research. 2025. 
+<div style="margin-left: 5cm;">
+    cNPD: A Comprehensive Empirical Neuropeptide Database Extended by <i>In Silico</i> Predictions from <i>Callinectes sapidus</i> and <i>Cancer borealis</i> Genomes. Duong, T.U.; Fields, L.; Tran, V.N.H.; Beaver, M.; Tourlouskis, K.; and Li, L. <b>Nucleic Acids Research</b>. 2025.
+</div>
 
 **Funding:** This work is supported by [Funding Agencies]
 
-For other tools developed by the Li Lab, please visit **www.lilabs.org/resources**
-""")
+For other tools developed by the Li Lab, please visit **[www.lilabs.org/resources](http://www.lilabs.org/resources)**
+""", unsafe_allow_html=True)
 
 st.markdown("""
 ### COPYRIGHTS
