@@ -83,7 +83,7 @@ st.markdown("""
 ### CITATION AND FUNDING
 If you use cNPD in your research, please cite: 
 
-<div style="margin-left: 5cm;">
+<div style="margin-left: 1cm;">
     cNPD: A Comprehensive Empirical Neuropeptide Database Extended by <i>In Silico</i> Predictions from <i>Callinectes sapidus</i> and <i>Cancer borealis</i> Genomes. Duong, T.U.; Fields, L.; Tran, V.N.H.; Beaver, M.; Tourlouskis, K.; and Li, L. <b>Nucleic Acids Research</b>. 2025.
 </div>
 
