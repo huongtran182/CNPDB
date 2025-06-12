@@ -35,6 +35,7 @@ cNPD integrates data from peer-reviewed studies and public proteomics repositori
 - Literature Mining – Curated from PubMed and primary research papers
 - Public Databases – Cross-linked with UniProt, NCBI, and NeuroPep
 - Computational Predictions – *In silico* prediction from genomics data
+
 Every neuropeptide entry undergoes manual examination to ensure accuracy and reliability.
 """)
 
@@ -72,6 +73,7 @@ cNPD is a community-driven initiative! We welcome contributions from researchers
 st.markdown("""
 ### FUTURE UPDATES
 As genomic and experimental data become available for more crustacean species, new entries will be added to our database. Additional bioinformatics tools will be developed for tailored mass spectrometric data analysis to support the discovery and identification of neuropeptides. Experimental data provided by the community will be uploaded promptly upon receipt.
+
 Stay updated on the latest cNPD developments by following us on our social media:
 - X and Bluesky: @LiResearch
 - Facebook and LinkedIn: Lingjun Li Lab
