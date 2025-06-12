@@ -34,7 +34,7 @@ cNPD integrates data from peer-reviewed studies and public proteomics repositori
 - Experimental Data – Mass spectrometry and other bioassays
 - Literature Mining – Curated from PubMed and primary research papers
 - Public Databases – Cross-linked with UniProt, NCBI, and NeuroPep
-- Computational Predictions – <i>In silico</i> prediction from genomics data
+- Computational Predictions – *In silico* prediction from genomics data
 Every neuropeptide entry undergoes manual examination to ensure accuracy and reliability.
 """)
 
