@@ -131,7 +131,7 @@ def display_peptide_details(row: pd.Series):
           text-align: center;
           margin-top:5px;
         ">
-          {img_html(f"Assets/3D Structure/3D cNP{cNPDB_id}.jpg")}
+          {img_html(f"Assets/3D Structure/3D cNP{cNPDB_id}.cif")}
         </div>
     """
     
