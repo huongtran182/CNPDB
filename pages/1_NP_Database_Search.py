@@ -65,17 +65,15 @@ def show_3d_structure(cif_path):
         
         view = py3Dmol.view(width=400, height=300)
         view.addModel(cif_data, 'cif')
-        view.setStyle({'stick': {}})  # Basic stick representation
-        view.addSurface(py3Dmol.VDW, {'opacity': 0.7, 'color': 'spectrum'})  # Optional surface
+        view.setStyle({'stick': {}})
         view.zoomTo()
-        view.spin()  # Enable rotation
+        view.spin()
         
-        # Generate HTML and display in Streamlit
         html = view._make_html()
         components.html(html, height=350)
         
     except FileNotFoundError:
-        st.error(f"3D structure file not found: {cif_path}")
+        st.markdown("<div style='color:#999; padding:20px;'>3D structure not available</div>", unsafe_allow_html=True)
     except Exception as e:
         st.error(f"Error loading 3D structure: {str(e)}")
 
@@ -138,41 +136,6 @@ def display_peptide_details(row: pd.Series):
         </table>
     </div>
     """
-   # 2) 3D Structure - Interactive Viewer
-    st.markdown("""
-    <div style="
-          color: #6a51a3;
-          font-size: 16px;
-          font-weight: bold;
-          margin-top: 10px;
-          text-align: center;
-        ">
-          3D Structure
-        </div>
-        <div style="
-          border: 2px dashed #6a51a3;
-          padding: 10px;
-          text-align: center;
-          margin-top:5px;
-        ">
-    """, unsafe_allow_html=True)
-    
-    # Load and display the CIF file
-    cif_path = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
-    try:
-        with open(cif_path, 'r') as f:
-            cif_data = f.read()
-        
-        view = py3Dmol.view(width=400, height=300)
-        view.addModel(cif_data, 'cif')
-        view.setStyle({'stick': {}})
-        view.zoomTo()
-        components.html(view._make_html(), height=350)
-        
-    except FileNotFoundError:
-        st.markdown("<div style='color:#999; padding:20px;'>3D structure not available</div>", unsafe_allow_html=True)
-    
-    st.markdown("</div>", unsafe_allow_html=True)
     
     # Prepare MSI HTML blocks
     tissue_1 = disp(row.get("MSI Tissue 1"))
@@ -237,46 +200,48 @@ def display_peptide_details(row: pd.Series):
         </div>
     """
  # Build the COMPLETE box as one HTML block
-    full_html = f"""
+    # 3) Build the complete container
+    st.markdown(f"""
     <div style="
-      position: relative;
-      background-color: #efedf5;
-      border-radius: 20px;
-      padding: 60px 20px 20px;
-      margin: 80px 0 30px;
-      display: flex;  /* Use flexbox for layout */
-      gap: 20px; /* Space between columns */
+        position: relative;
+        background-color: #efedf5;
+        border-radius: 20px;
+        padding: 60px 20px 20px;
+        margin: 80px 0 30px;
+        display: flex;
+        gap: 20px;
     ">
-      <!-- Header -->
-      <div style="
-        position: absolute;
-        top: 0; left: 50%;
-        transform: translate(-50%, -50%);
-        width: 66%;
-        background-color: #54278f;
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center;
-        font-weight: bold;
-      ">
-        {active_seq}
-      </div>
-      
-      <!-- Three-column content -->
-      <div style="flex:4; padding:0 10px;">
-        {metadata_html}
-      </div>
-      <div style="flex:3; padding:0 10px;">
-        {structure_html}
-      </div>
-      <div style="flex:3; padding:0 10px; display: flex; flex-direction: column; gap: 0px;">
-        {msi_html_1}
-        {msi_html_2}
-        {msi_html_3}
-      </div>
+        <!-- Header -->
+        <div style="...">
+            {active_seq}
+        </div>
+        
+        <!-- Three columns -->
+        <div style="flex:4; padding:0 10px;">
+            {metadata_html}
+        </div>
+        <div style="flex:3; padding:0 10px;">
+            <div style="...">
+                3D Structure
+            </div>
+            <div style="border: 2px dashed #6a51a3; padding: 10px; margin-top:5px; height: 350px;">
+                <!-- 3D Viewer will be inserted here by Streamlit -->
+            </div>
+        </div>
+        <div style="flex:3; padding:0 10px; display: flex; flex-direction: column; gap: 0px;">
+            {msi_html_1}
+            {msi_html_2}
+            {msi_html_3}
+        </div>
     </div>
-    """
+    """, unsafe_allow_html=True)
+
+    # 4) Add the 3D viewer in the correct location using columns
+    cols = st.columns([4, 3, 3])  # Matches the flex ratios
+    with cols[1]:  # Middle column (flex:3)
+        cif_path = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
+        show_3d_structure(cif_path)
+        
  # Render everything at once
     st.markdown(full_html, unsafe_allow_html=True)    
     
