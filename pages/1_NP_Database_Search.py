@@ -352,11 +352,11 @@ st.markdown('<div class="custom-col-container">', unsafe_allow_html=True)
 with col_filter:
     st.markdown('<div class="fill-height">', unsafe_allow_html=True)
 
-    st.markdown('<div class="section-title">Monoisotopic mass (m/z)</div>', unsafe_allow_html=True)
-    mono_mass_range = st.slider("", 300.0, 2000.0, (300.0, 2000.0), label_visibility="collapsed")
+    st.markdown('<div class="section-title">Monoisotopic mass (Da)</div>', unsafe_allow_html=True)
+    mono_mass_range = st.slider("", 200.0, 14000.0, (200.0, 14000.0), label_visibility="collapsed")
 
     st.markdown('<div class="section-title">Length (amino acids)</div>', unsafe_allow_html=True)
-    length_range = st.slider("", 3, 100, (3, 100), label_visibility="collapsed")
+    length_range = st.slider("", 3, 130, (3, 130), label_visibility="collapsed")
 
     st.markdown('<div class="section-title">GRAVY Score</div>', unsafe_allow_html=True)
     gravy_range = st.slider("", -5.0, 5.0, (-5.0, 5.0), label_visibility="collapsed")
@@ -365,7 +365,7 @@ with col_filter:
     hydro_range = st.slider("", 0, 100, (0, 100), label_visibility="collapsed")
 
     st.markdown('<div class="section-title">Instability Index</div>', unsafe_allow_html=True)
-    instability_index_value = st.slider("", 0, 120, (0, 120), label_visibility="collapsed")
+    instability_index_value = st.slider("", -100, 250, (-100, 250), label_visibility="collapsed")
 
     st.markdown('</div>', unsafe_allow_html=True)
         
