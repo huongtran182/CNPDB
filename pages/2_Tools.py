@@ -35,8 +35,6 @@ def calculate_properties(sequence):
     }
 
 # Page layout
-st.set_page_config(page_title="Peptide Property Calculator", layout="centered")
-
 st.title("Peptide Property Calculator")
 
 sequence_input = st.text_area("Enter your peptide sequence:", height=150)
