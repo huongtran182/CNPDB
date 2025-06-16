@@ -45,22 +45,22 @@ faqs = [
         "question": "What does the “Instability Index” mean?",
         "answer": textwrap.dedent("""
             The Instability Index is a computational measure that predicts the <i>in vitro</i> stability of a peptide or protein based on the presence of certain dipeptides known to affect stability.
-            The peptide is predicted to be stable if its index < 40.
+            The peptide is predicted to be stable if its index < 40. The peptide is predicted to be unstable if its index ≥ 40.
         """)
     },
     {
     "num": "05",
         "question": "What do the terms “de novo,” “MS/MS,” and “predicted” mean?",
         "answer": textwrap.dedent("""
-            These terms describe the type of evidence supporting the existence of each neuropeptide in the database.
-            1. De novo: Identified directly from raw MS data using computational algorithms purely based on fragmentation patterns.
-            2. MS/MS: Identified from MS/MS experiments and matched against known neuropeptide databases.
-            3. Predicted: Not observed experimentally but predicted through bioinformatics analysis (e.g. in silico prediction or gene annotation).
+            These terms describe the supporting existence evidence of each neuropeptide in the database.
+            1. <i>De novo</i>: Identified directly from raw MS data using computational algorithms purely based on fragmentation patterns.
+            2. MS/MS: Matched against known neuropeptide databases from MS/MS experiments .
+            3. Predicted: Not observed experimentally but predicted through bioinformatics analysis (e.g. <i>in silico</i> transcritomics or gene annotation).
         """)
     },
     {
     "num": "06",
-        "question": "How can I contact for new data submission, request new features, or report an error?",
+        "question": "How to submit data, request new features, or report an error?",
         "answer": textwrap.dedent("""
             Please fill out the Feedback Form in the Contact Us page. For collaborations or urgent request, please contact Prof. Li directly at lingjun.li@wisc.edu.
         """)
