@@ -3,6 +3,8 @@ from PIL import Image
 import os
 import base64
 from sidebar import render_sidebar
+import smtplib
+from email.message import EmailMessage
 
 st.set_page_config(
     page_title="Contact Us",
@@ -46,9 +48,36 @@ st.markdown("""
     If you’re interested in advancing neuropeptide research or initiating collaborations, please reach out to Prof. Li at <a href="mailto:lingjun.li@wisc.edu">lingjun.li@wisc.edu</a>.
   </p>
   <p style="margin-bottom: 0.8em;">
-    If you want to support the development of the cNPDB or have any trouble accessing this database, please email graduate student Huong (Jacey) Tran at <a href="mailto:vtran23@wisc.edu">vtran23@wisc.edu</a>.
+    If you want to submit new data to cNPDB, report an error, request new features and suggestions, or have any trouble accessing this database, please fill out the Feedback form below.
   </p>
 </div>
+""", unsafe_allow_html=True)
+
+# ─── Feedback form ────────────────────────────────────────────────────────
+st.markdown("### FEEDBACK FORM")
+
+st.markdown("""
+<form action="https://formsubmit.co/vtran23@wisc.edu" method="POST" enctype="multipart/form-data">
+  <label for="name">Full Name *</label><br>
+  <input type="text" name="name" required style="width:100%; padding:5px;"><br><br>
+
+  <label for="title">Title/Position (optional)</label><br>
+  <input type="text" name="title" style="width:100%; padding:5px;"><br><br>
+
+  <label for="institution">Institution/Organization *</label><br>
+  <input type="text" name="institution" required style="width:100%; padding:5px;"><br><br>
+
+  <label for="email">Email Address *</label><br>
+  <input type="email" name="email" required style="width:100%; padding:5px;"><br><br>
+
+  <label for="message">Your Feedback/Message *</label><br>
+  <textarea name="message" required rows="6" style="width:100%; padding:5px;"></textarea><br><br>
+
+  <label for="attachment">Attach a file (optional)</label><br>
+  <input type="file" name="attachment"><br><br>
+
+  <button type="submit" style="padding:10px 20px;">Submit Feedback</button>
+</form>
 """, unsafe_allow_html=True)
 
 
