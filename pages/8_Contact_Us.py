@@ -83,12 +83,11 @@ form input[type="file"] {
 /* Submit button styling */
 form button {
     margin-top: 24px;
-    background-color: #6a0dad; /* purple */
+    background-color: #29004c; /* purple */
     color: white;
-    padding: 10px 24px;
-    border: none;
-    border-radius: 25px;
-    font-size: 16px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 0.9em;
     cursor: pointer;
 }
 
