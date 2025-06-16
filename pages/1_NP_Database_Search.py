@@ -55,7 +55,7 @@ def disp(val):
     return val
 
 def display_peptide_details(row: pd.Series):
-    seq        = row["Seq"]
+    seq        = row["Sequence"]
     cNPDB_id    = row["cNPDB ID"]
 
 # Prepare all content as HTML strings first
@@ -221,7 +221,7 @@ def display_peptide_details(row: pd.Series):
         text-align: center;
         font-weight: bold;
       ">
-        {seq}
+        {Active Sequence}
       </div>
       
       <!-- Three-column content -->
@@ -351,7 +351,7 @@ with col_main:
 
     peptide_input = st.text_input(
         label=" ",
-        placeholder="Separate by space, PTMs: 'amide' for C-term Amidation, 'pQ' for N-term Pyro-gln from Q, 'pE'for N-term Pyro-gln from E, (O) for Oxidation, (sulf) for Sulfation, (N-Acetylation) for N-Acetylation  . e.g. FDAFTTGFGHN ARPRNFLRFamide"
+        placeholder="Separate by space, No PTMs included e.g., FDAFTTGFGHN ARPRNFLRF"
     )
 
     st.markdown("</div>", unsafe_allow_html=True)
@@ -359,27 +359,27 @@ with col_main:
     # Family
     st.markdown('<div class="section-title" style="margin-top: -10px; margin-bottom: 8px;">Family</div>', unsafe_allow_html=True)
     family_opts = sorted(df['Family'].dropna().unique())
-    family_selected = st.multiselect("Select Family", options=family_opts, key="fam")
+    family_selected = st.multiselect(options=family_opts, key="fam")
 
     # Organisms
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Organisms</div>', unsafe_allow_html=True)
     org_opts = extract_unique_values(df['OS'])
-    organisms_selected = st.multiselect("Select Organisms", options=org_opts, key="org")
+    organisms_selected = st.multiselect(options=org_opts, key="org")
 
     # Tissue
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Tissue</div>', unsafe_allow_html=True)
     tissue_opts = extract_unique_values(df['Tissue'])
-    tissue_selected = st.multiselect("Select Tissue", options=tissue_opts, key="tissue")
+    tissue_selected = st.multiselect(options=tissue_opts, key="tissue")
 
     # PTM
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Post-translational modifications (PTM)</div>', unsafe_allow_html=True)
     ptm_opts = extract_unique_values(df['PTM'])
-    ptm_selected = st.multiselect("Select PTMs", options=ptm_opts, key="ptm")
+    ptm_selected = st.multiselect(options=ptm_opts, key="ptm")
 
     # Existence
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Existence</div>', unsafe_allow_html=True)
-    exist_opts      = sorted(df['Existence'].dropna().unique())
-    existence_selected = [opt for opt in exist_opts if st.checkbox(opt, key=f"ex_{opt}")]
+    exist_opts      = extract_unique_values(df['Existence'])
+    existence_selected = st.multiselect(options=exist_opts, key="exist")
 
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -391,7 +391,7 @@ df_filtered = df.copy()
 
 if peptide_input:
     for pep in peptide_input.split():
-        df_filtered = df_filtered[df_filtered['Seq'].str.contains(pep, na=False)]
+        df_filtered = df_filtered[df_filtered['Sequence'].str.contains(pep, na=False)]
 
 # Simple one-to-one filters
 if family_selected:
@@ -459,7 +459,7 @@ if len(df_filtered) > 0:
             st.markdown(f"""
                 <div style='border:1px solid #6A0DAD; padding:10px; margin:0px 10px 20px 0; border-radius:10px;'>
                     <div style='font-weight:bold; background-color:#6a51a3; color:white; padding:10px;'>
-                        {row['Seq']}
+                        {row['Active Sequence']}
                     </div>
                     <div style='padding:5px;'>
                         Family: {row['Family']}<br>
@@ -478,7 +478,7 @@ if len(df_filtered) > 0:
         fasta_str = ""
         for idx in selected_indices:
             r = df_filtered.loc[idx]
-            fasta_str += f">{r['ID']}\n{r['Seq']}\n"
+            fasta_str += f">{r['ID']}\n{r['Sequence']}\n"
         st.download_button(
             "Download FASTA File",
             data=fasta_str,
