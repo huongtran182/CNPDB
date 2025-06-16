@@ -389,36 +389,75 @@ st.markdown('</div>', unsafe_allow_html=True)
 # Filtering logic
 df_filtered = df.copy()
 
+# 1) Always apply peptide sequence search if provided
 if peptide_input:
     for pep in peptide_input.split():
         df_filtered = df_filtered[df_filtered['Sequence'].str.contains(pep, na=False)]
 
-# Simple one-to-one filters
+# 2) Apply right-side filters (multiselects) if any are selected
+# These are "primary" filters - when used, they must be matched
+right_filters_active = False
+
+# Family filter
 if family_selected:
     df_filtered = df_filtered[df_filtered['Family'].isin(family_selected)]
+    right_filters_active = True
+
+# Existence filter
 if existence_selected:
     df_filtered = df_filtered[df_filtered['Existence'].isin(existence_selected)]
+    right_filters_active = True
 
-# Multi-entry filters
+# Tissue filter (multi-value)
 if tissue_selected:
     df_filtered = df_filtered[df_filtered['Tissue'].apply(
         lambda x: any(t in re.split(r'[;,]', str(x)) for t in tissue_selected)
     )]
+    right_filters_active = True
+
+# Organism filter (multi-value)
 if organisms_selected:
     df_filtered = df_filtered[df_filtered['OS'].apply(
         lambda x: any(o in re.split(r'[;,]', str(x)) for o in organisms_selected)
     )]
+    right_filters_active = True
+
+# PTM filter (multi-value)
 if ptm_selected:
     df_filtered = df_filtered[df_filtered['PTM'].apply(
         lambda x: any(p in re.split(r'[;,]', str(x)) for p in ptm_selected)
     )]
+    right_filters_active = True
 
-# Numeric filtering
-df_filtered = df_filtered[df_filtered['Monoisotopic Mass'].between(*mono_mass_range)]
-df_filtered = df_filtered[df_filtered['Length'].between(*length_range)]
-df_filtered = df_filtered[df_filtered['GRAVY'].between(*gravy_range)]
-df_filtered = df_filtered[df_filtered['% Hydrophobic Residue (%)'].between(*hydro_range)]
-df_filtered = df_filtered[df_filtered['Instability Index Value'].between(*instability_index_value)]
+# 3) Apply left-side sliders ONLY if:
+#    - They're not at their default values, OR
+#    - No right-side filters are active
+default_ranges = {
+    'Monoisotopic Mass': (300.0, 2000.0),
+    'Length': (3, 100),
+    'GRAVY': (-5.0, 5.0),
+    '% Hydrophobic Residue (%)': (0, 100),
+    'Instability Index Value': (0, 120)
+}
+
+# Only apply slider filters if they differ from defaults OR no right filters are active
+apply_slider_filters = (
+    (mono_mass_range != default_ranges['Monoisotopic Mass']) or
+    (length_range != default_ranges['Length']) or
+    (gravy_range != default_ranges['GRAVY']) or
+    (hydro_range != default_ranges['% Hydrophobic Residue (%)']) or
+    (instability_index_value != default_ranges['Instability Index Value']) or
+    (not right_filters_active)
+)
+
+if apply_slider_filters:
+    df_filtered = df_filtered[
+        df_filtered['Monoisotopic Mass'].between(*mono_mass_range) &
+        df_filtered['Length'].between(*length_range) &
+        df_filtered['GRAVY'].between(*gravy_range) &
+        df_filtered['% Hydrophobic Residue (%)'].between(*hydro_range) &
+        df_filtered['Instability Index Value'].between(*instability_index_value)
+    ]
 
 # --- Separator Line ---
 st.markdown("""
