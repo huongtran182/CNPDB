@@ -29,7 +29,7 @@ faqs = [
         "num": "02",
         "question": "How do I search for neuropeptides of interest in the cNPDB?",
         "answer": textwrap.dedent("""
-            The Database Search Engine on the left allows users to search by specific sequence, family, organism, and other propepties. 
+            The Database Search Engine on the left allows users to search by specific sequence, family, organism, and other neuropepties. 
             Visit the Tutorials page for detailed instructions on how to use the search engine and download the results.
         """)
     },
@@ -44,7 +44,7 @@ faqs = [
         "num": "04",
         "question": "What does the “Instability Index” mean?",
         "answer": textwrap.dedent("""
-            The Instability Index is a computational measure that predicts the in vitro stability of a peptide or protein based on the presence of certain dipeptides known to affect stability.
+            The Instability Index is a computational measure that predicts the <i>in vitro</i> stability of a peptide or protein based on the presence of certain dipeptides known to affect stability.
             The peptide is predicted to be stable if its index < 40.
         """)
     },
