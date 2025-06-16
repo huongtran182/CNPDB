@@ -37,9 +37,9 @@ st.markdown("""
 st.markdown("---")
 # ---- Section: Composition Chart ----
 st.markdown("""
-<h4 style="margin-bottom: 10px;">1. Composition of Neuropeptides per Organism in cNPDB</h4>
+<h4 style="margin-bottom: 10px;">1. Family Distribution of Neuropeptides in cNPDB</h4>
 """, unsafe_allow_html=True)
-image_path = os.path.join("Assets", "Statistics", "Composition.png")
+image_path = os.path.join("Assets", "Statistics", "Pie Chart Family Distribution.png")
 if os.path.exists(image_path):
     st.markdown(f"""
         <div style="width: 70%; margin: 0 auto; text-align: center;">
@@ -50,9 +50,9 @@ else:
     st.error(f"Image not found at {image_path}")
 
 st.markdown("""
-<h4 style="margin-top: 40px; margin-bottom: 10px;">2. Proteolytic Cleavage Patterns from all Peptides in cNPDB</h4>
+<h4 style="margin-top: 40px; margin-bottom: 10px;">2. Composition of Neuropeptides per Organism in cNPDB</h4>
 """, unsafe_allow_html=True)
-image_path = os.path.join("Assets", "Statistics", "Sequence Logo draft.png")
+image_path = os.path.join("Assets", "Statistics", "Pie Chart Organism Distribution.png")
 if os.path.exists(image_path):
     st.markdown(f"""
         <div style="width: 70%; margin: 0 auto; text-align: center;">
@@ -63,9 +63,9 @@ else:
     st.error(f"Image not found at {image_path}")
 
 st.markdown("""
-<h4 style="margin-top: 40px; margin-bottom: 10px;">3. Peptide Properties from all Peptides in cNPDB</h4>
+<h4 style="margin-top: 40px; margin-bottom: 10px;">3. Properties of All Peptides in cNPDB</h4>
 """, unsafe_allow_html=True)
-image_path = os.path.join("Assets", "Statistics", "Peptide Properties draft.png")
+image_path = os.path.join("Assets", "Statistics", "Peptide Property Violin.png")
 if os.path.exists(image_path):
     st.markdown(f"""
         <div style="width: 70%; margin: 0 auto; text-align: center;">
@@ -76,9 +76,9 @@ else:
     st.error(f"Image not found at {image_path}")
 
 st.markdown("""
-<h4 style="margin-top: 40px; margin-bottom: 10px;">4. Distribution of Sequence Lengths from all Peptides in cNPDB</h4>
+<h4 style="margin-top: 40px; margin-bottom: 10px;">4. Distribution of Existence Evidence for All Peptides in cNPDB</h4>
 """, unsafe_allow_html=True)
-image_path = os.path.join("Assets", "Statistics", "Sequence Length Distribution.png")
+image_path = os.path.join("Assets", "Statistics", "Pie Chart Existence Distribution.png")
 if os.path.exists(image_path):
     st.markdown(f"""
         <div style="width: 70%; margin: 0 auto; text-align: center;">
@@ -89,9 +89,9 @@ else:
     st.error(f"Image not found at {image_path}")
 
 st.markdown("""
-<h4 style="margin-top: 40px; margin-bottom: 10px;">5. Amino Acids Composition from all Peptides in cNPDB</h4>
+<h4 style="margin-top: 40px; margin-bottom: 10px;">5. Amino Acids Composition from All Peptides in cNPDB</h4>
 """, unsafe_allow_html=True)
-image_path = os.path.join("Assets", "Statistics", "Amino Acids Composition.png")
+image_path = os.path.join("Assets", "Statistics", "Amino Acid Composition.png")
 if os.path.exists(image_path):
     st.markdown(f"""
         <div style="width: 70%; margin: 0 auto; text-align: center;">
