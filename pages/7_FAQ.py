@@ -48,6 +48,7 @@ faqs = [
             The peptide is predicted to be stable if its index < 40.
         """)
     },
+    {
     "num": "05",
         "question": "What do the terms “de novo,” “MS/MS,” and “predicted” mean?",
         "answer": textwrap.dedent("""
@@ -57,6 +58,7 @@ faqs = [
             3. Predicted: Not observed experimentally but predicted through bioinformatics analysis (e.g. in silico prediction or gene annotation).
         """)
     },
+    {
     "num": "06",
         "question": "How can I contact for new data submission, request new features, or report an error?",
         "answer": textwrap.dedent("""
