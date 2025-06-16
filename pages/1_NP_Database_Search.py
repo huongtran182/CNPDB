@@ -221,7 +221,7 @@ def display_peptide_details(row: pd.Series):
         text-align: center;
         font-weight: bold;
       ">
-        {seq}
+        {'Active Sequence'}
       </div>
       
       <!-- Three-column content -->
@@ -451,11 +451,18 @@ with col2:
 if len(df_filtered) > 0:
     cols = st.columns(3)
     selected_indices = []
+
     for i, (idx, row) in enumerate(df_filtered.iterrows()):
         with cols[i % 3]:
             checked = st.checkbox("", key=f"check_{idx}", value=check_all)
             if checked:
                 selected_indices.append(idx)
+
+            # Clean organism field to only show unique values
+            org_raw = str(row['OS']) if pd.notna(row['OS']) else ""
+            org_list = [item.strip() for item in org_raw.split(';') if item.strip()]
+            org_unique = "; ".join(sorted(set(org_list), key=org_list.index))
+
             st.markdown(f"""
                 <div style='border:1px solid #6A0DAD; padding:10px; margin:0px 10px 20px 0; border-radius:10px;'>
                     <div style='font-weight:bold; background-color:#6a51a3; color:white; padding:10px;'>
@@ -463,7 +470,7 @@ if len(df_filtered) > 0:
                     </div>
                     <div style='padding:5px;'>
                         Family: {row['Family']}<br>
-                        Organism: {row['OS']}
+                        Organism: {org_unique}
                     </div>
                 </div>
             """, unsafe_allow_html=True)
