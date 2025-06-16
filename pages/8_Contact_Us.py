@@ -57,6 +57,46 @@ st.markdown("""
 st.markdown("### FEEDBACK FORM")
 
 st.markdown("""
+<style>
+/* Add spacing between fields */
+form label {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* File upload spacing */
+form input[type="file"] {
+    margin-top: 10px;
+}
+
+/* Submit button styling */
+form button {
+    margin-top: 24px;
+    background-color: #6a0dad; /* purple */
+    color: white;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #590ba9;
+}
+</style>
+
 <form action="https://formsubmit.co/vtran23@wisc.edu" method="POST" enctype="multipart/form-data">
   <label for="name">Full Name *</label><br>
   <input type="text" name="name" required style="width:100%; padding:5px;"><br><br>
