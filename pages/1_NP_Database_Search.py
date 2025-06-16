@@ -106,8 +106,8 @@ def display_peptide_details(row: pd.Series):
             <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Instability Index'])}</td>
             </tr>
             <tr>
-            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">PTMs</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['PTMs'])}</td>
+            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">PTM</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['PTM'])}</td>
             </tr>
         </table>
     </div>
@@ -341,7 +341,7 @@ with col_main:
 
     peptide_input = st.text_input(
         label=" ",
-        placeholder="Separate by space, No PTMs included. e.g. FDAFTTGFGHN NFDEIDRSGFGFN"
+        placeholder="Separate by space, PTMs: 'amide' for C-term Amidation, 'pQ' for N-term Pyro-gln from Q, 'pE'for N-term Pyro-gln from E, (O) for Oxidation, (sulf) for Sulfation, (N-Acetylation) for N-Acetylation  . e.g. FDAFTTGFGHN ARPRNFLRFamide"
     )
 
     st.markdown("</div>", unsafe_allow_html=True)
@@ -366,9 +366,9 @@ with col_main:
     exist_opts      = sorted(df['Existence'].dropna().unique())
     existence_selected = [opt for opt in exist_opts if st.checkbox(opt, key=f"ex_{opt}")]
 
-    # PTMs
-    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Post-translational modifications (PTMs)</div>', unsafe_allow_html=True)
-    ptm_opts        = sorted(df['PTMs'].dropna().unique())
+    # PTM
+    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Post-translational modifications (PTM)</div>', unsafe_allow_html=True)
+    ptm_opts        = sorted(df['PTM'].dropna().unique())
     ptm_selected = [opt for opt in ptm_opts if st.checkbox(opt, key=f"ptm_{opt}")]
 
     st.markdown('</div>', unsafe_allow_html=True)
@@ -392,7 +392,7 @@ if existence_selected:
 if organisms_selected:
     df_filtered = df_filtered[df_filtered['OS'].isin(organisms_selected)]
 if ptm_selected:
-    df_filtered = df_filtered[df_filtered['PTMs'].isin(ptm_selected)]
+    df_filtered = df_filtered[df_filtered['PTM'].isin(ptm_selected)]
 
 # Numeric filtering
 df_filtered = df_filtered[df_filtered['Monoisotopic Mass'].between(*mono_mass_range)]
