@@ -138,9 +138,8 @@ def display_peptide_details(row: pd.Series):
         </table>
     </div>
     """
-
-    # 2) 3D Structure
-   structure_html = f"""
+   # 2) 3D Structure - Interactive Viewer
+    st.markdown("""
     <div style="
           color: #6a51a3;
           font-size: 16px;
@@ -156,16 +155,23 @@ def display_peptide_details(row: pd.Series):
           text-align: center;
           margin-top:5px;
         ">
-    """
+    """, unsafe_allow_html=True)
     
-    # Render the HTML container
-    st.markdown(structure_html, unsafe_allow_html=True)
-    
-    # Add the interactive viewer
+    # Load and display the CIF file
     cif_path = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
-    show_3d_structure(cif_path)
+    try:
+        with open(cif_path, 'r') as f:
+            cif_data = f.read()
+        
+        view = py3Dmol.view(width=400, height=300)
+        view.addModel(cif_data, 'cif')
+        view.setStyle({'stick': {}})
+        view.zoomTo()
+        components.html(view._make_html(), height=350)
+        
+    except FileNotFoundError:
+        st.markdown("<div style='color:#999; padding:20px;'>3D structure not available</div>", unsafe_allow_html=True)
     
-    # Close the div
     st.markdown("</div>", unsafe_allow_html=True)
     
     # Prepare MSI HTML blocks
