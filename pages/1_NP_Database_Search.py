@@ -296,7 +296,7 @@ st.markdown('<div class="main-search-container">', unsafe_allow_html=True)
 
 # Load data
 DF_PATH = "Assets/20250613_cNPDB.xlsx"
-df = pd.read_excel(DF_PATH, sheet_name="Example")
+df = pd.read_excel(DF_PATH)
 
 # Ensure numeric columns are numeric
 numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (%)', 'Predicted Half Life (Min)']
