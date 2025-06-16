@@ -53,7 +53,7 @@ faqs = [
         "question": "What do the terms “de novo,” “MS/MS,” and “predicted” mean?",
         "answer": textwrap.dedent("""
             These terms describe the supporting existence evidence of each neuropeptide in the database.
-            1. <i>De novo</i>: Identified directly from raw MS data using computational algorithms purely based on fragmentation patterns.
+            1. <i>De novo</i>: Identified directly from raw MS/MS data purely based on fragmentation patterns.
             2. MS/MS: Matched against known neuropeptide databases from MS/MS experiments .
             3. Predicted: Not observed experimentally but predicted through bioinformatics analysis (e.g. <i>in silico</i> transcritomics or gene annotation).
         """)
