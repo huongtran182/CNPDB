@@ -61,7 +61,7 @@ st.markdown("""
 /* Add spacing between fields */
 form label {
     display: block;
-    margin-top: 5px;
+    margin-top: 0px;
     margin-bottom: 0px;
     font-weight: bold;
 }
@@ -70,29 +70,29 @@ form input[type="text"],
 form input[type="email"],
 form textarea {
     width: 100%;
-    padding: 8px;
+    padding: 0px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
 /* File upload spacing */
 form input[type="file"] {
-    margin-top: 10px;
+    margin-top: 3px;
 }
 
 /* Submit button styling */
 form button {
-    margin-top: 24px;
-    background-color: #29004c; /* purple */
+    margin-top: 5px;
+    background-color: #9e9ac8; /* purple */
     color: white;
     padding: 8px 16px;
     border-radius: 5px;
-    font-size: 0.9em;
+    font-size: 1.2em;
     cursor: pointer;
 }
 
 form button:hover {
-    background-color: #590ba9;
+    background-color: #6a51a3;
 }
 </style>
 
