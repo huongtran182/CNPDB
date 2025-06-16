@@ -55,7 +55,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown("""
 sequence_input = st.text_area("Enter your peptide sequence:", height=150)
 
 if st.button("Calculate", type="primary"):
@@ -92,4 +91,3 @@ st.markdown("""
   <em>Last update: Jul 2025</em>
 </div>
 """, unsafe_allow_html=True)
-
