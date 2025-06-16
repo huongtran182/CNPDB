@@ -3,8 +3,6 @@ from PIL import Image
 import os
 import base64
 from sidebar import render_sidebar
-import smtplib
-from email.message import EmailMessage
 
 st.set_page_config(
     page_title="Contact Us",
