@@ -27,27 +27,40 @@ faqs = [
     },
     {
         "num": "02",
-        "question": "How do I search for neuropeptides in the cNPDB?",
+        "question": "How do I search for neuropeptides of interest in the cNPDB?",
         "answer": textwrap.dedent("""
-            To find a specific neuropeptide, enter the peptide name, sequence, or molecular weight in the search bar.
-            Visit the <a href="https://yourdatabase.com/search" target="_blank">CNPD search page</a> for more details.
+            The Database Search Engine on the left allows users to search by specific sequence, family, organism, and other propepties. 
+            Visit the Tutorials page for detailed instructions on how to use the search engine and download the results.
         """)
     },
     {
         "num": "03",
-        "question": "How do I analyze neuropeptide properties?",
+        "question": "How often is the database updated?",
         "answer": textwrap.dedent("""
-            You can use our peptide property calculator, which provides insights into molecular weight, hydrophobicity, and GRAVY scores.
-            <a href="https://yourdatabase.com/tools" target="_blank">Try it here</a>.
+            The database is maintained and updated yearly. Additionally, any new submissions/requests from the community will be addressed promtly upon receipt. 
         """)
     },
     {
         "num": "04",
-        "question": "What species are included in the cNPDB?",
+        "question": "What does the “Instability Index” mean?",
         "answer": textwrap.dedent("""
-            The CNPD includes crustaceans such as <i>Homarus americanus</i> (American lobster),
-            <i>Callinectes sapidus</i> (Blue Crab), and <i>Cancer borealis</i> (Jonah Crab).
-            View the complete list <a href="https://yourdatabase.com/species" target="_blank">here</a>.
+            The Instability Index is a computational measure that predicts the in vitro stability of a peptide or protein based on the presence of certain dipeptides known to affect stability.
+            The peptide is predicted to be stable if its index < 40.
+        """)
+    },
+    "num": "05",
+        "question": "What do the terms “de novo,” “MS/MS,” and “predicted” mean?",
+        "answer": textwrap.dedent("""
+            These terms describe the type of evidence supporting the existence of each neuropeptide in the database.
+            1. De novo: Identified directly from raw MS data using computational algorithms purely based on fragmentation patterns.
+            2. MS/MS: Identified from MS/MS experiments and matched against known neuropeptide databases.
+            3. Predicted: Not observed experimentally but predicted through bioinformatics analysis (e.g. in silico prediction or gene annotation).
+        """)
+    },
+    "num": "06",
+        "question": "How can I contact for new data submission, request new features, or report an error?",
+        "answer": textwrap.dedent("""
+            Please fill out the Feedback Form in the Contact Us page. For collaborations or urgent request, please contact Prof. Li directly at lingjun.li@wisc.edu.
         """)
     },
 ]
