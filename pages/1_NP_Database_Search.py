@@ -300,7 +300,7 @@ DF_PATH = "Assets/20250613_cNPDB.xlsx"
 df = pd.read_excel(DF_PATH)
 
 # Ensure numeric columns are numeric
-numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (%)', ' Index Value']
+numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (%)', 'Instability Index Value']
 for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
@@ -335,7 +335,7 @@ with col_filter:
     st.markdown('<div class="section-title">% Hydrophobic Residue</div>', unsafe_allow_html=True)
     hydro_range = st.slider("", 0, 100, (0, 100), label_visibility="collapsed")
 
-    st.markdown('<div class="section-title"> Index</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title">Instability Index</div>', unsafe_allow_html=True)
     instability_index_value = st.slider("", 0, 120, (0, 120), label_visibility="collapsed")
 
     st.markdown('</div>', unsafe_allow_html=True)
