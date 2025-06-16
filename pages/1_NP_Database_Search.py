@@ -359,27 +359,27 @@ with col_main:
     # Family
     st.markdown('<div class="section-title" style="margin-top: -10px; margin-bottom: 8px;">Family</div>', unsafe_allow_html=True)
     family_opts = sorted(df['Family'].dropna().unique())
-    family_selected = st.multiselect(options=family_opts, key="fam")
+    family_selected = st.multiselect(label=" ", options=family_opts, key="fam", label_visibility="collapsed")
 
     # Organisms
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Organisms</div>', unsafe_allow_html=True)
     org_opts = extract_unique_values(df['OS'])
-    organisms_selected = st.multiselect(options=org_opts, key="org")
+    organisms_selected = st.multiselect(label=" ", options=org_opts, key="org", label_visibility="collapsed")
 
     # Tissue
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Tissue</div>', unsafe_allow_html=True)
     tissue_opts = extract_unique_values(df['Tissue'])
-    tissue_selected = st.multiselect(options=tissue_opts, key="tissue")
+    tissue_selected = st.multiselect(label=" ", options=tissue_opts, key="tissue", label_visibility="collapsed")
 
     # PTM
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Post-translational modifications (PTM)</div>', unsafe_allow_html=True)
     ptm_opts = extract_unique_values(df['PTM'])
-    ptm_selected = st.multiselect(options=ptm_opts, key="ptm")
+    ptm_selected = st.multiselect(label=" ", options=ptm_opts, key="ptm", label_visibility="collapsed")
 
     # Existence
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Existence</div>', unsafe_allow_html=True)
     exist_opts      = extract_unique_values(df['Existence'])
-    existence_selected = st.multiselect(options=exist_opts, key="exist")
+    existence_selected = st.multiselect(label=" ", options=exist_opts, key="exist", label_visibility="collapsed")
 
     st.markdown('</div>', unsafe_allow_html=True)
 
