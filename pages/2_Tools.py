@@ -55,7 +55,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-sequence_input = st.text_area("Enter your peptide sequence:", height=150)
+st.markdown('<label style="font-size:10px; font-weight:bold;">Enter your peptide sequence:</label>', unsafe_allow_html=True)
+sequence_input = st.text_area("", height=50)
 
 if st.button("Calculate", type="primary"):
     if not sequence_input.strip():
@@ -77,14 +78,26 @@ st.markdown(
 )
 
 st.markdown("""
-<h4 style="margin-bottom: 10px;">1. [SignalP - 6.0](https://services.healthtech.dtu.dk/services/SignalP-6.0/) </h4>
+<h4 style="margin-bottom: 10px;">
+  1. <a href="https://services.healthtech.dtu.dk/services/SignalP-6.0/" target="_blank">SignalP - 6.0</a>
+</h4>
 """, unsafe_allow_html=True)
 st.markdown("""
 SignalP 6.0 is a deep learning-based tool that predicts the presence and cleavage sites of signal peptides in protein sequences. 
 It helps identify peptides likely to be secreted, making it especially useful for discovering and filtering neuropeptide prohormone 
 precursors from whole-proteome datasets.
 """)
-    
+
+st.markdown("""
+<h4 style="margin-bottom: 10px;">
+  1. <a href="https://services.healthtech.dtu.dk/services/SignalP-6.0/" target="_blank">SignalP - 6.0</a>
+</h4>
+""", unsafe_allow_html=True)
+st.markdown("""
+SignalP 6.0 is a deep learning-based tool that predicts the presence and cleavage sites of signal peptides in protein sequences. 
+It helps identify peptides likely to be secreted, making it especially useful for discovering and filtering neuropeptide prohormone 
+precursors from whole-proteome datasets.
+""")
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
