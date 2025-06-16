@@ -4,6 +4,7 @@ import pandas as pd
 import os
 from PIL import Image
 import base64
+import re
 
 st.set_page_config(
     page_title="NP Database search",
@@ -303,6 +304,15 @@ numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (
 for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
+# Helper function to extract unique clean items from multi-value cells
+def extract_unique_values(series):
+    return sorted(set(
+        item.strip()
+        for entry in series.dropna()
+        for item in re.split(r'[;,]', str(entry))
+        if item.strip()
+    ))
+
 # Create two columns with a 20px gap using Streamlit's built-in layout
 col_filter, col_main = st.columns([1, 3], gap= "large")
 
@@ -348,28 +358,28 @@ with col_main:
 
     # Family
     st.markdown('<div class="section-title" style="margin-top: -10px; margin-bottom: 8px;">Family</div>', unsafe_allow_html=True)
-    family_opts     = sorted(df['Family'].dropna().unique())
-    family_selected = [opt for opt in family_opts if st.checkbox(opt, key=f"fam_{opt}")]
-    
+    family_opts = sorted(df['Family'].dropna().unique())
+    family_selected = st.multiselect("Select Family", options=family_opts, key="fam")
+
     # Organisms
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Organisms</div>', unsafe_allow_html=True)
-    org_opts        = sorted(df['OS'].dropna().unique())
-    organisms_selected = [opt for opt in org_opts if st.checkbox(opt, key=f"org_{opt}")]
-    
+    org_opts = extract_unique_values(df['OS'])
+    organisms_selected = st.multiselect("Select Organisms", options=org_opts, key="org")
+
     # Tissue
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Tissue</div>', unsafe_allow_html=True)
-    tissue_opts     = sorted(df['Tissue'].dropna().unique())
-    tissue_selected = [opt for opt in tissue_opts if st.checkbox(opt, key=f"tiss_{opt}")]
+    tissue_opts = extract_unique_values(df['Tissue'])
+    tissue_selected = st.multiselect("Select Tissue", options=tissue_opts, key="tissue")
+
+    # PTM
+    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Post-translational modifications (PTM)</div>', unsafe_allow_html=True)
+    ptm_opts = extract_unique_values(df['PTM'])
+    ptm_selected = st.multiselect("Select PTMs", options=ptm_opts, key="ptm")
 
     # Existence
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Existence</div>', unsafe_allow_html=True)
     exist_opts      = sorted(df['Existence'].dropna().unique())
     existence_selected = [opt for opt in exist_opts if st.checkbox(opt, key=f"ex_{opt}")]
-
-    # PTM
-    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Post-translational modifications (PTM)</div>', unsafe_allow_html=True)
-    ptm_opts        = sorted(df['PTM'].dropna().unique())
-    ptm_selected = [opt for opt in ptm_opts if st.checkbox(opt, key=f"ptm_{opt}")]
 
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -383,23 +393,32 @@ if peptide_input:
     for pep in peptide_input.split():
         df_filtered = df_filtered[df_filtered['Seq'].str.contains(pep, na=False)]
 
+# Simple one-to-one filters
 if family_selected:
     df_filtered = df_filtered[df_filtered['Family'].isin(family_selected)]
-if tissue_selected:
-    df_filtered = df_filtered[df_filtered['Tissue'].isin(tissue_selected)]
 if existence_selected:
     df_filtered = df_filtered[df_filtered['Existence'].isin(existence_selected)]
+
+# Multi-entry filters
+if tissue_selected:
+    df_filtered = df_filtered[df_filtered['Tissue'].apply(
+        lambda x: any(t in re.split(r'[;,]', str(x)) for t in tissue_selected)
+    )]
 if organisms_selected:
-    df_filtered = df_filtered[df_filtered['OS'].isin(organisms_selected)]
+    df_filtered = df_filtered[df_filtered['OS'].apply(
+        lambda x: any(o in re.split(r'[;,]', str(x)) for o in organisms_selected)
+    )]
 if ptm_selected:
-    df_filtered = df_filtered[df_filtered['PTM'].isin(ptm_selected)]
+    df_filtered = df_filtered[df_filtered['PTM'].apply(
+        lambda x: any(p in re.split(r'[;,]', str(x)) for p in ptm_selected)
+    )]
 
 # Numeric filtering
 df_filtered = df_filtered[df_filtered['Monoisotopic Mass'].between(*mono_mass_range)]
 df_filtered = df_filtered[df_filtered['Length'].between(*length_range)]
 df_filtered = df_filtered[df_filtered['GRAVY'].between(*gravy_range)]
 df_filtered = df_filtered[df_filtered['% Hydrophobic Residue (%)'].between(*hydro_range)]
-df_filtered = df_filtered[df_filtered['Instability Index'].between(*instability_index_value)]
+df_filtered = df_filtered[df_filtered['Instability Index Value'].between(*instability_index_value)]
 
 # --- Separator Line ---
 st.markdown("""
