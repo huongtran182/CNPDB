@@ -33,7 +33,7 @@ st.markdown("""
 The current release of cNPDB (Version 1.0, 2025) contains 2000 curated neuropeptide entries from 26 crustacean species, organized into 40 neuropeptide families. Some representative species include *Homarus americanus*  (American Lobster), *Callinectes sapidus*  (Blue Crab), *Cancer borealis*  (Jonah Crab), *Carcinus maenas*  (European green crab), and *Panulirus interruptus*  (California spiny lobster). cNPDB offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
 - **Custom Search Engine** – Find neuropeptides by sequence, species, families, tissues, post-translational modifications (PTMs), and desired peptide physiological properties, with an option to download the resulted FASTA file.
 - **Sequence Alignment & Homology Search** – Identify conserved motifs and sequence similarities.
-- **Peptide Property Calculator** – Compute GRAVY scores, hydrophobicity, half-life, 3D structures, and other physiological properties.
+- **Peptide Property Calculator** – Compute GRAVY scores, hydrophobicity, instability index, and other physiological properties.
 
 Each cNPDB search entry provides:
 - Neuropeptide sequence (downloadable FASTA format)
