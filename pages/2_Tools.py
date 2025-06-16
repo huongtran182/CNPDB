@@ -1,13 +1,6 @@
 import streamlit as st
 from sidebar import render_sidebar
 from Bio.SeqUtils.ProtParam import ProteinAnalysis
-import pandas as pd
-from io import StringIO
-from Bio.SeqIO import parse
-from Bio.Seq import Seq
-from Bio.SeqRecord import SeqRecord
-from Bio import pairwise2
-from Bio.pairwise2 import format_alignment
 
 st.set_page_config(
     page_title="Tools",
@@ -84,8 +77,15 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
-
+st.markdown("""
+<h4 style="margin-bottom: 10px;">1. [SignalP - 6.0](https://services.healthtech.dtu.dk/services/SignalP-6.0/) </h4>
+""", unsafe_allow_html=True)
+st.markdown("""
+SignalP 6.0 is a deep learning-based tool that predicts the presence and cleavage sites of signal peptides in protein sequences. 
+It helps identify peptides likely to be secreted, making it especially useful for discovering and filtering neuropeptide prohormone 
+precursors from whole-proteome datasets.
+""")
+    
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
