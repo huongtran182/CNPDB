@@ -1,6 +1,13 @@
 import streamlit as st
 from sidebar import render_sidebar
 from Bio.SeqUtils.ProtParam import ProteinAnalysis
+import pandas as pd
+from io import StringIO
+from Bio.SeqIO import parse
+from Bio.Seq import Seq
+from Bio.SeqRecord import SeqRecord
+from Bio import pairwise2
+from Bio.pairwise2 import format_alignment
 
 st.set_page_config(
     page_title="Tools",
@@ -20,7 +27,8 @@ def calculate_properties(sequence):
     length = len(sequence)
     molecular_weight = analysis.molecular_weight()
     gravy = analysis.gravy()
-    instability = analysis.instability_index()
+    instability_val = analysis.instability_index()
+    instability_status = "stable" if instability_val < 40 else "unstable"
     
     hydrophobic_count = sum(1 for aa in sequence if aa in hydrophobic_residues)
     hydrophobic_pct = (hydrophobic_count / length) * 100 if length > 0 else 0
@@ -31,12 +39,30 @@ def calculate_properties(sequence):
         "Length": length,
         "GRAVY Score": round(gravy, 3),
         "% Hydrophobic Residue": round(hydrophobic_pct, 2),
-        "Instability Index": round(instability, 3),
+        "Instability Index": f"{round(instability_val, 3)} ({instability_status})",
     }
 
 # Page layout
-st.title("Peptide Property Calculator")
+st.markdown("""
+<style>
+ /* 1) Centered title with10px top margin */
+  h2.custom-title {
+    text-align: center !important;
+    margin-top: 0px !important;
+    color: #29004c;
+  }
+</style>
+""", unsafe_allow_html=True)
 
+# --- Centered, spaced title ---
+st.markdown(
+    '<h2 class="custom-title">'
+    'PEPTIDE PROPERTY CALCULATOR'
+    '</h2>',
+    unsafe_allow_html=True
+)
+
+st.markdown("""
 sequence_input = st.text_area("Enter your peptide sequence:", height=150)
 
 if st.button("Calculate", type="primary"):
@@ -50,6 +76,16 @@ if st.button("Calculate", type="primary"):
                 st.write(f"**{key}**: {value}")
         except Exception as e:
             st.error(f"Error: {e}")
+
+st.markdown(
+    '<h2 class="custom-title">'
+    'OTHER TOOLS FOR NEUROPEPTIDE RESEARCH'
+    '</h2>',
+    unsafe_allow_html=True
+)
+
+
+
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
