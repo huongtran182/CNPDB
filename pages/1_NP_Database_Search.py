@@ -238,7 +238,6 @@ def display_peptide_details(row: pd.Series):
       display: flex;  /* Use flexbox for layout */
       gap: 20px; /* Space between columns */
     ">
-      <!-- Header -->
       <div style="
         position: absolute;
         top: 0; left: 50%;
@@ -254,7 +253,6 @@ def display_peptide_details(row: pd.Series):
         {active_seq}
       </div>
       
-      <!-- Three-column content -->
       <div style="flex:4; padding:0 10px;">
         {metadata_html}
       </div>
@@ -268,6 +266,7 @@ def display_peptide_details(row: pd.Series):
       </div>
     </div>
     """
+    
  # Render everything at once
     st.markdown(full_html, unsafe_allow_html=True)    
     
