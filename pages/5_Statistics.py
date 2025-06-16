@@ -42,8 +42,8 @@ st.markdown("""
 image_path = os.path.join("Assets", "Statistics", "Pie Chart Family Distribution.png")
 if os.path.exists(image_path):
     st.markdown(f"""
-        <div style="width: 70%; margin: 0 auto; text-align: center;">
-            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: 100%; height: auto;" />
+        <div style="margin: 0 auto; text-align: center;">
+            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: auto; height: 400px;" />
         </div>
     """, unsafe_allow_html=True)
 else:
@@ -55,8 +55,8 @@ st.markdown("""
 image_path = os.path.join("Assets", "Statistics", "Pie Chart Organism Distribution.png")
 if os.path.exists(image_path):
     st.markdown(f"""
-        <div style="width: 70%; margin: 0 auto; text-align: center;">
-            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: 100%; height: auto;" />
+        <div style="margin: 0 auto; text-align: center;">
+            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: auto; height: 400px;" />
         </div>
     """, unsafe_allow_html=True)
 else:
@@ -68,8 +68,8 @@ st.markdown("""
 image_path = os.path.join("Assets", "Statistics", "Peptide Property Violin.png")
 if os.path.exists(image_path):
     st.markdown(f"""
-        <div style="width: 70%; margin: 0 auto; text-align: center;">
-            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: 100%; height: auto;" />
+        <div style="margin: 0 auto; text-align: center;">
+            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: auto; height: 400px;" />
         </div>
     """, unsafe_allow_html=True)
 else:
@@ -81,8 +81,8 @@ st.markdown("""
 image_path = os.path.join("Assets", "Statistics", "Pie Chart Existence Distribution.png")
 if os.path.exists(image_path):
     st.markdown(f"""
-        <div style="width: 70%; margin: 0 auto; text-align: center;">
-            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: 100%; height: auto;" />
+        <div style="margin: 0 auto; text-align: center;">
+            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: auto; height: 400px;" />
         </div>
     """, unsafe_allow_html=True)
 else:
@@ -94,8 +94,8 @@ st.markdown("""
 image_path = os.path.join("Assets", "Statistics", "Amino Acid Composition.png")
 if os.path.exists(image_path):
     st.markdown(f"""
-        <div style="width: 70%; margin: 0 auto; text-align: center;">
-            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: 100%; height: auto;" />
+        <div style="margin: 0 auto; text-align: center;">
+            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: auto; height: 400px;" />
         </div>
     """, unsafe_allow_html=True)
 else:
