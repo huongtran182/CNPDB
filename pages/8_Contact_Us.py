@@ -85,7 +85,7 @@ form input[type="file"] {
 form button {
     margin-top: 0px;
     background-color: #9e9ac8; /* purple */
-    color: white;
+    color: #000000;
     padding: 2px 4px;
     border-radius: 5px;
     font-size: 1.2em;
