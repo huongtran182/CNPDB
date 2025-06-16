@@ -102,8 +102,8 @@ def display_peptide_details(row: pd.Series):
             <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['% Hydrophobic Residue (%)'])}</td>
             </tr>
             <tr>
-            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Half-life (Min)</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Predicted Half Life (Min)'])}</td>
+            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Instability Index </td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Instability Index'])}</td>
             </tr>
             <tr>
             <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">PTMs</td>
@@ -295,7 +295,7 @@ st.markdown(
 st.markdown('<div class="main-search-container">', unsafe_allow_html=True)
 
 # Load data
-DF_PATH = "Assets/cNPDB_Li.xlsx"
+DF_PATH = "Assets/20250613_cNPDB.xlsx"
 df = pd.read_excel(DF_PATH, sheet_name="Example")
 
 # Ensure numeric columns are numeric
@@ -325,8 +325,8 @@ with col_filter:
     st.markdown('<div class="section-title">% Hydrophobic Residue</div>', unsafe_allow_html=True)
     hydro_range = st.slider("", 0, 100, (0, 100), label_visibility="collapsed")
 
-    st.markdown('<div class="section-title">Predicted Half-life (min)</div>', unsafe_allow_html=True)
-    half_life_range = st.slider("", 0, 120, (0, 60), label_visibility="collapsed")
+    st.markdown('<div class="section-title">Instability Index</div>', unsafe_allow_html=True)
+    instability_index_value = st.slider("", 0, 120, (0, 60), label_visibility="collapsed")
 
     st.markdown('</div>', unsafe_allow_html=True)
         
@@ -399,7 +399,7 @@ df_filtered = df_filtered[df_filtered['Monoisotopic Mass'].between(*mono_mass_ra
 df_filtered = df_filtered[df_filtered['Length'].between(*length_range)]
 df_filtered = df_filtered[df_filtered['GRAVY'].between(*gravy_range)]
 df_filtered = df_filtered[df_filtered['% Hydrophobic Residue (%)'].between(*hydro_range)]
-df_filtered = df_filtered[df_filtered['Predicted Half Life (Min)'].between(*half_life_range)]
+df_filtered = df_filtered[df_filtered['Instability Index'].between(*instability_index_value)]
 
 # --- Separator Line ---
 st.markdown("""
