@@ -299,7 +299,7 @@ DF_PATH = "Assets/20250613_cNPDB.xlsx"
 df = pd.read_excel(DF_PATH)
 
 # Ensure numeric columns are numeric
-numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (%)', 'Predicted Half Life (Min)']
+numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (%)', 'Instability Index Value']
 for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
