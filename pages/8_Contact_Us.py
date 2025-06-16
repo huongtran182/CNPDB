@@ -73,6 +73,7 @@ form textarea {
     padding: 0px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    margin-bottom: 0px; 
 }
 
 /* File upload spacing */
@@ -82,10 +83,10 @@ form input[type="file"] {
 
 /* Submit button styling */
 form button {
-    margin-top: 5px;
+    margin-top: 0px;
     background-color: #9e9ac8; /* purple */
     color: white;
-    padding: 8px 16px;
+    padding: 2px 4px;
     border-radius: 5px;
     font-size: 1.2em;
     cursor: pointer;
@@ -115,7 +116,7 @@ form button:hover {
   <label for="attachment">Attach a file (optional)</label><br>
   <input type="file" name="attachment"><br><br>
 
-  <button type="submit" style="padding:10px 20px;">Submit Feedback</button>
+  <button type="submit" style="padding:5px 5px;">Submit Feedback</button>
 </form>
 """, unsafe_allow_html=True)
 
