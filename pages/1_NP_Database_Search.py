@@ -221,7 +221,7 @@ def display_peptide_details(row: pd.Series):
         text-align: center;
         font-weight: bold;
       ">
-        {Active Sequence}
+        {seq}
       </div>
       
       <!-- Three-column content -->
