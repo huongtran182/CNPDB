@@ -329,8 +329,8 @@ st.markdown('<div class="main-search-container">', unsafe_allow_html=True)
 
 # --- NEW: Load and merge data from both sheets ---
 DF_PATH = "Assets/20250613_cNPDB.xlsx"
-df_sheet1 = pd.read_excel(DF_PATH, sheet_name='Sheet1') # Or use 0 for the first sheet
-df_sheet2 = pd.read_excel(DF_PATH, sheet_name='Sheet2') # Or use 1 for the second sheet
+df_sheet1 = pd.read_excel(DF_PATH, sheet_name='Sheet 1')
+df_sheet2 = pd.read_excel(DF_PATH, sheet_name='Sheet 2')
 
 # Merge the two dataframes on the 'Sequence' column
 # This keeps all entries from Sheet1 and adds data from Sheet2 where sequences match
