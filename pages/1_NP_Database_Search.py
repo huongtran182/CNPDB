@@ -69,15 +69,14 @@ def display_peptide_details(row: pd.Series):
     active_seq = row["Active Sequence"]
     cNPDB_id    = f"{int(row['cNPDB ID']):04d}"
     file_url = f"/3D/3D cNP{cNPDB_id}.cif"  # served from public folder
+    gravy = row.get("GRAVY")
+    gravy_str = f"{gravy:.2f}" if pd.notna(gravy) else ""
 
 html_code = generate_ngl_html(file_url)
 components.html(html_code, height=420)
 
 # Prepare all content as HTML strings first
     # 1) Metadata table
-    gravy = row.get("GRAVY")
-    gravy_str = f"{gravy:.2f}" if pd.notna(gravy) else ""
-
     metadata_html = f"""
     <div class="peptide-details">
         <table>
