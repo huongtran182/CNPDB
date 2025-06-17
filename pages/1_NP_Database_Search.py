@@ -145,25 +145,31 @@ def display_peptide_details(row: pd.Series):
         </table>
     </div>
     """
+     # — Prepare MSI HTML blocks —
     msi_blocks = []
     for tissue_col, asset_folder in [
         ("MSI Tissue 1", "Assets/MSImaging"),
         ("MSI Tissue 2", "Assets/MSImaging"),
-        ("MSI Tissue 3", "Assets/MSImaging")
+        ("MSI Tissue 3", "Assets/MSImaging"),
     ]:
         tissue = disp(row.get(tissue_col))
-        png = f"{asset_folder}/MSI cNP{cNPDB_id}{'' if '1' in tissue_col else ' '+tissue_col[-1]}.png"
+        suffix = "" if tissue_col.endswith("1") else " " + tissue_col[-1]
+        png_path = f"{asset_folder}/MSI cNP{cNPDB_id}{suffix}.png"
         block = f"""
-          <div style="…">{tissue}</div>
-          <div style="border:2px dashed #6a51a3; padding:10px; margin-top:5px;">
-            {img_html(png)}
-          </div>
+        <div style="color:#6a51a3; font-size:16px; font-weight:bold; text-align:center;">
+          MS Imaging – {tissue}
+        </div>
+        <div style="border:2px dashed #6a51a3; padding:10px; margin-top:5px;">
+          {img_html(png_path)}
+        </div>
         """
         msi_blocks.append(block)
 
-# 3) Now lay it out in three columns
-    st.markdown(f"<h3 style='text-align:center;color:#6a51a3;'>{active_seq}</h3>",
-                unsafe_allow_html=True)
+    # — Now lay out in three real Streamlit columns —
+    st.markdown(
+      f"<h3 style='text-align:center;color:#6a51a3;padding-bottom:10px;'>{active_seq}</h3>",
+      unsafe_allow_html=True
+    )
     col_meta, col_struct, col_msi = st.columns([4,3,3])
 
     with col_meta:
@@ -171,8 +177,8 @@ def display_peptide_details(row: pd.Series):
 
     with col_struct:
         st.markdown(
-            "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>3D Structure</div>",
-            unsafe_allow_html=True
+          "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>3D Structure</div>",
+          unsafe_allow_html=True
         )
         cif_file = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
         if os.path.exists(cif_file):
