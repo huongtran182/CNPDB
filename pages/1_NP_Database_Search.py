@@ -16,7 +16,7 @@ def show_structure(cif_path, width=350, height=250):
     # set up the viewer
     view = py3Dmol.view(width=width, height=height)
     view.addModel(cif_data, 'cif')
-    view.setStyle({'cartoon': {'color':'spectrum'}})
+    view.setStyle({'cartoon': {'color':'pLDDT Confidence'}})
     view.zoomTo()
     # embed it
     html = view._make_html()
