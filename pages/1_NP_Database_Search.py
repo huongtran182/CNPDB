@@ -6,8 +6,6 @@ from PIL import Image
 import base64
 import re
 import numpy as np
-import streamlit_molstar # Import the molstar component
-
 st.set_page_config(
     page_title="NP Database search",
     layout="wide",
@@ -133,27 +131,6 @@ def display_peptide_details(row: pd.Series):
     """
 
     # 2) 3D Structure
-    cif_path = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
-
-    # Store the structure rendering in a variable to embed it in the HTML
-    molstar_render = ""
-    if os.path.exists(cif_path):
-        # Read CIF file content
-        with open(cif_path, 'r') as f:
-            cif_content = f.read()
-        # Embed Molstar viewer directly
-        molstar_render = f"""
-        <div style="border: 2px dashed #6a51a3; padding: 0px; text-align: center; margin-top:5px; height: 300px; width: 100%;">
-            {streamlit_molstar.molstar(cif_content, format="cif", width="100%", height="100%")}
-        </div>
-        """
-    else:
-        molstar_render = """
-        <div style="border: 2px dashed #6a51a3; padding: 10px; text-align: center; margin-top:5px; color:#999; height: 300px; display: flex; align-items: center; justify-content: center;">
-            No 3D structure (.cif) found for this peptide.
-        </div>
-        """
-
     structure_html = f"""
     <div style="
           color: #6a51a3;
@@ -164,7 +141,14 @@ def display_peptide_details(row: pd.Series):
         ">
           3D Structure
         </div>
-        {molstar_render}
+        <div style="
+          border: 2px dashed #6a51a3;
+          padding: 10px;
+          text-align: center;
+          margin-top:5px;
+        ">
+          {img_html(f"Assets/3D Structure/3D cNP{cNPDB_id}.cif")}
+        </div>
     """
     
     # Prepare MSI HTML blocks
