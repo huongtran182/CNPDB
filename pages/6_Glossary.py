@@ -98,7 +98,7 @@ families = [
 tools = [
     ("BLAST",                 "Basic Local Alignment Search Tool for sequence similarity searches."),
     ("Mass Spectrometry",     "Techniques to measure mass-to-charge ratios of peptide ions."),
-    ("Peptide Calculator",    "Computes GRAVY, hydrophobicity, charge, half-life, and more."),
+    ("Peptide Property Calculator",    "Computes GRAVY, hydrophobicity, instability index, and more."),
 ]
 
 species = [
