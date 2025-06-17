@@ -55,25 +55,15 @@ def disp(val):
         return ""
     return val
 
-def generate_ngl_html(cif_file):
-    # Encode CIF file in base64
-    cif_content = open(cif_file, "rb").read()
-    cif_b64 = base64.b64encode(cif_content).decode("utf-8")
-
-    viewer_html = f"""
-    <div style="width:100%; height:400px;" id="viewport"></div>
-    <script src="https://cdn.jsdelivr.net/npm/ngl@2.0.0-dev.40/dist/ngl.js"></script>
+def generate_ngl_html(file_url, container_id="viewport"):
+    return f"""
+    <div id="{container_id}" style="width:100%; height:400px;"></div>
+    <script src="https://cdn.jsdelivr.net/npm/ngl@latest/dist/ngl.js"></script>
     <script>
-    const cifData = atob("{cif_b64}");
-    const blob = new Blob([cifData], {{type: 'text/plain'}});
-    const stage = new NGL.Stage("viewport");
-    stage.loadFile(blob, {{ext: "cif"}}).then(function(comp) {{
-        comp.addRepresentation("cartoon");
-        comp.autoView();
-    }});
+        var stage = new NGL.Stage("{container_id}");
+        stage.loadFile("{file_url}", {{ defaultRepresentation: true }});
     </script>
     """
-    return viewer_html
 
 def display_peptide_details(row: pd.Series):
     active_seq = row["Active Sequence"]
@@ -139,23 +129,13 @@ components.html(html_code, height=420)
     </div>
     """
     # 2) 3D Structure - Interactive Viewer
-    structure_html = f"""
-    <div style="
-          color: #6a51a3;
-          font-size: 16px;
-          font-weight: bold;
-          margin-top: 10px;
-          text-align: center;
-        ">
+    structure_container_id = f"ngl-container-{cNPDB_id}"
+    structure_placeholder = f"""
+    <div style="color: #6a51a3; font-size: 16px; font-weight: bold; margin-top: 10px; text-align: center;">
         3D Structure
     </div>
-    <div style="
-          border: 2px dashed #6a51a3;
-          padding: 10px;
-          text-align: center;
-          margin-top:5px;
-        ">
-        {generate_ngl_html(f"Assets/3D Structure/3D cNP{cNPDB_id}.cif")}
+    <div style="border: 2px dashed #6a51a3; padding: 10px; text-align: center; margin-top:5px;">
+        <div id="{structure_container_id}"></div>
     </div>
     """
     
@@ -251,7 +231,7 @@ components.html(html_code, height=420)
         {metadata_html}
       </div>
       <div style="flex:3; padding:0 10px;">
-        {structure_html}
+        {structure_placeholder}
       </div>
       <div style="flex:3; padding:0 10px; display: flex; flex-direction: column; gap: 0px;">
         {msi_html_1}
