@@ -5,7 +5,9 @@ import os
 from PIL import Image
 import base64
 import re
+import py3Dmol
 import streamlit.components.v1 as components
+from io import StringIO
 
 st.set_page_config(
     page_title="NP Database search",
@@ -55,33 +57,29 @@ def disp(val):
         return ""
     return val
 
-def generate_ngl_html(cif_file):
-    # Encode CIF file in base64
-    cif_content = open(cif_file, "rb").read()
-    cif_b64 = base64.b64encode(cif_content).decode("utf-8")
-
-    viewer_html = f"""
-    <div style="width:100%; height:400px;" id="viewport"></div>
-    <script src="https://cdn.jsdelivr.net/npm/ngl@2.0.0-dev.40/dist/ngl.js"></script>
-    <script>
-    const cifData = atob("{cif_b64}");
-    const blob = new Blob([cifData], {{type: 'text/plain'}});
-    const stage = new NGL.Stage("viewport");
-    stage.loadFile(blob, {{ext: "cif"}}).then(function(comp) {{
-        comp.addRepresentation("cartoon");
-        comp.autoView();
-    }});
-    </script>
-    """
-    return viewer_html
+def show_3d_structure(cif_path):
+    """Render interactive 3D structure from CIF file using py3Dmol"""
+    try:
+        with open(cif_path, 'r') as f:
+            cif_data = f.read()
+        
+        view = py3Dmol.view(width=400, height=300)
+        view.addModel(cif_data, 'cif')
+        view.setStyle({'stick': {}})
+        view.zoomTo()
+        view.spin()
+        
+        html = view._make_html()
+        components.html(html, height=350)
+        
+    except FileNotFoundError:
+        st.markdown("<div style='color:#999; padding:20px;'>3D structure not available</div>", unsafe_allow_html=True)
+    except Exception as e:
+        st.error(f"Error loading 3D structure: {str(e)}")
 
 def display_peptide_details(row: pd.Series):
     active_seq = row["Active Sequence"]
-    cNPDB_id    = f"{int(row['cNPDB ID']):04d}"
-    file_url = f"/3D/3D cNP{cNPDB_id}.cif"  # served from public folder
-
-html_code = generate_ngl_html(file_url)
-components.html(html_code, height=420)
+    cNPDB_id    = row["cNPDB ID"]
 
 # Prepare all content as HTML strings first
     # 1) Metadata table
@@ -147,17 +145,25 @@ components.html(html_code, height=420)
           margin-top: 10px;
           text-align: center;
         ">
-        3D Structure
-    </div>
-    <div style="
+          3D Structure
+        </div>
+        <div style="
           border: 2px dashed #6a51a3;
           padding: 10px;
           text-align: center;
           margin-top:5px;
         ">
-        {generate_ngl_html(f"Assets/3D Structure/3D cNP{cNPDB_id}.cif")}
-    </div>
     """
+    
+    # Render the HTML container
+    st.markdown(structure_html, unsafe_allow_html=True)
+    
+    # Add the interactive viewer
+    cif_path = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
+    show_3d_structure(cif_path)
+    
+    # Close the div
+    st.markdown("</div>", unsafe_allow_html=True)
     
     # Prepare MSI HTML blocks
     tissue_1 = disp(row.get("MSI Tissue 1"))
@@ -232,6 +238,7 @@ components.html(html_code, height=420)
       display: flex;  /* Use flexbox for layout */
       gap: 20px; /* Space between columns */
     ">
+      <!-- Header -->
       <div style="
         position: absolute;
         top: 0; left: 50%;
@@ -247,6 +254,7 @@ components.html(html_code, height=420)
         {active_seq}
       </div>
       
+      <!-- Three-column content -->
       <div style="flex:4; padding:0 10px;">
         {metadata_html}
       </div>
@@ -260,7 +268,6 @@ components.html(html_code, height=420)
       </div>
     </div>
     """
-    
  # Render everything at once
     st.markdown(full_html, unsafe_allow_html=True)    
     
@@ -346,11 +353,11 @@ st.markdown('<div class="custom-col-container">', unsafe_allow_html=True)
 with col_filter:
     st.markdown('<div class="fill-height">', unsafe_allow_html=True)
 
-    st.markdown('<div class="section-title">Monoisotopic mass (Da)</div>', unsafe_allow_html=True)
-    mono_mass_range = st.slider("", 200.0, 14000.0, (200.0, 14000.0), label_visibility="collapsed")
+    st.markdown('<div class="section-title">Monoisotopic mass (m/z)</div>', unsafe_allow_html=True)
+    mono_mass_range = st.slider("", 300.0, 2000.0, (300.0, 2000.0), label_visibility="collapsed")
 
     st.markdown('<div class="section-title">Length (amino acids)</div>', unsafe_allow_html=True)
-    length_range = st.slider("", 3, 130, (3, 130), label_visibility="collapsed")
+    length_range = st.slider("", 3, 100, (3, 100), label_visibility="collapsed")
 
     st.markdown('<div class="section-title">GRAVY Score</div>', unsafe_allow_html=True)
     gravy_range = st.slider("", -5.0, 5.0, (-5.0, 5.0), label_visibility="collapsed")
@@ -359,7 +366,7 @@ with col_filter:
     hydro_range = st.slider("", 0, 100, (0, 100), label_visibility="collapsed")
 
     st.markdown('<div class="section-title">Instability Index</div>', unsafe_allow_html=True)
-    instability_index_value = st.slider("", -100, 250, (-100, 250), label_visibility="collapsed")
+    instability_index_value = st.slider("", 0, 120, (0, 120), label_visibility="collapsed")
 
     st.markdown('</div>', unsafe_allow_html=True)
         
