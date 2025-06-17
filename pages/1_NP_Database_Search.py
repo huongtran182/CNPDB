@@ -114,6 +114,37 @@ def display_peptide_details(row: pd.Series):
     </div>
     """
 
+    # Conditionally build the publication info HTML block
+    publication_html = ""
+    pub_info_rows = []
+    
+    # Helper to create a table row if data exists
+    def add_pub_row(label, data_key):
+        if pd.notna(row.get(data_key)):
+            pub_info_rows.append(f"""
+            <tr>
+                <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px;">{label}</td>
+                <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0;">{disp(row.get(data_key))}</td>
+            </tr>""")
+
+    add_pub_row("Title", "Title")
+    add_pub_row("DOI", "DOI")
+    add_pub_row("Paper", "Paper")
+    add_pub_row("Source", "Source")
+    add_pub_row("Topic", "Topic")
+    add_pub_row("Instrumentation", "Instrumentation")
+    add_pub_row("Technique", "Technique")
+
+    if pub_info_rows:
+        publication_html = f"""
+        <div class="publication-title">Publication Information</div>
+        <div class="peptide-details">
+            <table>
+                {''.join(pub_info_rows)}
+            </table>
+        </div>
+        """
+    
     # 2) 3D Structure
     structure_html = f"""
     <div style="
@@ -227,6 +258,7 @@ def display_peptide_details(row: pd.Series):
       <!-- Three-column content -->
       <div style="flex:4; padding:0 10px;">
         {metadata_html}
+        {publication_html}
       </div>
       <div style="flex:3; padding:0 10px;">
         {structure_html}
@@ -295,9 +327,14 @@ st.markdown(
 # Begin styled container
 st.markdown('<div class="main-search-container">', unsafe_allow_html=True)
 
-# Load data
+# --- NEW: Load and merge data from both sheets ---
 DF_PATH = "Assets/20250613_cNPDB.xlsx"
-df = pd.read_excel(DF_PATH)
+df_sheet1 = pd.read_excel(DF_PATH, sheet_name='Sheet1') # Or use 0 for the first sheet
+df_sheet2 = pd.read_excel(DF_PATH, sheet_name='Sheet2') # Or use 1 for the second sheet
+
+# Merge the two dataframes on the 'Sequence' column
+# This keeps all entries from Sheet1 and adds data from Sheet2 where sequences match
+df = pd.merge(df_sheet1, df_sheet2, on='Sequence', how='left')
 
 # Ensure numeric columns are numeric
 numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (%)', 'Instability Index Value']
@@ -381,6 +418,19 @@ with col_main:
     exist_opts      = extract_unique_values(df['Existence'])
     existence_selected = st.multiselect(label=" ", options=exist_opts, key="exist", label_visibility="collapsed")
 
+     # --- NEW: Filters for Sheet 2 data ---
+    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Physiological Studies or Applications</div>', unsafe_allow_html=True)
+    topic_opts = extract_unique_values(df['Topic'])
+    topic_selected = st.multiselect(label=" ", options=topic_opts, key="topic", label_visibility="collapsed")
+
+    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Instrumentation</div>', unsafe_allow_html=True)
+    instrumentation_opts = extract_unique_values(df['Instrumentation'])
+    instrumentation_selected = st.multiselect(label=" ", options=instrumentation_opts, key="instrument", label_visibility="collapsed")
+    
+    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Technique</div>', unsafe_allow_html=True)
+    technique_opts = extract_unique_values(df['Technique'])
+    technique_selected = st.multiselect(label=" ", options=technique_opts, key="technique", label_visibility="collapsed")
+
     st.markdown('</div>', unsafe_allow_html=True)
 
 # Close outer flex div
@@ -428,6 +478,27 @@ if organisms_selected:
 if ptm_selected:
     df_filtered = df_filtered[df_filtered['PTM'].apply(
         lambda x: any(p in re.split(r'[;,]', str(x)) for p in ptm_selected)
+    )]
+    right_filters_active = True
+
+# Topic filter (multi-value)
+if topic_selected:
+    df_filtered = df_filtered[df_filtered['Topic'].apply(
+        lambda x: any(p in re.split(r'[;,]', str(x)) for p in topic_selected)
+    )]
+    right_filters_active = True
+
+# Instrumentation filter (multi-value)
+if instrumentation_selected:
+    df_filtered = df_filtered[df_filtered['Instrumentation'].apply(
+        lambda x: any(p in re.split(r'[;,]', str(x)) for p in instrumentation_selected)
+    )]
+    right_filters_active = True
+
+# Technique filter (multi-value)
+if technique_selected:
+    df_filtered = df_filtered[df_filtered['Technique'].apply(
+        lambda x: any(p in re.split(r'[;,]', str(x)) for p in technique_selected)
     )]
     right_filters_active = True
 
