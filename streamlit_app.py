@@ -40,8 +40,8 @@ Each cNPDB search entry provides:
 - cNPDB ID
 - Neuropeptide Family
 - Species taxonomy 
-- Existence (MS/MS, *Denovo* Sequencing, Predicted)
-- Physicochemical properties (monoisotopic mass, length, hydrophobicity, predicted Half-life)
+- Existence (MS/MS, *De novo* Sequencing, Predicted)
+- Physicochemical properties (monoisotopic mass, length, hydrophobicity, instability index)
 - Post-translational modifications (PTMs)
 - Predicted 3D Structure 
 - Experimental Mass Spectrometry Imaging data of the peptide showing their spatial  distribution in tissues
