@@ -391,8 +391,10 @@ df_filtered = df.copy()
 
 # 1) Always apply peptide sequence search if provided
 if peptide_input:
-    for pep in peptide_input.split():
-        df_filtered = df_filtered[df_filtered['Sequence'].str.contains(pep, na=False)]
+    peptides = peptide_input.split()
+    # Create a regex pattern joining peptides with '|', meaning OR in regex
+    pattern = '|'.join(peptides)
+    df_filtered = df_filtered[df_filtered['Sequence'].str.contains(pattern, na=False)]
 
 # 2) Apply right-side filters (multiselects) if any are selected
 # These are "primary" filters - when used, they must be matched
