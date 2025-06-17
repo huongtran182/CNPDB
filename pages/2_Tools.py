@@ -79,7 +79,18 @@ st.markdown(
 
 st.markdown("""
 <h4 style="margin-bottom: 10px;">
-  1. <a href="https://services.healthtech.dtu.dk/services/SignalP-6.0/" target="_blank">SignalP - 6.0</a>
+  1. <a href="https://academic.oup.com/bib/article/24/2/bbad077/7073964?login=false">NeuroPred-PLM</a>
+</h4>
+""", unsafe_allow_html=True)
+st.markdown("""
+NeuroPred‑PLM is a machine learning-based tool that predicts whether a peptide is a neuropeptide using protein language model 
+embeddings and convolutional neural networks. It provides interpretable results through attention mechanisms that highlight 
+important sequence regions. The tool is available as a Python package and through a web interface for easy use.
+""")
+
+st.markdown("""
+<h4 style="margin-bottom: 10px;">
+  2. <a href="https://services.healthtech.dtu.dk/services/SignalP-6.0/" target="_blank">SignalP - 6.0</a>
 </h4>
 """, unsafe_allow_html=True)
 st.markdown("""
@@ -90,7 +101,7 @@ precursors from whole-proteome datasets.
 
 st.markdown("""
 <h4 style="margin-bottom: 10px;">
-  2. <a href="https://www.uniprot.org/blast" target="_blank">BLAST</a>
+  3. <a href="https://www.uniprot.org/blast" target="_blank">BLAST</a>
 </h4>
 """, unsafe_allow_html=True)
 st.markdown("""
@@ -101,7 +112,7 @@ of novel peptides. Simply paste your peptide sequence, choose the database, and 
 
 st.markdown("""
 <h4 style="margin-bottom: 10px;">
-  3. <a href="http://www.clustal.org/" target="_blank">Clustal Omega</a>
+  4. <a href="http://www.clustal.org/" target="_blank">Clustal Omega</a>
 </h4>
 """, unsafe_allow_html=True)
 st.markdown("""
@@ -112,7 +123,7 @@ conserved cleavage regions.
 
 st.markdown("""
 <h4 style="margin-bottom: 10px;">
-  4. <a href="https://www.retentionprediction.org/hplc/retentionpredictor.php#launch">HPLC Retention Predictor</a>
+  5. <a href="https://www.retentionprediction.org/hplc/retentionpredictor.php#launch">HPLC Retention Predictor</a>
 </h4>
 """, unsafe_allow_html=True)
 st.markdown("""
@@ -123,7 +134,7 @@ retention times with observed LC-MS data.
 
 st.markdown("""
 <h4 style="margin-bottom: 10px;">
-5. <a href="https://alphafoldserver.com/welcome">AlphaFold3</a>
+6. <a href="https://alphafoldserver.com/welcome">AlphaFold3</a>
 </h4>
 """, unsafe_allow_html=True)
 st.markdown("""
