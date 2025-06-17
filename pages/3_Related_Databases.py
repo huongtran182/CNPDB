@@ -117,8 +117,9 @@ st.markdown("""
         <tbody>
           <tr>
             <td><a href="http://neuropeptides.nl" target="_blank">neuropeptides.nl</a></td>
-            <td>20xx</td>
-            <td>The Neuropeptide Database is the internet resource to data about all known neuropeptides, their genes, precursors and expression in the brain.</td>
+            <td>2010</td>
+            <td>A curated collection of neuropeptide genes, precursor proteins, and processed peptide information, including links to genomic and 
+            transcriptomic databases, structural data, and brain expression details</td>
           </tr>
           <tr>
             <td><a href="https://neuropep.org" target="_blank">NeuroPep</a></td>
@@ -127,7 +128,7 @@ st.markdown("""
           </tr>
           <tr>
             <td><a href="https://neurostresspep.eu/diner/insectneuropeptides" target="_blank">nEUROPSTRESSPEP</a></td>
-            <td>20xx</td>
+            <td>2020</td>
             <td>A tailored database for insect neuropeptide research</td>
           </tr>
         </tbody>
