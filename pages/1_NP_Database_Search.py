@@ -132,7 +132,7 @@ def display_peptide_details(row: pd.Series):
     add_pub_row("Paper", "Paper")
     add_pub_row("Source", "Source")
     add_pub_row("Topic", "Topic")
-    add_pub_row("Instrumentation", "Instrumentation")
+    add_pub_row("Instrument", "Instrument")
     add_pub_row("Technique", "Technique")
 
     if pub_info_rows:
@@ -423,9 +423,9 @@ with col_main:
     topic_opts = extract_unique_values(df['Topic'])
     topic_selected = st.multiselect(label=" ", options=topic_opts, key="topic", label_visibility="collapsed")
 
-    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Instrumentation</div>', unsafe_allow_html=True)
-    instrumentation_opts = extract_unique_values(df['Instrumentation'])
-    instrumentation_selected = st.multiselect(label=" ", options=instrumentation_opts, key="instrument", label_visibility="collapsed")
+    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Instrument</div>', unsafe_allow_html=True)
+    instrument_opts = extract_unique_values(df['Instrument'])
+    instrument_selected = st.multiselect(label=" ", options=instrument_opts, key="instrument", label_visibility="collapsed")
     
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Technique</div>', unsafe_allow_html=True)
     technique_opts = extract_unique_values(df['Technique'])
@@ -488,10 +488,10 @@ if topic_selected:
     )]
     right_filters_active = True
 
-# Instrumentation filter (multi-value)
-if instrumentation_selected:
-    df_filtered = df_filtered[df_filtered['Instrumentation'].apply(
-        lambda x: any(p in re.split(r'[;,]', str(x)) for p in instrumentation_selected)
+# Instrument filter (multi-value)
+if instrument_selected:
+    df_filtered = df_filtered[df_filtered['Instrument'].apply(
+        lambda x: any(p in re.split(r'[;,]', str(x)) for p in instrument_selected)
     )]
     right_filters_active = True
 
