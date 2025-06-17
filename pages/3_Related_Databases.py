@@ -207,7 +207,53 @@ papers = [
         ),
         "link": "https://pubs.acs.org/doi/full/10.1021/jasms.0c00013",
     },
-]
+    {
+        "img": os.path.join("Assets", "Publication_TOC", "NeuropredPLM.jpeg"),
+        "title": "NeuroPred-PLM",
+        "summary": (
+            "A machine learning-based tool that predicts whether a peptide is a neuropeptide using protein language model 
+            embeddings and convolutional neural networks. Available as a Python package and through a web interface for easy use."
+        ),
+        "link": "https://academic.oup.com/bib/article/24/2/bbad077/7073964",
+    },
+    {
+        "img": os.path.join("Assets", "Publication_TOC", "SignalP6.jpeg"),
+        "title": "SignalP - 6.0",
+        "summary": (
+            "A deep learning-based tool that predicts the presence and cleavage sites of signal peptides in protein sequences. 
+            It helps identify peptides likely to be secreted, making it especially useful for discovering and filtering neuropeptide prohormone 
+            precursors from whole-proteome datasets."
+        ),
+        "link": "https://www.nature.com/articles/s41587-021-01156-3",
+    },
+    {
+        "img": os.path.join("Assets", "Publication_TOC", "BLAST.png"),
+        "title": "BLAST",
+        "summary": (
+            "Compare a peptide sequence against a vast database of known proteins. This helps identify homologous or functionally similar sequences 
+            across species, providing insights into evolutionary conservation or potential functions of novel peptides."
+        ),
+        "link": "https://blast.ncbi.nlm.nih.gov/Blast.cgi",
+    },
+    {
+        "img": os.path.join("Assets", "Publication_TOC", "ClustalOmega.jpeg"),
+        "title": "Clustal Omega",
+        "summary": (
+            "A tool for multiple sequence alignment. It helps align candidate peptides with known neuropeptides across species to find functional similarities, 
+            conserved motifs, patterns, or evolutionary relationships."
+        ),
+        "link": "https://doi.org/10.1002/pro.3290",
+    },
+    {
+        "img": os.path.join("Assets", "Publication_TOC", "AlphaFold3.jpeg"),
+        "title": "AlphaFold3",
+        "summary": (
+            "Structure predictions for proteins and peptides based on their amino acid sequence. AlphaFold can help visualize the 3D structure of 
+            neuropeptides or their prohormone precursors, offering insights into functional domains, receptor binding, or PTM sites."
+        ),
+        "link": "https://www.nature.com/articles/s41586-024-07487-w",
+    },
+   ]
 
 # create three equal columns
 # create three equal columns
