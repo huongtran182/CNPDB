@@ -327,14 +327,42 @@ st.markdown(
 # Begin styled container
 st.markdown('<div class="main-search-container">', unsafe_allow_html=True)
 
-# --- NEW: Load and merge data from both sheets ---
+#--- CORRECTED: Load and Aggregate Data ---
+
+# Helper function to aggregate data from multiple rows into a single, unique, delimited string
+def aggregate_unique_strings(series):
+    # Drop empty values
+    non_na_series = series.dropna()
+    if non_na_series.empty:
+        return np.nan
+    
+    # Use a set to store unique values
+    all_items = set()
+    for item in non_na_series:
+        # Split items in each cell (which might already be delimited)
+        split_items = re.split(r'\s*[,;]\s*', str(item))
+        # Add non-empty, stripped items to the set
+        all_items.update(s.strip() for s in split_items if s.strip())
+        
+    # Join the unique, sorted items back into a single string
+    return '; '.join(sorted(list(all_items)))
+
+# Load data
 DF_PATH = "Assets/20250613_cNPDB.xlsx"
 df_sheet1 = pd.read_excel(DF_PATH, sheet_name='Sheet 1')
 df_sheet2 = pd.read_excel(DF_PATH, sheet_name='Sheet 2')
 
-# Merge the two dataframes on the 'Sequence' column
-# This keeps all entries from Sheet1 and adds data from Sheet2 where sequences match
-df = pd.merge(df_sheet1, df_sheet2, on='Sequence', how='left')
+# Define the columns from Sheet2 that need to be aggregated
+cols_to_aggregate = ['DOI', 'Paper', 'Source', 'Title', 'Topic', 'Instrumentation', 'Technique']
+agg_dict = {col: aggregate_unique_strings for col in cols_to_aggregate}
+
+# Group Sheet2 by Sequence and apply the aggregation
+df_sheet2_agg = df_sheet2.groupby('Sequence').agg(agg_dict).reset_index()
+
+# Perform a clean left merge with the aggregated data
+df = pd.merge(df_sheet1, df_sheet2_agg, on='Sequence', how='left')
+
+# --- End of Corrected Data Loading ---
 
 # Ensure numeric columns are numeric
 numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (%)', 'Instability Index Value']
