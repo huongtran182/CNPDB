@@ -5,9 +5,6 @@ import os
 from PIL import Image
 import base64
 import re
-import py3Dmol
-import streamlit.components.v1 as components
-from io import StringIO
 
 st.set_page_config(
     page_title="NP Database search",
@@ -56,26 +53,6 @@ def disp(val):
     if pd.isna(val) or val is None:
         return ""
     return val
-
-def show_3d_structure(cif_path):
-    """Render interactive 3D structure from CIF file using py3Dmol"""
-    try:
-        with open(cif_path, 'r') as f:
-            cif_data = f.read()
-        
-        view = py3Dmol.view(width=400, height=300)
-        view.addModel(cif_data, 'cif')
-        view.setStyle({'stick': {}})
-        view.zoomTo()
-        view.spin()
-        
-        html = view._make_html()
-        components.html(html, height=350)
-        
-    except FileNotFoundError:
-        st.markdown("<div style='color:#999; padding:20px;'>3D structure not available</div>", unsafe_allow_html=True)
-    except Exception as e:
-        st.error(f"Error loading 3D structure: {str(e)}")
 
 def display_peptide_details(row: pd.Series):
     active_seq = row["Active Sequence"]
@@ -136,7 +113,8 @@ def display_peptide_details(row: pd.Series):
         </table>
     </div>
     """
-    # 2) 3D Structure - Interactive Viewer
+
+    # 2) 3D Structure
     structure_html = f"""
     <div style="
           color: #6a51a3;
@@ -153,17 +131,9 @@ def display_peptide_details(row: pd.Series):
           text-align: center;
           margin-top:5px;
         ">
+          {img_html(f"Assets/3D Structure/3D cNP{cNPDB_id}.cif")}
+        </div>
     """
-    
-    # Render the HTML container
-    st.markdown(structure_html, unsafe_allow_html=True)
-    
-    # Add the interactive viewer
-    cif_path = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
-    show_3d_structure(cif_path)
-    
-    # Close the div
-    st.markdown("</div>", unsafe_allow_html=True)
     
     # Prepare MSI HTML blocks
     tissue_1 = disp(row.get("MSI Tissue 1"))
