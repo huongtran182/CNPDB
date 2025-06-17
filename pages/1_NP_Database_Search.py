@@ -76,7 +76,7 @@ def generate_ngl_html(cif_file):
 
 def display_peptide_details(row: pd.Series):
     active_seq = row["Active Sequence"]
-    cNPDB_id    = row["cNPDB ID"]
+    cNPDB_id    = f"{int(row['cNPDB ID']):04d}"
 
 # Prepare all content as HTML strings first
     # 1) Metadata table
