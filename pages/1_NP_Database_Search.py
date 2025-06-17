@@ -382,7 +382,7 @@ with col_filter:
     gravy_range = st.slider("", -5.0, 5.0, (-5.0, 5.0), label_visibility="collapsed")
 
     st.markdown('<div class="section-title">% Hydrophobic Residue</div>', unsafe_allow_html=True)
-    hydro_range = st.slider("", -0.1, 100, (-0.1, 100), label_visibility="collapsed")
+    hydro_range = st.slider("", -1, 100, (-1, 100), label_visibility="collapsed")
 
     st.markdown('<div class="section-title">Instability Index</div>', unsafe_allow_html=True)
     instability_index_value = st.slider("", -100, 250, (-100, 250), label_visibility="collapsed")
@@ -521,7 +521,7 @@ default_ranges = {
     'Monoisotopic Mass': (200.0, 14000.0),
     'Length': (2, 130),
     'GRAVY': (-5.0, 5.0),
-    '% Hydrophobic Residue (%)': (-0.1, 100),
+    '% Hydrophobic Residue (%)': (-1, 100),
     'Instability Index Value': (-100, 250)
 }
 
