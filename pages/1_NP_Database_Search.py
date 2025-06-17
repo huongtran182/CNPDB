@@ -1,4 +1,3 @@
-pip install streamlit-molstar
 import streamlit as st
 from sidebar import render_sidebar
 import pandas as pd
