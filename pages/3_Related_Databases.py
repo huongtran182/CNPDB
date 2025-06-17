@@ -245,7 +245,7 @@ papers = [
         "link": "https://doi.org/10.1002/pro.3290",
     },
     {
-        "img": os.path.join("Assets", "Publication_TOC", "AlphaFold3.jpeg"),
+        "img": os.path.join("Assets", "Publication_TOC", "AlphaFold3.jpg"),
         "title": "AlphaFold3",
         "summary": (
             "Structure predictions for proteins and peptides based on their amino acid sequence. AlphaFold can help visualize the 3D structure of "
