@@ -5,6 +5,7 @@ import os
 from PIL import Image
 import base64
 import re
+import streamlit.components.v1 as components
 
 st.set_page_config(
     page_title="NP Database search",
@@ -77,6 +78,10 @@ def generate_ngl_html(cif_file):
 def display_peptide_details(row: pd.Series):
     active_seq = row["Active Sequence"]
     cNPDB_id    = f"{int(row['cNPDB ID']):04d}"
+    file_url = f"/3D/3D cNP{cNPDB_id}.cif"  # served from public folder
+
+html_code = generate_ngl_html(file_url)
+components.html(html_code, height=420)
 
 # Prepare all content as HTML strings first
     # 1) Metadata table
