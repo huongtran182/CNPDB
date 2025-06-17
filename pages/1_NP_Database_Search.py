@@ -353,7 +353,7 @@ df_sheet1 = pd.read_excel(DF_PATH, sheet_name='Sheet 1')
 df_sheet2 = pd.read_excel(DF_PATH, sheet_name='Sheet 2')
 
 # Define the columns from Sheet2 that need to be aggregated
-cols_to_aggregate = ['DOI', 'Paper', 'Source', 'Title', 'Topic', 'Instrumentation', 'Technique']
+cols_to_aggregate = ['DOI', 'Source', 'Title', 'Topic', 'Instrument', 'Technique']
 agg_dict = {col: aggregate_unique_strings for col in cols_to_aggregate}
 
 # Group Sheet2 by Sequence and apply the aggregation
