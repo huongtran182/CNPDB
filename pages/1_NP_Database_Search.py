@@ -72,10 +72,10 @@ def display_peptide_details(row: pd.Series):
     gravy = row.get("GRAVY")
     gravy_str = f"{gravy:.2f}" if pd.notna(gravy) else ""
 
-html_code = generate_ngl_html(file_url)
-components.html(html_code, height=420)
+    html_code = generate_ngl_html(file_url)
+    components.html(html_code, height=420)
 
-# Prepare all content as HTML strings first
+    # Prepare all content as HTML strings first
     # 1) Metadata table
     metadata_html = f"""
     <div class="peptide-details">
