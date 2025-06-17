@@ -126,9 +126,9 @@ st.markdown("""
             <td>NeuroPep holds 5949 non-redundant neuropeptide entries originating from 493 organisms belonging to 65 neuropeptide families.</td>
           </tr>
           <tr>
-            <td><a href="http://neuropepdia.org" target="_blank">Neuropepdia</a></td>
+            <td><a href="https://neurostresspep.eu/diner/insectneuropeptides" target="_blank">nEUROPSTRESSPEP</a></td>
             <td>20xx</td>
-            <td>ABCZYXNeuroPep holds 5949 non-redundant neuropeptide entries originating from 493 organisms belonging to 65 neuropeptide families.</td>
+            <td>A tailored database for insect neuropeptide research</td>
           </tr>
         </tbody>
       </table>
