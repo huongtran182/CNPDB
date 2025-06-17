@@ -127,6 +127,11 @@ st.markdown("""
             <td>NeuroPep holds 5949 non-redundant neuropeptide entries originating from 493 organisms belonging to 65 neuropeptide families.</td>
           </tr>
           <tr>
+            <td><a href="http://stagbeetle.animal.uiuc.edu/cgi-bin/neuropred.py" target="_blank">NeuroPred</a></td>
+            <td>2006</td>
+            <td>NeuroPred contains genome-derived neuropeptides precursors for many invertebrates and vertebrates</td>
+          </tr>
+          <tr>
             <td><a href="https://neurostresspep.eu/diner/insectneuropeptides" target="_blank">nEUROPSTRESSPEP</a></td>
             <td>2020</td>
             <td>A tailored database for insect neuropeptide research</td>
