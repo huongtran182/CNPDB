@@ -19,7 +19,7 @@ def show_structure(cif_path, width=350, height=250):
     view.setStyle({'cartoon': {'color':'spectrum'}})
     view.zoomTo()
     # embed it
-    html = view.render()
+    html = view._make_html()
     components.html(html, height=height)
     
 st.set_page_config(
