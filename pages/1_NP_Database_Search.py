@@ -16,19 +16,7 @@ def show_structure(cif_path, width=350, height=250):
     # set up the viewer
     view = py3Dmol.view(width=width, height=height)
     view.addModel(cif_data, 'cif')
-    view.setStyle(
-        {},  # empty selector = all atoms
-        {
-          'cartoon': {
-             'colorscheme': {
-               'prop': 'b',               # use the B-factor (pLDDT)
-               'gradient': ['blue','white','red'],  
-               'min': 0,                  # pLDDT runs 0–100
-               'max': 100
-             }
-          }
-        }
-    )
+    view.setStyle({'cartoon': {'color':'spectrum'}})
     view.zoomTo()
     # embed it
     html = view._make_html()
