@@ -56,7 +56,7 @@ st.markdown(
 )
 
 st.markdown('<label style="font-size:10px; font-weight:bold;">Enter your peptide sequence:</label>', unsafe_allow_html=True)
-sequence_input = st.text_area("", height=50)
+sequence_input = st.text_area("", height=68)
 
 if st.button("Calculate", type="primary"):
     if not sequence_input.strip():
