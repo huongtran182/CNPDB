@@ -55,7 +55,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown('<label style="font-size:10px; font-weight:bold;">Enter your peptide sequence:</label>', unsafe_allow_html=True)
+st.markdown('<label style="font-size:25px; font-weight:bold;">Enter your peptide sequence:</label>', unsafe_allow_html=True)
 sequence_input = st.text_area("", height=68)
 
 if st.button("Calculate", type="primary"):
@@ -90,13 +90,46 @@ precursors from whole-proteome datasets.
 
 st.markdown("""
 <h4 style="margin-bottom: 10px;">
-  1. <a href="https://services.healthtech.dtu.dk/services/SignalP-6.0/" target="_blank">SignalP - 6.0</a>
+  2. <a href="https://www.uniprot.org/blast" target="_blank">BLAST</a>
 </h4>
 """, unsafe_allow_html=True)
 st.markdown("""
-SignalP 6.0 is a deep learning-based tool that predicts the presence and cleavage sites of signal peptides in protein sequences. 
-It helps identify peptides likely to be secreted, making it especially useful for discovering and filtering neuropeptide prohormone 
-precursors from whole-proteome datasets.
+BLAST on UniProt allows researchers to compare a peptide sequence against a vast database of known proteins. This helps identify 
+homologous or functionally similar sequences across species, providing insights into evolutionary conservation or potential functions 
+of novel peptides. Simply paste your peptide sequence, choose the database, and run the search to explore matches.
+""")
+
+st.markdown("""
+<h4 style="margin-bottom: 10px;">
+  3. <a href="http://www.clustal.org/" target="_blank">Clustal Omega</a>
+</h4>
+""", unsafe_allow_html=True)
+st.markdown("""
+Clustal Omega is a tool for multiple sequence alignment, useful when comparing several neuropeptide sequences to identify conserved motifs, patterns, 
+or evolutionary relationships. It helps align candidate peptides with known neuropeptides across species to find functional similarities or 
+conserved cleavage regions.
+""")
+
+st.markdown("""
+<h4 style="margin-bottom: 10px;">
+  4. <a href="https://www.retentionprediction.org/hplc/retentionpredictor.php#launch">HPLC Retention Predictor</a>
+</h4>
+""", unsafe_allow_html=True)
+st.markdown("""
+The HPLC Retention Predictor is a web-based tool that estimates HPLC retention times for peptides based on their sequence. It helps predict 
+how a peptide might behave during liquid chromatography, aiding in experimental design and peptide identification when comparing predicted 
+retention times with observed LC-MS data.
+""")
+
+st.markdown("""
+<h4 style="margin-bottom: 10px;">
+5. <a href="https://alphafoldserver.com/welcome">AlphaFold3</a>
+</h4>
+""", unsafe_allow_html=True)
+st.markdown("""
+The AlphaFold Server provides structure predictions for proteins and peptides based on their amino acid sequence powered by Artificial Inteligence (AI).
+AlphaFold can help visualize the 3D structure of neuropeptides or their prohormone precursors, offering insights into functional domains, receptor binding, 
+or post-translational modification sites.
 """)
 
 st.markdown("""
