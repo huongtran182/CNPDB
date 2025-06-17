@@ -110,41 +110,26 @@ def display_peptide_details(row: pd.Series):
             <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">PTM</td>
             <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['PTM'])}</td>
             </tr>
+            <tr>
+            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Physiological Studies or Applications</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Topic'])}</td>
+            </tr>
+            <tr>
+            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Instrument</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Instrument'])}</td>
+            </tr>
+            <tr>
+            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Technique</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Technique'])}</td>
+            </tr>
+            <tr>
+            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">DOI</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['DOI'])}</td>
+            </tr>
         </table>
     </div>
     """
 
-    # Conditionally build the publication info HTML block
-    publication_html = ""
-    pub_info_rows = []
-    
-    # Helper to create a table row if data exists
-    def add_pub_row(label, data_key):
-        if pd.notna(row.get(data_key)):
-            pub_info_rows.append(f"""
-            <tr>
-                <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px;">{label}</td>
-                <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0;">{disp(row.get(data_key))}</td>
-            </tr>""")
-
-    add_pub_row("Title", "Title")
-    add_pub_row("DOI", "DOI")
-    add_pub_row("Paper", "Paper")
-    add_pub_row("Source", "Source")
-    add_pub_row("Topic", "Topic")
-    add_pub_row("Instrument", "Instrument")
-    add_pub_row("Technique", "Technique")
-
-    if pub_info_rows:
-        publication_html = f"""
-        <div class="publication-title">Publication Information</div>
-        <div class="peptide-details">
-            <table>
-                {''.join(pub_info_rows)}
-            </table>
-        </div>
-        """
-    
     # 2) 3D Structure
     structure_html = f"""
     <div style="
@@ -258,7 +243,6 @@ def display_peptide_details(row: pd.Series):
       <!-- Three-column content -->
       <div style="flex:4; padding:0 10px;">
         {metadata_html}
-        {publication_html}
       </div>
       <div style="flex:3; padding:0 10px;">
         {structure_html}
