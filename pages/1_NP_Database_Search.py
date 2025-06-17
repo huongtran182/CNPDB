@@ -5,7 +5,9 @@ import os
 from PIL import Image
 import base64
 import re
+import py3Dmol
 import streamlit.components.v1 as components
+from io import StringIO
 
 st.set_page_config(
     page_title="NP Database search",
@@ -55,28 +57,35 @@ def disp(val):
         return ""
     return val
 
-def generate_ngl_html(file_url, container_id="viewport"):
-    return f"""
-    <div id="{container_id}" style="width:100%; height:400px;"></div>
-    <script src="https://cdn.jsdelivr.net/npm/ngl@latest/dist/ngl.js"></script>
-    <script>
-        var stage = new NGL.Stage("{container_id}");
-        stage.loadFile("{file_url}", {{ defaultRepresentation: true }});
-    </script>
-    """
+def show_3d_structure(cif_path):
+    """Render interactive 3D structure from CIF file using py3Dmol"""
+    try:
+        with open(cif_path, 'r') as f:
+            cif_data = f.read()
+        
+        view = py3Dmol.view(width=400, height=300)
+        view.addModel(cif_data, 'cif')
+        view.setStyle({'stick': {}})
+        view.zoomTo()
+        view.spin()
+        
+        html = view._make_html()
+        components.html(html, height=350)
+        
+    except FileNotFoundError:
+        st.markdown("<div style='color:#999; padding:20px;'>3D structure not available</div>", unsafe_allow_html=True)
+    except Exception as e:
+        st.error(f"Error loading 3D structure: {str(e)}")
 
 def display_peptide_details(row: pd.Series):
     active_seq = row["Active Sequence"]
-    cNPDB_id    = f"{int(row['cNPDB ID']):04d}"
-    file_url = f"/3D/3D cNP{cNPDB_id}.cif"  # served from public folder
+    cNPDB_id    = row["cNPDB ID"]
+
+# Prepare all content as HTML strings first
+    # 1) Metadata table
     gravy = row.get("GRAVY")
     gravy_str = f"{gravy:.2f}" if pd.notna(gravy) else ""
 
-    html_code = generate_ngl_html(file_url)
-    components.html(html_code, height=420)
-
-    # Prepare all content as HTML strings first
-    # 1) Metadata table
     metadata_html = f"""
     <div class="peptide-details">
         <table>
@@ -128,15 +137,33 @@ def display_peptide_details(row: pd.Series):
     </div>
     """
     # 2) 3D Structure - Interactive Viewer
-    structure_container_id = f"ngl-container-{cNPDB_id}"
-    structure_placeholder = f"""
-    <div style="color: #6a51a3; font-size: 16px; font-weight: bold; margin-top: 10px; text-align: center;">
-        3D Structure
-    </div>
-    <div style="border: 2px dashed #6a51a3; padding: 10px; text-align: center; margin-top:5px;">
-        <div id="{structure_container_id}"></div>
-    </div>
+    structure_html = f"""
+    <div style="
+          color: #6a51a3;
+          font-size: 16px;
+          font-weight: bold;
+          margin-top: 10px;
+          text-align: center;
+        ">
+          3D Structure
+        </div>
+        <div style="
+          border: 2px dashed #6a51a3;
+          padding: 10px;
+          text-align: center;
+          margin-top:5px;
+        ">
     """
+    
+    # Render the HTML container
+    st.markdown(structure_html, unsafe_allow_html=True)
+    
+    # Add the interactive viewer
+    cif_path = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
+    show_3d_structure(cif_path)
+    
+    # Close the div
+    st.markdown("</div>", unsafe_allow_html=True)
     
     # Prepare MSI HTML blocks
     tissue_1 = disp(row.get("MSI Tissue 1"))
@@ -230,7 +257,7 @@ def display_peptide_details(row: pd.Series):
         {metadata_html}
       </div>
       <div style="flex:3; padding:0 10px;">
-        {structure_placeholder}
+        {structure_html}
       </div>
       <div style="flex:3; padding:0 10px; display: flex; flex-direction: column; gap: 0px;">
         {msi_html_1}
@@ -547,9 +574,6 @@ st.markdown(
     "</div>",
     unsafe_allow_html=True
 )
-
-
-
 
 # Footer
 st.markdown("""
