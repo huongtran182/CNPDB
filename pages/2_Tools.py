@@ -55,20 +55,23 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown('<label style="font-size:25px; font-weight:bold;">Enter your peptide sequence:</label>', unsafe_allow_html=True)
+st.markdown('<label style="font-size:20px; ">Enter your peptide sequence:</label>', unsafe_allow_html=True)
 sequence_input = st.text_area("", height=68)
 
-if st.button("Calculate", type="primary"):
-    if not sequence_input.strip():
-        st.error("Please enter a peptide sequence")
-    else:
-        try:
-            props = calculate_properties(sequence_input)
-            st.markdown("### Peptide Property Results")
-            for key, value in props.items():
-                st.write(f"**{key}**: {value}")
-        except Exception as e:
-            st.error(f"Error: {e}")
+# Create a container for centering the button
+col1, col2, col3 = st.columns([1, 1, 1])
+with col2:
+    if st.button("Calculate"):
+        if not sequence_input.strip():
+            st.error("Please enter a peptide sequence")
+        else:
+            try:
+                props = calculate_properties(sequence_input)
+                st.markdown("### Peptide Property Results")
+                for key, value in props.items():
+                    st.write(f"**{key}**: {value}")
+            except Exception as e:
+                st.error(f"Error: {e}")
 
 st.markdown(
     '<h2 class="custom-title">'
