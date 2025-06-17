@@ -6,6 +6,22 @@ from PIL import Image
 import base64
 import re
 import numpy as np
+import py3Dmol
+import streamlit.components.v1 as components
+
+def show_structure(cif_path, width=350, height=250):
+    # load the CIF text
+    with open(cif_path, 'r') as f:
+        cif_data = f.read()
+    # set up the viewer
+    view = py3Dmol.view(width=width, height=height)
+    view.addModel(cif_data, 'cif')
+    view.setStyle({'cartoon': {'color':'spectrum'}})
+    view.zoomTo()
+    # embed it
+    html = view.render()
+    components.html(html, height=height)
+    
 st.set_page_config(
     page_title="NP Database search",
     layout="wide",
@@ -129,133 +145,44 @@ def display_peptide_details(row: pd.Series):
         </table>
     </div>
     """
+    msi_blocks = []
+    for tissue_col, asset_folder in [
+        ("MSI Tissue 1", "Assets/MSImaging"),
+        ("MSI Tissue 2", "Assets/MSImaging"),
+        ("MSI Tissue 3", "Assets/MSImaging")
+    ]:
+        tissue = disp(row.get(tissue_col))
+        png = f"{asset_folder}/MSI cNP{cNPDB_id}{'' if '1' in tissue_col else ' '+tissue_col[-1]}.png"
+        block = f"""
+          <div style="…">{tissue}</div>
+          <div style="border:2px dashed #6a51a3; padding:10px; margin-top:5px;">
+            {img_html(png)}
+          </div>
+        """
+        msi_blocks.append(block)
 
-    # 2) 3D Structure
-    structure_html = f"""
-    <div style="
-          color: #6a51a3;
-          font-size: 16px;
-          font-weight: bold;
-          margin-top: 10px;
-          text-align: center;
-        ">
-          3D Structure
-        </div>
-        <div style="
-          border: 2px dashed #6a51a3;
-          padding: 10px;
-          text-align: center;
-          margin-top:5px;
-        ">
-          {img_html(f"Assets/3D Structure/3D cNP{cNPDB_id}.cif")}
-        </div>
-    """
-    
-    # Prepare MSI HTML blocks
-    tissue_1 = disp(row.get("MSI Tissue 1"))
-    msi_html_1 = f"""
-    <div style="
-          color: #6a51a3;
-          font-size: 16px;
-          font-weight: bold;
-          margin-top: 10px;
-          text-align: center;
-        ">
-        MS Imaging – {tissue_1}
-        </div>
-        <div style="
-          border: 2px dashed #6a51a3;
-          padding: 10px;
-          text-align: center;
-          margin-top:5px;
-        ">
-          {img_html(f"Assets/MSImaging/MSI cNP{cNPDB_id}.png")}
-        </div>
-    """
-    tissue_2 = disp(row.get("MSI Tissue 2"))
-    msi_html_2 = f"""
-    <div style="
-          color: #6a51a3;
-          font-size: 16px;
-          font-weight: bold;
-          margin-top: 10px;
-          text-align: center;
-        ">
-        MS Imaging – {tissue_2}
-        </div>
-        <div style="
-          border: 2px dashed #6a51a3;
-          padding: 10px;
-          text-align: center;
-          margin-top:5px;
-        ">
-          {img_html(f"/MSImaging/MSI cNP{cNPDB_id} 2.png")}
-        </div>
-    """
-    
-    tissue_3 = disp(row.get("MSI Tissue 3"))
-    msi_html_3 = f"""
-    <div style="
-          color: #6a51a3;
-          font-size: 16px;
-          font-weight: bold;
-          margin-top: 10px;
-          text-align: center;
-        ">
-        MS Imaging – {tissue_3}
-        </div>
-        <div style="
-          border: 2px dashed #6a51a3;
-          padding: 10px;
-          text-align: center;
-          margin-top:5px;
-        ">
-          {img_html(f"/MSImaging/MSI cNP{cNPDB_id} 3.png")}
-        </div>
-    """
- # Build the COMPLETE box as one HTML block
-    full_html = f"""
-    <div style="
-      position: relative;
-      background-color: #efedf5;
-      border-radius: 20px;
-      padding: 60px 20px 20px;
-      margin: 80px 0 30px;
-      display: flex;  /* Use flexbox for layout */
-      gap: 20px; /* Space between columns */
-    ">
-      <!-- Header -->
-      <div style="
-        position: absolute;
-        top: 0; left: 50%;
-        transform: translate(-50%, -50%);
-        width: 66%;
-        background-color: #54278f;
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        text-align: center;
-        font-weight: bold;
-      ">
-        {active_seq}
-      </div>
-      
-      <!-- Three-column content -->
-      <div style="flex:4; padding:0 10px;">
-        {metadata_html}
-      </div>
-      <div style="flex:3; padding:0 10px;">
-        {structure_html}
-      </div>
-      <div style="flex:3; padding:0 10px; display: flex; flex-direction: column; gap: 0px;">
-        {msi_html_1}
-        {msi_html_2}
-        {msi_html_3}
-      </div>
-    </div>
-    """
- # Render everything at once
-    st.markdown(full_html, unsafe_allow_html=True)    
+# 3) Now lay it out in three columns
+    st.markdown(f"<h3 style='text-align:center;color:#6a51a3;'>{active_seq}</h3>",
+                unsafe_allow_html=True)
+    col_meta, col_struct, col_msi = st.columns([4,3,3])
+
+    with col_meta:
+        st.markdown(metadata_html, unsafe_allow_html=True)
+
+    with col_struct:
+        st.markdown(
+            "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>3D Structure</div>",
+            unsafe_allow_html=True
+        )
+        cif_file = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
+        if os.path.exists(cif_file):
+            show_structure(cif_file, width=350, height=250)
+        else:
+            st.write("No CIF found at", cif_file)
+
+    with col_msi:
+        for blk in msi_blocks:
+            st.markdown(blk, unsafe_allow_html=True)
     
 st.markdown("""
 <style>
