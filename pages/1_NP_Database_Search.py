@@ -5,7 +5,7 @@ import os
 from PIL import Image
 import base64
 import re
-
+import numpy as np
 st.set_page_config(
     page_title="NP Database search",
     layout="wide",
