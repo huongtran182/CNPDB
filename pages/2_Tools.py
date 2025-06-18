@@ -119,7 +119,7 @@ with col_param[4]:
 st.markdown("---")
 button_disabled = not query_seq or (not use_database and not target_seq)
 
-if st.button("Run Alignment", disabled=button_disabled):
+if st.button("Run Alignment", type="primary", disabled=button_disabled):
     if not use_database:
         try:
             alignments = (
