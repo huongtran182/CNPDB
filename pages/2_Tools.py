@@ -83,7 +83,18 @@ st.markdown(
 
 # Custom function to format alignment manually (without score)
 def custom_format_alignment(aln):
-    return f"{aln.seqA}\n{aln.midline}\n{aln.seqB}"
+    seqA = aln.seqA
+    seqB = aln.seqB
+    midline = ""
+
+    for a, b in zip(seqA, seqB):
+        if a == b:
+            midline += "|"
+        else:
+            midline += " "
+
+    return f"{seqA}\n{midline}\n{seqB}"
+
 
 # Function to generate downloadable text report
 def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_score, gap_open, gap_extend, top_hits, df):
