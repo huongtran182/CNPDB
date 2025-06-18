@@ -180,7 +180,7 @@ with col_param[4]:
 # Run Alignment Button
 button_disabled = not query_seq or (not use_database and not target_seq)
 
-col1, col2, col3 = st.columns([1.1, 1, 1])
+col1, col2, col3 = st.columns([1.2, 1, 1])
 with col2:
     run_clicked = st.button("Run Alignment", type="primary")
 
