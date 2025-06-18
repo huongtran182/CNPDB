@@ -13,6 +13,23 @@ st.set_page_config(
 
 render_sidebar()
 
+st.markdown("""
+<style>
+.stDownloadButton>button {
+    background-color: #7a33cc !important;
+    color: white !important;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+.stDownloadButton>button:hover {
+    background-color: #5f27a2 !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # Hydrophobic residues
 hydrophobic_residues = set("AILMFWYV")
 
@@ -158,8 +175,12 @@ with col_param[4]:
 # Run Alignment Button
 button_disabled = not query_seq or (not use_database and not target_seq)
 
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    run_clicked = st.button("Run Alignment", type="primary", disabled=button_disabled)
+
 # Run Alignment Button
-if st.button("Run Alignment", type="primary"):
+if run_clicked:
     if not query_seq.strip():
         st.error("❌ Please input your peptide sequence.")
     elif not use_database and not target_seq.strip():
@@ -197,10 +218,13 @@ if st.button("Run Alignment", type="primary"):
                 query_seq, alignment_type, match_score, mismatch_score, gap_open, gap_extend, top_hits, df
             )
 
-            st.download_button(
-                label="📄 Download Alignment Report (.txt)",
+            # Centered download button
+            col_dl1, col_dl2, col_dl3 = st.columns([1, 2, 1])
+            with col_dl2:
+                st.download_button(
+                label="Download Alignment Results",
                 data=alignment_txt,
-                file_name="alignment_report.txt",
+                file_name="cNPDB_alignment_results.txt",
                 mime="text/plain"
             )
 
