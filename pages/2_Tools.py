@@ -75,8 +75,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown('<label style="font-size:16px; ">Enter your peptide sequence:</label>', unsafe_allow_html=True)
-sequence_input = st.text_area("", height=68)
+sequence_input = st.text_area("Enter your peptide sequence:", height=68)
 
 # Centered Calculate Button
 col_calc1, col_calc2, col_calc3 = st.columns([1.5, 1, 1])
@@ -154,10 +153,10 @@ def load_data():
 df = load_data()
 
 # User input sequence
-query_seq = st.text_area("Input your peptide sequence:", "")
+query_seq = st.text_area("Input your peptide sequence:", height=68, "")
 
 # Option to align against another sequence or the database
-target_seq = st.text_area("Input second sequence (optional):", "")
+target_seq = st.text_area("Input second sequence (optional):", height=68, "")
 if not target_seq:
     use_database = st.checkbox("Align against the cNPDB database", value=False)
 else:
