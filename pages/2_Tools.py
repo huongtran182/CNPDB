@@ -84,65 +84,76 @@ st.markdown(
 # Load your peptide sequence database
 @st.cache_data
 def load_data():
-    return df = pd.read_excel("Assets/20250613_cNPDB.xlsx", sheet_name='Sheet 1')
+    return pd.read_excel("Assets/20250613_cNPDB.xlsx", sheet_name="Sheet 1")
+
+df = load_data()
 
 # User input sequence
 query_seq = st.text_area("Input your peptide sequence:", "")
-if not query_seq:
-    st.warning("Please input your peptide sequence to continue.")
-    st.stop()
 
-# Optional direct second sequence input
-use_database = st.checkbox("Search against the cNPDB database instead")
-
-if not use_database:
-    target_seq = st.text_area("Input second sequence for alignment (optional):", "")
-else:
-    target_seq = None
-
-# Alignment parameters
-st.subheader("Alignment Settings")
-alignment_type = st.selectbox("Alignment Type", ["global", "local"])
-match_score = st.number_input("Match Score", value=2)
-mismatch_score = st.number_input("Mismatch Penalty", value=-1)
-gap_open = st.number_input("Gap Open Penalty", value=-0.5)
-gap_extend = st.number_input("Gap Extension Penalty", value=-0.1)
-
-# Perform alignment
-if st.button("Run Alignment"):
+# Option to align against another sequence or the database
+col1, col2 = st.columns([0.5, 0.5])
+with col1:
+    use_database = st.checkbox("Align against the cNPDB database", value=False)
+with col2:
     if not use_database:
-        if not target_seq:
-            st.error("Please provide a second sequence.")
-        else:
-            if alignment_type == "global":
-                alignments = pairwise2.align.globalms(query_seq, target_seq, match_score, mismatch_score, gap_open, gap_extend)
-            else:
-                alignments = pairwise2.align.localms(query_seq, target_seq, match_score, mismatch_score, gap_open, gap_extend)
-            st.success(f"Top alignment result:")
+        target_seq = st.text_area("Input second sequence (optional):", "")
+    else:
+        target_seq = None
+
+# Alignment parameters in compact column layout
+st.markdown("### Alignment Settings")
+col_param = st.columns(5)
+with col_param[0]:
+    alignment_type = st.selectbox("Type", ["global", "local"])
+with col_param[1]:
+    match_score = st.number_input("Match", value=2)
+with col_param[2]:
+    mismatch_score = st.number_input("Mismatch", value=-1)
+with col_param[3]:
+    gap_open = st.number_input("Gap Open", value=-0.5)
+with col_param[4]:
+    gap_extend = st.number_input("Gap Extend", value=-0.1)
+
+# Run Alignment Button
+st.markdown("---")
+button_disabled = not query_seq or (not use_database and not target_seq)
+
+if st.button("Run Alignment", disabled=button_disabled):
+    if not use_database:
+        try:
+            alignments = (
+                pairwise2.align.globalms(query_seq, target_seq, match_score, mismatch_score, gap_open, gap_extend)
+                if alignment_type == "global" else
+                pairwise2.align.localms(query_seq, target_seq, match_score, mismatch_score, gap_open, gap_extend)
+            )
+            st.success("Top alignment result:")
             st.code(format_alignment(*alignments[0]))
+        except Exception as e:
+            st.error(f"Alignment failed: {e}")
     else:
         results = []
         for i, db_seq in enumerate(df["Sequence"]):
             try:
-                if alignment_type == "global":
-                    aln = pairwise2.align.globalms(query_seq, db_seq, match_score, mismatch_score, gap_open, gap_extend, one_alignment_only=True)
-                else:
-                    aln = pairwise2.align.localms(query_seq, db_seq, match_score, mismatch_score, gap_open, gap_extend, one_alignment_only=True)
+                aln = (
+                    pairwise2.align.globalms(query_seq, db_seq, match_score, mismatch_score, gap_open, gap_extend, one_alignment_only=True)
+                    if alignment_type == "global" else
+                    pairwise2.align.localms(query_seq, db_seq, match_score, mismatch_score, gap_open, gap_extend, one_alignment_only=True)
+                )
                 score = aln[0].score if aln else 0
                 results.append((score, db_seq, aln[0] if aln else None))
-            except Exception as e:
-                continue  # skip bad sequences
+            except Exception:
+                continue
 
         top_hits = sorted(results, key=lambda x: -x[0])[:20]
-        st.success("Top 20 alignment hits from cNDPDB database:")
+        st.success("Top 20 alignment hits from cNPDB database:")
 
         for i, (score, db_seq, aln) in enumerate(top_hits):
             st.markdown(f"### 🔹 Hit #{i+1} - Score: `{score:.2f}`")
             if aln:
                 st.code(format_alignment(*aln))
             else:
-                st.text("⚠️ No valid alignment.")
-
+                st.warning(" No valid alignment.")
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
