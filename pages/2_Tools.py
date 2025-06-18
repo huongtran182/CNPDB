@@ -75,7 +75,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown('<label style="font-size:20px; ">Enter your peptide sequence:</label>', unsafe_allow_html=True)
+st.markdown('<label style="font-size:16px; ">Enter your peptide sequence:</label>', unsafe_allow_html=True)
 sequence_input = st.text_area("", height=68)
 
 # Centered Calculate Button
