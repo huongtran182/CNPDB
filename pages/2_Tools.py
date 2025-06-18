@@ -3,7 +3,7 @@ from sidebar import render_sidebar
 from Bio.SeqUtils.ProtParam import ProteinAnalysis
 import pandas as pd
 from Bio import pairwise2
-from Bio.pairwise2 import format_alignment
+from io import StringIO
 
 st.set_page_config(
     page_title="Tools",
