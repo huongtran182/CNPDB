@@ -81,6 +81,38 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Custom function to format alignment manually (without score)
+def custom_format_alignment(aln):
+    return f"{aln.seqA}\n{aln.midline}\n{aln.seqB}"
+
+# Function to generate downloadable text report
+def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_score, gap_open, gap_extend, top_hits, df):
+    report = StringIO()
+    report.write("Peptide Sequence Alignment Report\n")
+    report.write("="*40 + "\n")
+    report.write(f"Query Sequence: {query_seq}\n")
+    report.write(f"Alignment Type: {alignment_type}\n")
+    report.write(f"Match Score: {match_score}, Mismatch Penalty: {mismatch_score}\n")
+    report.write(f"Gap Open: {gap_open}, Gap Extend: {gap_extend}\n\n")
+
+    for i, (score, db_seq, aln) in enumerate(top_hits):
+        report.write(f"Hit #{i+1} - Score: {score:.2f}\n")
+        report.write("-"*30 + "\n")
+        if aln:
+            report.write(custom_format_alignment(aln) + "\n")
+        else:
+            report.write("⚠️ No valid alignment.\n")
+
+        match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
+        if match_row is not None:
+            report.write(f"Family: {match_row.get('Family', 'N/A')}\n")
+            report.write(f"Organism (OS): {match_row.get('OS', 'N/A')}\n")
+            report.write(f"Tissue: {match_row.get('Tissue', 'N/A')}\n")
+            report.write(f"Active Sequence: {match_row.get('Active Sequence', 'N/A')}\n")
+
+        report.write("\n")
+    return report.getvalue()
+
 # Load your peptide sequence database
 @st.cache_data
 def load_data():
@@ -115,7 +147,8 @@ with col_param[4]:
 # Run Alignment Button
 button_disabled = not query_seq or (not use_database and not target_seq)
 
-if st.button("🔍 Run Alignment", type="primary"):
+# Run Alignment Button
+if st.button("Run Alignment", type="primary"):
     if not query_seq.strip():
         st.error("❌ Please input your peptide sequence.")
     elif not use_database and not target_seq.strip():
@@ -129,7 +162,7 @@ if st.button("🔍 Run Alignment", type="primary"):
                     pairwise2.align.localms(query_seq, target_seq, match_score, mismatch_score, gap_open, gap_extend)
                 )
                 st.success("Top alignment result:")
-                st.code(format_alignment(*alignments[0]))
+                st.code(custom_format_alignment(alignments[0]))
             except Exception as e:
                 st.error(f"Alignment failed: {e}")
         else:
@@ -146,34 +179,44 @@ if st.button("🔍 Run Alignment", type="primary"):
                 except Exception:
                     continue
 
-        top_hits = sorted(results, key=lambda x: -x[0])[:10]
-        st.success("Top 10 alignment hits from cNPDB database:")
+            top_hits = sorted(results, key=lambda x: -x[0])[:10]
+            st.success("Top 10 alignment hits from cNPDB database:")
 
-        for i, (score, db_seq, aln) in enumerate(top_hits):
-            # Find additional info
-            match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
-        
-            st.markdown(f"""
-                <div style='padding:10px 0;'>
-                    <span style='font-size:16px; color:#54278f; font-weight:bold;'>Hit #{i+1}</span>
-                    <br>
-                    <span style='font-size:16px;'>Score: <span style='color:#238b45; font-weight:bold;'>{score:.2f}</span></span>
-                </div>
-            """, unsafe_allow_html=True)
-        
-            if aln:
-                st.code(format_alignment(*aln))
-            
-            if match_row is not None:
+            alignment_txt = generate_alignment_text(
+                query_seq, alignment_type, match_score, mismatch_score, gap_open, gap_extend, top_hits, df
+            )
+
+            st.download_button(
+                label="📄 Download Alignment Report (.txt)",
+                data=alignment_txt,
+                file_name="alignment_report.txt",
+                mime="text/plain"
+            )
+
+            for i, (score, db_seq, aln) in enumerate(top_hits):
+                match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
+
                 st.markdown(f"""
-                <div style='font-size:15px; margin-bottom:20px;'>
-                    <strong>Family:</strong> {match_row.get("Family", "N/A")}<br>
-                    <strong>Organisms:</strong> {match_row.get("OS", "N/A")}<br>
-                    <strong>Active Sequence:</strong> {match_row.get("Active Sequence", "N/A")}
-                </div>
+                    <div style='padding:10px 0;'>
+                        <span style='font-size:16px; color:#54278f; font-weight:bold;'>Hit #{i+1}</span><br>
+                        <span style='font-size:16px;'>Score: <span style='color:#238b45; font-weight:bold;'>{score:.2f}</span></span>
+                    </div>
                 """, unsafe_allow_html=True)
-            else:
-                st.warning("No additional info found for this hit.")
+
+                if aln:
+                    st.code(custom_format_alignment(aln))
+
+                if match_row is not None:
+                    st.markdown(f"""
+                    <div style='font-size:15px; margin-bottom:20px;'>
+                        <strong>Family:</strong> {match_row.get("Family", "N/A")}<br>
+                        <strong>Organisms:</strong> {match_row.get("OS", "N/A")}<br>
+                        <strong>Tissue:</strong> {match_row.get("Tissue", "N/A")}<br>
+                        <strong>Active Sequence:</strong> {match_row.get("Active Sequence", "N/A")}
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.warning("No additional info found for this hit.")
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
