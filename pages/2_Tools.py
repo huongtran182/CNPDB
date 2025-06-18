@@ -150,30 +150,30 @@ if st.button("🔍 Run Alignment", type="primary"):
         st.success("Top 10 alignment hits from cNPDB database:")
 
         for i, (score, db_seq, aln) in enumerate(top_hits):
-        # Find additional info
-        match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
-    
-        st.markdown(f"""
-            <div style='padding:10px 0;'>
-                <span style='font-size:16px; color:#54278f; font-weight:bold;'>Hit #{i+1}</span>
-                <br>
-                <span style='font-size:16px;'>Score: <span style='color:#238b45; font-weight:bold;'>{score:.2f}</span></span>
-            </div>
-        """, unsafe_allow_html=True)
-    
-        if aln:
-            st.code(format_alignment(*aln))
+            # Find additional info
+            match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
         
-        if match_row is not None:
             st.markdown(f"""
-            <div style='font-size:15px; margin-bottom:20px;'>
-                <strong>Family:</strong> {match_row.get("Family", "N/A")}<br>
-                <strong>Organisms:</strong> {match_row.get("OS", "N/A")}<br>
-                <strong>Active Sequence:</strong> {match_row.get("Active Sequence", "N/A")}
-            </div>
+                <div style='padding:10px 0;'>
+                    <span style='font-size:16px; color:#54278f; font-weight:bold;'>Hit #{i+1}</span>
+                    <br>
+                    <span style='font-size:16px;'>Score: <span style='color:#238b45; font-weight:bold;'>{score:.2f}</span></span>
+                </div>
             """, unsafe_allow_html=True)
-        else:
-            st.warning("No additional info found for this hit.")
+        
+            if aln:
+                st.code(format_alignment(*aln))
+            
+            if match_row is not None:
+                st.markdown(f"""
+                <div style='font-size:15px; margin-bottom:20px;'>
+                    <strong>Family:</strong> {match_row.get("Family", "N/A")}<br>
+                    <strong>Organisms:</strong> {match_row.get("OS", "N/A")}<br>
+                    <strong>Active Sequence:</strong> {match_row.get("Active Sequence", "N/A")}
+                </div>
+                """, unsafe_allow_html=True)
+            else:
+                st.warning("No additional info found for this hit.")
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
