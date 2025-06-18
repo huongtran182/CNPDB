@@ -153,10 +153,10 @@ def load_data():
 df = load_data()
 
 # User input sequence
-query_seq = st.text_area("Input your peptide sequence:", height=68, "")
+query_seq = st.text_area("Input your peptide sequence:", value="", height=68)
 
 # Option to align against another sequence or the database
-target_seq = st.text_area("Input second sequence (optional):", height=68, "")
+target_seq = st.text_area("Input second sequence (optional):", value="", height=68)
 if not target_seq:
     use_database = st.checkbox("Align against the cNPDB database", value=False)
 else:
