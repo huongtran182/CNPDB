@@ -78,7 +78,7 @@ st.markdown(
 sequence_input = st.text_area("Enter your peptide sequence:", height=68)
 
 # Centered Calculate Button
-col_calc1, col_calc2, col_calc3 = st.columns([1.5, 1, 1])
+col_calc1, col_calc2, col_calc3 = st.columns([1.7, 1, 1])
 with col_calc2:
     calculate_clicked = st.button("Calculate", type="primary")
 
@@ -179,7 +179,7 @@ with col_param[4]:
 # Run Alignment Button
 button_disabled = not query_seq or (not use_database and not target_seq)
 
-col1, col2, col3 = st.columns([1.4, 1, 1])
+col1, col2, col3 = st.columns([1.6, 1, 1])
 with col2:
     run_clicked = st.button("Run Alignment", type="primary")
 
@@ -223,7 +223,7 @@ if run_clicked:
             )
 
             # Centered download button
-            col_dl1, col_dl2, col_dl3 = st.columns([1, 1, 1])
+            col_dl1, col_dl2, col_dl3 = st.columns([1.4, 1, 1])
             with col_dl2:
                 st.download_button(
                 label="Download Alignment Results",
