@@ -16,7 +16,7 @@ render_sidebar()
 st.markdown("""
 <style>
 .stDownloadButton>button {
-    background-color: #7a33cc !important;
+    background-color: #54278f !important;
     color: white !important;
     border: none;
     border-radius: 0.5rem;
@@ -25,7 +25,7 @@ st.markdown("""
     transition: background-color 0.2s ease;
 }
 .stDownloadButton>button:hover {
-    background-color: #5f27a2 !important;
+    background-color: #3f007d !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -78,7 +78,12 @@ st.markdown(
 st.markdown('<label style="font-size:20px; ">Enter your peptide sequence:</label>', unsafe_allow_html=True)
 sequence_input = st.text_area("", height=68)
 
-if st.button("Calculate", type="primary"):
+# Centered Calculate Button
+col_calc1, col_calc2, col_calc3 = st.columns([1, 1, 1])
+with col_calc2:
+    calculate_clicked = st.button("Calculate", type="primary")
+
+if calculate_clicked:
     if not sequence_input.strip():
         st.error("Please enter a peptide sequence")
     else:
@@ -175,7 +180,7 @@ with col_param[4]:
 # Run Alignment Button
 button_disabled = not query_seq or (not use_database and not target_seq)
 
-col1, col2, col3 = st.columns([1, 2, 1])
+col1, col2, col3 = st.columns([1, 1, 1])
 with col2:
     run_clicked = st.button("Run Alignment", type="primary", disabled=button_disabled)
 
@@ -219,7 +224,7 @@ if run_clicked:
             )
 
             # Centered download button
-            col_dl1, col_dl2, col_dl3 = st.columns([1, 2, 1])
+            col_dl1, col_dl2, col_dl3 = st.columns([1, 1, 1])
             with col_dl2:
                 st.download_button(
                 label="Download Alignment Results",
