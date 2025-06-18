@@ -84,7 +84,7 @@ st.markdown(
 # Load your peptide sequence database
 @st.cache_data
 def load_data():
-    return pd.read_excel("Assets/20250613_cNPDB.xlsx", sheet_name='Sheet 1')
+    return df = pd.read_excel("Assets/20250613_cNPDB.xlsx", sheet_name='Sheet 1')
 
 # User input sequence
 query_seq = st.text_area("Input your peptide sequence:", "")
