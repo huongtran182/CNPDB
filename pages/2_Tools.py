@@ -157,38 +157,18 @@ def clean_sequence(seq):
     # Remove any line that starts with '>'
     clean_lines = [line.strip() for line in lines if not line.startswith(">")]
     return ''.join(clean_lines).upper()
-    
-def parse_fasta_sequences(text):
-    """Parses multiple FASTA-format sequences into a list of dicts"""
-    sequences = []
-    buffer = []
-    header = None
 
-    for line in text.strip().splitlines():
-        if line.startswith(">"):
-            if header and buffer:
-                sequences.append({"header": header, "sequence": ''.join(buffer).upper()})
-                buffer = []
-            header = line[1:].strip()
-        else:
-            buffer.append(line.strip())
+# User input sequence
+query_seq = st.text_area("Input your peptide sequence (FASTA or raw):", value="", height=68)
 
-    # Add last sequence
-    if header and buffer:
-        sequences.append({"header": header, "sequence": ''.join(buffer).upper()})
-    elif buffer:  # No headers, just raw sequence
-        sequences.append({"header": None, "sequence": ''.join(buffer).upper()})
-    return sequences
+# Option to align against another sequence or the database
+target_seq = st.text_area("Input second sequence for alignment (optional):", value="", height=68)
 
-raw_input = st.text_area("Input one or more peptide sequences (FASTA or raw):", value="", height=150)
-parsed_queries = parse_fasta_sequences(raw_input)
-
-target_seq = st.text_area("Input target sequence (optional):", value="", height=68)
+query_seq = clean_sequence(query_seq)
 target_seq = clean_sequence(target_seq)
 
-align_to_db = not target_seq.strip()
-if align_to_db:
-    st.info("You are aligning your input sequences against the cNPDB database.")
+if not target_seq:
+    use_database = st.checkbox("Align against the cNPDB database", value=False)
 else:
     use_database = None
 
@@ -215,75 +195,52 @@ with col2:
 
 # Run Alignment Button
 if run_clicked:
-    if not parsed_queries:
-        st.error("❌ Please input at least one valid peptide sequence.")
-    elif not target_seq.strip() and not align_to_db:
-        st.error("❌ Please input a target sequence or choose to align against the database.")
+    if not query_seq.strip():
+        st.error("❌ Please input your peptide sequence.")
+    elif not use_database and not target_seq.strip():
+        st.error("❌ Please input the second sequence or choose to align against the cNPDB database.")
     else:
-        all_alignments = []
-
-        for item in parsed_queries:
-            seq_label = item["header"] or "Unnamed"
-            seq = item["sequence"]
-
-            st.markdown(f"<h4 style='color:#54278f;'>🔍 Query: {seq_label}</h4>", unsafe_allow_html=True)
-
-            if target_seq.strip():
-                # Align to provided sequence
+        if not use_database:
+            try:
+                alignments = (
+                    pairwise2.align.globalms(query_seq, target_seq, match_score, mismatch_score, gap_open, gap_extend)
+                    if alignment_type == "global" else
+                    pairwise2.align.localms(query_seq, target_seq, match_score, mismatch_score, gap_open, gap_extend)
+                )
+                st.success("Top alignment result:")
+                st.code(custom_format_alignment(alignments[0]))
+            except Exception as e:
+                st.error(f"Alignment failed: {e}")
+        else:
+            results = []
+            for i, db_seq in enumerate(df["Sequence"]):
                 try:
                     aln = (
-                        pairwise2.align.globalms(seq, target_seq, match_score, mismatch_score, gap_open, gap_extend)
+                        pairwise2.align.globalms(query_seq, db_seq, match_score, mismatch_score, gap_open, gap_extend, one_alignment_only=True)
                         if alignment_type == "global" else
-                        pairwise2.align.localms(seq, target_seq, match_score, mismatch_score, gap_open, gap_extend)
+                        pairwise2.align.localms(query_seq, db_seq, match_score, mismatch_score, gap_open, gap_extend, one_alignment_only=True)
                     )
-                    if aln:
-                        st.success(f"Top alignment result (score: {aln[0].score:.2f})")
-                        st.code(custom_format_alignment(aln[0]))
-                    else:
-                        st.warning("No valid alignment.")
-                except Exception as e:
-                    st.error(f"❌ Alignment error: {e}")
-            else:
-                # Align to database
-                results = []
-                for db_seq in df["Sequence"]:
-                    try:
-                        aln = (
-                            pairwise2.align.globalms(seq, db_seq, match_score, mismatch_score, gap_open, gap_extend, one_alignment_only=True)
-                            if alignment_type == "global" else
-                            pairwise2.align.localms(seq, db_seq, match_score, mismatch_score, gap_open, gap_extend, one_alignment_only=True)
-                        )
-                        score = aln[0].score if aln else 0
-                        results.append((score, db_seq, aln[0] if aln else None))
-                    except Exception:
-                        continue
+                    score = aln[0].score if aln else 0
+                    results.append((score, db_seq, aln[0] if aln else None))
+                except Exception:
+                    continue
 
-                top_hits = sorted(results, key=lambda x: -x[0])[:10]
+            top_hits = sorted(results, key=lambda x: -x[0])[:10]
+            st.success("Top 10 alignment hits from cNPDB database:")
 
-                for i, (score, db_seq, aln) in enumerate(top_hits):
-                    st.markdown(f"**Hit #{i+1} — Score: {score:.2f}**")
-                    if aln:
-                        st.code(custom_format_alignment(aln))
-                    match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
-                    if match_row is not None:
-                        st.markdown(f"""
-                            <div style='font-size:15px; margin-bottom:20px;'>
-                                <strong>Family:</strong> {match_row.get("Family", "N/A")}<br>
-                                <strong>Organism:</strong> {match_row.get("OS", "N/A")}<br>
-                                <strong>Tissue:</strong> {match_row.get("Tissue", "N/A")}<br>
-                                <strong>Active Sequence:</strong> {match_row.get("Active Sequence", "N/A")}
-                            </div>
-                        """, unsafe_allow_html=True)
-                # Generate download content
-                alignment_txt = generate_alignment_text(
-                    seq, alignment_type, match_score, mismatch_score, gap_open, gap_extend, top_hits, df
-                )
+            alignment_txt = generate_alignment_text(
+                query_seq, alignment_type, match_score, mismatch_score, gap_open, gap_extend, top_hits, df
+            )
+
+            # Centered download button
+            col_dl1, col_dl2, col_dl3 = st.columns([1.4, 1, 1])
+            with col_dl2:
                 st.download_button(
-                    label=f"Download Results: {seq_label}",
-                    data=alignment_txt,
-                    file_name=f"alignment_{seq_label}.txt",
-                    mime="text/plain"
-                )
+                label="Download Alignment Results",
+                data=alignment_txt,
+                file_name="cNPDB_alignment_results.txt",
+                mime="text/plain"
+            )
 
             for i, (score, db_seq, aln) in enumerate(top_hits):
                 match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
