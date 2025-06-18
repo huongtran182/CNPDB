@@ -76,7 +76,7 @@ if st.button("Calculate", type="primary"):
 # --- Sequence alignment calculator ---
 st.markdown(
     '<h2 class="custom-title">'
-    'SEQUENCE ALIGNMENT'
+    'PEPTIDE SEQUENCE ALIGNMENT'
     '</h2>',
     unsafe_allow_html=True
 )
@@ -84,29 +84,24 @@ st.markdown(
 # Load your peptide sequence database
 @st.cache_data
 def load_data():
-    return pd.read_csv("peptide_db.csv")  # Ensure there's a "Sequence" column
-
-df = load_data()
-
-# Page UI
-st.title("🔬 Peptide Sequence Alignment Tool")
+    return pd.read_excel("Assets/20250613_cNPDB.xlsx", sheet_name='Sheet 1')
 
 # User input sequence
-query_seq = st.text_area("🧬 Input your peptide sequence:", "")
+query_seq = st.text_area("Input your peptide sequence:", "")
 if not query_seq:
     st.warning("Please input your peptide sequence to continue.")
     st.stop()
 
 # Optional direct second sequence input
-use_database = st.checkbox("📚 Search against peptide database instead of comparing to a specific sequence")
+use_database = st.checkbox("Search against the cNPDB database instead")
 
 if not use_database:
-    target_seq = st.text_area("🎯 Input second sequence for alignment (optional):", "")
+    target_seq = st.text_area("Input second sequence for alignment (optional):", "")
 else:
     target_seq = None
 
 # Alignment parameters
-st.subheader("⚙️ Alignment Settings")
+st.subheader("Alignment Settings")
 alignment_type = st.selectbox("Alignment Type", ["global", "local"])
 match_score = st.number_input("Match Score", value=2)
 mismatch_score = st.number_input("Mismatch Penalty", value=-1)
@@ -114,7 +109,7 @@ gap_open = st.number_input("Gap Open Penalty", value=-0.5)
 gap_extend = st.number_input("Gap Extension Penalty", value=-0.1)
 
 # Perform alignment
-if st.button("🔍 Run Alignment"):
+if st.button("Run Alignment"):
     if not use_database:
         if not target_seq:
             st.error("Please provide a second sequence.")
@@ -139,7 +134,7 @@ if st.button("🔍 Run Alignment"):
                 continue  # skip bad sequences
 
         top_hits = sorted(results, key=lambda x: -x[0])[:20]
-        st.success("Top 20 alignment hits from database:")
+        st.success("Top 20 alignment hits from cNDPDB database:")
 
         for i, (score, db_seq, aln) in enumerate(top_hits):
             st.markdown(f"### 🔹 Hit #{i+1} - Score: `{score:.2f}`")
