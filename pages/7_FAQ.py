@@ -10,64 +10,7 @@ st.set_page_config(
 
 render_sidebar()
 
-# Page header
-st.markdown("# Frequently Asked Questions")
-
-# Your FAQ data
-faqs = [
-    {
-        "num": "01",
-        "question": "What is the definition of neuropeptide?",
-        "answer": textwrap.dedent("""
-            While there are many controversial definitions, we consider a neuropeptide to be included in this database if it has the following characteristics:
-            1. Must be synthesized and released by a neuron;
-            2. Endogenous, small protein-like molecule composed of short chains of amino acids that function as signaling molecules in the nervous system;
-            3. Derived from neuropeptide prohormones/precursors.
-        """)
-    },
-    {
-        "num": "02",
-        "question": "How do I search for neuropeptides of interest in the cNPDB?",
-        "answer": textwrap.dedent("""
-            The Database Search Engine on the left allows users to search by specific sequence, family, organism, and other neuropepties. 
-            Visit the Tutorials page for detailed instructions on how to use the search engine and download the results.
-        """)
-    },
-    {
-        "num": "03",
-        "question": "How often is the database updated?",
-        "answer": textwrap.dedent("""
-            The database is maintained and updated yearly. Additionally, any new submissions/requests from the community will be addressed promtly upon receipt. 
-        """)
-    },
-    {
-        "num": "04",
-        "question": "What does the “Instability Index” mean?",
-        "answer": textwrap.dedent("""
-            The Instability Index is a computational measure that predicts the <i>in vitro</i> stability of a peptide or protein based on the presence of certain dipeptides known to affect stability.
-            The peptide is predicted to be stable if its index < 40. The peptide is predicted to be unstable if its index ≥ 40.
-        """)
-    },
-    {
-    "num": "05",
-        "question": "What do the terms “de novo,” “MS/MS,” and “predicted” mean?",
-        "answer": textwrap.dedent("""
-            These terms describe the supporting existence evidence of each neuropeptide in the database.
-            1. <i>De novo</i>: Identified directly from raw MS/MS data purely based on fragmentation patterns.
-            2. MS/MS: Matched against known neuropeptide databases from MS/MS experiments .
-            3. Predicted: Not observed experimentally but predicted through bioinformatics analysis (e.g. <i>in silico</i> transcritomics or gene annotation).
-        """)
-    },
-    {
-    "num": "06",
-        "question": "How to submit data, request new features, or report an error?",
-        "answer": textwrap.dedent("""
-            Please fill out the Feedback Form in the Contact Us page. For collaborations or urgent request, please contact Prof. Li directly at lingjun.li@wisc.edu.
-        """)
-    },
-]
-
-# 4. Helper to render one card
+# Helper to render one card
 def render_card(faq):
     html = f"""
     <div style="
@@ -133,7 +76,7 @@ def render_card(faq):
     """
     st.markdown(html, unsafe_allow_html=True)
 
-# 5. Lay out in rows of 3
+# Lay out in rows of 3
 for i in range(0, len(faqs), 3):
     row = faqs[i:i+3]
     cols = st.columns(3, gap="large")
@@ -143,6 +86,167 @@ for i in range(0, len(faqs), 3):
     # after each row (except the last), insert a 40px tall spacer
     if i + 3 < len(faqs):
         st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
+
+# --- General Website FAQs ---
+st.markdown(
+    '<h2 class="custom-title">'
+    'GENERAL WEBSITE'
+    '</h2>',
+    unsafe_allow_html=True
+)
+
+faqs = [
+     {
+        "num": "01",
+        "question": "How do I navigate the cNPDB database?",
+        "answer": textwrap.dedent("""
+            The <i>Tutorials</i> page provides detailed instructions video to navigate the cNPDB database
+        """)
+    },
+    {
+        "num": "02",
+        "question": "How often is the database updated?",
+        "answer": textwrap.dedent("""
+            The database is maintained and updated yearly. Additionally, any new submissions/requests from the community will be addressed promtly upon receipt. 
+        """)
+    },
+    {
+    "num": "03",
+        "question": "How to submit data, request new features, or report an error?",
+        "answer": textwrap.dedent("""
+            Please fill out the Feedback Form in the <i>Contact Us</i> page. For collaborations or urgent request, please contact Prof. Li directly at lingjun.li@wisc.edu.
+        """)
+    },
+]
+
+# --- Search Engine FAQs---
+st.markdown(
+    '<h2 class="custom-title">'
+    'SEARCH ENGINE'
+    '</h2>',
+    unsafe_allow_html=True
+)
+
+faqs = [
+    {
+        "num": "01",
+        "question": "What is the definition of neuropeptide?",
+        "answer": textwrap.dedent("""
+            While there are many controversial definitions, we consider a neuropeptide to be included in this database if it has the following characteristics:
+            1. Must be synthesized and released by a neuron;
+            2. Endogenous, small protein-like molecule composed of short chains of amino acids that function as signaling molecules in the nervous system;
+            3. Derived from neuropeptide prohormones/precursors.
+        """)
+    },
+    {
+        "num": "02",
+        "question": "How do I search for neuropeptides of interest in the cNPDB?",
+        "answer": textwrap.dedent("""
+            The Database Search Engine on the left allows users to search by specific sequence, family, organism, and other neuropepties. 
+            Visit the Tutorials page for detailed instructions on how to use the search engine and download the results.
+        """)
+    },
+    {
+        "num": "04",
+        "question": "What does the “Instability Index” mean?",
+        "answer": textwrap.dedent("""
+            The Instability Index is a computational measure that predicts the <i>in vitro</i> stability of a peptide or protein based on the presence of certain dipeptides known to affect stability.
+            The peptide is predicted to be stable if its index < 40. The peptide is predicted to be unstable if its index ≥ 40.
+        """)
+    },
+    {
+    "num": "05",
+        "question": "What do the terms “de novo,” “MS/MS,” and “predicted” mean?",
+        "answer": textwrap.dedent("""
+            These terms describe the supporting existence evidence of each neuropeptide in the database.
+            1. <i>De novo</i>: Identified directly from raw MS/MS data purely based on fragmentation patterns.
+            2. MS/MS: Matched against known neuropeptide databases from MS/MS experiments .
+            3. Predicted: Not observed experimentally but predicted through bioinformatics analysis (e.g. <i>in silico</i> transcritomics or gene annotation).
+        """)
+    },
+]
+
+
+# --- Tools FAQs ---
+st.markdown(
+    '<h2 class="custom-title">'
+    'TOOLS'
+    '</h2>',
+    unsafe_allow_html=True
+)
+
+faqs = [
+    {
+        "num": "01",
+        "question": "In what format do I input my query sequence?",
+        "answer": textwrap.dedent("""
+           You can input your peptide sequence in either FASTA format (with the > header) or as a plain raw sequence of single-letter amino acid codes. 
+           Make sure your sequence is clean and contains only valid characters (A–Z).
+        """)
+    },
+    {
+        "num": "02",
+        "question": "What do the BLAST/Alignment parameters mean?",
+        "answer": textwrap.dedent("""
+            For detailed explanations, visit the <i>Glossary</i> page under *Tools*
+        """)
+    },
+    {
+        "num": "03",
+        "question": "What is the difference between BLOSUM and PAM matrices?",
+        "answer": textwrap.dedent("""
+            Both are substitution matrices used to score alignments based on evolutionary similarity:
+            1. BLOSUM (BLOcks SUbstitution Matrix): Based on observed substitutions in conserved protein regions.
+            2. PAM (Point Accepted Mutation): Based on predicted mutations over evolutionary time.
+        """)
+    },
+    {
+    "num": "04",
+        "question": Which scoring matrix should I choose?,
+        "answer": textwrap.dedent("""
+            Choose a matrix based on how closely related your sequences are. For neuropeptides, we recommended to set either BLOSUM80 or PAM30.
+            1. BLOSUM80: Closely related peptide sequences
+            2. BLOSUM62: General use (default in many bioinformatics tools)
+            3. BLOSUM45: More distantly related sequences
+            4. PAM30: Short peptide alignments with high sensitivity
+            5. PAM70: Moderately divergent sequences
+        """)
+    },
+    "num": "05",
+        "question": Which scoring matrix should I choose?,
+        "answer": textwrap.dedent("""
+            Choose a matrix based on how closely related your sequences are. For neuropeptides, we recommended to set either BLOSUM80 or PAM30.
+            1. BLOSUM80: Closely related peptide sequences
+            2. BLOSUM62: General use (default in many bioinformatics tools)
+            3. BLOSUM45: More distantly related sequences
+            4. PAM30: Short peptide alignments with high sensitivity
+            5. PAM70: Moderately divergent sequences
+        """)
+    },
+    "num": "04",
+            "question": Which scoring matrix should I choose?,
+            "answer": textwrap.dedent("""
+                Choose a matrix based on how closely related your sequences are. For neuropeptides, we recommended to set either BLOSUM80 or PAM30.
+                1. BLOSUM80: Closely related peptide sequences
+                2. BLOSUM62: General use (default in many bioinformatics tools)
+                3. BLOSUM45: More distantly related sequences
+                4. PAM30: Short peptide alignments with high sensitivity
+                5. PAM70: Moderately divergent sequences
+        """)
+    },
+    "num": "04",
+            "question": Which scoring matrix should I choose?,
+            "answer": textwrap.dedent("""
+                Choose a matrix based on how closely related your sequences are. For neuropeptides, we recommended to set either BLOSUM80 or PAM30.
+                1. BLOSUM80: Closely related peptide sequences
+                2. BLOSUM62: General use (default in many bioinformatics tools)
+                3. BLOSUM45: More distantly related sequences
+                4. PAM30: Short peptide alignments with high sensitivity
+                5. PAM70: Moderately divergent sequences
+        """)
+    },
+]
+
 
 # footers
 st.markdown("""
