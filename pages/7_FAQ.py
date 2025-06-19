@@ -89,11 +89,11 @@ def render_faq_section(section_title, faq_list):
             st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
 
 general_faqs = [
-     {
-        "num": "01",
-        "question": "How do I navigate the cNPDB database?",
+    {
+    "num": "01",
+        "question": "Who can use cNPDB?",
         "answer": textwrap.dedent("""
-            The <i>Tutorials</i> page provides detailed instructions video to navigate the cNPDB database
+            Researchers, students, neuroscientists, chemists, bioinformaticians, and drug discovery professionals should find cNPDB useful in many endeavors.
         """)
     },
     {
@@ -110,13 +110,6 @@ general_faqs = [
             Please fill out the Feedback Form in the <i>Contact Us</i> page. For collaborations or urgent request, please contact Prof. Li directly at lingjun.li@wisc.edu.
         """)
     },
-    {
-    "num": "04",
-        "question": "Who can use cNPDB?",
-        "answer": textwrap.dedent("""
-            Researchers, students, neuroscientists, chemists, bioinformaticians, and drug discovery professionals should find cNPDB useful in many endeavors.
-        """)
-    },
 ]
 
 bio_faqs = [
@@ -130,33 +123,6 @@ bio_faqs = [
             3. Derived from neuropeptide prohormones/precursors.
         """)
     },
-    {
-        "num": "02",
-        "question": "How do I search for neuropeptides of interest in the cNPDB?",
-        "answer": textwrap.dedent("""
-            The Database Search Engine on the left allows users to search by specific sequence, family, organism, and other neuropepties. 
-            Visit the Tutorials page for detailed instructions on how to use the search engine and download the results.
-        """)
-    },
-    {
-        "num": "04",
-        "question": "What does the “Instability Index” mean?",
-        "answer": textwrap.dedent("""
-            The Instability Index is a computational measure that predicts the <i>in vitro</i> stability of a peptide or protein based on the presence of certain dipeptides known to affect stability.
-            The peptide is predicted to be stable if its index < 40. The peptide is predicted to be unstable if its index ≥ 40.
-        """)
-    },
-    {
-    "num": "05",
-        "question": "What do the terms “de novo,” “MS/MS,” and “predicted” mean?",
-        "answer": textwrap.dedent("""
-            These terms describe the supporting existence evidence of each neuropeptide in the database.
-            1. <i>De novo</i>: Identified directly from raw MS/MS data purely based on fragmentation patterns.
-            2. MS/MS: Matched against known neuropeptide databases from MS/MS experiments .
-            3. Predicted: Not observed experimentally but predicted through bioinformatics analysis (e.g. <i>in silico</i> transcritomics or gene annotation).
-        """)
-    },
-]
 
 search_faqs = [
     {
@@ -169,7 +135,7 @@ search_faqs = [
     },
     {
         "num": "02",
-        "question": "What format of peptide sequence should I input if search by sequence?",
+        "question": "What format of peptide sequence should I input?",
         "answer": textwrap.dedent("""
             Please input plain amino acid sequence without any PTMs. For example, AGHFMRFamide should be input as AGHFMRF.
         """)
@@ -187,14 +153,14 @@ search_faqs = [
         "question": "What do the terms “de novo,” “MS/MS,” and “predicted” mean?",
         "answer": textwrap.dedent("""
             These terms reflect the type of evidence supporting each neuropeptide in the database.
-            1. <i>De novo</i>: Tentatively identified directly from MS/MS data once, without prior reference, and not yet validated in other studies.
+            1. <i>De novo</i>: Tentatively identified directly from MS/MS data once without prior reference.
             2. MS/MS: Confirmed by matching experimental MS/MS data to known neuropeptides in curated databases.
             3. Predicted: Inferred from bioinformatics tools like transcriptomics or gene annotation, without experimental validation.
         """)
     },
     {
     "num": "05",
-        "question": "Can I download the whole database without any restrictions on the search criteria",
+        "question": "Can I download the whole database?",
         "answer": textwrap.dedent("""
             Yes! Just simply set the settings on the left side to be full ranges and don't input any strict criteria on the right settings. 
             Then hit the "Check all" and "Download FASTA File" buttons to download the whole cNPDB database.
@@ -253,7 +219,7 @@ tool_faqs = [
         "num": "07",
         "question": "Which scoring matrix should I choose?",
         "answer": textwrap.dedent("""
-            Choose a matrix based on how closely related your sequences are. For neuropeptides, we recommended to set either BLOSUM80 or PAM30.
+            It's based on how closely related your sequences are. We recommended either BLOSUM80 or PAM30 for neuropeptides search.
             1. BLOSUM80: Closely related peptide sequences
             2. BLOSUM62: General use (default in many bioinformatics tools)
             3. BLOSUM45: More distantly related sequences
