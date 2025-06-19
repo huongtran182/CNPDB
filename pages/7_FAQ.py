@@ -235,6 +235,7 @@ st.markdown(
 )
 
 faqs = [
+    {
         "num": "01",
         "question": What types of alignment are available?,
         "answer": textwrap.dedent("""
