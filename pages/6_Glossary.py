@@ -96,6 +96,14 @@ families = [
 ]
 
 tools = [
+    ("Mass Spectrometry",     "Techniques to measure mass-to-charge ratios of peptide ions."),
+    ("Peptide Property Calculator",    "Computes GRAVY, hydrophobicity, instability index, and more."),
+    ("Peptide Sequence Alignment",    "Compares two peptide sequences to identify regions of similarity that may indicate functional, structural, or evolutionary relationships."),
+    ("Type",                  "Global alignment aligns sequences end-to-end, while Local alignment finds the most similar subregions within the sequences."),
+    ("Match",                 "Minimum exact match length to start alignment. Larger = faster but less sensitive."),
+    ("Mismatch",              "The penalty applied when two aligned amino acids are different."),
+    ("Gap Open",              "The penalty for introducing a new gap (insertion/deletion) in the alignment."),
+    ("Gap Extend",            "The penalty for extending an existing gap by one more position."),
     ("BLAST",                 "Basic Local Alignment Search Tool for sequence similarity searches."),
     ("Compositional Bias",    "Adjusts scoring based on amino acid composition. Useful for short peptides."),
     ("E-value Threshold",     "Max acceptable probability that a hit is random. Lower = more stringent."),
@@ -105,14 +113,9 @@ tools = [
     ("BLOSUM",                "(BLOcks SUbstitution Matrix) is a substitution matrix based on observed amino acid substitutions in conserved regions of protein families."),
     ("PAM",                   "(Point Accepted Mutation) is a matrix that estimates the likelihood of one amino acid mutating into another over evolutionary time."),
     ("SEG Filtering",         "Masks low-complexity regions (repeats). Useful to reduce false positives."),
-    ("Peptide Sequence Alignment",    "Compares two peptide sequences to identify regions of similarity that may indicate functional, structural, or evolutionary relationships."),
-    ("Type",                  "Global alignment aligns sequences end-to-end, while Local alignment finds the most similar subregions within the sequences."),
-    ("Match",                 "Minimum exact match length to start alignment. Larger = faster but less sensitive."),
-    ("Mismatch",              "The penalty applied when two aligned amino acids are different."),
-    ("Gap Open",              "The penalty for introducing a new gap (insertion/deletion) in the alignment."),
-    ("Gap Extend",            "The penalty for extending an existing gap by one more position."),
-    ("Peptide Property Calculator",    "Computes GRAVY, hydrophobicity, instability index, and more."),
-    ("Mass Spectrometry",     "Techniques to measure mass-to-charge ratios of peptide ions."),
+    ("Score",                 "Overall alignment score based on your scoring matrix."),
+    ("E-value",               "Lower values mean more significant hits; indicates the chance of a random match."),
+    ("Percent Identity",      "Proportion of exact matches between your sequence and the hit.")
 ]
 
 species = [
