@@ -131,6 +131,14 @@ def display_peptide_details(row: pd.Series):
             <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Net Charge (pH 7.0)'])}</td>
             </tr>
             <tr>
+            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Aliphatic Index</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Aliphatic Index'])}</td>
+            </tr>
+            <tr>
+            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Boman Index</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Boman Index'])}</td>
+            </tr>
+            <tr>
             <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">PTM</td>
             <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['PTM'])}</td>
             </tr>
@@ -290,7 +298,7 @@ df = pd.merge(df_sheet1, df_sheet2_agg, on='Sequence', how='left')
 # --- End of Corrected Data Loading ---
 
 # Ensure numeric columns are numeric
-numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue', 'Instability Index Value', 'Isoelectric Point (pI)', 'Net Charge (pH 7.0)']
+numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue', 'Instability Index Value', 'Isoelectric Point (pI)', 'Net Charge (pH 7.0)', 'Aliphatic Index', 'Boman Index']
 for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
@@ -333,6 +341,12 @@ with col_filter:
 
     st.markdown('<div class="section-title">Net Charge (pH 7.0)</div>', unsafe_allow_html=True)
     net_charge_value = st.slider("", -25, 10, (-25, 10), label_visibility="collapsed")
+
+    st.markdown('<div class="section-title">Aliphatic Index</div>', unsafe_allow_html=True)
+    aliphatic_index_value = st.slider("", 0, 390, (0, 390), label_visibility="collapsed")
+
+    st.markdown('<div class="section-title">Boman Index</div>', unsafe_allow_html=True)
+    boman_index_value = st.slider("", -0.45, 2.65, (-0.45, 2.65), label_visibility="collapsed")
 
     st.markdown('</div>', unsafe_allow_html=True)
         
@@ -472,6 +486,8 @@ default_ranges = {
     'Instability Index Value': (-100, 250),
     'Isoelectric Point (pI)': (0, 14),
     'Net Charge (pH 7.0)': (-25, 10),
+    'Aliphatic Index': (0, 390),
+    'Boman Index': (-0.45, 2.65),
 }
 
 # Only apply slider filters if they differ from defaults OR no right filters are active
@@ -483,6 +499,8 @@ apply_slider_filters = (
     (instability_index_value != default_ranges['Instability Index Value']) or
     (isoelectric_point_value != default_ranges['Isoelectric Point (pI)']) or
     (net_charge_value != default_ranges['Net Charge (pH 7.0)']) or
+    (aliphatic_index_value != default_ranges['Aliphatic Index']) or
+    (boman_index_value != default_ranges['Boman Index']) or
     (not right_filters_active)
 )
 
@@ -494,7 +512,9 @@ if apply_slider_filters:
         df_filtered['% Hydrophobic Residue'].between(*hydro_range) &
         df_filtered['Instability Index Value'].between(*instability_index_value) &
         df_filtered['Isoelectric Point (pI)'].between(*isoelectric_point_value) &
-        df_filtered['Net Charge (pH 7.0)'].between(*net_charge_value)
+        df_filtered['Net Charge (pH 7.0)'].between(*net_charge_value) &
+        df_filtered['Aliphatic Index'].between(*aliphatic_index_value) &
+        df_filtered['Boman Index'].between(*boman_index_value)
     ]
 
 # --- Separator Line ---
