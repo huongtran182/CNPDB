@@ -352,7 +352,7 @@ if run:
             query_seq = re.sub(r'(.)\1{3,}', '', query_seq)
         
         results = []
-            for i, db_seq in enumerate(df["Sequence"]):
+        for i, db_seq in enumerate(df["Sequence"]):
                 if seg_filter:
                     db_seq = re.sub(r'[^A-Z]', '', db_seq)
                     db_seq = re.sub(r'(.)\1{3,}', '', db_seq)
