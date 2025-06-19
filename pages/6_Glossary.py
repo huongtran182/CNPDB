@@ -97,13 +97,13 @@ families = [
 
 tools = [
     ("BLAST",                 "Basic Local Alignment Search Tool for sequence similarity searches."),
-    ("BLOSUM",                "(BLOcks SUbstitution Matrix) is a substitution matrix based on observed amino acid substitutions in conserved regions of protein families."),
-    ("PAM",                   "(Point Accepted Mutation) is a matrix that estimates the likelihood of one amino acid mutating into another over evolutionary time."),
     ("Compositional Bias",    "Adjusts scoring based on amino acid composition. Useful for short peptides."),
     ("E-value Threshold",     "Max acceptable probability that a hit is random. Lower = more stringent."),
     ("Gap Open",              "Cost for starting a gap. Higher = fewer gaps."),
     ("Gap Extend",            "Cost for extending a gap."),
     ("Matrix Choice",         "Substitution scoring (how similar two amino acids are)."),
+    ("BLOSUM",                "(BLOcks SUbstitution Matrix) is a substitution matrix based on observed amino acid substitutions in conserved regions of protein families."),
+    ("PAM",                   "(Point Accepted Mutation) is a matrix that estimates the likelihood of one amino acid mutating into another over evolutionary time."),
     ("SEG Filtering",         "Masks low-complexity regions (repeats). Useful to reduce false positives."),
     ("Peptide Sequence Alignment",    "Compares two peptide sequences to identify regions of similarity that may indicate functional, structural, or evolutionary relationships."),
     ("Type",                  "Global alignment aligns sequences end-to-end, while Local alignment finds the most similar subregions within the sequences."),
