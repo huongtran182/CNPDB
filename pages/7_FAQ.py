@@ -143,10 +143,9 @@ search_faqs = [
     },
     {
         "num": "03",
-        "question": "What does the “Instability Index” mean?",
+        "question": "What do the physicochemical indexes represent?",
         "answer": textwrap.dedent("""
-            The Instability Index is a computational measure that predicts the <i>in vitro</i> stability of a peptide or protein based on the presence of certain dipeptides known to affect stability.
-            The peptide is predicted to be stable if its index < 40. The peptide is predicted to be unstable if its index ≥ 40.
+            For detailed explanations of each peptide property index, please visit the <i>Glossary</i> page under the <b>Tools</b> section.
         """)
     },
     {
@@ -182,7 +181,7 @@ tool_faqs = [
     "num": "02",
             "question": "What do the alignment settings mean?",
             "answer": textwrap.dedent("""
-                For detailed explanations, visit the <i>Glossary</i> page under *Tools*. 
+                For detailed explanations, visit the <i>Glossary</i> page under the <b>Tools</b> section. 
                 Tip: Smaller or more negative gap penalties allow longer gaps.
         """)
     },
@@ -204,7 +203,7 @@ tool_faqs = [
         "num": "05",
         "question": "What do the BLAST settings mean?",
         "answer": textwrap.dedent("""
-            For detailed explanations, visit the <i>Glossary</i> page under *Tools*
+            For detailed explanations, visit the <i>Glossary</i> page under the <b>Tools</b> section. 
         """)
     },
     {
