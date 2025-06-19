@@ -313,13 +313,13 @@ with col_param[0]:
     e_value_thresh = st.number_input("E-value Threshold", value=10.0, step=0.1)
 with col_param[1]:
     matrix_options = ["BLOSUM62", "BLOSUM80", "BLOSUM45", "PAM30", "PAM70"]
-    matrix_choice = st.selectbox("Matrix", matrix_options, key="matrix_select")
+    matrix_choice = st.selectbox("Matrix", matrix_options, index=matrix_options.index("BLOSUM80"), key="matrix_select")
 with col_param[2]:
-    gap_open = st.number_input("Gap Open Penalty", value=10.0, step=0.5)
+    gap_open = st.number_input("Gap Open", value=-10.0, step=0.5)
 with col_param[3]:
-    gap_extend = st.number_input("Gap Extend Penalty", value=0.5, step=0.1)
+    gap_extend = st.number_input("Gap Extend", value=-0.5, step=0.1)
 with col_param[4]:
-    word_size = st.slider("Word Size", 1, 5, 3)
+    word_size = st.slider("Word Size", 2, 5, 3)
 
 col_opt = st.columns(2)
 with col_opt[0]:
@@ -398,7 +398,7 @@ if run:
                 continue
 
             try:
-                aln = pairwise2.align.localds(seq_for_search, db_seq_clean, scoring_matrix, -gap_open, -gap_extend, one_alignment_only=True)
+                aln = pairwise2.align.localds(seq_for_search, db_seq_clean, scoring_matrix, gap_open, gap_extend, one_alignment_only=True)
                 score = aln[0].score if aln else 0
                 e_val = 1e-5 * (100 - score / len(seq_for_search)) * (i + 1)
                 if comp_bias:
