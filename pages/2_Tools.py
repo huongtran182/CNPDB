@@ -327,12 +327,12 @@ with col_param[4]:
     matrix_info = st.selectbox("Matrix", {matrix_choice})
 
 col_opt = st.columns(3)
-    with col_opt[0]:
+with col_opt[0]:
         seg_filter = st.checkbox("SEG Filtering", value=True)
-    with col_opt[1]:
+with col_opt[1]:
         comp_bias = st.checkbox("Composition-based Stats", value=True)
-    with col_opt[2]:
-        top_n = st.selectbox("# of Top Hits", [5, 10, 20], index=1)
+with col_opt[2]:
+        top_n = st.selectbox("# of Top Hits", [5, 10, 20], index=1)      
 
 # Format alignment manually
 def format_alignment(aln):
