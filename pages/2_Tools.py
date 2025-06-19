@@ -294,7 +294,7 @@ def load_db():
 df = load_db()
 
 # --- Input ---
-query_input = st.text_area("Enter your peptide sequence (Only one sequence at a time):", value="", height=68)
+query_input = st.text_area("Enter your peptide sequence (Only one sequence at a time):", value="", height=69)
 
 def parse_sequence(text):
     lines = text.strip().splitlines()
