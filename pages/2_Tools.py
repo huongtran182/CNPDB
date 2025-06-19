@@ -412,7 +412,7 @@ if run:
                         """)
                         report.write(f"Hit #{i+1}\n")
                         report.write(format_alignment(aln) + "\n")
-                        report.write(f""'Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}""")
+                        report.write(f"""Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}""")
                         report.write(f"""Family: {row.get('Family', 'N/A')}\nOrganism: {row.get('OS', 'N/A')}\n\n""") 
 
     
