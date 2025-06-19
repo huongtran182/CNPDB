@@ -332,7 +332,7 @@ with col_filter:
     isoelectric_point_value = st.slider("", 0, 14, (0, 14), label_visibility="collapsed")
 
     st.markdown('<div class="section-title">Net Charge (pH 7.0)</div>', unsafe_allow_html=True)
-    net_charge_value = st.slider("", -25, 10 (-25, 10), label_visibility="collapsed")
+    net_charge_value = st.slider("", -25, 10, (-25, 10), label_visibility="collapsed")
 
     st.markdown('</div>', unsafe_allow_html=True)
         
