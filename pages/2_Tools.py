@@ -429,8 +429,8 @@ if run:
                     mime="text/plain"
                 )
 
-             # Show hits
-             for i, (score, e_val, db_seq, aln) in enumerate(results):
+            # Show hits
+            for i, (score, e_val, db_seq, aln) in enumerate(results):
                 st.subheader(f"Hit #{i+1}")
 
                 if aln:
