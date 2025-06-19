@@ -98,7 +98,7 @@ if calculate_clicked:
 
 # --- Separator Line ---
 st.markdown("""
-<hr style='border: none; border-top: 2px solid #6a51a3; margin: 0px 50px;'>
+<hr style='border: none; border-top: 3px solid #6a51a3; margin: 0px 50px;'>
 """, unsafe_allow_html=True)
 
 # --- Sequence alignment calculator ---
@@ -276,7 +276,7 @@ if run_clicked:
 
 # --- Separator Line ---
 st.markdown("""
-<hr style='border: none; border-top: 2px solid #6a51a3; margin: 0px 50px;'>
+<hr style='border: none; border-top: 3px solid #6a51a3; margin: 0px 50px;'>
 """, unsafe_allow_html=True)
 
 # --- BLAST Search ---
@@ -296,7 +296,7 @@ df = load_db()
 # --- Settings ---
 st.sidebar.header("BLAST Settings")
 
-matrix_choice = st.sidebar.selectbox("Scoring Matrix", ["BLOSUM80", "BLOSUM2", "BLOSUM45", "PAM30", "PAM70"])
+matrix_choice = st.sidebar.selectbox("Scoring Matrix", ["BLOSUM80", "BLOSUM62", "BLOSUM45", "PAM30", "PAM70"])
 
 # Load and convert substitution matrix to pairwise2-compatible format
 mat = substitution_matrices.load(matrix_choice)
@@ -313,7 +313,7 @@ with col_param[2]:
 with col_param[3]:
     gap_extend = st.number_input("Gap Extend Penalty", value=0.5, step=0.1)
 with col_param[4]:
-    matrix_info = st.selectbox("Type", [{matrix_choice}])
+    matrix_info = st.selectbox("Matrix", [{matrix_choice}])
 with col_param[5]:
     seg_filter = st.checkbox("SEG Filtering", value=True)
     comp_bias = st.checkbox("Compositional Biasness", value=True)
@@ -343,8 +343,6 @@ if run:
     if not query_seq:
         st.error("Please input a valid sequence.")
     else:
-        st.info("Running local BLAST alignment...")
-
         results = []
         for i, db_seq in enumerate(df["Sequence"]):
             if seg_filter:
@@ -374,13 +372,37 @@ if run:
         if not results:
             st.warning("No hits below the selected E-value threshold.")
         else:
+            st.success(f"{len(results)} hit(s) found with E-value ≤ {e_value_thresh}")
+            report = StringIO()
+            report.write(f"Custom BLAST Report
+Query: {query_seq}
+Matrix: {matrix_choice}
+")
+            report.write(f"Word Size: {word_size}
+SEG Filtering: {seg_filter}
+Composition-based stats: {comp_bias}
+")
+            report.write(f"Gap Open Penalty: {gap_open}
+Gap Extend Penalty: {gap_extend}
+
+")
+
+            # Move download button to top before listing hits
+            col_dl1, col_dl2, col_dl3 = st.columns([1.3, 1, 1])
+            with col_dl2:
+                st.download_button(
+                    label="Download BLAST Results",
+                    data=report.getvalue(),
+                    file_name="cNPDB_BLAST_results.txt",
+                    mime="text/plain"
+                )
             report = StringIO()
             report.write(f"Custom BLAST Report\nQuery: {query_seq}\nMatrix: {matrix_choice}\n")
             report.write(f"Word Size: {word_size}\nSEG Filtering: {seg_filter}\nComposition-based stats: {comp_bias}\n")
             report.write(f"Gap Open Penalty: {gap_open}\nGap Extend Penalty: {gap_extend}\n\n")
 
             for i, (score, e_val, db_seq, aln) in enumerate(results):
-                st.subheader(f"\Hit #{i+1}")
+                st.subheader(f"\U0001F539 Hit #{i+1}")
                 st.text(f"Score: {score:.2f} | E-value: {e_val:.2e}")
                 st.code(format_alignment(aln) if aln else "No alignment.")
 
@@ -396,16 +418,6 @@ if run:
                     report.write(format_alignment(aln) + "\n")
                     report.write(f"Score: {score:.2f} | E-value: {e_val:.2e}\n")
                     report.write(f"Family: {row.get('Family', 'N/A')}\nOrganism: {row.get('OS', 'N/A')}\n\n")
-           
-            # Centered download button
-            col_dl1, col_dl2, col_dl3 = st.columns([1.1, 1, 1])
-            with col_dl2:
-                st.download_button(
-                label="Download BLAST Results",
-                data=report.getvalue(),
-                file_name="cNPDB_BLAST_results.txt",
-                mime="text/plain"
-            )
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
