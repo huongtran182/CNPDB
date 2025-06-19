@@ -98,7 +98,7 @@ if calculate_clicked:
 
 # --- Separator Line ---
 st.markdown("""
-<hr style='border: none; border-top: 3px solid #6a51a3; margin: 0px 50px;'>
+<hr style='border: none; border-top: 2px solid #6a51a3; margin-top: 10px; margin-bottom: 0px; margin-left: 30px; margin-right: 30px;'>
 """, unsafe_allow_html=True)
 
 # --- Sequence alignment calculator ---
@@ -276,7 +276,7 @@ if run_clicked:
 
 # --- Separator Line ---
 st.markdown("""
-<hr style='border: none; border-top: 3px solid #6a51a3; margin: 0px 50px;'>
+<hr style='border: none; border-top: 3px solid #6a51a3;  margin-top: 10px; margin-bottom: 0px; margin-left: 30px; margin-right: 30px;'>
 """, unsafe_allow_html=True)
 
 # --- BLAST Search ---
@@ -308,7 +308,7 @@ query_seq = parse_sequence(query_input)
 st.sidebar.header("BLAST Settings")
 
 matrix_options = ["BLOSUM62", "BLOSUM80", "BLOSUM45", "PAM30", "PAM70"]
-matrix_choice = st.selectbox("Scoring Matrix", matrix_options)
+matrix_choice = st.selectbox("Matrix", matrix_options)
 
 # Load and convert substitution matrix to pairwise2-compatible format
 mat = substitution_matrices.load(matrix_choice)
@@ -325,7 +325,7 @@ with col_param[2]:
 with col_param[3]:
     gap_extend = st.number_input("Gap Extend Penalty", value=0.5, step=0.1)
 with col_param[4]:
-    matrix_info = st.selectbox("Matrix", {matrix_options})
+    matrix_choice = st.selectbox("Matrix", matrix_options)
 
 col_opt = st.columns(3)
 with col_opt[0]:
