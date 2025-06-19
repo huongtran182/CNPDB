@@ -4,6 +4,7 @@ from Bio.SeqUtils.ProtParam import ProteinAnalysis
 import pandas as pd
 from Bio import pairwise2
 from io import StringIO
+from Bio.SubsMat import MatrixInfo as matlist
 
 st.set_page_config(
     page_title="Tools",
@@ -159,7 +160,7 @@ def clean_sequence(seq):
     return ''.join(clean_lines).upper()
 
 # User input sequence
-query_seq = st.text_area("Input your peptide sequence (FASTA or raw):", value="", height=68)
+query_seq = st.text_area("Input your peptide sequence (FASTA or raw, only one at a time):", value="", height=68)
 
 # Option to align against another sequence or the database
 target_seq = st.text_area("Input second sequence for alignment (optional):", value="", height=68)
@@ -233,7 +234,7 @@ if run_clicked:
             )
 
             # Centered download button
-            col_dl1, col_dl2, col_dl3 = st.columns([1.2, 1, 1])
+            col_dl1, col_dl2, col_dl3 = st.columns([1, 1, 1])
             with col_dl2:
                 st.download_button(
                 label="Download Alignment Results",
@@ -266,6 +267,16 @@ if run_clicked:
                     """, unsafe_allow_html=True)
                 else:
                     st.warning("No additional info found for this hit.")
+
+st.markdown(---)
+# --- BLAST Search ---
+st.markdown(
+    '<h2 class="custom-title">'
+    'BLAST SEARCH'
+    '</h2>',
+    unsafe_allow_html=True
+)
+
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
