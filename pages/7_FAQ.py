@@ -237,7 +237,7 @@ st.markdown(
 faqs = [
     {
         "num": "01",
-        "question": What types of alignment are available?,
+        "question": "What types of alignment are available?",
         "answer": textwrap.dedent("""
             1. Global Alignment aligns sequences from end to end (best for full-length comparisons).
             2. Local Alignment finds the most similar region within two sequences (useful for partial matches).
@@ -245,7 +245,7 @@ faqs = [
     },
     {
     "num": "02",
-            "question": What do the alignment settings mean?,
+            "question": "What do the alignment settings mean?",
             "answer": textwrap.dedent("""
                 For detailed explanations, visit the <i>Glossary</i> page under *Tools*. 
                 Tip: Smaller or more negative gap penalties allow longer gaps.
@@ -253,7 +253,7 @@ faqs = [
     },
     {
     "num": "03",
-            "question": Can I align two sequences manually?,
+            "question": "Can I align two sequences manually?",
             "answer": textwrap.dedent("""
                 Yes! Paste your Query Sequence and Target Sequence to perform a direct pairwise alignment.
         """)
@@ -283,7 +283,7 @@ faqs = [
     },
     {
         "num": "07",
-        "question": Which scoring matrix should I choose?,
+        "question": "Which scoring matrix should I choose?",
         "answer": textwrap.dedent("""
             Choose a matrix based on how closely related your sequences are. For neuropeptides, we recommended to set either BLOSUM80 or PAM30.
             1. BLOSUM80: Closely related peptide sequences
@@ -295,7 +295,7 @@ faqs = [
     },
     {
         "num": "08",
-        "question": Can I download the search results?,
+        "question": "Can I download the search results?",
         "answer": textwrap.dedent("""
             Yes. Simply click on the "Download Alignment Results" or "Download BLAST Results" buttons after perfoming your search to download the results in txt file.
         """)
