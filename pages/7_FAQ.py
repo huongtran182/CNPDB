@@ -76,6 +76,18 @@ def render_card(faq):
     """
     st.markdown(html, unsafe_allow_html=True)
 
+# --- Helper: Render section of FAQs ---
+def render_faq_section(section_title, faq_list):
+    st.markdown(f'<h2 class="custom-title">{section_title}</h2>', unsafe_allow_html=True)
+    for i in range(0, len(faq_list), 3):
+        row = faq_list[i:i+3]
+        cols = st.columns(3, gap="large")
+        for col, faq in zip(cols, row):
+            with col:
+                render_card(faq)
+        if i + 3 < len(faq_list):
+            st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
+
 # --- General Website FAQs ---
 st.markdown(
     '<h2 class="custom-title">'
@@ -84,7 +96,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-faqs = [
+general_faqs = [
      {
         "num": "01",
         "question": "How do I navigate the cNPDB database?",
@@ -123,7 +135,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-faqs = [
+bio_faqs = [
     {
         "num": "01",
         "question": "What is the definition of neuropeptide?",
@@ -170,7 +182,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-faqs = [
+search_faqs = [
     {
         "num": "01",
         "question": "How do I search for neuropeptides of interest in the cNPDB?",
@@ -223,7 +235,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-faqs = [
+tool_faqs = [
     {
         "num": "01",
         "question": "What types of alignment are available?",
@@ -290,6 +302,12 @@ faqs = [
         """)
     },
 ]
+
+# --- RENDER ALL SECTIONS ---
+render_faq_section("GENERAL WEBSITE", general_faqs)
+render_faq_section("BIOLOGICAL PERSPECTIVES", bio_faqs)
+render_faq_section("SEARCH ENGINE", search_faqs)
+render_faq_section("TOOLS", tool_faqs)
 
 # Lay out in rows of 3
 for i in range(0, len(faqs), 3):
