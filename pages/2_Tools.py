@@ -381,11 +381,6 @@ if run:
         else:
             st.success(f"{len(results)} hit(s) found with E-value ≤ {e_value_thresh}")
 
-            report = StringIO()
-            report.write(f"cNPDB BLAST Report\nQuery: {query_seq}\nMatrix: {matrix_choice}\n")
-            report.write(f"Word Size: {word_size}\nSEG Filtering: {seg_filter}\nComposition-based stats: {comp_bias}\n")
-            report.write(f"Gap Open Penalty: {gap_open}\nGap Extend Penalty: {gap_extend}\n\n")
-
             col_dl1, col_dl2, col_dl3 = st.columns([1.35, 1, 1])
             with col_dl2:
                 st.download_button(
@@ -394,6 +389,11 @@ if run:
                     file_name="cNPDB_BLAST_results.txt",
                     mime="text/plain"
                 )
+            
+            report = StringIO()
+            report.write(f"cNPDB BLAST Report\nQuery: {query_seq}\nMatrix: {matrix_choice}\n")
+            report.write(f"Word Size: {word_size}\nSEG Filtering: {seg_filter}\nComposition-based stats: {comp_bias}\n")
+            report.write(f"Gap Open Penalty: {gap_open}\nGap Extend Penalty: {gap_extend}\n\n")
 
             for i, (score, e_val, db_seq, aln) in enumerate(results):
                 st.subheader(f"Hit #{i+1}")
