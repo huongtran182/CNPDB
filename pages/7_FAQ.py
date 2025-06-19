@@ -243,6 +243,7 @@ faqs = [
             2. Local Alignment finds the most similar region within two sequences (useful for partial matches).
         """)
     },
+    {
     "num": "02",
             "question": What do the alignment settings mean?,
             "answer": textwrap.dedent("""
@@ -250,6 +251,7 @@ faqs = [
                 Tip: Smaller or more negative gap penalties allow longer gaps.
         """)
     },
+    {
     "num": "03",
             "question": Can I align two sequences manually?,
             "answer": textwrap.dedent("""
