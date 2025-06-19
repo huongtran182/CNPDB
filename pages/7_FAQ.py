@@ -123,6 +123,7 @@ bio_faqs = [
             3. Derived from neuropeptide prohormones/precursors.
         """)
     },
+]
 
 search_faqs = [
     {
