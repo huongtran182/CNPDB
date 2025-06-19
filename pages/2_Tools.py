@@ -310,23 +310,22 @@ st.sidebar.header("BLAST Settings")
 st.markdown("### BLAST Settings")
 col_param = st.columns(5)
 with col_param[0]:
-    word_size = st.slider("Word Size", 1, 5, 3)
-with col_param[1]:
     e_value_thresh = st.number_input("E-value Threshold", value=10.0, step=0.1)
+with col_param[1]:
+    matrix_options = ["BLOSUM62", "BLOSUM80", "BLOSUM45", "PAM30", "PAM70"]
+    matrix_choice = st.selectbox("Matrix", matrix_options, key="matrix_select")
 with col_param[2]:
     gap_open = st.number_input("Gap Open Penalty", value=10.0, step=0.5)
 with col_param[3]:
     gap_extend = st.number_input("Gap Extend Penalty", value=0.5, step=0.1)
 with col_param[4]:
-    matrix_options = ["BLOSUM62", "BLOSUM80", "BLOSUM45", "PAM30", "PAM70"]
-    matrix_choice = st.selectbox("Matrix", matrix_options, key="matrix_select")
+    word_size = st.slider("Word Size", 1, 3, 5)
 
-col_opt = st.columns(3)
+col_opt = st.columns(2)
 with col_opt[0]:
     top_n = st.selectbox("Number of Top Hits", [5, 10, 20], index=1)   
 with col_opt[1]:
-    seg_filter = st.checkbox("SEG Filtering", value=True)    
-with col_opt[2]:
+    seg_filter = st.checkbox("SEG Filtering", value=True)
     comp_bias = st.checkbox("Composition-based Stats", value=True)
 
 # Load and convert substitution matrix to pairwise2-compatible format
@@ -381,11 +380,15 @@ if run:
         else:
             st.success(f"{len(results)} hit(s) found with E-value ≤ {e_value_thresh}")
 
+            blast_txt = generate_blast_text(
+                query_input, e_value_thresh, matrix_choice, gap_open, gap_extend, word_size, results, df
+            )
+
             col_dl1, col_dl2, col_dl3 = st.columns([1.35, 1, 1])
             with col_dl2:
                 st.download_button(
                     label="Download BLAST Results",
-                    data=report.getvalue(),
+                    data=blast_txt,
                     file_name="cNPDB_BLAST_results.txt",
                     mime="text/plain"
                 )
