@@ -76,17 +76,6 @@ def render_card(faq):
     """
     st.markdown(html, unsafe_allow_html=True)
 
-# Lay out in rows of 3
-for i in range(0, len(faqs), 3):
-    row = faqs[i:i+3]
-    cols = st.columns(3, gap="large")
-    for col, faq in zip(cols, row):
-        with col:
-            render_card(faq)
-    # after each row (except the last), insert a 40px tall spacer
-    if i + 3 < len(faqs):
-        st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
-
 # --- General Website FAQs ---
 st.markdown(
     '<h2 class="custom-title">'
@@ -302,6 +291,16 @@ faqs = [
     },
 ]
 
+# Lay out in rows of 3
+for i in range(0, len(faqs), 3):
+    row = faqs[i:i+3]
+    cols = st.columns(3, gap="large")
+    for col, faq in zip(cols, row):
+        with col:
+            render_card(faq)
+    # after each row (except the last), insert a 40px tall spacer
+    if i + 3 < len(faqs):
+        st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
 
 # footers
 st.markdown("""
