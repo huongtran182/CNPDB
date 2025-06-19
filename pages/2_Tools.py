@@ -5,6 +5,7 @@ import pandas as pd
 from Bio import pairwise2
 from io import StringIO
 from Bio.Align import substitution_matrices
+import re
 
 st.set_page_config(
     page_title="Tools",
@@ -97,7 +98,7 @@ if calculate_clicked:
 
 # --- Separator Line ---
 st.markdown("""
-<hr style='border: none; border-top: 2px solid #6a51a3; margin: 0px 30px;'>
+<hr style='border: none; border-top: 2px solid #6a51a3; margin: 0px 50px;'>
 """, unsafe_allow_html=True)
 
 # --- Sequence alignment calculator ---
@@ -239,7 +240,7 @@ if run_clicked:
             )
 
             # Centered download button
-            col_dl1, col_dl2, col_dl3 = st.columns([1.1, 1, 1])
+            col_dl1, col_dl2, col_dl3 = st.columns([1.3, 1, 1])
             with col_dl2:
                 st.download_button(
                 label="Download Alignment Results",
@@ -275,7 +276,7 @@ if run_clicked:
 
 # --- Separator Line ---
 st.markdown("""
-<hr style='border: none; border-top: 2px solid #6a51a3; margin: 0px 30px;'>
+<hr style='border: none; border-top: 2px solid #6a51a3; margin: 0px 50px;'>
 """, unsafe_allow_html=True)
 
 # --- BLAST Search ---
@@ -302,7 +303,7 @@ mat = substitution_matrices.load(matrix_choice)
 scoring_matrix = { (a, b): mat[a][b] for a in mat.alphabet for b in mat.alphabet }
 
 st.markdown("### BLAST Settings")
-col_param = st.columns(5)
+col_param = st.columns(6)
 with col_param[0]:
     word_size = st.slider("Word Size", 1, 5, 3)
 with col_param[1]:
@@ -312,14 +313,10 @@ with col_param[2]:
 with col_param[3]:
     gap_extend = st.number_input("Gap Extend Penalty", value=0.5, step=0.1)
 with col_param[4]:
-    matrix_info = st.markdown(f"**Matrix:** {matrix_choice}")
-
-# Optional filters
-col_opt = st.columns(2)
-with col_opt[0]:
+    matrix_info = st.selectbox("Type", [{matrix_choice}])
+with col_param[5]:
     seg_filter = st.checkbox("SEG Filtering", value=True)
-with col_opt[1]:
-    comp_bias = st.checkbox("Composition-based Stats", value=True)
+    comp_bias = st.checkbox("Compositional Biasness", value=True)
 
 # --- Input ---
 query_input = st.text_area("Paste your peptide sequence (FASTA or raw)", height=100)
