@@ -88,14 +88,6 @@ def render_faq_section(section_title, faq_list):
         if i + 3 < len(faq_list):
             st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
 
-# --- General Website FAQs ---
-st.markdown(
-    '<h2 class="custom-title">'
-    'GENERAL WEBSITE'
-    '</h2>',
-    unsafe_allow_html=True
-)
-
 general_faqs = [
      {
         "num": "01",
@@ -126,14 +118,6 @@ general_faqs = [
         """)
     },
 ]
-
-# --- Biological PerspectivesFAQs---
-st.markdown(
-    '<h2 class="custom-title">'
-    'BIOLOGICAL PERSPECTIVES'
-    '</h2>',
-    unsafe_allow_html=True
-)
 
 bio_faqs = [
     {
@@ -173,14 +157,6 @@ bio_faqs = [
         """)
     },
 ]
-
-# --- Search Engine FAQs---
-st.markdown(
-    '<h2 class="custom-title">'
-    'SEARCH ENGINE'
-    '</h2>',
-    unsafe_allow_html=True
-)
 
 search_faqs = [
     {
@@ -225,15 +201,6 @@ search_faqs = [
         """)
     },
 ]
-
-
-# --- Tools FAQs ---
-st.markdown(
-    '<h2 class="custom-title">'
-    'TOOLS'
-    '</h2>',
-    unsafe_allow_html=True
-)
 
 tool_faqs = [
     {
@@ -308,17 +275,6 @@ render_faq_section("GENERAL WEBSITE", general_faqs)
 render_faq_section("BIOLOGICAL PERSPECTIVES", bio_faqs)
 render_faq_section("SEARCH ENGINE", search_faqs)
 render_faq_section("TOOLS", tool_faqs)
-
-# Lay out in rows of 3
-for i in range(0, len(faqs), 3):
-    row = faqs[i:i+3]
-    cols = st.columns(3, gap="large")
-    for col, faq in zip(cols, row):
-        with col:
-            render_card(faq)
-    # after each row (except the last), insert a 40px tall spacer
-    if i + 3 < len(faqs):
-        st.markdown("<div style='height:30px'></div>", unsafe_allow_html=True)
 
 # footers
 st.markdown("""
