@@ -117,12 +117,19 @@ faqs = [
             Please fill out the Feedback Form in the <i>Contact Us</i> page. For collaborations or urgent request, please contact Prof. Li directly at lingjun.li@wisc.edu.
         """)
     },
+    {
+    "num": "04",
+        "question": "Who can use cNPDB?",
+        "answer": textwrap.dedent("""
+            Researchers, students, neuroscientists, chemists, bioinformaticians, and drug discovery professionals should find cNPDB useful in many endeavors.
+        """)
+    },
 ]
 
-# --- Search Engine FAQs---
+# --- Biological PerspectivesFAQs---
 st.markdown(
     '<h2 class="custom-title">'
-    'SEARCH ENGINE'
+    'BIOLOGICAL PERSPECTIVES'
     '</h2>',
     unsafe_allow_html=True
 )
@@ -166,6 +173,58 @@ faqs = [
     },
 ]
 
+# --- Search Engine FAQs---
+st.markdown(
+    '<h2 class="custom-title">'
+    'SEARCH ENGINE'
+    '</h2>',
+    unsafe_allow_html=True
+)
+
+faqs = [
+    {
+        "num": "01",
+        "question": "How do I search for neuropeptides of interest in the cNPDB?",
+        "answer": textwrap.dedent("""
+            The Database Search Engine on the left allows users to search by specific sequence, family, organism, and other neuropepties. 
+            Visit the <i>Tutorials</i> page for detailed instructions on how to use the search engine and download the results.
+        """)
+    },
+    {
+        "num": "02",
+        "question": What format of peptide sequence should I input if search by sequence?",
+        "answer": textwrap.dedent("""
+            Please input plain amino acid sequence without any PTMs. For example, AGHFMRFamide should be input as AGHFMRF.
+        """)
+    },
+    {
+        "num": "03",
+        "question": "What does the “Instability Index” mean?",
+        "answer": textwrap.dedent("""
+            The Instability Index is a computational measure that predicts the <i>in vitro</i> stability of a peptide or protein based on the presence of certain dipeptides known to affect stability.
+            The peptide is predicted to be stable if its index < 40. The peptide is predicted to be unstable if its index ≥ 40.
+        """)
+    },
+    {
+    "num": "04",
+        "question": "What do the terms “de novo,” “MS/MS,” and “predicted” mean?",
+        "answer": textwrap.dedent("""
+            These terms reflect the type of evidence supporting each neuropeptide in the database.
+            1. <i>De novo</i>: Tentatively identified directly from MS/MS data once, without prior reference, and not yet validated in other studies.
+            2. MS/MS: Confirmed by matching experimental MS/MS data to known neuropeptides in curated databases.
+            3. Predicted: Inferred from bioinformatics tools like transcriptomics or gene annotation, without experimental validation.
+        """)
+    },
+    {
+    "num": "05",
+        "question": "Can I download the whole database without any restrictions on the search criteria",
+        "answer": textwrap.dedent("""
+            Yes! Just simply set the settings on the left side to be full ranges and don't input any strict criteria on the right settings. 
+            Then hit the "Check all" and "Download FASTA File" buttons to download the whole cNPDB database.
+        """)
+    },
+]
+
 
 # --- Tools FAQs ---
 st.markdown(
@@ -176,23 +235,42 @@ st.markdown(
 )
 
 faqs = [
-    {
         "num": "01",
-        "question": "In what format do I input my query sequence?",
+        "question": What types of alignment are available?,
         "answer": textwrap.dedent("""
-           You can input your peptide sequence in either FASTA format (with the > header) or as a plain raw sequence of single-letter amino acid codes. 
-           Make sure your sequence is clean and contains only valid characters (A–Z).
+            1. Global Alignment aligns sequences from end to end (best for full-length comparisons).
+            2. Local Alignment finds the most similar region within two sequences (useful for partial matches).
+        """)
+    },
+    "num": "02",
+            "question": What do the alignment settings mean?,
+            "answer": textwrap.dedent("""
+                For detailed explanations, visit the <i>Glossary</i> page under *Tools*. 
+                Tip: Smaller or more negative gap penalties allow longer gaps.
+        """)
+    },
+    "num": "03",
+            "question": Can I align two sequences manually?,
+            "answer": textwrap.dedent("""
+                Yes! Paste your Query Sequence and Target Sequence to perform a direct pairwise alignment.
         """)
     },
     {
-        "num": "02",
-        "question": "What do the BLAST/Alignment parameters mean?",
+        "num": "04",
+        "question": "Can I align my sequence against the cNPDB database?",
+        "answer": textwrap.dedent("""
+           Absolutely. Check the option "Align against the cNPDB database" to scan your peptide against all known sequences in the database and return the best matches.
+        """)
+    },
+    {
+        "num": "05",
+        "question": "What do the BLAST settings mean?",
         "answer": textwrap.dedent("""
             For detailed explanations, visit the <i>Glossary</i> page under *Tools*
         """)
     },
     {
-        "num": "03",
+        "num": "06",
         "question": "What is the difference between BLOSUM and PAM matrices?",
         "answer": textwrap.dedent("""
             Both are substitution matrices used to score alignments based on evolutionary similarity:
@@ -201,7 +279,7 @@ faqs = [
         """)
     },
     {
-    "num": "04",
+        "num": "07",
         "question": Which scoring matrix should I choose?,
         "answer": textwrap.dedent("""
             Choose a matrix based on how closely related your sequences are. For neuropeptides, we recommended to set either BLOSUM80 or PAM30.
@@ -212,37 +290,11 @@ faqs = [
             5. PAM70: Moderately divergent sequences
         """)
     },
-    "num": "05",
-        "question": Which scoring matrix should I choose?,
+    {
+        "num": "08",
+        "question": Can I download the search results?,
         "answer": textwrap.dedent("""
-            Choose a matrix based on how closely related your sequences are. For neuropeptides, we recommended to set either BLOSUM80 or PAM30.
-            1. BLOSUM80: Closely related peptide sequences
-            2. BLOSUM62: General use (default in many bioinformatics tools)
-            3. BLOSUM45: More distantly related sequences
-            4. PAM30: Short peptide alignments with high sensitivity
-            5. PAM70: Moderately divergent sequences
-        """)
-    },
-    "num": "04",
-            "question": Which scoring matrix should I choose?,
-            "answer": textwrap.dedent("""
-                Choose a matrix based on how closely related your sequences are. For neuropeptides, we recommended to set either BLOSUM80 or PAM30.
-                1. BLOSUM80: Closely related peptide sequences
-                2. BLOSUM62: General use (default in many bioinformatics tools)
-                3. BLOSUM45: More distantly related sequences
-                4. PAM30: Short peptide alignments with high sensitivity
-                5. PAM70: Moderately divergent sequences
-        """)
-    },
-    "num": "04",
-            "question": Which scoring matrix should I choose?,
-            "answer": textwrap.dedent("""
-                Choose a matrix based on how closely related your sequences are. For neuropeptides, we recommended to set either BLOSUM80 or PAM30.
-                1. BLOSUM80: Closely related peptide sequences
-                2. BLOSUM62: General use (default in many bioinformatics tools)
-                3. BLOSUM45: More distantly related sequences
-                4. PAM30: Short peptide alignments with high sensitivity
-                5. PAM70: Moderately divergent sequences
+            Yes. Simply click on the "Download Alignment Results" or "Download BLAST Results" buttons after perfoming your search to download the results in txt file.
         """)
     },
 ]
