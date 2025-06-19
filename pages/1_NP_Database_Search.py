@@ -115,8 +115,8 @@ def display_peptide_details(row: pd.Series):
             <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{gravy_str}</td>
             </tr>
             <tr>
-            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">% Hydrophobic Residues</td>
-            <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['% Hydrophobic Residue (%)'])}</td>
+            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">% Hydrophobic Residue</td>
+            <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['% Hydrophobic Residue'])}</td>
             </tr>
             <tr>
             <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Instability Index </td>
@@ -290,7 +290,7 @@ df = pd.merge(df_sheet1, df_sheet2_agg, on='Sequence', how='left')
 # --- End of Corrected Data Loading ---
 
 # Ensure numeric columns are numeric
-numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue (%)', 'Instability Index Value', 'Isoelectric Point (pI)', 'Net Charge (pH 7.0)']
+numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue', 'Instability Index Value', 'Isoelectric Point (pI)', 'Net Charge (pH 7.0)']
 for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce')
 
@@ -468,7 +468,7 @@ default_ranges = {
     'Monoisotopic Mass': (200.0, 14000.0),
     'Length': (2, 130),
     'GRAVY': (-5.0, 5.0),
-    '% Hydrophobic Residue (%)': (-1, 100),
+    '% Hydrophobic Residue': (-1, 100),
     'Instability Index Value': (-100, 250),
     'Isoelectric Point (pI)': (0, 14),
     'Net Charge (pH 7.0)': (-25, 10),
@@ -479,7 +479,7 @@ apply_slider_filters = (
     (mono_mass_range != default_ranges['Monoisotopic Mass']) or
     (length_range != default_ranges['Length']) or
     (gravy_range != default_ranges['GRAVY']) or
-    (hydro_range != default_ranges['% Hydrophobic Residue (%)']) or
+    (hydro_range != default_ranges['% Hydrophobic Residue']) or
     (instability_index_value != default_ranges['Instability Index Value']) or
     (isoelectric_point_value != default_ranges['Isoelectric Point (pI)']) or
     (net_charge_value != default_ranges['Net Charge (pH 7.0)']) or
@@ -491,7 +491,7 @@ if apply_slider_filters:
         df_filtered['Monoisotopic Mass'].between(*mono_mass_range) &
         df_filtered['Length'].between(*length_range) &
         df_filtered['GRAVY'].between(*gravy_range) &
-        df_filtered['% Hydrophobic Residue (%)'].between(*hydro_range) &
+        df_filtered['% Hydrophobic Residue'].between(*hydro_range) &
         df_filtered['Instability Index Value'].between(*instability_index_value) &
         df_filtered['Isoelectric Point (pI)'].between(*isoelectric_point_value) &
         df_filtered['Net Charge (pH 7.0)'].between(*net_charge_value)
