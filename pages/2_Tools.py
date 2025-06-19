@@ -333,7 +333,7 @@ with col_param[2]:
 with col_param[3]:
     gap_extend = st.number_input("Gap Extend", value=-0.5, step=0.1)
 with col_param[4]:
-    word_size = st.slider("Word Size", 2, 5, 3)
+    word_size = st.slider("Word Size", 2, 4, 3)
 
 col_opt = st.columns(2)
 with col_opt[0]:
