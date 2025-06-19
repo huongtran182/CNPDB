@@ -110,10 +110,8 @@ st.markdown(
 )
 
 st.markdown("""
-<div style='font-size:15px; padding:5px 10px; background-color:#f8f9fa; border-left: 4px solid #6a51a3;'>
-<b>Peptide Alignment allows users to align two peptide sequences or align a query peptide against neuropeptide sequences in the cNPDB database.<br>
-Default settings are suitable for most neuropeptide alignments, but users can modify the alignment parameters for custom analysis.<br>
-For more guidance, please refer to the <i>Glossary</i> and <i>Tutorials</i> pages.
+<div style='font-size:15px; padding:10px 10px;'>
+Peptide Alignment allows users to align two peptide sequences or align a query peptide against neuropeptide sequences in the cNPDB database. Default settings are suitable for most neuropeptide alignments, but users can modify the alignment parameters for custom analysis. For more guidance, please refer to the <i>Glossary</i> and <i>Tutorials</i> pages.
 </div>
 """, unsafe_allow_html=True)
 
@@ -297,10 +295,8 @@ st.markdown(
 )
 
 st.markdown("""
-<div style='font-size:15px; padding:5px 10px; background-color:#f8f9fa; border-left: 4px solid #6a51a3;'>
-<b>BLAST Search allows users to compare their peptide sequence against the cNPDB database and identify similar neuropeptides.<br>
-Default parameters are optimized for typical neuropeptide BLAST searches, but users can customize settings to suit their needs.<br>
-See <i>Glossary</i> and <i>Tutorials</i> pages for more details.
+<div style='font-size:15px; padding:10px 10px;'>
+BLAST Search allows users to compare their peptide sequence against the cNPDB database and identify similar neuropeptides. Default parameters are optimized for typical neuropeptide BLAST searches, but users can customize settings to suit their needs. See <i>Glossary</i> and <i>Tutorials</i> pages for more details.
 </div>
 """, unsafe_allow_html=True)
 
