@@ -320,10 +320,13 @@ def parse_sequence(text):
 
 query_seq = parse_sequence(query_input)
 
-run = st.button("Run BLAST")
+col1, col2, col3 = st.columns([1.6, 1, 1])
+with col2:
+    run = st.button("Run BLAST", type="primary")
 
-# --- Alignment + Result ---
+# Run Alignment Button
 if run:
+run = st.button("Run BLAST")
     if not query_seq:
         st.error("Please input a valid sequence.")
     else:
@@ -352,7 +355,7 @@ if run:
             report.write(f"Custom BLAST Report\nQuery: {query_seq}\nMatrix: {matrix_choice}\n\n")
 
             for i, (score, e_val, db_seq, aln) in enumerate(results):
-                st.subheader(f"\U0001F539 Hit #{i+1}")
+                st.subheader(f"Hit #{i+1}")
                 st.text(f"Score: {score:.2f} | E-value: {e_val:.2e}")
                 st.code(aln.format() if aln else "No alignment.")
 
@@ -368,8 +371,16 @@ if run:
                     report.write(aln.format() + "\n")
                     report.write(f"Score: {score:.2f} | E-value: {e_val:.2e}\n")
                     report.write(f"Family: {row.get('Family', 'N/A')}\nOrganism: {row.get('OS', 'N/A')}\n\n")
-
-            st.download_button("\U0001F4E5 Download BLAST Report", report.getvalue(), "cNPDB_BLAST_results.txt", mime="text/plain")
+           
+            # Centered download button
+            col_dl1, col_dl2, col_dl3 = st.columns([1, 1, 1])
+            with col_dl2:
+                st.download_button(
+                label="Download BLAST Results",
+                report.getvalue(),
+                file_name="cNPDB_BLAST_results.txt",
+                mime="text/plain"
+            )
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
