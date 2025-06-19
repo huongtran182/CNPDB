@@ -95,6 +95,11 @@ if calculate_clicked:
         except Exception as e:
             st.error(f"Error: {e}")
 
+# --- Separator Line ---
+st.markdown("""
+<hr style='border: none; border-top: 2px solid #6a51a3; margin: 0px 30px;'>
+""", unsafe_allow_html=True)
+
 # --- Sequence alignment calculator ---
 st.markdown(
     '<h2 class="custom-title">'
@@ -149,7 +154,7 @@ def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_sco
 # Load your peptide sequence database
 @st.cache_data
 def load_data():
-    return pd.read_excel("Assets/20250613_cNPDB.xlsx", sheet_name="Sheet 1")
+    return pd.read_excel("Assets/20250617_cNPDB.xlsx", sheet_name="Sheet 1")
 
 df = load_data()
 
@@ -268,7 +273,11 @@ if run_clicked:
                 else:
                     st.warning("No additional info found for this hit.")
 
-st.markdown(---)
+# --- Separator Line ---
+st.markdown("""
+<hr style='border: none; border-top: 2px solid #6a51a3; margin: 0px 30px;'>
+""", unsafe_allow_html=True)
+
 # --- BLAST Search ---
 st.markdown(
     '<h2 class="custom-title">'
@@ -277,6 +286,90 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+@st.cache_data
+def load_db():
+    return pd.read_excel("Assets/20250617_cNPDB.xlsx", sheet_name="Sheet 1")
+
+df = load_db()
+
+# --- Settings ---
+st.sidebar.header("BLAST Settings")
+
+matrix_choice = st.sidebar.selectbox("Scoring Matrix", ["blosum80", "blosum62", "blosum45", "pam30", "pam70"])
+matrix_dict = {
+    "blosum80": matlist.blosum80,
+    "blosum62": matlist.blosum62,
+    "blosum45": matlist.blosum45,
+    "pam30": matlist.pam30,
+    "pam70": matlist.pam70,
+}
+scoring_matrix = matrix_dict[matrix_choice]
+
+word_size = st.sidebar.slider("Word Size (affects speed)", 1, 5, 3)
+e_value_thresh = st.sidebar.number_input("E-value threshold", value=10.0, step=0.1)
+seg_filter = st.sidebar.checkbox("SEG Filtering (remove low complexity)", value=True)
+comp_bias = st.sidebar.checkbox("Composition-based stats", value=True)
+
+# --- Input ---
+query_input = st.text_area("Paste your peptide sequence (FASTA or raw)", height=100)
+
+def parse_sequence(text):
+    lines = text.strip().splitlines()
+    clean = [l.strip() for l in lines if not l.startswith(">")]
+    return ''.join(clean).upper()
+
+query_seq = parse_sequence(query_input)
+
+run = st.button("Run BLAST")
+
+# --- Alignment + Result ---
+if run:
+    if not query_seq:
+        st.error("Please input a valid sequence.")
+    else:
+        st.info("Running local BLAST alignment...")
+
+        results = []
+        for i, db_seq in enumerate(df["Sequence"]):
+            try:
+                aln = pairwise2.align.localds(query_seq, db_seq, scoring_matrix, -10, -0.5, one_alignment_only=True)
+                score = aln[0].score if aln else 0
+
+                # Simulated e-value (crude approximation)
+                e_val = 1e-5 * (100 - score/len(query_seq)) * (i+1)
+
+                if e_val <= e_value_thresh:
+                    results.append((score, e_val, db_seq, aln[0] if aln else None))
+            except Exception:
+                continue
+
+        results = sorted(results, key=lambda x: -x[0])[:10]
+
+        if not results:
+            st.warning("No hits below the selected E-value threshold.")
+        else:
+            report = StringIO()
+            report.write(f"Custom BLAST Report\nQuery: {query_seq}\nMatrix: {matrix_choice}\n\n")
+
+            for i, (score, e_val, db_seq, aln) in enumerate(results):
+                st.subheader(f"\U0001F539 Hit #{i+1}")
+                st.text(f"Score: {score:.2f} | E-value: {e_val:.2e}")
+                st.code(aln.format() if aln else "No alignment.")
+
+                row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
+                if row is not None:
+                    st.markdown(f"""
+                    **Family**: {row.get('Family', 'N/A')}  
+                    **Organism**: {row.get('OS', 'N/A')}  
+                    **Tissue**: {row.get('Tissue', 'N/A')}  
+                    **Active Sequence**: {row.get('Active Sequence', 'N/A')}
+                    """)
+                    report.write(f"Hit #{i+1}\n")
+                    report.write(aln.format() + "\n")
+                    report.write(f"Score: {score:.2f} | E-value: {e_val:.2e}\n")
+                    report.write(f"Family: {row.get('Family', 'N/A')}\nOrganism: {row.get('OS', 'N/A')}\n\n")
+
+            st.download_button("\U0001F4E5 Download BLAST Report", report.getvalue(), "cNPDB_BLAST_results.txt", mime="text/plain")
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
