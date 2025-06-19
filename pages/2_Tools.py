@@ -79,7 +79,7 @@ def calculate_properties(sequence):
         "% Hydrophobic Residue": round(hydrophobic_pct, 2),
         "Instability Index": f"{round(instability_val, 3)} ({instability_status})",
         "Isoelectric Point (pI)": round(pI, 2),
-        "Net Charge at pH 7.0": round(net_charge, 2),
+        "Net Charge (pH 7.0)": round(net_charge, 2),
         "Aliphatic Index": round(aliphatic_index, 2),
         "Boman Index": round(boman_index, 3)
     }
