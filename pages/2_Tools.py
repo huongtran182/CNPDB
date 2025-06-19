@@ -239,7 +239,7 @@ if run_clicked:
             )
 
             # Centered download button
-            col_dl1, col_dl2, col_dl3 = st.columns([1, 1, 1])
+            col_dl1, col_dl2, col_dl3 = st.columns([1.1, 1, 1])
             with col_dl2:
                 st.download_button(
                 label="Download Alignment Results",
@@ -301,10 +301,25 @@ matrix_choice = st.sidebar.selectbox("Scoring Matrix", ["BLOSUM80", "BLOSUM2", "
 mat = substitution_matrices.load(matrix_choice)
 scoring_matrix = { (a, b): mat[a][b] for a in mat.alphabet for b in mat.alphabet }
 
-word_size = st.sidebar.slider("Word Size (affects speed)", 1, 5, 3)
-e_value_thresh = st.sidebar.number_input("E-value threshold", value=10.0, step=0.1)
-seg_filter = st.sidebar.checkbox("SEG Filtering (remove low complexity)", value=True)
-comp_bias = st.sidebar.checkbox("Composition-based stats", value=True)
+st.markdown("### BLAST Settings")
+col_param = st.columns(5)
+with col_param[0]:
+    word_size = st.slider("Word Size", 1, 5, 3)
+with col_param[1]:
+    e_value_thresh = st.number_input("E-value Threshold", value=10.0, step=0.1)
+with col_param[2]:
+    gap_open = st.number_input("Gap Open Penalty", value=10.0, step=0.5)
+with col_param[3]:
+    gap_extend = st.number_input("Gap Extend Penalty", value=0.5, step=0.1)
+with col_param[4]:
+    matrix_info = st.markdown(f"**Matrix:** {matrix_choice}")
+
+# Optional filters
+col_opt = st.columns(2)
+with col_opt[0]:
+    seg_filter = st.checkbox("SEG Filtering", value=True)
+with col_opt[1]:
+    comp_bias = st.checkbox("Composition-based Stats", value=True)
 
 # --- Input ---
 query_input = st.text_area("Paste your peptide sequence (FASTA or raw)", height=100)
@@ -316,7 +331,13 @@ def parse_sequence(text):
 
 query_seq = parse_sequence(query_input)
 
-col1, col2, col3 = st.columns([1.6, 1, 1])
+# Format alignment manually
+def format_alignment(aln):
+    seqA, seqB = aln.seqA, aln.seqB
+    midline = ''.join(['|' if a == b else ' ' for a, b in zip(seqA, seqB)])
+    return f"{seqA}\n{midline}\n{seqB}"
+
+col1, col2, col3 = st.columns([1.7, 1, 1])
 with col2:
     run = st.button("Run BLAST", type="primary")
 
@@ -329,12 +350,22 @@ if run:
 
         results = []
         for i, db_seq in enumerate(df["Sequence"]):
+            if seg_filter:
+                db_seq = re.sub(r'[^A-Z]', '', db_seq)
+                db_seq = re.sub(r'(.)\1{3,}', '', db_seq)
+
+            if len(query_seq) < word_size or len(db_seq) < word_size:
+                continue  # Skip short sequences
+
             try:
-                aln = pairwise2.align.localds(query_seq, db_seq, scoring_matrix, -10, -0.5, one_alignment_only=True)
+                aln = pairwise2.align.localds(query_seq, db_seq, scoring_matrix, -gap_open, -gap_extend, one_alignment_only=True)
                 score = aln[0].score if aln else 0
 
-                # Simulated e-value (crude approximation)
                 e_val = 1e-5 * (100 - score/len(query_seq)) * (i+1)
+
+                if comp_bias:
+                    bias_penalty = abs(len(query_seq) - len(db_seq)) * 0.01
+                    e_val += bias_penalty
 
                 if e_val <= e_value_thresh:
                     results.append((score, e_val, db_seq, aln[0] if aln else None))
@@ -347,12 +378,14 @@ if run:
             st.warning("No hits below the selected E-value threshold.")
         else:
             report = StringIO()
-            report.write(f"Custom BLAST Report\nQuery: {query_seq}\nMatrix: {matrix_choice}\n\n")
+            report.write(f"Custom BLAST Report\nQuery: {query_seq}\nMatrix: {matrix_choice}\n")
+            report.write(f"Word Size: {word_size}\nSEG Filtering: {seg_filter}\nComposition-based stats: {comp_bias}\n")
+            report.write(f"Gap Open Penalty: {gap_open}\nGap Extend Penalty: {gap_extend}\n\n")
 
             for i, (score, e_val, db_seq, aln) in enumerate(results):
-                st.subheader(f"Hit #{i+1}")
+                st.subheader(f"\Hit #{i+1}")
                 st.text(f"Score: {score:.2f} | E-value: {e_val:.2e}")
-                st.code(aln.format() if aln else "No alignment.")
+                st.code(format_alignment(aln) if aln else "No alignment.")
 
                 row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
                 if row is not None:
@@ -363,12 +396,12 @@ if run:
                     **Active Sequence**: {row.get('Active Sequence', 'N/A')}
                     """)
                     report.write(f"Hit #{i+1}\n")
-                    report.write(aln.format() + "\n")
+                    report.write(format_alignment(aln) + "\n")
                     report.write(f"Score: {score:.2f} | E-value: {e_val:.2e}\n")
                     report.write(f"Family: {row.get('Family', 'N/A')}\nOrganism: {row.get('OS', 'N/A')}\n\n")
            
             # Centered download button
-            col_dl1, col_dl2, col_dl3 = st.columns([1, 1, 1])
+            col_dl1, col_dl2, col_dl3 = st.columns([1.1, 1, 1])
             with col_dl2:
                 st.download_button(
                 label="Download BLAST Results",
