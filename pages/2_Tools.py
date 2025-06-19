@@ -376,7 +376,7 @@ if run:
             with col_dl2:
                 st.download_button(
                 label="Download BLAST Results",
-                report.getvalue(),
+                data=report.getvalue(),
                 file_name="cNPDB_BLAST_results.txt",
                 mime="text/plain"
             )
