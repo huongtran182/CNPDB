@@ -101,7 +101,7 @@ tools = [
     ("GRAVY",                 "Grand Average of Hydropathy indicates the overall hydrophobicity of a peptide; higher value = more hydrophobic."),
     ("Instability Index",     "Predicts whether a peptide is likely to be stable (< 40) or unstable (> 40) <i>in vitro</i>."),
     ("Isoelectric Point (pI)","The pH at which the peptide has no net electrical charge."),
-    ("Net Charge pH 7.0",     "The overall positive or negative charge the peptide carries at neutral pH."),
+    ("Net Charge (pH 7.0)",     "The overall positive or negative charge the peptide carries at neutral pH."),
     ("Aliphatic Index",       "Measures the volume of aliphatic side chains (A, V, I, L), which reflects thermal stability; higher value = more stable at higher temperatures."),
     ("Boman Index",           "Estimates a peptide's potential to bind to proteins; higher values suggest stronger or broader binding."),
     ("Peptide Sequence Alignment",    "Compares two peptide sequences to identify regions of similarity that may indicate functional, structural, or evolutionary relationships."),
