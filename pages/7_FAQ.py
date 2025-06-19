@@ -220,7 +220,7 @@ tool_faqs = [
         "num": "07",
         "question": "Which scoring matrix should I choose?",
         "answer": textwrap.dedent("""
-            It's based on how closely related your sequences are. Recommended either BLOSUM80 or PAM30 for neuropeptides.
+            It's based on how closely related your sequences are.
             1. BLOSUM80: Closely related peptide sequences
             2. BLOSUM62: General use (default in many bioinformatics tools)
             3. BLOSUM45: More distantly related sequences
