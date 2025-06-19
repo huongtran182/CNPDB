@@ -4,7 +4,7 @@ from Bio.SeqUtils.ProtParam import ProteinAnalysis
 import pandas as pd
 from Bio import pairwise2
 from io import StringIO
-from Bio.SubsMat import MatrixInfo as matlist
+from Bio.Align import substitution_matrices
 
 st.set_page_config(
     page_title="Tools",
@@ -295,15 +295,11 @@ df = load_db()
 # --- Settings ---
 st.sidebar.header("BLAST Settings")
 
-matrix_choice = st.sidebar.selectbox("Scoring Matrix", ["blosum80", "blosum62", "blosum45", "pam30", "pam70"])
-matrix_dict = {
-    "blosum80": matlist.blosum80,
-    "blosum62": matlist.blosum62,
-    "blosum45": matlist.blosum45,
-    "pam30": matlist.pam30,
-    "pam70": matlist.pam70,
-}
-scoring_matrix = matrix_dict[matrix_choice]
+matrix_choice = st.sidebar.selectbox("Scoring Matrix", ["BLOSUM80", "BLOSUM2", "BLOSUM45", "PAM30", "PAM70"])
+
+# Load and convert substitution matrix to pairwise2-compatible format
+mat = substitution_matrices.load(matrix_choice)
+scoring_matrix = { (a, b): mat[a][b] for a in mat.alphabet for b in mat.alphabet }
 
 word_size = st.sidebar.slider("Word Size (affects speed)", 1, 5, 3)
 e_value_thresh = st.sidebar.number_input("E-value threshold", value=10.0, step=0.1)
