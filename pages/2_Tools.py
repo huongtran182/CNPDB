@@ -326,7 +326,6 @@ with col2:
 
 # Run Alignment Button
 if run:
-run = st.button("Run BLAST")
     if not query_seq:
         st.error("Please input a valid sequence.")
     else:
