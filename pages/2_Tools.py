@@ -329,14 +329,13 @@ with col_param[5]:
     seg_filter = st.checkbox("SEG Filtering", value=True)
     comp_bias = st.checkbox("Compositional Biasness", value=True)
 
+top_n = st.selectbox("Number of Top Hits", [5, 10, 20], index=1)
+
 # Format alignment manually
 def format_alignment(aln):
     seqA, seqB = aln.seqA, aln.seqB
     midline = ''.join(['|' if a == b else ' ' for a, b in zip(seqA, seqB)])
     return f"{seqA}\n{midline}\n{seqB}"
-
-with col_opt[0]:
-        top_n = st.selectbox("Number of Top Hits", [5, 10, 20], index=1)
 
 col1, col2, col3 = st.columns([1.7, 1, 1])
 with col2:
