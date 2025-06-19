@@ -373,33 +373,33 @@ if run:
                 except Exception:
                     continue
 
-            results = sorted(results, key=lambda x: -x[0])[:top_n]
+        results = sorted(results, key=lambda x: -x[0])[:top_n]
 
-            if not results:
-                st.warning("No hits below the selected E-value threshold.")
-            else:
-                st.success(f"{len(results)} hit(s) found with E-value ≤ {e_value_thresh}")
+        if not results:
+            st.warning("No hits below the selected E-value threshold.")
+        else:
+            st.success(f"{len(results)} hit(s) found with E-value ≤ {e_value_thresh}")
 
-                report = StringIO()
-                report.write(f"Custom BLAST Report\nQuery: {query_seq}\nMatrix: {matrix_choice}\n")
-                report.write(f"Word Size: {word_size}\nSEG Filtering: {seg_filter}\nComposition-based stats: {comp_bias}\n")
-                report.write(f"Gap Open Penalty: {gap_open}\nGap Extend Penalty: {gap_extend}\n\n")
+            report = StringIO()
+            report.write(f"Custom BLAST Report\nQuery: {query_seq}\nMatrix: {matrix_choice}\n")
+            report.write(f"Word Size: {word_size}\nSEG Filtering: {seg_filter}\nComposition-based stats: {comp_bias}\n")
+            report.write(f"Gap Open Penalty: {gap_open}\nGap Extend Penalty: {gap_extend}\n\n")
 
-                col_dl1, col_dl2, col_dl3 = st.columns([1, 1, 1])
-                with col_dl2:
-                    st.download_button(
-                        label="Download BLAST Results",
-                        data=report.getvalue(),
-                        file_name="cNPDB_BLAST_results.txt",
-                        mime="text/plain"
-                    )
+            col_dl1, col_dl2, col_dl3 = st.columns([1, 1, 1])
+            with col_dl2:
+                st.download_button(
+                    label="Download BLAST Results",
+                    data=report.getvalue(),
+                    file_name="cNPDB_BLAST_results.txt",
+                    mime="text/plain"
+                )
 
                 for i, (score, e_val, db_seq, aln) in enumerate(results):
                     st.subheader(f"Hit #{i+1}")
                     identical = sum(a == b for a, b in zip(aln.seqA, aln.seqB))
-aln_length = len(aln.seqA)
-identity_pct = (identical / aln_length) * 100 if aln_length > 0 else 0
-st.text(f"Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}")
+                    aln_length = len(aln.seqA)
+                    identity_pct = (identical / aln_length) * 100 if aln_length > 0 else 0
+                    st.text(f"Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}")
                     st.code(format_alignment(aln) if aln else "No alignment.")
 
                     row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
@@ -413,9 +413,9 @@ st.text(f"Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1
                         report.write(f"Hit #{i+1}\n")
                         report.write(format_alignment(aln) + "\n")
                         report.write(f""'Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}""")
-                        report.write(f"""Family: {row.get('Family', 'N/A')}\nOrganism: {row.get('OS', 'N/A')}\n\n""")
+                        report.write(f"""Family: {row.get('Family', 'N/A')}\nOrganism: {row.get('OS', 'N/A')}\n\n""") 
 
-
+    
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
   <em>Last update: Jul 2025</em>
