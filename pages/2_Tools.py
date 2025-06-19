@@ -166,10 +166,10 @@ def clean_sequence(seq):
     return ''.join(clean_lines).upper()
 
 # User input sequence
-query_seq = st.text_area("Input your peptide sequence (FASTA or raw, only one at a time):", value="", height=68)
+query_seq = st.text_area("Enter your peptide sequence (Only one sequence at a time):", value="", height=68)
 
 # Option to align against another sequence or the database
-target_seq = st.text_area("Input second sequence for alignment (optional):", value="", height=68)
+target_seq = st.text_area("Enter second sequence for alignment (optional):", value="", height=68)
 
 query_seq = clean_sequence(query_seq)
 target_seq = clean_sequence(target_seq)
@@ -293,6 +293,17 @@ def load_db():
 
 df = load_db()
 
+# --- Input ---
+query_input = st.text_area("Enter your peptide sequence (Only one sequence at a time)"):", value="", height=68)
+
+def parse_sequence(text):
+    lines = text.strip().splitlines()
+    clean = [l.strip() for l in lines if not l.startswith(">")]
+    sequence = ''.join(clean).upper()
+    return sequence
+
+query_seq = parse_sequence(query_input)
+
 # --- Settings ---
 st.sidebar.header("BLAST Settings")
 
@@ -313,26 +324,19 @@ with col_param[2]:
 with col_param[3]:
     gap_extend = st.number_input("Gap Extend Penalty", value=0.5, step=0.1)
 with col_param[4]:
-    matrix_info = st.selectbox("Matrix", [{matrix_choice}])
+    matrix_info = st.selectbox("Matrix", {matrix_choice})
 with col_param[5]:
     seg_filter = st.checkbox("SEG Filtering", value=True)
     comp_bias = st.checkbox("Compositional Biasness", value=True)
-
-# --- Input ---
-query_input = st.text_area("Paste your peptide sequence (FASTA or raw)", height=100)
-
-def parse_sequence(text):
-    lines = text.strip().splitlines()
-    clean = [l.strip() for l in lines if not l.startswith(">")]
-    return ''.join(clean).upper()
-
-query_seq = parse_sequence(query_input)
 
 # Format alignment manually
 def format_alignment(aln):
     seqA, seqB = aln.seqA, aln.seqB
     midline = ''.join(['|' if a == b else ' ' for a, b in zip(seqA, seqB)])
     return f"{seqA}\n{midline}\n{seqB}"
+
+with col_opt[0]:
+        top_n = st.selectbox("Number of Top Hits", [5, 10, 20], index=1)
 
 col1, col2, col3 = st.columns([1.7, 1, 1])
 with col2:
@@ -343,80 +347,74 @@ if run:
     if not query_seq:
         st.error("Please input a valid sequence.")
     else:
+        if seg_filter:
+            query_seq = re.sub(r'[^A-Z]', '', query_seq)
+            query_seq = re.sub(r'(.)\1{3,}', '', query_seq)
+        
         results = []
-        for i, db_seq in enumerate(df["Sequence"]):
-            if seg_filter:
-                db_seq = re.sub(r'[^A-Z]', '', db_seq)
-                db_seq = re.sub(r'(.)\1{3,}', '', db_seq)
+            for i, db_seq in enumerate(df["Sequence"]):
+                if seg_filter:
+                    db_seq = re.sub(r'[^A-Z]', '', db_seq)
+                    db_seq = re.sub(r'(.)\1{3,}', '', db_seq)
 
-            if len(query_seq) < word_size or len(db_seq) < word_size:
-                continue  # Skip short sequences
+                if len(query_seq) < word_size or len(db_seq) < word_size:
+                    continue
 
-            try:
-                aln = pairwise2.align.localds(query_seq, db_seq, scoring_matrix, -gap_open, -gap_extend, one_alignment_only=True)
-                score = aln[0].score if aln else 0
+                try:
+                    aln = pairwise2.align.localds(query_seq, db_seq, scoring_matrix, -gap_open, -gap_extend, one_alignment_only=True)
+                    score = aln[0].score if aln else 0
+                    e_val = 1e-5 * (100 - score/len(query_seq)) * (i+1)
+                    if comp_bias:
+                        bias_penalty = abs(len(query_seq) - len(db_seq)) * 0.01
+                        e_val += bias_penalty
 
-                e_val = 1e-5 * (100 - score/len(query_seq)) * (i+1)
+                    if e_val <= e_value_thresh:
+                        results.append((score, e_val, db_seq, aln[0] if aln else None))
+                except Exception:
+                    continue
 
-                if comp_bias:
-                    bias_penalty = abs(len(query_seq) - len(db_seq)) * 0.01
-                    e_val += bias_penalty
+            results = sorted(results, key=lambda x: -x[0])[:top_n]
 
-                if e_val <= e_value_thresh:
-                    results.append((score, e_val, db_seq, aln[0] if aln else None))
-            except Exception:
-                continue
+            if not results:
+                st.warning("No hits below the selected E-value threshold.")
+            else:
+                st.success(f"{len(results)} hit(s) found with E-value ≤ {e_value_thresh}")
 
-        results = sorted(results, key=lambda x: -x[0])[:10]
+                report = StringIO()
+                report.write(f"Custom BLAST Report\nQuery: {query_seq}\nMatrix: {matrix_choice}\n")
+                report.write(f"Word Size: {word_size}\nSEG Filtering: {seg_filter}\nComposition-based stats: {comp_bias}\n")
+                report.write(f"Gap Open Penalty: {gap_open}\nGap Extend Penalty: {gap_extend}\n\n")
 
-        if not results:
-            st.warning("No hits below the selected E-value threshold.")
-        else:
-            st.success(f"{len(results)} hit(s) found with E-value ≤ {e_value_thresh}")
-            report = StringIO()
-            report.write(f"""Custom BLAST Report
-            Query: {query_seq}
-            Matrix: {matrix_choice}
-            """)
-            report.write(f"""Word Size: {word_size}
-            SEG Filtering: {seg_filter}
-            Composition-based stats: {comp_bias}
-            """)
-            report.write(f"""Gap Open Penalty: {gap_open}
-            Gap Extend Penalty: {gap_extend}
-            """)
+                col_dl1, col_dl2, col_dl3 = st.columns([1, 1, 1])
+                with col_dl2:
+                    st.download_button(
+                        label="Download BLAST Results",
+                        data=report.getvalue(),
+                        file_name="cNPDB_BLAST_results.txt",
+                        mime="text/plain"
+                    )
 
-            # Move download button to top before listing hits
-            col_dl1, col_dl2, col_dl3 = st.columns([1.3, 1, 1])
-            with col_dl2:
-                st.download_button(
-                    label="Download BLAST Results",
-                    data=report.getvalue(),
-                    file_name="cNPDB_BLAST_results.txt",
-                    mime="text/plain"
-                )
-            report = StringIO()
-            report.write(f"Custom BLAST Report\nQuery: {query_seq}\nMatrix: {matrix_choice}\n")
-            report.write(f"Word Size: {word_size}\nSEG Filtering: {seg_filter}\nComposition-based stats: {comp_bias}\n")
-            report.write(f"Gap Open Penalty: {gap_open}\nGap Extend Penalty: {gap_extend}\n\n")
+                for i, (score, e_val, db_seq, aln) in enumerate(results):
+                    st.subheader(f"Hit #{i+1}")
+                    identical = sum(a == b for a, b in zip(aln.seqA, aln.seqB))
+aln_length = len(aln.seqA)
+identity_pct = (identical / aln_length) * 100 if aln_length > 0 else 0
+st.text(f"Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}")
+                    st.code(format_alignment(aln) if aln else "No alignment.")
 
-            for i, (score, e_val, db_seq, aln) in enumerate(results):
-                st.subheader(f"\U0001F539 Hit #{i+1}")
-                st.text(f"Score: {score:.2f} | E-value: {e_val:.2e}")
-                st.code(format_alignment(aln) if aln else "No alignment.")
+                    row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
+                    if row is not None:
+                        st.markdown(f"""
+                        **Family**: {row.get('Family', 'N/A')}  
+                        **Organism**: {row.get('OS', 'N/A')}  
+                        **Tissue**: {row.get('Tissue', 'N/A')}  
+                        **Active Sequence**: {row.get('Active Sequence', 'N/A')}
+                        """)
+                        report.write(f"Hit #{i+1}\n")
+                        report.write(format_alignment(aln) + "\n")
+                        report.write(f""'Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}""")
+                        report.write(f"""Family: {row.get('Family', 'N/A')}\nOrganism: {row.get('OS', 'N/A')}\n\n""")
 
-                row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
-                if row is not None:
-                    st.markdown(f"""
-                    **Family**: {row.get('Family', 'N/A')}  
-                    **Organism**: {row.get('OS', 'N/A')}  
-                    **Tissue**: {row.get('Tissue', 'N/A')}  
-                    **Active Sequence**: {row.get('Active Sequence', 'N/A')}
-                    """)
-                    report.write(f"Hit #{i+1}\n")
-                    report.write(format_alignment(aln) + "\n")
-                    report.write(f"Score: {score:.2f} | E-value: {e_val:.2e}\n")
-                    report.write(f"Family: {row.get('Family', 'N/A')}\nOrganism: {row.get('OS', 'N/A')}\n\n")
 
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
