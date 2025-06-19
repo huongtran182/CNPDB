@@ -192,7 +192,7 @@ faqs = [
     },
     {
         "num": "02",
-        "question": What format of peptide sequence should I input if search by sequence?",
+        "question": "What format of peptide sequence should I input if search by sequence?",
         "answer": textwrap.dedent("""
             Please input plain amino acid sequence without any PTMs. For example, AGHFMRFamide should be input as AGHFMRF.
         """)
