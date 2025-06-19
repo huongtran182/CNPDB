@@ -307,13 +307,6 @@ query_seq = parse_sequence(query_input)
 # --- Settings ---
 st.sidebar.header("BLAST Settings")
 
-matrix_options = ["BLOSUM62", "BLOSUM80", "BLOSUM45", "PAM30", "PAM70"]
-matrix_choice = st.selectbox("Matrix", matrix_options)
-
-# Load and convert substitution matrix to pairwise2-compatible format
-mat = substitution_matrices.load(matrix_choice)
-scoring_matrix = { (a, b): mat[a][b] for a in mat.alphabet for b in mat.alphabet }
-
 st.markdown("### BLAST Settings")
 col_param = st.columns(5)
 with col_param[0]:
@@ -325,7 +318,8 @@ with col_param[2]:
 with col_param[3]:
     gap_extend = st.number_input("Gap Extend Penalty", value=0.5, step=0.1)
 with col_param[4]:
-    matrix_choice = st.selectbox("Matrix", matrix_options)
+    matrix_options = ["BLOSUM62", "BLOSUM80", "BLOSUM45", "PAM30", "PAM70"]
+    matrix_choice = st.selectbox("Matrix", matrix_options, key="matrix_select")
 
 col_opt = st.columns(3)
 with col_opt[0]:
@@ -333,7 +327,11 @@ with col_opt[0]:
 with col_opt[1]:
     seg_filter = st.checkbox("SEG Filtering", value=True)    
 with col_opt[2]:
-    comp_bias = st.checkbox("Composition-based Stats", value=True)   
+    comp_bias = st.checkbox("Composition-based Stats", value=True)
+
+# Load and convert substitution matrix to pairwise2-compatible format
+mat = substitution_matrices.load(matrix_choice)
+scoring_matrix = { (a, b): mat[a][b] for a in mat.alphabet for b in mat.alphabet }
 
 # Format alignment manually
 def format_alignment(aln):
