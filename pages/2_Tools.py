@@ -374,18 +374,17 @@ if run:
         else:
             st.success(f"{len(results)} hit(s) found with E-value ≤ {e_value_thresh}")
             report = StringIO()
-            report.write(f"Custom BLAST Report
-Query: {query_seq}
-Matrix: {matrix_choice}
-")
-            report.write(f"Word Size: {word_size}
-SEG Filtering: {seg_filter}
-Composition-based stats: {comp_bias}
-")
-            report.write(f"Gap Open Penalty: {gap_open}
-Gap Extend Penalty: {gap_extend}
-
-")
+            report.write(f"""Custom BLAST Report
+            Query: {query_seq}
+            Matrix: {matrix_choice}
+            """)
+            report.write(f"""Word Size: {word_size}
+            SEG Filtering: {seg_filter}
+            Composition-based stats: {comp_bias}
+            """)
+            report.write(f"""Gap Open Penalty: {gap_open}
+            Gap Extend Penalty: {gap_extend}
+            """)
 
             # Move download button to top before listing hits
             col_dl1, col_dl2, col_dl3 = st.columns([1.3, 1, 1])
