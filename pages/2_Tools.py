@@ -109,6 +109,15 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown("""
+<div style='font-size:15px; padding:5px 10px; background-color:#f8f9fa; border-left: 4px solid #6a51a3;'>
+<b>Peptide Alignment allows users to align two peptide sequences or align a query peptide against neuropeptide sequences in the cNPDB database.<br>
+Default settings are suitable for most neuropeptide alignments, but users can modify the alignment parameters for custom analysis.<br>
+For more guidance, please refer to the <i>Glossary</i> and <i>Tutorials</i> pages.
+</div>
+""", unsafe_allow_html=True)
+
+
 # Custom function to format alignment manually (without score)
 def custom_format_alignment(aln):
     seqA = aln.seqA
