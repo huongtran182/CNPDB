@@ -307,7 +307,8 @@ query_seq = parse_sequence(query_input)
 # --- Settings ---
 st.sidebar.header("BLAST Settings")
 
-matrix_choice = st.sidebar.selectbox("Scoring Matrix", ["BLOSUM80", "BLOSUM62", "BLOSUM45", "PAM30", "PAM70"])
+matrix_options = ["BLOSUM62", "BLOSUM80", "BLOSUM45", "PAM30", "PAM70"]
+matrix_choice = st.selectbox("Scoring Matrix", matrix_options)
 
 # Load and convert substitution matrix to pairwise2-compatible format
 mat = substitution_matrices.load(matrix_choice)
@@ -324,15 +325,15 @@ with col_param[2]:
 with col_param[3]:
     gap_extend = st.number_input("Gap Extend Penalty", value=0.5, step=0.1)
 with col_param[4]:
-    matrix_info = st.selectbox("Matrix", {matrix_choice})
+    matrix_info = st.selectbox("Matrix", {matrix_options})
 
 col_opt = st.columns(3)
 with col_opt[0]:
-        seg_filter = st.checkbox("SEG Filtering", value=True)
+    top_n = st.selectbox("Number of Top Hits", [5, 10, 20], index=1)   
 with col_opt[1]:
-        comp_bias = st.checkbox("Composition-based Stats", value=True)
+    seg_filter = st.checkbox("SEG Filtering", value=True)    
 with col_opt[2]:
-        top_n = st.selectbox("# of Top Hits", [5, 10, 20], index=1)      
+    comp_bias = st.checkbox("Composition-based Stats", value=True)   
 
 # Format alignment manually
 def format_alignment(aln):
@@ -340,7 +341,7 @@ def format_alignment(aln):
     midline = ''.join(['|' if a == b else ' ' for a, b in zip(seqA, seqB)])
     return f"{seqA}\n{midline}\n{seqB}"
 
-col1, col2, col3 = st.columns([1.7, 1, 1])
+col1, col2, col3 = st.columns([1.6, 1, 1])
 with col2:
     run = st.button("Run BLAST", type="primary")
 
@@ -383,11 +384,11 @@ if run:
             st.success(f"{len(results)} hit(s) found with E-value ≤ {e_value_thresh}")
 
             report = StringIO()
-            report.write(f"Custom BLAST Report\nQuery: {query_seq}\nMatrix: {matrix_choice}\n")
+            report.write(f"cNPDB BLAST Report\nQuery: {query_seq}\nMatrix: {matrix_choice}\n")
             report.write(f"Word Size: {word_size}\nSEG Filtering: {seg_filter}\nComposition-based stats: {comp_bias}\n")
             report.write(f"Gap Open Penalty: {gap_open}\nGap Extend Penalty: {gap_extend}\n\n")
 
-            col_dl1, col_dl2, col_dl3 = st.columns([1.3, 1, 1])
+            col_dl1, col_dl2, col_dl3 = st.columns([1.35, 1, 1])
             with col_dl2:
                 st.download_button(
                     label="Download BLAST Results",
