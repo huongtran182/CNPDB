@@ -319,7 +319,7 @@ with col_param[2]:
 with col_param[3]:
     gap_extend = st.number_input("Gap Extend Penalty", value=0.5, step=0.1)
 with col_param[4]:
-    word_size = st.slider("Word Size", 1, 3, 5)
+    word_size = st.slider("Word Size", 1, 5, 3)
 
 col_opt = st.columns(2)
 with col_opt[0]:
@@ -338,51 +338,87 @@ def format_alignment(aln):
     midline = ''.join(['|' if a == b else ' ' for a, b in zip(seqA, seqB)])
     return f"{seqA}\n{midline}\n{seqB}"
 
+# --- Generate report text ---
+def generate_blast_text(query_seq, e_value_thresh, matrix_choice, gap_open, gap_extend, word_size, results, df):
+    report = StringIO()
+    report.write("cNPDB BLAST Report\n")
+    report.write("="*40 + "\n")
+    report.write(f"Query Sequence:\n{query_seq}\n\n")
+    report.write("Settings:\n")
+    report.write(f"E-value Threshold: {e_value_thresh}\n")
+    report.write(f"Matrix: {matrix_choice}\n")
+    report.write(f"Gap Open Penalty: {gap_open}\n")
+    report.write(f"Gap Extend Penalty: {gap_extend}\n")
+    report.write(f"Word Size: {word_size}\n\n")
+
+    for i, (score, e_val, db_seq, aln) in enumerate(results):
+        report.write(f"Hit #{i+1} - Score: {score:.2f} | E-value: {e_val:.2e}\n")
+        if aln:
+            seqA, seqB = aln.seqA, aln.seqB
+            midline = ''.join(['|' if a == b else ' ' for a, b in zip(seqA, seqB)])
+            identity = sum(a == b for a, b in zip(seqA, seqB))
+            aln_len = len(seqA)
+            identity_pct = (identity / aln_len) * 100 if aln_len > 0 else 0
+            report.write(f"{seqA}\n{midline}\n{seqB}\n")
+            report.write(f"Identity: {identity_pct:.1f}% | Alignment Length: {aln_len}\n")
+        else:
+            report.write("No valid alignment available.\n")
+
+        row = df[df["Sequence"] == db_seq]
+        if not row.empty:
+            row = row.iloc[0]
+            report.write(f"Family: {row.get('Family', 'N/A')}\n")
+            report.write(f"Organism: {row.get('OS', 'N/A')}\n")
+            report.write(f"Tissue: {row.get('Tissue', 'N/A')}\n")
+            report.write(f"Active Sequence: {row.get('Active Sequence', 'N/A')}\n")
+        report.write("\n")
+
+    return report.getvalue()
+
 col1, col2, col3 = st.columns([1.6, 1, 1])
 with col2:
     run = st.button("Run BLAST", type="primary")
 
-# Run Alignment Button
+# Run BLAST
 if run:
-    if not query_seq:
-        st.error("Please input a valid sequence.")
-    else:
+    # Clean sequence if seg_filter
+        seq_for_search = query_seq
         if seg_filter:
-            query_seq = re.sub(r'[^A-Z]', '', query_seq)
-            query_seq = re.sub(r'(.)\1{3,}', '', query_seq)
-        
+            seq_for_search = re.sub(r'[^A-Z]', '', seq_for_search)
+            seq_for_search = re.sub(r'(.)\1{3,}', '', seq_for_search)
+
         results = []
         for i, db_seq in enumerate(df["Sequence"]):
-                if seg_filter:
-                    db_seq = re.sub(r'[^A-Z]', '', db_seq)
-                    db_seq = re.sub(r'(.)\1{3,}', '', db_seq)
+            db_seq_clean = db_seq
+            if seg_filter:
+                db_seq_clean = re.sub(r'[^A-Z]', '', db_seq_clean)
+                db_seq_clean = re.sub(r'(.)\1{3,}', '', db_seq_clean)
 
-                if len(query_seq) < word_size or len(db_seq) < word_size:
-                    continue
+            if len(seq_for_search) < word_size or len(db_seq_clean) < word_size:
+                continue
 
-                try:
-                    aln = pairwise2.align.localds(query_seq, db_seq, scoring_matrix, -gap_open, -gap_extend, one_alignment_only=True)
-                    score = aln[0].score if aln else 0
-                    e_val = 1e-5 * (100 - score/len(query_seq)) * (i+1)
-                    if comp_bias:
-                        bias_penalty = abs(len(query_seq) - len(db_seq)) * 0.01
-                        e_val += bias_penalty
+            try:
+                aln = pairwise2.align.localds(seq_for_search, db_seq_clean, scoring_matrix, -gap_open, -gap_extend, one_alignment_only=True)
+                score = aln[0].score if aln else 0
+                e_val = 1e-5 * (100 - score / len(seq_for_search)) * (i + 1)
+                if comp_bias:
+                    bias_penalty = abs(len(seq_for_search) - len(db_seq_clean)) * 0.01
+                    e_val += bias_penalty
 
-                    if e_val <= e_value_thresh:
-                        results.append((score, e_val, db_seq, aln[0] if aln else None))
-                except Exception:
-                    continue
+                if e_val <= e_value_thresh:
+                    results.append((score, e_val, db_seq, aln[0] if aln else None))
+            except Exception:
+                continue
 
         results = sorted(results, key=lambda x: -x[0])[:top_n]
 
         if not results:
-            st.warning("No hits below the selected E-value threshold.")
+            st.warning(f"No hits found with E-value ≤ {e_value_thresh}.")
         else:
             st.success(f"{len(results)} hit(s) found with E-value ≤ {e_value_thresh}")
 
-            blast_txt = generate_blast_text(
-                query_input, e_value_thresh, matrix_choice, gap_open, gap_extend, word_size, results, df
-            )
+            # Generate downloadable report text
+            blast_txt = generate_blast_text(query_seq, e_value_thresh, matrix_choice, gap_open, gap_extend, word_size, results, df)
 
             col_dl1, col_dl2, col_dl3 = st.columns([1.35, 1, 1])
             with col_dl2:
@@ -392,32 +428,30 @@ if run:
                     file_name="cNPDB_BLAST_results.txt",
                     mime="text/plain"
                 )
-            
-            report = StringIO()
-            report.write(f"cNPDB BLAST Report\nQuery: {query_seq}\nMatrix: {matrix_choice}\n")
-            report.write(f"Word Size: {word_size}\nSEG Filtering: {seg_filter}\nComposition-based stats: {comp_bias}\n")
-            report.write(f"Gap Open Penalty: {gap_open}\nGap Extend Penalty: {gap_extend}\n\n")
 
-            for i, (score, e_val, db_seq, aln) in enumerate(results):
+             # Show hits
+             for i, (score, e_val, db_seq, aln) in enumerate(results):
                 st.subheader(f"Hit #{i+1}")
-                identical = sum(a == b for a, b in zip(aln.seqA, aln.seqB))
-                aln_length = len(aln.seqA)
-                identity_pct = (identical / aln_length) * 100 if aln_length > 0 else 0
-                st.text(f"Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}")
-                st.code(format_alignment(aln) if aln else "No alignment.")
 
-                row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
-                if row is not None:
+                if aln:
+                    identical = sum(a == b for a, b in zip(aln.seqA, aln.seqB))
+                    aln_length = len(aln.seqA)
+                    identity_pct = (identical / aln_length) * 100 if aln_length > 0 else 0
+                    st.text(f"Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}")
+                    st.code(format_alignment(aln))
+                else:
+                    st.text(f"Score: {score:.2f} | E-value: {e_val:.2e}")
+                    st.warning("No alignment available")
+
+                row = df[df["Sequence"] == db_seq]
+                if not row.empty:
+                    row = row.iloc[0]
                     st.markdown(f"""
-                    **Family**: {row.get('Family', 'N/A')}  
-                    **Organism**: {row.get('OS', 'N/A')}  
-                    **Tissue**: {row.get('Tissue', 'N/A')}  
-                    **Active Sequence**: {row.get('Active Sequence', 'N/A')}
+                        **Family**: {row.get('Family', 'N/A')}  
+                        **Organism**: {row.get('OS', 'N/A')}  
+                        **Tissue**: {row.get('Tissue', 'N/A')}  
+                        **Active Sequence**: {row.get('Active Sequence', 'N/A')}
                     """)
-                    report.write(f"Hit #{i+1}\n")
-                    report.write(format_alignment(aln) + "\n")
-                    report.write(f"""Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}""")
-                    report.write(f"""Family: {row.get('Family', 'N/A')}\nOrganism: {row.get('OS', 'N/A')}\n\n""") 
 
     
 st.markdown("""
