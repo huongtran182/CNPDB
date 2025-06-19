@@ -287,6 +287,15 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown("""
+<div style='font-size:15px; padding:5px 10px; background-color:#f8f9fa; border-left: 4px solid #6a51a3;'>
+<b>BLAST Search allows users to compare their peptide sequence against the cNPDB database and identify similar neuropeptides.<br>
+Default parameters are optimized for typical neuropeptide BLAST searches, but users can customize settings to suit their needs.<br>
+See <i>Glossary</i> and <i>Tutorials</i> pages for more details.
+</div>
+""", unsafe_allow_html=True)
+
+
 @st.cache_data
 def load_db():
     return pd.read_excel("Assets/20250617_cNPDB.xlsx", sheet_name="Sheet 1")
