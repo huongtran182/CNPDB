@@ -314,7 +314,7 @@ mat = substitution_matrices.load(matrix_choice)
 scoring_matrix = { (a, b): mat[a][b] for a in mat.alphabet for b in mat.alphabet }
 
 st.markdown("### BLAST Settings")
-col_param = st.columns(6)
+col_param = st.columns(5)
 with col_param[0]:
     word_size = st.slider("Word Size", 1, 5, 3)
 with col_param[1]:
@@ -325,11 +325,14 @@ with col_param[3]:
     gap_extend = st.number_input("Gap Extend Penalty", value=0.5, step=0.1)
 with col_param[4]:
     matrix_info = st.selectbox("Matrix", {matrix_choice})
-with col_param[5]:
-    seg_filter = st.checkbox("SEG Filtering", value=True)
-    comp_bias = st.checkbox("Compositional Biasness", value=True)
 
-top_n = st.selectbox("Number of Top Hits", [5, 10, 20], index=1)
+col_opt = st.columns(3)
+    with col_opt[0]:
+        seg_filter = st.checkbox("SEG Filtering", value=True)
+    with col_opt[1]:
+        comp_bias = st.checkbox("Composition-based Stats", value=True)
+    with col_opt[2]:
+        top_n = st.selectbox("# of Top Hits", [5, 10, 20], index=1)
 
 # Format alignment manually
 def format_alignment(aln):
@@ -384,7 +387,7 @@ if run:
             report.write(f"Word Size: {word_size}\nSEG Filtering: {seg_filter}\nComposition-based stats: {comp_bias}\n")
             report.write(f"Gap Open Penalty: {gap_open}\nGap Extend Penalty: {gap_extend}\n\n")
 
-            col_dl1, col_dl2, col_dl3 = st.columns([1, 1, 1])
+            col_dl1, col_dl2, col_dl3 = st.columns([1.3, 1, 1])
             with col_dl2:
                 st.download_button(
                     label="Download BLAST Results",
@@ -393,26 +396,26 @@ if run:
                     mime="text/plain"
                 )
 
-                for i, (score, e_val, db_seq, aln) in enumerate(results):
-                    st.subheader(f"Hit #{i+1}")
-                    identical = sum(a == b for a, b in zip(aln.seqA, aln.seqB))
-                    aln_length = len(aln.seqA)
-                    identity_pct = (identical / aln_length) * 100 if aln_length > 0 else 0
-                    st.text(f"Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}")
-                    st.code(format_alignment(aln) if aln else "No alignment.")
+            for i, (score, e_val, db_seq, aln) in enumerate(results):
+                st.subheader(f"Hit #{i+1}")
+                identical = sum(a == b for a, b in zip(aln.seqA, aln.seqB))
+                aln_length = len(aln.seqA)
+                identity_pct = (identical / aln_length) * 100 if aln_length > 0 else 0
+                st.text(f"Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}")
+                st.code(format_alignment(aln) if aln else "No alignment.")
 
-                    row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
-                    if row is not None:
-                        st.markdown(f"""
-                        **Family**: {row.get('Family', 'N/A')}  
-                        **Organism**: {row.get('OS', 'N/A')}  
-                        **Tissue**: {row.get('Tissue', 'N/A')}  
-                        **Active Sequence**: {row.get('Active Sequence', 'N/A')}
-                        """)
-                        report.write(f"Hit #{i+1}\n")
-                        report.write(format_alignment(aln) + "\n")
-                        report.write(f"""Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}""")
-                        report.write(f"""Family: {row.get('Family', 'N/A')}\nOrganism: {row.get('OS', 'N/A')}\n\n""") 
+                row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
+                if row is not None:
+                    st.markdown(f"""
+                    **Family**: {row.get('Family', 'N/A')}  
+                    **Organism**: {row.get('OS', 'N/A')}  
+                    **Tissue**: {row.get('Tissue', 'N/A')}  
+                    **Active Sequence**: {row.get('Active Sequence', 'N/A')}
+                    """)
+                    report.write(f"Hit #{i+1}\n")
+                    report.write(format_alignment(aln) + "\n")
+                    report.write(f"""Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}""")
+                    report.write(f"""Family: {row.get('Family', 'N/A')}\nOrganism: {row.get('OS', 'N/A')}\n\n""") 
 
     
 st.markdown("""
