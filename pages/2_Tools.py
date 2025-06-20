@@ -203,7 +203,7 @@ for key, val in default_values.items():
 if st.button("Reset", key="reset_button"):
     for key, val in default_values.items():
         st.session_state[key] = val
-    st.experimental_rerun()
+    st.rerun()
 
 # Text areas (just use keys, no `value=`)
 query_seq = st.text_area("Enter first peptide sequence:", key="query_seq", height=68)
@@ -215,7 +215,7 @@ col_param = st.columns(5)
 with col_param[0]:
     alignment_type = st.selectbox("Type", ["global", "local"], index=0 if st.session_state.alignment_type == "global" else 1, key="alignment_type")
 with col_param[1]:
-    match_score  = st.number_input("Match", value=st.session_state.match_score, key="match_score")
+    match_score  = st.number_input("Match", key="match_score")
 with col_param[2]:
     mismatch_score = st.number_input("Mismatch", value=st.session_state.mismatch_score, key="mismatch_score")
 with col_param[3]:
