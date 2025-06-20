@@ -222,7 +222,7 @@ with col2:
 with col3:
     if st.button("Reset", type="primary"):
         for key, value in default_values.items():
-            st.session_state[key] = value
+            st.session_state[key] = val
         st.experimental_rerun()
 
 # Run Alignment Button
