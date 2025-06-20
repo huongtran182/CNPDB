@@ -561,7 +561,9 @@ if len(df_filtered) > 0:
             
 #5. Download or view results
 
-selected_rows = df_filtered.iloc[selected_indices] if selected_indices else pd.DataFrame()
+# Ensure selected_indices are within valid range
+valid_indices = [i for i in selected_indices if 0 <= i < len(df_filtered)]
+selected_rows = df_filtered.iloc[valid_indices] if valid_indices else pd.DataFrame()
 col1, col2, col3, col4 = st.columns([1, 1.1, 1, 1.2])
 
 # --- View Details Button ---
