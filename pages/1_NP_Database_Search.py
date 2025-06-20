@@ -573,57 +573,74 @@ with col1:
         if st.button("View Details", type="primary"):
             st.session_state.view_details = True
 
-# --- Download Search Results (Excel) ---
+# --- Trigger: Download Excel ---
 with col2:
-    if selected_rows.empty:
-        st.warning("⚠️ Please select at least one peptide to download Search Results.")
-    else:
+    if st.button("Download Search Results", type="primary"):
+        if selected_rows.empty:
+            st.warning("⚠️ Please select at least one peptide to download search results.")
+        else:
+            st.session_state.download_excel_ready = True
+
+# --- Trigger: Download FASTA ---
+with col3:
+    if st.button("Download FASTA File", type="primary"):
+        if selected_rows.empty:
+            st.warning("⚠️ Please select at least one peptide to download FASTA file.")
+        else:
+            st.session_state.download_fasta_ready = True
+
+# --- Trigger: Download ZIP ---
+with col4:
+    if st.button("Download 3D Structures + MSI", type="primary"):
+        if selected_rows.empty:
+            st.warning("⚠️ Please select at least one peptide to download 3D structure and MSI files.")
+        else:
+            st.session_state.download_zip_ready = True
+# --- Download Excel ---
+if st.session_state.download_excel_ready:
+    if not selected_rows.empty:
         excel_buf = io.BytesIO()
         with pd.ExcelWriter(excel_buf, engine="openpyxl") as writer:
             selected_rows.to_excel(writer, index=False, sheet_name="Selected")
         excel_buf.seek(0)
         st.download_button(
-            "Download Search Results",
+            "Click to Download Search Results",
             data=excel_buf,
             file_name="cNPDB_Search_Results.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            key="download_excel",
-            type="primary"
+            type="primary",
+            key="download_excel"
         )
 
-# --- Download FASTA File ---
-with col3:
-    if selected_rows.empty:
-        st.warning("⚠️ Please select at least one peptide to download FATSA file.")
-    else:
+# --- Download FASTA ---
+if st.session_state.download_fasta_ready:
+    if not selected_rows.empty:
         fasta_str = "\n".join(
             f">{row['ID']}\n{row['Sequence']}" for _, row in selected_rows.iterrows()
         )
         st.download_button(
-            "Download FASTA File",
+            "Click to Download FASTA File",
             data=fasta_str,
             file_name="cNPDB_Search_Result.fasta",
             mime="text/plain",
-            key="download_fasta",
-            type="primary"
+            type="primary",
+            key="download_fasta"
         )
 
-# --- Download ZIP (CIF + MSI) ---
-with col4:
-    if selected_rows.empty:
-        st.warning("⚠️ Please select at least one peptide to download 3D structures and MSI files.")
-    else:
+# --- Download ZIP ---
+if st.session_state.download_zip_ready:
+    if not selected_rows.empty:
         zip_buf = io.BytesIO()
         with zipfile.ZipFile(zip_buf, "w") as zipf:
             for _, row in selected_rows.iterrows():
                 cnp_id = row['cNPDB ID']
 
-                # Add CIF
+                # CIF path
                 cif_path = f"Assets/3D Structure/3D cNP{cnp_id}.cif"
                 if os.path.exists(cif_path):
                     zipf.write(cif_path, arcname=f"3D_Structures/{os.path.basename(cif_path)}")
 
-                # Add MSI
+                # MSI images
                 for tissue_col, asset_folder in [
                     ("MSI Tissue 1", "Assets/MSImaging"),
                     ("MSI Tissue 2", "Assets/MSImaging"),
@@ -636,12 +653,12 @@ with col4:
 
         zip_buf.seek(0)
         st.download_button(
-            "Download 3D Structures + MSI",
+            "Click to Download 3D Structures + MSI",
             data=zip_buf,
             file_name="cNDPD_3D_Structures_MSI.zip",
             mime="application/zip",
-            key="download_zip",
-            type="primary"
+            type="primary",
+            key="download_zip"
         )
         
 # --- View Details Section ---
