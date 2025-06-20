@@ -591,7 +591,7 @@ if selected_indices:
     with col2:
         filtered_df = df_filtered.loc[selected_indices]
         excel_buffer = io.BytesIO()
-        with pd.ExcelWriter(excel_buffer, engine="xlsxwriter") as writer:
+        with pd.ExcelWriter(excel_buffer, engine="openpyxl") as writer:
             filtered_df.to_excel(writer, index=False, sheet_name="Filtered Results")
         excel_buffer.seek(0)
 
