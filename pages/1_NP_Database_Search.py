@@ -656,7 +656,7 @@ if zip_clicked:
             data=cif_zip_buffer,
             file_name="cNDPD_3D_Structures_MSI.zip",
             mime="application/zip",
-            type="primary",Add commentMore actions
+            type="primary",
             key="download_zip"
         )
 
