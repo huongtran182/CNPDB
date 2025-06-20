@@ -202,8 +202,8 @@ for key, val in default_values.items():
 # Handle Reset button first — this must happen before widgets are created!
 col1, col2, col3 = st.columns([1.7, 1, 1])
 with col2:
-    reset = st.button("Reset", key="reset_button", type="primary"):
-if reset
+    reset = st.button("Reset", key="reset_button", type="primary")
+if reset:
     for key, val in default_values.items():
         st.session_state[key] = val
     st.rerun()
