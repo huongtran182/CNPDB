@@ -438,24 +438,25 @@ if ptm_selected:
     )]
     right_filters_active = True
 
+
 # Topic filter (multi-value)
 if topic_selected:
     df_filtered = df_filtered[df_filtered['Topic'].apply(
-        lambda x: any(p in re.split(r'[;,]', str(x)) for p in topic_selected)
+        lambda x: any(t in re.split(r'[;,]', str(x)) for t in topic_selected)
     )]
     right_filters_active = True
 
 # Instrument filter (multi-value)
 if instrument_selected:
     df_filtered = df_filtered[df_filtered['Instrument'].apply(
-        lambda x: any(p in re.split(r'[;,]', str(x)) for p in instrument_selected)
+        lambda x: any(i in re.split(r'[;,]', str(x)) for i in instrument_selected)
     )]
     right_filters_active = True
 
 # Technique filter (multi-value)
 if technique_selected:
     df_filtered = df_filtered[df_filtered['Technique'].apply(
-        lambda x: any(p in re.split(r'[;,]', str(x)) for p in technique_selected)
+        lambda x: any(t in re.split(r'[;,]', str(x)) for t in technique_selected)
     )]
     right_filters_active = True
 
