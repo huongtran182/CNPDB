@@ -201,6 +201,18 @@ def display_peptide_details(row: pd.Series):
         cif_file = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
         if os.path.exists(cif_file):
             show_structure(cif_file, width=350, height=250)
+            # Add download button right below 3D view
+            with open(cif_file, "rb") as f:
+                cif_bytes = f.read()
+    
+            st.download_button(
+                label="Download Peptide's 3D Structure",
+                data=cif_bytes,
+                file_name=f"3D_cNP{cNPDB_id}.cif",
+                mime="chemical/x-cif",
+                key=f"download_cif_{cNPDB_id}",
+                type="primary"
+            )
         else:
             st.write("No CIF found at", cif_file)
 
@@ -674,13 +686,6 @@ if zip_clicked:
             type="primary",
             key="download_zip"
         )
-
-
-# —— NOW at the top level, outside of any columns ——  
-if 'view_clicked' in locals() and view_clicked:
-    for idx in selected_indices:
-        display_peptide_details(df_filtered.loc[idx])
-        st.markdown("<hr style='border: 1px solid #6a51a3; margin: 40px 0;'>", unsafe_allow_html=True)
     
 # 5) Close container div
 st.markdown(
