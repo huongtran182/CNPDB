@@ -188,7 +188,7 @@ def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_sco
 # Load your peptide sequence database
 @st.cache_data
 def load_data():
-    return pd.read_excel("Assets/20250617_cNPDB.xlsx", sheet_name="Sheet 1")
+    return pd.read_csv("Assets/20250617_cNPDB.csv")
 
 df = load_data()
 
