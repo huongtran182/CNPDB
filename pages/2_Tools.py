@@ -195,7 +195,7 @@ default_values = {
 }
 for key, value in default_values.items():
     if key not in st.session_state:
-        st.session_state.setdefault(key, val)
+        st.session_state.setdefault(key, value)
 
 # User inputs
 query_seq = st.text_area("Enter first peptide sequence:", value=st.session_state.query_seq, height=68, key="query_seq")
@@ -222,7 +222,7 @@ with col2:
 with col3:
     if st.button("Reset", type="primary"):
         for key, value in default_values.items():
-            st.session_state[key] = val
+            st.session_state[key] = value
         st.experimental_rerun()
 
 # Run Alignment Button
