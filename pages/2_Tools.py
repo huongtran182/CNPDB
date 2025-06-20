@@ -200,7 +200,10 @@ for key, val in default_values.items():
         st.session_state[key] = val
 
 # Handle Reset button first — this must happen before widgets are created!
-if st.button("Reset", key="reset_button"):
+col1, col2, col3 = st.columns([1.7, 1, 1])
+with col2:
+    reset = st.button("Reset", key="reset_button", type="primary"):
+if reset
     for key, val in default_values.items():
         st.session_state[key] = val
     st.rerun()
@@ -217,14 +220,16 @@ with col_param[0]:
 with col_param[1]:
     match_score  = st.number_input("Match", key="match_score")
 with col_param[2]:
-    mismatch_score = st.number_input("Mismatch", value=st.session_state.mismatch_score, key="mismatch_score")
+    mismatch_score = st.number_input("Mismatch", key="mismatch_score")
 with col_param[3]:
-    gap_open = st.number_input("Gap Open", value=st.session_state.gap_open, key="gap_open")
+    gap_open = st.number_input("Gap Open", key="gap_open")
 with col_param[4]:
-    gap_extend = st.number_input("Gap Extend", value=st.session_state.gap_extend, key="gap_extend")
+    gap_extend = st.number_input("Gap Extend", key="gap_extend")
 
 # Run Alignment Button
-run_clicked = st.button("Run Alignment", type="primary", key="run_button")
+col1, col2, col3 = st.columns([1.6, 1, 1])
+with col2:
+    run_clicked = st.button("Run Alignment", type="primary", key="run_button")
 
 if run_clicked:
     cleaned_query = clean_sequence(st.session_state.query_seq)
@@ -270,9 +275,9 @@ if run_clicked:
                 col_dl1, col_dl2, col_dl3 = st.columns([1.3, 1, 1])
                 with col_dl2:
                     st.download_button(
-                        label="Download Alignment Results",
+                        label="Download Alignment Result",
                         data=alignment_txt,
-                        file_name="peptide_pairwise_alignment.txt",
+                        file_name="cNPDB_pairwise_alignment.txt",
                         mime="text/plain"
                     )
             else:
