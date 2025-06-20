@@ -359,9 +359,9 @@ with col_param[1]:
     matrix_options = ["BLOSUM62", "BLOSUM80", "BLOSUM45", "PAM30", "PAM70"]
     st.selectbox("Matrix", matrix_options, key="matrix_select")
 with col_param[2]:
-    gap_open = st.number_input("Gap Open", key="gap_open", step=0.5)
+    gap_open = st.number_input("Gap Open", key="gap_open_blast", step=0.5)
 with col_param[3]:
-    gap_extend = st.number_input("Gap Extend", key="gap_extend", step=0.1)
+    gap_extend = st.number_input("Gap Extend", key="gap_extend_blast", step=0.1)
 with col_param[4]:
     word_size = st.slider("Word Size", 2, 4, key="word_size")
 
