@@ -22,6 +22,22 @@ render_sidebar()
 st.markdown(
     """
     <style>
+      /* Prevent horizontal scroll */
+      body, .main, .block-container {
+        overflow-x: hidden !important;
+      }
+
+      /* Limit max width of the entire interface */
+      .main-search-container {
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+
+      /* Optional: keep long dropdowns and fields wrapping */
+      .stMultiSelect, .stTextInput, .stSlider {
+        max-width: 100%;
+        overflow-x: hidden;
+      }
       /* Make first column auto-size to its content */
       .peptide-details table {
         width: 100%;
@@ -249,7 +265,10 @@ st.markdown("""
    /* Custom columns layout: 20px gap between filter and main */
     .custom-col-container {
         display: flex;
+        flex-wrap: wrap;
         gap: 20px;
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
     /* Force equal height by filling both columns */
