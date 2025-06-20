@@ -308,7 +308,7 @@ def extract_unique_values(series):
     ))
 
 # Create two columns with a 20px gap using Streamlit's built-in layout
-col_filter, col_main = st.columns([1, 4], gap= "large")
+col_filter, col_main = st.columns([1, 4], gap= "medium")
 
 # Custom container with manual gap
 st.markdown('<div class="custom-col-container">', unsafe_allow_html=True)
