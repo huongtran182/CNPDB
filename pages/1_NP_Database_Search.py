@@ -597,62 +597,48 @@ if st.session_state.view_details:
 
 # Download Search Results (Excel)
 with col2:
-    if st.button("Download Search Results", type="primary", key="search_results_main_btn"):
+    if st.button("Download Search Results", type="primary"):
         if selected_rows.empty:
             st.warning("⚠️ Please select at least one peptide to download search results.")
-            st.session_state.excel_data = None
         else:
             excel_buf = io.BytesIO()
             with pd.ExcelWriter(excel_buf, engine="openpyxl") as writer:
                 selected_rows.to_excel(writer, index=False, sheet_name="Selected")
             excel_buf.seek(0)
-            st.session_state.excel_data = excel_buf.getvalue()
-            st.rerun() # Rerun to make the download button appear immediately
-
-    if st.session_state.get('excel_data') is not None:
-        st.download_button(
-            "Click to Download Excel", # Changed text to indicate the second click is for download
-            data=st.session_state.excel_data,
-            file_name="cNPDB_Search_Results.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            key="download_excel_actual",
-            type="secondary" # Make it secondary to distinguish from the trigger button
-        )
-        # Optional: Clear the data after download button is rendered to prevent it from showing on subsequent runs
-        # st.session_state.excel_data = None 
-
+            st.rerun()  # Needed to prevent button flickering
+            st.download_button(
+                "Download Search Results",
+                data=excel_buf,
+                file_name="cNPDB_Search_Results.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                key="download_excel_auto",
+                type="primary"
+            )
 
 # Download FASTA
 with col3:
-    if st.button("Download FASTA File", type="primary", key="fasta_main_btn"):
+    if st.button("Download FASTA File", type="primary"):
         if selected_rows.empty:
             st.warning("⚠️ Please select at least one peptide to download FASTA file.")
-            st.session_state.fasta_data = None
         else:
-            fasta_str = "\n".join(
+            fasta_content = "\n".join(
                 f">{row['ID']}\n{row['Sequence']}" for _, row in selected_rows.iterrows()
             )
-            st.session_state.fasta_data = fasta_str.encode('utf-8')
             st.rerun()
+            st.download_button(
+                "Download FASTA File",
+                data=fasta_content,
+                file_name="cNPDB_Search_Result.fasta",
+                mime="text/plain",
+                type="primary",
+                key="download_fasta_auto"
+            )
 
-    if st.session_state.get('fasta_data') is not None:
-        st.download_button(
-            "Click to Download FASTA",
-            data=st.session_state.fasta_data,
-            file_name="cNPDB_Search_Result.fasta",
-            mime="text/plain",
-            key="download_fasta_actual",
-            type="secondary"
-        )
-        # st.session_state.fasta_data = None
-
-
-# Download CIF + MSI ZIP
+# Download ZIP of CIFs + MSI
 with col4:
-    if st.button("Download 3D Structures + MSI", type="primary", key="zip_main_btn"):
+    if st.button("Download 3D Structures + MSI", type="primary"):
         if selected_rows.empty:
             st.warning("⚠️ Please select at least one peptide to download 3D structure and MSI files.")
-            st.session_state.zip_data = None
         else:
             zip_buf = io.BytesIO()
             with zipfile.ZipFile(zip_buf, "w") as zipf:
@@ -665,25 +651,26 @@ with col4:
                         zipf.write(cif_path, arcname=f"3D_Structures/{os.path.basename(cif_path)}")
 
                     # Add MSI
-                    for tissue_col in ["MSI Tissue 1", "MSI Tissue 2", "MSI Tissue 3"]:
+                    for tissue_col, asset_folder in [
+                        ("MSI Tissue 1", "Assets/MSImaging"),
+                        ("MSI Tissue 2", "Assets/MSImaging"),
+                        ("MSI Tissue 3", "Assets/MSImaging"),
+                    ]:
                         suffix = "" if tissue_col.endswith("1") else " " + tissue_col[-1]
-                        msi_path = f"Assets/MSImaging/MSI cNP{cnp_id}{suffix}.png"
+                        msi_path = f"{asset_folder}/MSI cNP{cnp_id}{suffix}.png"
                         if os.path.exists(msi_path):
                             zipf.write(msi_path, arcname=f"MSI_Images/{os.path.basename(msi_path)}")
-            zip_buf.seek(0)
-            st.session_state.zip_data = zip_buf.getvalue()
-            st.rerun()
 
-    if st.session_state.get('zip_data') is not None:
-        st.download_button(
-            "Click to Download ZIP",
-            data=st.session_state.zip_data,
-            file_name="cNDPD_3D_Structures_MSI.zip",
-            mime="application/zip",
-            key="download_zip_actual",
-            type="secondary"
-        )
-        # st.session_state.zip_data = None
+            zip_buf.seek(0)
+            st.rerun()
+            st.download_button(
+                "Download 3D Structures + MSI",
+                data=zip_buf,
+                file_name="cNDPD_3D_Structures_MSI.zip",
+                mime="application/zip",
+                type="primary",
+                key="download_zip_auto"
+            )
 
     
 # 5) Close container div
