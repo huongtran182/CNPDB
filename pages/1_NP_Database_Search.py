@@ -580,7 +580,7 @@ with col1:
             
 with col2:
     if selected_rows.empty:
-        st.button("Download Search Results", type="primary", disabled=True)
+        st.button("Download Search Results", type="primary")
         st.warning("⚠️ Please select at least one peptide to download search results.")
     else:
         excel_buf = io.BytesIO()
@@ -598,11 +598,11 @@ with col2:
         
 with col3:
     if selected_rows.empty:
-        st.button("Download FASTA File", type="primary", disabled=True)
+        st.button("Download FASTA File", type="primary")
         st.warning("⚠️ Please select at least one peptide to download FASTA file.")
     else:
         fasta_str = "\n".join(
-            f">{row['ID']}\n{row['Sequence']}" for _, row in selected_rows.iterrows()
+            f"{row['ID']}\n{row['Sequence']}" for _, row in selected_rows.iterrows()
         )
         st.download_button(
             "Download FASTA File",
@@ -615,7 +615,7 @@ with col3:
 
 with col4:
     if selected_rows.empty:
-        st.button("Download 3D Structures + MSI", type="primary", disabled=True)
+        st.button("Download 3D Structures + MSI", type="primary")
         st.warning("⚠️ Please select at least one peptide to download 3D structure and MSI files.")
     else:
         zip_buf = io.BytesIO()
