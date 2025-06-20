@@ -204,15 +204,17 @@ def display_peptide_details(row: pd.Series):
             # Add download button right below 3D view
             with open(cif_file, "rb") as f:
                 cif_bytes = f.read()
-    
-            st.download_button(
-                label="Download Peptide's 3D Structure",
-                data=cif_bytes,
-                file_name=f"3D_cNP{cNPDB_id}.cif",
-                mime="chemical/x-cif",
-                key=f"download_cif_{cNPDB_id}",
-                type="primary"
-            )
+
+            left_space, right_button = st.columns([1,4])
+            with right_button:
+                st.download_button(
+                    label="Download Peptide's 3D Structure",
+                    data=cif_bytes,
+                    file_name=f"3D_cNP{cNPDB_id}.cif",
+                    mime="chemical/x-cif",
+                    key=f"download_cif_{cNPDB_id}",
+                    type="primary"
+                )
         else:
             st.write("No CIF found at", cif_file)
 
@@ -589,13 +591,17 @@ if len(df_filtered) > 0:
 #5. Download or view results
 
 selected_rows = df_filtered.loc[selected_indices] if selected_indices else pd.DataFrame()
-col1, col2, col3, col4 = st.columns([1, 1.2, 1, 1])
+col1, col2, col3, col4 = st.columns([1, 1.1, 1, 1])
 
 # View Details
 with col1:
-    left_space, right_button = st.columns([1,3])
+    left_space, right_button = st.columns([1,4])
     with right_button:
-        view_clicked = st.button("View Details", type="primary")
+        if "view_details" not in st.session_state:
+            st.session_state.view_details = False
+        
+        if st.button("View Details", type="primary"):
+            st.session_state.view_details = True
 
 # Download Search Results (Excel)
 with col2:
@@ -610,7 +616,7 @@ with col4:
     zip_clicked = st.button("Download 3D Structures + MSI", type="primary")
 
 # View Details
-if view_clicked:
+if st.session_state.view_details:
     if selected_rows.empty:
         st.warning("⚠️ Please select at least one peptide to view details.")
     else:
