@@ -159,6 +159,12 @@ def custom_format_alignment(aln):
             midline += " "
 
     return f"{seqA}\n{midline}\n{seqB}"
+    
+def compute_percent_identity(aln):
+    matches = sum(1 for a, b in zip(aln.seqA, aln.seqB) if a == b)
+    length = len(aln.seqA)  # Includes gaps
+    percent_identity = (matches / length) * 100 if length > 0 else 0
+    return matches, length, percent_identity
 
 def generate_alignment_text(query_seq, target_seq, alignment_type, match_score, mismatch_score, gap_open, gap_extend, alignment):
     report = StringIO()
@@ -170,6 +176,9 @@ def generate_alignment_text(query_seq, target_seq, alignment_type, match_score, 
     report.write(f"Match Score: {match_score}, Mismatch Penalty: {mismatch_score}\n")
     report.write(f"Gap Open: {gap_open}, Gap Extend: {gap_extend}\n")
     report.write(f"\nAlignment Score: {alignment.score:.2f}\n\n")
+    report.write(f"Alignment Length: {length}\n")
+    report.write(f"Identical Matches: {matches}\n")
+    report.write(f"Percent Identity: {percent_identity:.2f}%\n\n")
     report.write(custom_format_alignment(alignment) + "\n")
     return report.getvalue()
 
@@ -208,11 +217,20 @@ if run_clicked:
             align_func = pairwise2.align.globalms if alignment_type == "global" else pairwise2.align.localms
             alignments = align_func(query_seq, target_seq, match_score, mismatch_score, gap_open, gap_extend)
             if alignments:
+                top_alignment = alignments[0]
+                matches, aln_length, percent_id = compute_percent_identity(top_alignment)
+                
                 st.success("Alignment result:")
+                st.markdown(f"""
+                **Alignment Score:** {top_alignment.score:.2f}
+                **Length:** {aln_length}  
+                **Identical Matches:** {matches}  
+                **Percent Identity:** {percent_id:.2f}%
+                """)
                 st.code(custom_format_alignment(alignments[0]))
 
                 alignment_txt = generate_alignment_text(
-                    query_seq, target_seq, alignment_type, match_score, mismatch_score, gap_open, gap_extend, alignments[0]
+                    query_seq, target_seq, alignment_type, match_score, mismatch_score, gap_open, gap_extend, top_alignment
                 )
 
                 col_dl1, col_dl2, col_dl3 = st.columns([1.3, 1, 1])
@@ -220,7 +238,7 @@ if run_clicked:
                     st.download_button(
                         label="Download Alignment Results",
                         data=alignment_txt,
-                        file_name="pairwise_alignment.txt",
+                        file_name="cNPDB_pairwise_alignment.txt",
                         mime="text/plain"
                     )
             else:
