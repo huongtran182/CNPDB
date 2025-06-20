@@ -589,11 +589,13 @@ if len(df_filtered) > 0:
 #5. Download or view results
 
 selected_rows = df_filtered.loc[selected_indices] if selected_indices else pd.DataFrame()
-col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
+col1, col2, col3, col4 = st.columns([1, 1.2, 1, 1])
 
 # View Details
 with col1:
-    view_clicked = st.button("View Details", type="primary")
+    left_space, right_button = st.columns([1,3])
+    with right_button:
+        view_clicked = st.button("View Details", type="primary")
 
 # Download Search Results (Excel)
 with col2:
