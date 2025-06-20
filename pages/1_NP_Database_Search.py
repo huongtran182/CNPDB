@@ -585,19 +585,19 @@ if st.session_state.view_details:
 
 # View Details
 with col1:
-    view_clicked = st.button("View Details", type="primary")
+    view_clicked = st.button("View Details", type="primary", key="view")
 
 # Download Search Results (Excel)
 with col2:
-    search_result_clicked = st.button("Download Search Results", type="primary")
+    search_result_clicked = st.button("Download Search Results", type="primary", key="search")
 
 # Download FASTA
 with col3:
-    fasta_clicked = st.button("Download FASTA File", type="primary")
+    fasta_clicked = st.button("Download FASTA File", type="primary", key="fasta")
 
 # Download CIF + MSI ZIP
 with col4:
-    zip_clicked = st.button("Download 3D Structures + MSI", type="primary")
+    zip_clicked = st.button("Download 3D Structures + MSI", type="primary", key="zip")
 
 # Download Excel
 if search_result_clicked:
