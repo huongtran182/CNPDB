@@ -304,6 +304,31 @@ BLAST Search allows users to compare their peptide sequence against the cNPDB da
 </div>
 """, unsafe_allow_html=True)
 
+# --- BLAST SESSION STATE DEFAULTS ---
+blast_defaults = {
+    "query_input": "",
+    "e_value_thresh": 10.0,
+    "matrix_select": "BLOSUM80",
+    "gap_open": -10.0,
+    "gap_extend": -0.5,
+    "word_size": 3,
+    "top_n": 10,
+    "seg_filter": True,
+    "comp_bias": True
+}
+
+for key, val in blast_defaults.items():
+    if key not in st.session_state:
+        st.session_state[key] = val
+
+# Handle Reset button first — this must happen before widgets are created!
+col1, col2, col3 = st.columns([1.8, 1, 1])
+with col2:
+    reset = st.button("Reset", key="reset_button", type="primary")
+if reset:
+    for key, val in default_values.items():
+        st.session_state[key] = val
+    st.rerun()
 
 @st.cache_data
 def load_db():
@@ -312,7 +337,8 @@ def load_db():
 df = load_db()
 
 # --- Input ---
-query_input = st.text_area("Enter your peptide sequence (Only one sequence at a time):", value="", height=69)
+query_input = st.text_area("Enter your peptide sequence (Only one sequence at a time):", 
+                           key="query_input", height=69)
 
 def parse_sequence(text):
     lines = text.strip().splitlines()
@@ -320,7 +346,7 @@ def parse_sequence(text):
     sequence = ''.join(clean).upper()
     return sequence
 
-query_seq = parse_sequence(query_input)
+query_seq = parse_sequence(st.session_state.query_input)
 
 # --- Settings ---
 st.sidebar.header("BLAST Settings")
@@ -328,26 +354,26 @@ st.sidebar.header("BLAST Settings")
 st.markdown("### BLAST Settings")
 col_param = st.columns(5)
 with col_param[0]:
-    e_value_thresh = st.number_input("E-value Threshold", value=10.0, step=0.1)
+    e_value_thresh = st.number_input("E-value Threshold", key="e_value_thresh" step=0.1)
 with col_param[1]:
     matrix_options = ["BLOSUM62", "BLOSUM80", "BLOSUM45", "PAM30", "PAM70"]
-    matrix_choice = st.selectbox("Matrix", matrix_options, index=matrix_options.index("BLOSUM80"), key="matrix_select")
+    st.selectbox("Matrix", matrix_options, key="matrix_select")
 with col_param[2]:
-    gap_open = st.number_input("Gap Open", value=-10.0, step=0.5)
+    gap_open = st.number_input("Gap Open", key="gap_open", step=0.5)
 with col_param[3]:
-    gap_extend = st.number_input("Gap Extend", value=-0.5, step=0.1)
+    gap_extend = st.number_input("Gap Extend", key="gap_extend", step=0.1)
 with col_param[4]:
-    word_size = st.slider("Word Size", 2, 4, 3)
+    word_size = st.slider("Word Size", 2, 4, key="word_size")
 
 col_opt = st.columns(2)
 with col_opt[0]:
-    top_n = st.selectbox("Number of Top Hits", [5, 10, 20], index=1)   
+    top_n = st.selectbox("Number of Top Hits", [5, 10, 20], key="top_n")   
 with col_opt[1]:
-    seg_filter = st.checkbox("SEG Filtering", value=True)
-    comp_bias = st.checkbox("Composition-based Stats", value=True)
+    seg_filter = st.checkbox("SEG Filtering", key="seg_filter")
+    comp_bias = st.checkbox("Composition-based Stats", key="comp_bias")
 
 # Load and convert substitution matrix to pairwise2-compatible format
-mat = substitution_matrices.load(matrix_choice)
+mat = substitution_matrices.load(st.session_state.matrix_select)
 scoring_matrix = { (a, b): mat[a][b] for a in mat.alphabet for b in mat.alphabet }
 
 # Format alignment manually
@@ -368,7 +394,7 @@ def generate_blast_text(query_seq, e_value_thresh, matrix_choice, gap_open, gap_
     report.write(f"Gap Open Penalty: {gap_open}\n")
     report.write(f"Gap Extend Penalty: {gap_extend}\n")
     report.write(f"Word Size: {word_size}\n\n")
-
+    
     for i, (score, e_val, db_seq, aln) in enumerate(results):
         report.write(f"Hit #{i+1} - Score: {score:.2f} | E-value: {e_val:.2e}\n")
         if aln:
@@ -399,77 +425,78 @@ with col2:
 
 # Run BLAST
 if run:
-    # Clean sequence if seg_filter
-        seq_for_search = query_seq
-        if seg_filter:
-            seq_for_search = re.sub(r'[^A-Z]', '', seq_for_search)
-            seq_for_search = re.sub(r'(.)\1{3,}', '', seq_for_search)
+    seq_for_search = query_seq
+    if st.session_state.seg_filter:
+        seq_for_search = re.sub(r'[^A-Z]', '', seq_for_search)
+        seq_for_search = re.sub(r'(.)\1{3,}', '', seq_for_search)
 
-        results = []
-        for i, db_seq in enumerate(df["Sequence"]):
-            db_seq_clean = db_seq
-            if seg_filter:
-                db_seq_clean = re.sub(r'[^A-Z]', '', db_seq_clean)
-                db_seq_clean = re.sub(r'(.)\1{3,}', '', db_seq_clean)
+    results = []
+    for i, db_seq in enumerate(df["Sequence"]):
+        db_seq_clean = db_seq
+        if st.session_state.seg_filter:
+            db_seq_clean = re.sub(r'[^A-Z]', '', db_seq_clean)
+            db_seq_clean = re.sub(r'(.)\1{3,}', '', db_seq_clean)
 
-            if len(seq_for_search) < word_size or len(db_seq_clean) < word_size:
-                continue
+        if len(seq_for_search) < st.session_state.word_size or len(db_seq_clean) < st.session_state.word_size:
+            continue
 
-            try:
-                aln = pairwise2.align.localds(seq_for_search, db_seq_clean, scoring_matrix, gap_open, gap_extend, one_alignment_only=True)
-                score = aln[0].score if aln else 0
-                e_val = 1e-5 * (100 - score / len(seq_for_search)) * (i + 1)
-                if comp_bias:
-                    bias_penalty = abs(len(seq_for_search) - len(db_seq_clean)) * 0.01
-                    e_val += bias_penalty
+        try:
+            aln = pairwise2.align.localds(seq_for_search, db_seq_clean, scoring_matrix,
+                                           st.session_state.gap_open, st.session_state.gap_extend,
+                                           one_alignment_only=True)
+            score = aln[0].score if aln else 0
+            e_val = 1e-5 * (100 - score / len(seq_for_search)) * (i + 1)
+            if st.session_state.comp_bias:
+                bias_penalty = abs(len(seq_for_search) - len(db_seq_clean)) * 0.01
+                e_val += bias_penalty
 
-                if e_val <= e_value_thresh:
-                    results.append((score, e_val, db_seq, aln[0] if aln else None))
-            except Exception:
-                continue
+            if e_val <= st.session_state.e_value_thresh:
+                results.append((score, e_val, db_seq, aln[0] if aln else None))
+        except Exception:
+            continue
 
-        results = sorted(results, key=lambda x: -x[0])[:top_n]
+    results = sorted(results, key=lambda x: -x[0])[:st.session_state.top_n]
 
-        if not results:
-            st.warning(f"No hits found with E-value ≤ {e_value_thresh}.")
-        else:
-            st.success(f"{len(results)} hit(s) found with E-value ≤ {e_value_thresh}")
+    if not results:
+        st.warning(f"No hits found with E-value ≤ {st.session_state.e_value_thresh}.")
+    else:
+        st.success(f"{len(results)} hit(s) found with E-value ≤ {st.session_state.e_value_thresh}")
 
-            # Generate downloadable report text
-            blast_txt = generate_blast_text(query_seq, e_value_thresh, matrix_choice, gap_open, gap_extend, word_size, results, df)
+        blast_txt = generate_blast_text(query_seq, st.session_state.e_value_thresh,
+                                        st.session_state.matrix_select, st.session_state.gap_open,
+                                        st.session_state.gap_extend, st.session_state.word_size,
+                                        results, df)
 
-            col_dl1, col_dl2, col_dl3 = st.columns([1.35, 1, 1])
-            with col_dl2:
-                st.download_button(
-                    label="Download BLAST Results",
-                    data=blast_txt,
-                    file_name="cNPDB_BLAST_results.txt",
-                    mime="text/plain"
-                )
+        col_dl1, col_dl2, col_dl3 = st.columns([1.35, 1, 1])
+        with col_dl2:
+            st.download_button(
+                label="Download BLAST Results",
+                data=blast_txt,
+                file_name="cNPDB_BLAST_results.txt",
+                mime="text/plain"
+            )
 
-            # Show hits
-            for i, (score, e_val, db_seq, aln) in enumerate(results):
-                st.subheader(f"Hit #{i+1}")
+        for i, (score, e_val, db_seq, aln) in enumerate(results):
+            st.subheader(f"Hit #{i+1}")
+            if aln:
+                identical = sum(a == b for a, b in zip(aln.seqA, aln.seqB))
+                aln_length = len(aln.seqA)
+                identity_pct = (identical / aln_length) * 100 if aln_length > 0 else 0
+                st.text(f"Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}")
+                st.code(format_alignment(aln))
+            else:
+                st.text(f"Score: {score:.2f} | E-value: {e_val:.2e}")
+                st.warning("No alignment available")
 
-                if aln:
-                    identical = sum(a == b for a, b in zip(aln.seqA, aln.seqB))
-                    aln_length = len(aln.seqA)
-                    identity_pct = (identical / aln_length) * 100 if aln_length > 0 else 0
-                    st.text(f"Score: {score:.2f} | E-value: {e_val:.2e} | Identity: {identity_pct:.1f}% | Length: {aln_length}")
-                    st.code(format_alignment(aln))
-                else:
-                    st.text(f"Score: {score:.2f} | E-value: {e_val:.2e}")
-                    st.warning("No alignment available")
-
-                row = df[df["Sequence"] == db_seq]
-                if not row.empty:
-                    row = row.iloc[0]
-                    st.markdown(f"""
-                        **Family**: {row.get('Family', 'N/A')}  
-                        **Organism**: {row.get('OS', 'N/A')}  
-                        **Tissue**: {row.get('Tissue', 'N/A')}  
-                        **Active Sequence**: {row.get('Active Sequence', 'N/A')}
-                    """)
+            row = df[df["Sequence"] == db_seq]
+            if not row.empty:
+                row = row.iloc[0]
+                st.markdown(f"""
+                    **Family**: {row.get('Family', 'N/A')}  
+                    **Organism**: {row.get('OS', 'N/A')}  
+                    **Tissue**: {row.get('Tissue', 'N/A')}  
+                    **Active Sequence**: {row.get('Active Sequence', 'N/A')}
+                """)
 
     
 st.markdown("""
