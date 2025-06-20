@@ -561,7 +561,7 @@ if len(df_filtered) > 0:
             
 #5. Download or view results
 
-selected_rows = df_filtered.loc[selected_indices] if selected_indices else pd.DataFrame()
+selected_rows = df_filtered.iloc[selected_indices] if selected_indices else pd.DataFrame()
 col1, col2, col3, col4 = st.columns([1, 1.1, 1, 1.2])
 
 for key in ['download_excel_ready', 'download_fasta_ready', 'download_zip_ready', 'view_details']:
@@ -579,8 +579,8 @@ with col1:
             st.session_state.view_details = True
             
 with col2:
+    st.button("Download Search Results", type="primary")
     if selected_rows.empty:
-        st.button("Download Search Results", type="primary")
         st.warning("⚠️ Please select at least one peptide to download search results.")
     else:
         excel_buf = io.BytesIO()
@@ -597,8 +597,8 @@ with col2:
         )
         
 with col3:
+    st.button("Download FASTA File", type="primary")
     if selected_rows.empty:
-        st.button("Download FASTA File", type="primary")
         st.warning("⚠️ Please select at least one peptide to download FASTA file.")
     else:
         fasta_str = "\n".join(
@@ -614,8 +614,8 @@ with col3:
         )
 
 with col4:
+    st.button("Download 3D Structures + MSI", type="primary")
     if selected_rows.empty:
-        st.button("Download 3D Structures + MSI", type="primary")
         st.warning("⚠️ Please select at least one peptide to download 3D structure and MSI files.")
     else:
         zip_buf = io.BytesIO()
