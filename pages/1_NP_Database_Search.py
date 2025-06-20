@@ -8,6 +8,8 @@ import re
 import numpy as np
 import py3Dmol
 import streamlit.components.v1 as components
+import io
+import zipfile
 
 def show_structure(cif_path, width=350, height=250):
     # load the CIF text
@@ -205,7 +207,9 @@ def display_peptide_details(row: pd.Series):
     with col_msi:
         for blk in msi_blocks:
             st.markdown(blk, unsafe_allow_html=True)
-    
+
+
+
 st.markdown("""
 <style>
 /* Centered title */
@@ -572,26 +576,62 @@ if len(df_filtered) > 0:
                 </div>
             """, unsafe_allow_html=True)
 
-# 5) Centered buttons row
-    b1, b2 = st.columns([1,1])
-    with b1:
-       left_space, right_button = st.columns([3,1])
-       with right_button:
-           view_clicked = st.button("View details", type="primary")
-    with b2:
-        fasta_str = ""
-        for idx in selected_indices:
-            r = df_filtered.loc[idx]
-            fasta_str += f">{r['ID']}\n{r['Sequence']}\n"
+#5. Download or view results
+if selected_indices:
+    col1, col2, col3, col4 = st.columns([2.3, 2.7, 2.4, 3])
+
+    # 1. View Details
+    with col1:
+        view_clicked = st.button("View Details", type="primary")
+
+    # 2. Download Search Results as Excel
+    with col2:
+        filtered_df = df_filtered.loc[selected_indices]
+        excel_buffer = io.BytesIO()
+        with pd.ExcelWriter(excel_buffer, engine="xlsxwriter") as writer:
+            filtered_df.to_excel(writer, index=False, sheet_name="Filtered Results")
+        excel_buffer.seek(0)
+
+        st.download_button(
+            "Download Search Results",
+            data=excel_buffer,
+            file_name="cNPDB_Search_Result.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        )
+
+    # 3. Download FASTA file
+    with col3:
+        fasta_content = ""
+        for _, row in filtered_df.iterrows():
+            fasta_content += f">{row['ID']}\n{row['Sequence']}\n"
+
         st.download_button(
             "Download FASTA File",
-            data=fasta_str,
-            file_name="cNPDB_SearchResult.fasta",
+            data=fasta_content,
+            file_name="cNPDB_Search_Result.fasta",
             mime="text/plain",
             type="primary"
         )
-else:
-    st.info("No peptides matched the search criteria.")
+
+    # 4. Download ZIP of all CIF files
+    with col4:
+        cif_zip_buffer = io.BytesIO()
+        with zipfile.ZipFile(cif_zip_buffer, "w") as zipf:
+            for _, row in filtered_df.iterrows():
+                cif_path = f"Assets/3D Structure/3D cNP{row['cNPDB ID']}.cif"
+                if os.path.exists(cif_path):
+                    zipf.write(cif_path, arcname=os.path.basename(cif_path))
+        cif_zip_buffer.seek(0)
+
+        if cif_zip_buffer.getbuffer().nbytes > 0:
+            st.download_button(
+                "Download 3D Structures",
+                data=cif_zip_buffer,
+                file_name="cNDPD_Search_3D_Structures.zip",
+                mime="application/zip"
+            )
+        else:
+            st.markdown("<span style='color:#999;'>No CIF files found</span>", unsafe_allow_html=True)
 
 # —— NOW at the top level, outside of any columns ——  
 if 'view_clicked' in locals() and view_clicked:
