@@ -369,9 +369,6 @@ with col_main:
     family_opts = sorted(df['Family'].dropna().unique())
     family_selected = st.multiselect(label=" ", options=family_opts, key="fam", label_visibility="collapsed")
 
-    # Add vertical space here
-    st.markdown("<br><br>", unsafe_allow_html=True)
-
     # Organisms
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Organisms</div>', unsafe_allow_html=True)
     org_opts = extract_unique_values(df['OS'])
