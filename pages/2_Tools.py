@@ -223,10 +223,10 @@ if run_clicked:
                 
                 st.success("Alignment result:")
                 st.markdown(f"""
-                **Alignment Score:** {top_alignment.score:.2f}
-                **Alignment Length:** {aln_length}  
-                **Identical Matches:** {matches}  
-                **Percent Identity:** {percent_id:.2f}%
+                - **Alignment Score:** {top_alignment.score:.2f}
+                - **Alignment Length:** {aln_length}  
+                - **Identical Matches:** {matches}  
+                - **Percent Identity:** {percent_id:.2f}%
                 """)
                 st.code(custom_format_alignment(alignments[0]))
 
