@@ -195,28 +195,25 @@ default_values = {
 }
 for key, value in default_values.items():
     if key not in st.session_state:
-        st.session_state[key] = value
+        st.session_state.setdefault(key, val)
 
 # User inputs
 query_seq = st.text_area("Enter first peptide sequence:", value=st.session_state.query_seq, height=68, key="query_seq")
 target_seq = st.text_area("Enter second sequence for alignment:", value=st.session_state.target_seq, height=68, key="target_seq")
 
-query_seq = clean_sequence(query_seq)
-target_seq = clean_sequence(target_seq)
-
 # Alignment parameters in compact column layout
 st.markdown("### Alignment Settings")
 col_param = st.columns(5)
 with col_param[0]:
-    st.session_state.alignment_type = st.selectbox("Type", ["global", "local"], index=0 if st.session_state.alignment_type == "global" else 1, key="alignment_type")
+    alignment_type = st.selectbox("Type", ["global", "local"], index=0 if st.session_state.alignment_type == "global" else 1, key="alignment_type")
 with col_param[1]:
-    st.session_state.match_score  = st.number_input("Match", value=st.session_state.match_score, key="match_score")
+    match_score  = st.number_input("Match", value=st.session_state.match_score, key="match_score")
 with col_param[2]:
-    st.session_state.mismatch_score = st.number_input("Mismatch", value=st.session_state.mismatch_score, key="mismatch_score")
+    mismatch_score = st.number_input("Mismatch", value=st.session_state.mismatch_score, key="mismatch_score")
 with col_param[3]:
-    st.session_state.gap_open = st.number_input("Gap Open", value=st.session_state.gap_open, key="gap_open")
+    gap_open = st.number_input("Gap Open", value=st.session_state.gap_open, key="gap_open")
 with col_param[4]:
-    st.session_state.gap_extend = st.number_input("Gap Extend", value=st.session_state.gap_extend, key="gap_extend")
+    gap_extend = st.number_input("Gap Extend", value=st.session_state.gap_extend, key="gap_extend")
 
 # --- Buttons: Run + Reset ---
 col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
@@ -230,14 +227,16 @@ with col3:
 
 # Run Alignment Button
 if run_clicked:
-    if not st.session_state.query_seq.strip() or not st.session_state.target_seq.strip():
+    cleaned_query = clean_sequence(st.session_state.query_seq)
+    cleaned_target = clean_sequence(st.session_state.target_seq)
+    if not cleaned_query or not cleaned_target:
         st.error("❌ Please input both peptide sequences.")
     else:
         try:
             align_func = pairwise2.align.globalms if st.session_state.alignment_type == "global" else pairwise2.align.localms
             alignments = align_func(
-                clean_sequence(st.session_state.query_seq),
-                clean_sequence(st.session_state.target_seq),
+                cleaned_query,
+                cleaned_target,
                 st.session_state.match_score,
                 st.session_state.mismatch_score,
                 st.session_state.gap_open,
@@ -254,11 +253,11 @@ if run_clicked:
                 - **Identical Matches:** {matches}  
                 - **Percent Identity:** {percent_id:.2f}%
                 """)
-                st.code(custom_format_alignment(alignments[0]))
+                st.code(custom_format_alignment(top_alignment))
 
                 alignment_txt = generate_alignment_text(
-                    st.session_state.query_seq,
-                    st.session_state.target_seq,
+                    cleaned_query,
+                    cleaned_target,
                     st.session_state.alignment_type,
                     st.session_state.match_score,
                     st.session_state.mismatch_score,
