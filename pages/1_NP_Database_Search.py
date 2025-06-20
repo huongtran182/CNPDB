@@ -14,7 +14,7 @@ import zipfile
 st.set_page_config(
     page_title="NP Database search",
     layout="wide",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="expanded"
 )
 
 render_sidebar()
