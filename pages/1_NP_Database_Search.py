@@ -205,7 +205,7 @@ def display_peptide_details(row: pd.Series):
             with open(cif_file, "rb") as f:
                 cif_bytes = f.read()
 
-            left_space, right_button = st.columns([1,6])
+            left_space, right_button = st.columns([1,8])
             with right_button:
                 st.download_button(
                     label="Download Peptide's 3D Structure",
@@ -577,13 +577,15 @@ if len(df_filtered) > 0:
             org_unique = "; ".join(sorted(set(org_list), key=org_list.index))
 
             st.markdown(f"""
-                <div style='border:1px solid #6A0DAD; padding:10px; margin:0px 10px 20px 0; border-radius:10px;'>
-                    <div style='font-weight:bold; background-color:#6a51a3; color:white; padding:10px;'>
-                        {row['Active Sequence']}
-                    </div>
-                    <div style='padding:5px;'>
-                        Family: {row['Family']}<br>
-                        Organism: {org_unique}
+                <div style='max-width:100%; overflow-x:auto;'>
+                    <div style='border:1px solid #6A0DAD; padding:10px; margin:0px 10px 20px 0; border-radius:10px;'>
+                        <div style='font-weight:bold; background-color:#6a51a3; color:white; padding:10px;'>
+                            {row['Active Sequence']}
+                        </div>
+                        <div style='padding:5px;'>
+                            Family: {row['Family']}<br>
+                            Organism: {org_unique}
+                        </div>
                     </div>
                 </div>
             """, unsafe_allow_html=True)
