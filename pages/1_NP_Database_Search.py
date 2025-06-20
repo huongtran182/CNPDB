@@ -294,7 +294,7 @@ def extract_unique_values(series):
     ))
 
 # Create two columns with a 20px gap using Streamlit's built-in layout
-col_filter, col_main, space = st.columns([1, 3, 0.1], gap= "large")
+col_filter, col_main = st.columns([1, 3], gap= "large")
 
 # Custom container with manual gap
 st.markdown('<div class="custom-col-container">', unsafe_allow_html=True)
@@ -390,10 +390,6 @@ with col_main:
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-with space:
-    st.markdown("""
-    """, unsafe_allow_html=True)
-
 # Close outer flex div
 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -478,7 +474,7 @@ default_ranges = {
     'Boman Index': (-0.45, 2.65),
 }
 
-# Only apply slider filters if they differ from defaults OR no right filters are active
+# Only apply left slider filters if they differ from defaults OR no right filters are active
 apply_slider_filters = (
     (mono_mass_range != default_ranges['Monoisotopic Mass']) or
     (length_range != default_ranges['Length']) or
@@ -662,7 +658,7 @@ if zip_clicked:
         zip_buf.seek(0)
         st.download_button(
             "Download 3D Structures + MSI",
-            data=cif_zip_buffer,
+            data=zip_buf,
             file_name="cNDPD_3D_Structures_MSI.zip",
             mime="application/zip",
             type="primary",
