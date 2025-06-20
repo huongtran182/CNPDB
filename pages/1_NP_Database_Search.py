@@ -368,6 +368,7 @@ with col_filter:
         
 # Main column (3/4 width)
 with col_main:
+    st.markdown("""
     <div class="fill-height" style="max-width: 100%; overflow-x: hidden;">
     """, unsafe_allow_html=True)
 
