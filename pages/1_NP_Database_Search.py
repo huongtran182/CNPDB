@@ -564,10 +564,6 @@ if len(df_filtered) > 0:
 selected_rows = df_filtered.iloc[selected_indices] if selected_indices else pd.DataFrame()
 col1, col2, col3, col4 = st.columns([1, 1.1, 1, 1.2])
 
-for key in ['download_excel_ready', 'download_fasta_ready', 'download_zip_ready', 'view_details']:
-    if key not in st.session_state:
-        st.session_state[key] = False
-
 # --- View Details Button ---
 with col1:
     left_space, right_button = st.columns([1, 4])
@@ -577,10 +573,22 @@ with col1:
         
         if st.button("View Details", type="primary"):
             st.session_state.view_details = True
-            
+    # --- View Details Section ---
+    if st.session_state.view_details:
+        if selected_rows.empty:
+            st.warning("⚠️ Please select at least one peptide to view details.")
+        else:
+            for _, row in selected_rows.iterrows():
+                # Replace with your actual display function
+                display_peptide_details(row)
+                
+                # Optional: separator
+                st.markdown("<hr style='border: 1px solid #6a51a3; margin: 40px 0;'>", unsafe_allow_html=True)
+
 with col2:
-    st.button("Download Search Results", type="primary")
+    
     if selected_rows.empty:
+        st.button("Download Search Results", type="primary", disabled=True)
         st.warning("⚠️ Please select at least one peptide to download search results.")
     else:
         excel_buf = io.BytesIO()
@@ -597,8 +605,8 @@ with col2:
         )
         
 with col3:
-    st.button("Download FASTA File", type="primary")
     if selected_rows.empty:
+        st.button("Download FASTA File", type="primary",  disabled=True)
         st.warning("⚠️ Please select at least one peptide to download FASTA file.")
     else:
         fasta_str = "\n".join(
@@ -614,8 +622,8 @@ with col3:
         )
 
 with col4:
-    st.button("Download 3D Structures + MSI", type="primary")
     if selected_rows.empty:
+        st.button("Download 3D Structures + MSI", type="primary", disabled=True)
         st.warning("⚠️ Please select at least one peptide to download 3D structure and MSI files.")
     else:
         zip_buf = io.BytesIO()
@@ -648,6 +656,8 @@ with col4:
             type="primary",
             key="download_zip"
         )
+
+
     
 # 5) Close container div
 st.markdown(
