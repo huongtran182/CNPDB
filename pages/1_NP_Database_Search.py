@@ -575,15 +575,15 @@ with col1:
 
 # Download Search Results (Excel)
 with col2:
-    search_result_clicked = st.button("Download Search Results", type="primary")
+    search_result_clicked = st.download_button("Download Search Results", type="primary")
 
 # Download FASTA
 with col3:
-    fasta_clicked = st.button("Download FASTA File", type="primary")
+    fasta_clicked = st.download_button("Download FASTA File", type="primary")
 
 # Download CIF + MSI ZIP
 with col4:
-    zip_clicked = st.button("Download 3D Structures + MSI", type="primary")
+    zip_clicked = st.download_button("Download 3D Structures + MSI", type="primary")
 
 # View Details
 if st.session_state.view_details:
