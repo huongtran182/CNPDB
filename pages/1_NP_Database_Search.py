@@ -32,12 +32,7 @@ st.markdown(
         max-width: 100vw;
         overflow-x: hidden;
       }
-
-      /* Optional: keep long dropdowns and fields wrapping */
-      .stMultiSelect, .stTextInput, .stSlider {
-        max-width: 100%;
-        overflow-x: hidden;
-      }
+      
       /* Make first column auto-size to its content */
       .peptide-details table {
         width: 100%;
