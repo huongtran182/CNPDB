@@ -574,6 +574,19 @@ with col1:
         if st.button("View Details", type="primary"):
             st.session_state.view_details = True
 
+# View Details
+if st.session_state.view_details:
+    if selected_rows.empty:
+        st.warning("⚠️ Please select at least one peptide to view details.")
+    else:
+        for _, row in selected_rows.iterrows():
+            display_peptide_details(row)
+            st.markdown("<hr style='border: 1px solid #6a51a3; margin: 40px 0;'>", unsafe_allow_html=True)
+
+# View Details
+with col1:
+    view_clicked = st.button("View Details", type="primary")
+
 # Download Search Results (Excel)
 with col2:
     search_result_clicked = st.button("Download Search Results", type="primary")
@@ -586,91 +599,83 @@ with col3:
 with col4:
     zip_clicked = st.button("Download 3D Structures + MSI", type="primary")
 
-# View Details
-if st.session_state.view_details:
+# Download Excel
+if search_result_clicked:
     if selected_rows.empty:
-        st.warning("⚠️ Please select at least one peptide to view details.")
+        st.warning("⚠️ Please select at least one peptide to download search results.")
     else:
-        for _, row in selected_rows.iterrows():
-            display_peptide_details(row)
-            st.markdown("<hr style='border: 1px solid #6a51a3; margin: 40px 0;'>", unsafe_allow_html=True)
-
-# Download Search Results (Excel)
-with col2:
-    if st.button("Download Search Results", type="primary", key="search_button"):
-        if selected_rows.empty:
-            st.warning("⚠️ Please select at least one peptide to download search results.")
-        else:
-            excel_buf = io.BytesIO()
-            with pd.ExcelWriter(excel_buf, engine="openpyxl") as writer:
-                selected_rows.to_excel(writer, index=False, sheet_name="Selected")
-            excel_buf.seek(0)
-            st.rerun()  # Needed to prevent button flickering
-            st.download_button(
-                "Download Search Results",
-                data=excel_buf,
-                file_name="cNPDB_Search_Results.xlsx",
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                key="download_excel_auto",
-                type="primary"
-            )
+        excel_buf = io.BytesIO()
+        with pd.ExcelWriter(excel_buf, engine="openpyxl") as writer:
+            selected_rows.to_excel(writer, index=False, sheet_name="Selected")
+        excel_buf.seek(0)
+        st.download_button(
+            "Download Search Results",
+            data=excel_buf,
+            file_name="cNPDB_Search_Results.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            key="download_excel",
+            type="primary"
+        )
 
 # Download FASTA
-with col3:
-    if st.button("Download FASTA File", type="primary", key="fasta_button"):
-        if selected_rows.empty:
-            st.warning("⚠️ Please select at least one peptide to download FASTA file.")
-        else:
-            fasta_content = "\n".join(
-                f">{row['ID']}\n{row['Sequence']}" for _, row in selected_rows.iterrows()
-            )
-            st.rerun()
-            st.download_button(
-                "Download FASTA File",
-                data=fasta_content,
-                file_name="cNPDB_Search_Result.fasta",
-                mime="text/plain",
-                type="primary",
-                key="download_fasta_auto"
-            )
+if fasta_clicked:
+    if selected_rows.empty:
+        st.warning("⚠️ Please select at least one peptide to download FASTA file.")
+    else:
+        fasta_str = "\n".join(
+            f">{row['ID']}\n{row['Sequence']}" for _, row in selected_rows.iterrows()
+        )
+        st.download_button(
+            "Download FASTA File",
+            data=fasta_content,
+            file_name="cNPDB_Search_Result.fasta",
+            mime="text/plain",
+            type="primary",
+            key="download_fasta"
+        )
 
 # Download ZIP of CIFs + MSI
-with col4:
-    if st.button("Download 3D Structures + MSI", type="primary", key="3D_MSI_button"):
-        if selected_rows.empty:
-            st.warning("⚠️ Please select at least one peptide to download 3D structure and MSI files.")
-        else:
-            zip_buf = io.BytesIO()
-            with zipfile.ZipFile(zip_buf, "w") as zipf:
-                for _, row in selected_rows.iterrows():
-                    cnp_id = row['cNPDB ID']
+if zip_clicked:
+    if selected_rows.empty:
+        st.warning("⚠️ Please select at least one peptide to download 3D structure and MSI files.")
+    else:
+        zip_buf = io.BytesIO()
+        with zipfile.ZipFile(zip_buf, "w") as zipf:
+            for _, row in selected_rows.iterrows():
+                cnp_id = row['cNPDB ID']
 
-                    # Add CIF
-                    cif_path = f"Assets/3D Structure/3D cNP{cnp_id}.cif"
-                    if os.path.exists(cif_path):
-                        zipf.write(cif_path, arcname=f"3D_Structures/{os.path.basename(cif_path)}")
+                # Add CIF
+                cif_path = f"Assets/3D Structure/3D cNP{cnp_id}.cif"
+                if os.path.exists(cif_path):
+                    zipf.write(cif_path, arcname=f"3D_Structures/{os.path.basename(cif_path)}")
 
-                    # Add MSI
-                    for tissue_col, asset_folder in [
-                        ("MSI Tissue 1", "Assets/MSImaging"),
-                        ("MSI Tissue 2", "Assets/MSImaging"),
-                        ("MSI Tissue 3", "Assets/MSImaging"),
-                    ]:
-                        suffix = "" if tissue_col.endswith("1") else " " + tissue_col[-1]
-                        msi_path = f"{asset_folder}/MSI cNP{cnp_id}{suffix}.png"
-                        if os.path.exists(msi_path):
-                            zipf.write(msi_path, arcname=f"MSI_Images/{os.path.basename(msi_path)}")
+                # Add MSI
+                for tissue_col, asset_folder in [
+                    ("MSI Tissue 1", "Assets/MSImaging"),
+                    ("MSI Tissue 2", "Assets/MSImaging"),
+                    ("MSI Tissue 3", "Assets/MSImaging"),
+                ]:
+                    suffix = "" if tissue_col.endswith("1") else " " + tissue_col[-1]
+                    msi_path = f"{asset_folder}/MSI cNP{cnp_id}{suffix}.png"
+                    if os.path.exists(msi_path):
+                        zipf.write(msi_path, arcname=f"MSI_Images/{os.path.basename(msi_path)}")
 
-            zip_buf.seek(0)
-            st.rerun()
-            st.download_button(
-                "Download 3D Structures + MSI",
-                data=zip_buf,
-                file_name="cNDPD_3D_Structures_MSI.zip",
-                mime="application/zip",
-                type="primary",
-                key="download_zip_auto"
-            )
+        zip_buf.seek(0)
+        st.download_button(
+            "Download 3D Structures + MSI",
+            data=cif_zip_buffer,
+            file_name="cNDPD_3D_Structures_MSI.zip",
+            mime="application/zip",
+            type="primary",
+            key="download_zip"
+        )
+
+
+# —— NOW at the top level, outside of any columns ——  
+if 'view_clicked' in locals() and view_clicked:
+    for idx in selected_indices:
+        display_peptide_details(df_filtered.loc[idx])
+        st.markdown("<hr style='border: 1px solid #6a51a3; margin: 40px 0;'>", unsafe_allow_html=True)
 
     
 # 5) Close container div
