@@ -277,7 +277,7 @@ st.markdown(
 st.markdown('<div class="main-search-container">', unsafe_allow_html=True)
 
 #--- Load Data ---
-df = pd.read_excel("Assets/20250617_cNPDB.xlsx", sheet_name='Sheet1')
+df = pd.read_csv("Assets/20250617_cNPDB.csv")
 
 # Ensure numeric columns are numeric
 numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue', 'Instability Index Value', 'Isoelectric Point (pI)', 'Net Charge (pH 7.0)', 'Aliphatic Index', 'Boman Index']
