@@ -183,9 +183,23 @@ def generate_alignment_text(query_seq, target_seq, alignment_type, match_score, 
     report.write(custom_format_alignment(alignment) + "\n")
     return report.getvalue()
 
+# --- SESSION STATE DEFAULTS ---
+default_values = {
+    "query_seq": "",
+    "target_seq": "",
+    "match_score": 2,
+    "mismatch_score": -1,
+    "gap_open": -0.5,
+    "gap_extend": -0.1,
+    "alignment_type": "global"
+}
+for key, value in default_values.items():
+    if key not in st.session_state:
+        st.session_state[key] = value
+
 # User inputs
-query_seq = st.text_area("Enter first peptide sequence:", value="", height=68)
-target_seq = st.text_area("Enter second sequence for alignment:", value="", height=68)
+query_seq = st.text_area("Enter first peptide sequence:", value=st.session_state.query_seq, height=68, key="query_seq")
+target_seq = st.text_area("Enter second sequence for alignment:", value=st.session_state.target_seq, height=68, key="target_seq")
 
 query_seq = clean_sequence(query_seq)
 target_seq = clean_sequence(target_seq)
@@ -194,29 +208,41 @@ target_seq = clean_sequence(target_seq)
 st.markdown("### Alignment Settings")
 col_param = st.columns(5)
 with col_param[0]:
-    alignment_type = st.selectbox("Type", ["global", "local"])
+    st.session_state.alignment_type = st.selectbox("Type", ["global", "local"], index=0 if st.session_state.alignment_type == "global" else 1, key="alignment_type")
 with col_param[1]:
-    match_score = st.number_input("Match", value=2)
+    st.session_state.match_score  = st.number_input("Match", value=st.session_state.match_score, key="match_score")
 with col_param[2]:
-    mismatch_score = st.number_input("Mismatch", value=-1)
+    st.session_state.mismatch_score = st.number_input("Mismatch", value=st.session_state.mismatch_score, key="mismatch_score")
 with col_param[3]:
-    gap_open = st.number_input("Gap Open", value=-0.5)
+    st.session_state.gap_open = st.number_input("Gap Open", value=st.session_state.gap_open, key="gap_open")
 with col_param[4]:
-    gap_extend = st.number_input("Gap Extend", value=-0.1)
+    st.session_state.gap_extend = st.number_input("Gap Extend", value=st.session_state.gap_extend, key="gap_extend")
 
-# Run Alignment Button
-col1, col2, col3 = st.columns([1.6, 1, 1])
+# --- Buttons: Run + Reset ---
+col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 with col2:
     run_clicked = st.button("Run Alignment", type="primary")
+with col3:
+    if st.button("Reset", type="primary"):
+        for key, value in default_values.items():
+            st.session_state[key] = value
+        st.experimental_rerun()
 
 # Run Alignment Button
 if run_clicked:
-    if not query_seq or not target_seq:
+    if not st.session_state.query_seq.strip() or not st.session_state.target_seq.strip():
         st.error("❌ Please input both peptide sequences.")
     else:
         try:
-            align_func = pairwise2.align.globalms if alignment_type == "global" else pairwise2.align.localms
-            alignments = align_func(query_seq, target_seq, match_score, mismatch_score, gap_open, gap_extend)
+            align_func = pairwise2.align.globalms if st.session_state.alignment_type == "global" else pairwise2.align.localms
+            alignments = align_func(
+                clean_sequence(st.session_state.query_seq),
+                clean_sequence(st.session_state.target_seq),
+                st.session_state.match_score,
+                st.session_state.mismatch_score,
+                st.session_state.gap_open,
+                st.session_state.gap_extend
+            )
             if alignments:
                 top_alignment = alignments[0]
                 matches, aln_length, percent_id = compute_percent_identity(top_alignment)
@@ -231,7 +257,14 @@ if run_clicked:
                 st.code(custom_format_alignment(alignments[0]))
 
                 alignment_txt = generate_alignment_text(
-                    query_seq, target_seq, alignment_type, match_score, mismatch_score, gap_open, gap_extend, top_alignment
+                    st.session_state.query_seq,
+                    st.session_state.target_seq,
+                    st.session_state.alignment_type,
+                    st.session_state.match_score,
+                    st.session_state.mismatch_score,
+                    st.session_state.gap_open,
+                    st.session_state.gap_extend,
+                    top_alignment
                 )
 
                 col_dl1, col_dl2, col_dl3 = st.columns([1.3, 1, 1])
