@@ -368,7 +368,7 @@ with col_filter:
         
 # Main column (3/4 width)
 with col_main:
-    st.markdown('<div class="fill-height">', unsafe_allow_html=True)
+    st.markdown('<div class="max-width: 100%; overflow-x: hidden; fill-height">', unsafe_allow_html=True)
 
     st.markdown("""
     <div style="margin-bottom: 0px;" class="section-title">Peptide Sequence</div>
