@@ -589,15 +589,15 @@ with col1:
 
 # Download Search Results (Excel)
 with col2:
-    search_result_clicked = st.button("Download Search Results", type="primary", key="search")
+    search_result_clicked = st.download_button("Download Search Results", type="primary", key="search")
 
 # Download FASTA
 with col3:
-    fasta_clicked = st.button("Download FASTA File", type="primary", key="fasta")
+    fasta_clicked = st.download_button("Download FASTA File", type="primary", key="fasta")
 
 # Download CIF + MSI ZIP
 with col4:
-    zip_clicked = st.button("Download 3D Structures + MSI", type="primary", key="zip")
+    zip_clicked = st.download_button("Download 3D Structures + MSI", type="primary", key="zip")
 
 # Download Excel
 if search_result_clicked:
@@ -627,7 +627,7 @@ if fasta_clicked:
         )
         st.download_button(
             "Download FASTA File",
-            data=fasta_content,
+            data=fasta_str,
             file_name="cNPDB_Search_Result.fasta",
             mime="text/plain",
             type="primary",
@@ -663,19 +663,12 @@ if zip_clicked:
         zip_buf.seek(0)
         st.download_button(
             "Download 3D Structures + MSI",
-            data=cif_zip_buffer,
+            data=zip_buf,
             file_name="cNDPD_3D_Structures_MSI.zip",
             mime="application/zip",
             type="primary",
             key="download_zip"
         )
-
-
-# —— NOW at the top level, outside of any columns ——  
-if 'view_clicked' in locals() and view_clicked:
-    for idx in selected_indices:
-        display_peptide_details(df_filtered.loc[idx])
-        st.markdown("<hr style='border: 1px solid #6a51a3; margin: 40px 0;'>", unsafe_allow_html=True)
 
     
 # 5) Close container div
