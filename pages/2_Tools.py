@@ -200,7 +200,7 @@ for key, val in default_values.items():
         st.session_state[key] = val
 
 # Handle Reset button first — this must happen before widgets are created!
-col1, col2, col3 = st.columns([1.7, 1, 1])
+col1, col2, col3 = st.columns([1.8, 1, 1])
 with col2:
     reset = st.button("Reset", key="reset_button", type="primary")
 if reset:
@@ -227,7 +227,7 @@ with col_param[4]:
     gap_extend = st.number_input("Gap Extend", key="gap_extend")
 
 # Run Alignment Button
-col1, col2, col3 = st.columns([1.6, 1, 1])
+col1, col2, col3 = st.columns([1.5, 1, 1])
 with col2:
     run_clicked = st.button("Run Alignment", type="primary", key="run_button")
 
