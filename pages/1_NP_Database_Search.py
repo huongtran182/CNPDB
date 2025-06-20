@@ -591,7 +591,7 @@ if len(df_filtered) > 0:
 #5. Download or view results
 
 selected_rows = df_filtered.loc[selected_indices] if selected_indices else pd.DataFrame()
-col1, col2, col3, col4 = st.columns([1, 1.1, 1, 1])
+col1, col2, col3, col4 = st.columns([1, 1.1, 1, 1.2])
 
 # View Details
 with col1:
