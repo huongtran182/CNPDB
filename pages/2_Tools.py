@@ -498,7 +498,189 @@ if run:
                     **Active Sequence**: {row.get('Active Sequence', 'N/A')}
                 """)
 
-    
+# --- Separator Line ---
+st.markdown("""
+<hr style='border: none; border-top: 3px solid #6a51a3;  margin-top: 10px; margin-bottom: 0px; margin-left: 30px; margin-right: 30px;'>
+""", unsafe_allow_html=True)
+
+# --- peptide allignment Search ---
+st.markdown(
+    '<h2 class="custom-title">'
+    'PEPTIDE ALIGNMENT 2'
+    '</h2>',
+    unsafe_allow_html=True
+)
+
+st.markdown("""
+<div style='font-size:15px; padding:10px 10px;'>
+Peptide Alignment allows users to align two peptide sequences of interest or against cNPDB. Default settings are suitable for most neuropeptide alignments, but users can modify the alignment parameters for custom analysis. For more guidance, please refer to the <i>Glossary</i> and <i>Tutorials</i> pages.
+</div>
+""", unsafe_allow_html=True)
+
+def custom_format_alignment(aln):
+    seqA = aln.seqA
+    seqB = aln.seqB
+    midline = ""
+
+    for a, b in zip(seqA, seqB):
+        if a == b:
+            midline += "|"
+        else:
+            midline += " "
+
+    return f"{seqA}\n{midline}\n{seqB}"
+
+
+# Function to generate downloadable text report
+def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_score, gap_open, gap_extend, top_hits, df):
+    report = StringIO()
+    report.write("Peptide Sequence Alignment Report\n")
+    report.write("="*40 + "\n")
+    report.write(f"Query Sequence: {query_seq}\n")
+    report.write(f"Alignment Type: {alignment_type}\n")
+    report.write(f"Match Score: {match_score}, Mismatch Penalty: {mismatch_score}\n")
+    report.write(f"Gap Open: {gap_open}, Gap Extend: {gap_extend}\n\n")
+
+    for i, (score, db_seq, aln) in enumerate(top_hits):
+        report.write(f"Hit #{i+1} - Score: {score:.2f}\n")
+        report.write("-"*30 + "\n")
+        if aln:
+            report.write(custom_format_alignment(aln) + "\n")
+        else:
+            report.write("⚠️ No valid alignment.\n")
+
+        match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
+        if match_row is not None:
+            report.write(f"Family: {match_row.get('Family', 'N/A')}\n")
+            report.write(f"Organism (OS): {match_row.get('OS', 'N/A')}\n")
+            report.write(f"Tissue: {match_row.get('Tissue', 'N/A')}\n")
+            report.write(f"Active Sequence: {match_row.get('Active Sequence', 'N/A')}\n")
+
+        report.write("\n")
+    return report.getvalue()
+
+# Load your peptide sequence database
+@st.cache_data
+def load_data():
+    return pd.read_excel("Assets/20250617_cNPDB.xlsx", sheet_name="Sheet 1")
+
+df = load_data()
+
+def clean_sequence(seq):
+    lines = seq.strip().splitlines()
+    # Remove any line that starts with '>'
+    clean_lines = [line.strip() for line in lines if not line.startswith(">")]
+    return ''.join(clean_lines).upper()
+
+# User input sequence
+query_seq = st.text_area("Enter your peptide sequence (Only one sequence at a time):", value="", height=68)
+
+# Option to align against another sequence or the database
+target_seq = st.text_area("Enter second sequence for alignment (optional):", value="", height=68)
+
+query_seq = clean_sequence(query_seq)
+target_seq = clean_sequence(target_seq)
+
+if not target_seq:
+    use_database = st.checkbox("Align against the cNPDB database", value=False)
+else:
+    use_database = None
+
+# Alignment parameters in compact column layout
+st.markdown("### Alignment Settings")
+col_param = st.columns(5)
+with col_param[0]:
+    alignment_type = st.selectbox("Type", ["global", "local"])
+with col_param[1]:
+    match_score = st.number_input("Match", value=2)
+with col_param[2]:
+    mismatch_score = st.number_input("Mismatch", value=-1)
+with col_param[3]:
+    gap_open = st.number_input("Gap Open", value=-0.5)
+with col_param[4]:
+    gap_extend = st.number_input("Gap Extend", value=-0.1)
+
+# Run Alignment Button
+button_disabled = not query_seq or (not use_database and not target_seq)
+
+col1, col2, col3 = st.columns([1.6, 1, 1])
+with col2:
+    run_clicked = st.button("Run Alignment", type="primary")
+
+# Run Alignment Button
+if run_clicked:
+    if not query_seq.strip():
+        st.error("❌ Please input your peptide sequence.")
+    elif not use_database and not target_seq.strip():
+        st.error("❌ Please input the second sequence or choose to align against the cNPDB database.")
+    else:
+        if not use_database:
+            try:
+                alignments = (
+                    pairwise2.align.globalms(query_seq, target_seq, match_score, mismatch_score, gap_open, gap_extend)
+                    if alignment_type == "global" else
+                    pairwise2.align.localms(query_seq, target_seq, match_score, mismatch_score, gap_open, gap_extend)
+                )
+                st.success("Top alignment result:")
+                st.code(custom_format_alignment(alignments[0]))
+            except Exception as e:
+                st.error(f"Alignment failed: {e}")
+        else:
+            results = []
+            for i, db_seq in enumerate(df["Sequence"]):
+                try:
+                    aln = (
+                        pairwise2.align.globalms(query_seq, db_seq, match_score, mismatch_score, gap_open, gap_extend, one_alignment_only=True)
+                        if alignment_type == "global" else
+                        pairwise2.align.localms(query_seq, db_seq, match_score, mismatch_score, gap_open, gap_extend, one_alignment_only=True)
+                    )
+                    score = aln[0].score if aln else 0
+                    results.append((score, db_seq, aln[0] if aln else None))
+                except Exception:
+                    continue
+
+            top_hits = sorted(results, key=lambda x: -x[0])[:10]
+            st.success("Top 10 alignment hits from cNPDB database:")
+
+            alignment_txt = generate_alignment_text(
+                query_seq, alignment_type, match_score, mismatch_score, gap_open, gap_extend, top_hits, df
+            )
+
+            # Centered download button
+            col_dl1, col_dl2, col_dl3 = st.columns([1.3, 1, 1])
+            with col_dl2:
+                st.download_button(
+                label="Download Alignment Results",
+                data=alignment_txt,
+                file_name="cNPDB_alignment_results.txt",
+                mime="text/plain"
+            )
+
+            for i, (score, db_seq, aln) in enumerate(top_hits):
+                match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
+
+                st.markdown(f"""
+                    <div style='padding:10px 0;'>
+                        <span style='font-size:16px; color:#54278f; font-weight:bold;'>Hit #{i+1}</span><br>
+                        <span style='font-size:16px;'>Score: <span style='color:#238b45; font-weight:bold;'>{score:.2f}</span></span>
+                    </div>
+                """, unsafe_allow_html=True)
+
+                if aln:
+                    st.code(custom_format_alignment(aln))
+
+                if match_row is not None:
+                    st.markdown(f"""
+                    <div style='font-size:15px; margin-bottom:20px;'>
+                        <strong>Family:</strong> {match_row.get("Family", "N/A")}<br>
+                        <strong>Organisms:</strong> {match_row.get("OS", "N/A")}<br>
+                        <strong>Tissue:</strong> {match_row.get("Tissue", "N/A")}<br>
+                        <strong>Active Sequence:</strong> {match_row.get("Active Sequence", "N/A")}
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.warning("No additional info found for this hit.")
+
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
   <em>Last update: Jul 2025</em>
