@@ -575,79 +575,106 @@ if len(df_filtered) > 0:
             """, unsafe_allow_html=True)
 
 #5. Download or view results
-if df_filtered.empty:
-    st.warning("No peptides found. Please refine your search criteria.")
-else:
-    selected_rows = df_filtered.loc[selected_indices] if selected_indices else pd.DataFrame()
-    col1, col2, col3, col4 = st.columns([2.3, 2.7, 2.4, 3])
 
-    # 1. View Details
-    with col1:
-        left_space, right_button = st.columns([1,3])
-        with right_button:
-           view_clicked = st.button("View details", type="primary")
+selected_rows = df_filtered.loc[selected_indices] if selected_indices else pd.DataFrame()
+col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
-    # 2. Download Search Results as Excel
-    with col2:
-        if selected_rows.empty:
-            st.button("Download Search Results", disabled=True)
-        else:
-            excel_buffer = io.BytesIO()
-            with pd.ExcelWriter(excel_buffer, engine="openpyxl") as writer:
-                filtered_df.to_excel(writer, index=False, sheet_name="Filtered Results")
-            excel_buffer.seek(0)
-    
-            st.download_button(
-                "Download Search Results",
-                data=excel_buffer,
-                file_name="cNPDB_Search_Result.xlsx",
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                type="primary"
-            )
+# View Details
+with col1:
+    view_clicked = st.button("View Details", type="primary")
 
-    # 3. Download FASTA file
-    with col3:
-        if selected_rows.empty:
-            st.button("Download FASTA File", disabled=True)
-        else:
-            fasta_content = ""
-            for _, row in filtered_df.iterrows():
-                fasta_content += f">{row['ID']}\n{row['Sequence']}\n"
-    
-            st.download_button(
-                "Download FASTA File",
-                data=fasta_content,
-                file_name="cNPDB_Search_Result.fasta",
-                mime="text/plain",
-                type="primary"
-            )
+# Download Search Results (Excel)
+with col2:
+    search_result_clicked = st.button("Download Search Results", type="primary")
 
-    # 4. Download ZIP of all CIF files
-    with col4:
-        if selected_rows.empty:
-            st.button("Download 3D Structures", disabled=True)
-        else:
-            cif_zip_buffer = io.BytesIO()
-            with zipfile.ZipFile(cif_zip_buffer, "w") as zipf:
-                for _, row in filtered_df.iterrows():
-                    cif_path = f"Assets/3D Structure/3D cNP{row['cNPDB ID']}.cif"
-                    if os.path.exists(cif_path):
-                        zipf.write(cif_path, arcname=os.path.basename(cif_path))
-            cif_zip_buffer.seek(0)
-    
-            if cif_zip_buffer.getbuffer().nbytes > 0:
-                st.download_button(
-                    "Download 3D Structures",
-                    data=cif_zip_buffer,
-                    file_name="cNDPD_Search_3D_Structures.zip",
-                    mime="application/zip",
-                    type="primary"
-                )
-            else:
-                st.markdown("<span style='color:#999;'>No CIF files found</span>", unsafe_allow_html=True)
-                
+# Download FASTA
+with col3:
+    fasta_clicked = st.button("Download FASTA File", type="primary")
+
+# Download CIF + MSI ZIP
+with col4:
+    zip_clicked = st.button("Download 3D Structures + MSI", type="primary")
+
+# View Details
+if view_clicked:
     if selected_rows.empty:
-        st.warning("⚠️ Please select at least one peptide to enable view/download options.")
+        st.warning("⚠️ Please select at least one peptide to view details.")
+    else:
+        for _, row in selected_rows.iterrows():
+            display_peptide_details(row)
+            st.markdown("<hr style='border: 1px solid #6a51a3; margin: 40px 0;'>", unsafe_allow_html=True)
+
+# Download Excel
+if search_result_clicked:
+    if selected_rows.empty:
+        st.warning("⚠️ Please select at least one peptide to download search results.")
+    else:
+        excel_buf = io.BytesIO()
+        with pd.ExcelWriter(excel_buf, engine="openpyxl") as writer:
+            selected_rows.to_excel(writer, index=False, sheet_name="Selected")
+        excel_buf.seek(0)
+        st.download_button(
+            "Download Search Results",
+            data=excel_buf,
+            file_name="cNPDB_Search_Results.xlsx",
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            key="download_excel",
+            type="primary"
+        )
+
+# Download FASTA
+if fasta_clicked:
+    if selected_rows.empty:
+        st.warning("⚠️ Please select at least one peptide to download FASTA file.")
+    else:
+        fasta_str = "\n".join(
+            f">{row['ID']}\n{row['Sequence']}" for _, row in selected_rows.iterrows()
+        )
+        st.download_button(
+            "Download FASTA File",
+            data=fasta_content,
+            file_name="cNPDB_Search_Result.fasta",
+            mime="text/plain",
+            type="primary",
+            key="download_fasta"
+        )
+
+# Download ZIP of CIFs + MSI
+if zip_clicked:
+    if selected_rows.empty:
+        st.warning("⚠️ Please select at least one peptide to download 3D structure and MSI files.")
+    else:
+        zip_buf = io.BytesIO()
+        with zipfile.ZipFile(zip_buf, "w") as zipf:
+            for _, row in selected_rows.iterrows():
+                cnp_id = row['cNPDB ID']
+
+                # Add CIF
+                cif_path = f"Assets/3D Structure/3D cNP{cnp_id}.cif"
+                if os.path.exists(cif_path):
+                    zipf.write(cif_path, arcname=f"3D_Structures/{os.path.basename(cif_path)}")
+
+                # Add MSI
+                for tissue_col, asset_folder in [
+                    ("MSI Tissue 1", "Assets/MSImaging"),
+                    ("MSI Tissue 2", "Assets/MSImaging"),
+                    ("MSI Tissue 3", "Assets/MSImaging"),
+                ]:
+                    suffix = "" if tissue_col.endswith("1") else " " + tissue_col[-1]
+                    msi_path = f"{asset_folder}/MSI cNP{cnp_id}{suffix}.png"
+                    if os.path.exists(msi_path):
+                        zipf.write(msi_path, arcname=f"MSI_Images/{os.path.basename(msi_path)}")
+
+        zip_buf.seek(0)
+        st.download_button(
+            "Download 3D Structures + MSI",
+            data=cif_zip_buffer,
+            file_name="cNDPD_3D_Structures_MSI.zip",
+            mime="application/zip",
+            type="primary",
+            key="download_zip"
+        )
+
 
 # —— NOW at the top level, outside of any columns ——  
 if 'view_clicked' in locals() and view_clicked:
