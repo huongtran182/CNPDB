@@ -223,7 +223,7 @@ if run_clicked:
                 st.success("Alignment result:")
                 st.markdown(f"""
                 **Alignment Score:** {top_alignment.score:.2f}
-                **Length:** {aln_length}  
+                **Alignment Length:** {aln_length}  
                 **Identical Matches:** {matches}  
                 **Percent Identity:** {percent_id:.2f}%
                 """)
