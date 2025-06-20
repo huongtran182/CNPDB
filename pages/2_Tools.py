@@ -167,6 +167,7 @@ def compute_percent_identity(aln):
     return matches, length, percent_identity
 
 def generate_alignment_text(query_seq, target_seq, alignment_type, match_score, mismatch_score, gap_open, gap_extend, alignment):
+    matches, length, percent_identity = compute_percent_identity(alignment)
     report = StringIO()
     report.write("Pairwise Peptide Alignment Report\n")
     report.write("="*40 + "\n")
