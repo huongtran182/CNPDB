@@ -208,11 +208,6 @@ def display_peptide_details(row: pd.Series):
         for blk in msi_blocks:
             st.markdown(blk, unsafe_allow_html=True)
 
-# --- Separator Line ---
-st.markdown("""
-<hr style='border: none; border-top: 2px solid #6a51a3; margin-top: 10px; margin-bottom: 0px; margin-left: 30px; margin-right: 30px;'>
-""", unsafe_allow_html=True)
-
 st.markdown("""
 <style>
 /* Centered title */
@@ -580,66 +575,85 @@ if len(df_filtered) > 0:
             """, unsafe_allow_html=True)
 
 #5. Download or view results
-if selected_indices:
+if df_filtered.empty:
+    st.warning("No peptides found. Please refine your search criteria.")
+else:
+    selected_rows = df_filtered.loc[selected_indices] if selected_indices else pd.DataFrame()
     col1, col2, col3, col4 = st.columns([2.3, 2.7, 2.4, 3])
 
     # 1. View Details
     with col1:
-        view_clicked = st.button("View Details", type="primary")
+        left_space, right_button = st.columns([1,3])
+       with right_button:
+           view_clicked = st.button("View details", type="primary")
 
     # 2. Download Search Results as Excel
     with col2:
-        filtered_df = df_filtered.loc[selected_indices]
-        excel_buffer = io.BytesIO()
-        with pd.ExcelWriter(excel_buffer, engine="openpyxl") as writer:
-            filtered_df.to_excel(writer, index=False, sheet_name="Filtered Results")
-        excel_buffer.seek(0)
-
-        st.download_button(
-            "Download Search Results",
-            data=excel_buffer,
-            file_name="cNPDB_Search_Result.xlsx",
-            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
+        if selected_rows.empty:
+            st.button("Download Search Results", disabled=True)
+        else:
+            excel_buffer = io.BytesIO()
+            with pd.ExcelWriter(excel_buffer, engine="openpyxl") as writer:
+                filtered_df.to_excel(writer, index=False, sheet_name="Filtered Results")
+            excel_buffer.seek(0)
+    
+            st.download_button(
+                "Download Search Results",
+                data=excel_buffer,
+                file_name="cNPDB_Search_Result.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                type="primary"
+            )
 
     # 3. Download FASTA file
     with col3:
-        fasta_content = ""
-        for _, row in filtered_df.iterrows():
-            fasta_content += f">{row['ID']}\n{row['Sequence']}\n"
-
-        st.download_button(
-            "Download FASTA File",
-            data=fasta_content,
-            file_name="cNPDB_Search_Result.fasta",
-            mime="text/plain",
-            type="primary"
-        )
+        if selected_rows.empty:
+            st.button("Download FASTA File", disabled=True)
+        else:
+            fasta_content = ""
+            for _, row in filtered_df.iterrows():
+                fasta_content += f">{row['ID']}\n{row['Sequence']}\n"
+    
+            st.download_button(
+                "Download FASTA File",
+                data=fasta_content,
+                file_name="cNPDB_Search_Result.fasta",
+                mime="text/plain",
+                type="primary"
+            )
 
     # 4. Download ZIP of all CIF files
     with col4:
-        cif_zip_buffer = io.BytesIO()
-        with zipfile.ZipFile(cif_zip_buffer, "w") as zipf:
-            for _, row in filtered_df.iterrows():
-                cif_path = f"Assets/3D Structure/3D cNP{row['cNPDB ID']}.cif"
-                if os.path.exists(cif_path):
-                    zipf.write(cif_path, arcname=os.path.basename(cif_path))
-        cif_zip_buffer.seek(0)
-
-        if cif_zip_buffer.getbuffer().nbytes > 0:
-            st.download_button(
-                "Download 3D Structures",
-                data=cif_zip_buffer,
-                file_name="cNDPD_Search_3D_Structures.zip",
-                mime="application/zip"
-            )
+        if selected_rows.empty:
+            st.button("Download 3D Structures", disabled=True)
         else:
-            st.markdown("<span style='color:#999;'>No CIF files found</span>", unsafe_allow_html=True)
+            cif_zip_buffer = io.BytesIO()
+            with zipfile.ZipFile(cif_zip_buffer, "w") as zipf:
+                for _, row in filtered_df.iterrows():
+                    cif_path = f"Assets/3D Structure/3D cNP{row['cNPDB ID']}.cif"
+                    if os.path.exists(cif_path):
+                        zipf.write(cif_path, arcname=os.path.basename(cif_path))
+            cif_zip_buffer.seek(0)
+    
+            if cif_zip_buffer.getbuffer().nbytes > 0:
+                st.download_button(
+                    "Download 3D Structures",
+                    data=cif_zip_buffer,
+                    file_name="cNDPD_Search_3D_Structures.zip",
+                    mime="application/zip",
+                    type="primary"
+                )
+            else:
+                st.markdown("<span style='color:#999;'>No CIF files found</span>", unsafe_allow_html=True)
+                
+    if selected_rows.empty:
+        st.warning("⚠️ Please select at least one peptide to enable view/download options.")
 
 # —— NOW at the top level, outside of any columns ——  
 if 'view_clicked' in locals() and view_clicked:
     for idx in selected_indices:
         display_peptide_details(df_filtered.loc[idx])
+        st.markdown("<hr style='border: 1px solid #6a51a3; margin: 40px 0;'>", unsafe_allow_html=True)
     
 # 5) Close container div
 st.markdown(
