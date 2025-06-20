@@ -110,18 +110,18 @@ tools = [
     ("Mismatch",              "The penalty applied when two aligned amino acids are different."),
     ("Gap Open",              "The penalty for introducing a new gap (insertion/deletion) in the alignment."),
     ("Gap Extend",            "The penalty for extending an existing gap by one more position."),
-    ("BLAST",                 "Basic Local Alignment Search Tool for sequence similarity searches."),
-    ("Compositional Bias",    "Adjusts scoring based on amino acid composition. Useful for short peptides."),
-    ("E-value Threshold",     "Max acceptable probability that a hit is random. Lower = more stringent."),
-    ("Gap Open",              "Cost for starting a gap. Higher = fewer gaps."),
-    ("Gap Extend",            "Cost for extending a gap."),
-    ("Matrix Choice",         "Substitution scoring (how similar two amino acids are)."),
-    ("BLOSUM",                "(BLOcks SUbstitution Matrix) is a substitution matrix based on observed amino acid substitutions in conserved regions of protein families."),
-    ("PAM",                   "(Point Accepted Mutation) is a matrix that estimates the likelihood of one amino acid mutating into another over evolutionary time."),
-    ("SEG Filtering",         "Masks low-complexity regions (repeats). Useful to reduce false positives."),
-    ("Score",                 "Overall alignment score based on your scoring matrix."),
-    ("E-value",               "Lower values mean more significant hits; indicates the chance of a random match."),
-    ("Percent Identity",      "Proportion of exact matches between your sequence and the hit.")
+    #("BLAST",                 "Basic Local Alignment Search Tool for sequence similarity searches."),
+    #("Compositional Bias",    "Adjusts scoring based on amino acid composition. Useful for short peptides."),
+    #("E-value Threshold",     "Max acceptable probability that a hit is random. Lower = more stringent."),
+    #("Gap Open",              "Cost for starting a gap. Higher = fewer gaps."),
+    #("Gap Extend",            "Cost for extending a gap."),
+    #("Matrix Choice",         "Substitution scoring (how similar two amino acids are)."),
+    #("BLOSUM",                "(BLOcks SUbstitution Matrix) is a substitution matrix based on observed amino acid substitutions in conserved regions of protein families."),
+    #("PAM",                   "(Point Accepted Mutation) is a matrix that estimates the likelihood of one amino acid mutating into another over evolutionary time."),
+    #("SEG Filtering",         "Masks low-complexity regions (repeats). Useful to reduce false positives."),
+    #("Score",                 "Overall alignment score based on your scoring matrix."),
+    #("E-value",               "Lower values mean more significant hits; indicates the chance of a random match."),
+    #("Percent Identity",      "Proportion of exact matches between your sequence and the hit.")
 ]
 
 species = [
