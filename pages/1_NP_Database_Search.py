@@ -38,33 +38,6 @@ st.markdown(
       .peptide-details td:last-child {
         background-color: white;
       }
-
-      /* Streamlit's main content area */
-      .stApp {
-        padding: 0 !important; /* Remove default padding to let our custom layout handle it */
-      }
-
-      /* Custom columns layout: 20px gap between filter and main */
-      .custom-col-container {
-          display: flex;
-          gap: 20px;
-          padding: 0 1rem; /* Add some overall padding to the container */
-      }
-        
-      /* Force equal height by filling both columns */
-      .fill-height {
-          flex: 1;
-          min-width: 0; /* Allow the flex item to shrink below its content size */
-      }
-
-      /* Specific adjustments for multiselect to prevent overflow */
-      .stMultiSelect {
-          width: 100%; /* Ensure multiselect takes full width of its parent */
-      }
-      /* Further, target the internal components if needed, though 100% width should usually suffice */
-      .stMultiSelect > div[data-baseweb="select"] {
-          width: 100% !important;
-      }
     </style>
     """,
     unsafe_allow_html=True,
@@ -84,13 +57,13 @@ def show_structure(cif_path, width=350, height=250):
     components.html(html, height=height)
 
 def img_html(path):
-    """Return a base64 <img> tag filling 100% width of its container."""     
+    """Return a base64 <img> tag filling 100% width of its container."""   
     if not os.path.exists(path):
         return "<div style='color:#999; padding:20px;'>No image found</div>"
     ext = os.path.splitext(path)[1].lower().replace(".", "")
     mime = f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}"
     data = base64.b64encode(open(path, "rb").read()).decode()
-    return f"<img src='data:{mime};base64:{data}' style='width:100%; height:auto;'/>"
+    return f"<img src='data:{mime};base64,{data}' style='width:100%; height:auto;'/>"
 
 # Helper to blank out NaNs if there is no value in the cell of the column of excel file
 def disp(val):
@@ -101,7 +74,7 @@ def disp(val):
 
 def display_peptide_details(row: pd.Series):
     active_seq = row["Active Sequence"]
-    cNPDB_id     = row["cNPDB ID"]
+    cNPDB_id    = row["cNPDB ID"]
 
 # Prepare all content as HTML strings first
     # 1) Metadata table
@@ -180,7 +153,7 @@ def display_peptide_details(row: pd.Series):
             <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Instrument'])}</td>
             </tr>
             <tr>
-            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">Technique</td>
+            <td style="background-color:#6a51a3; color:white; padding:4px 8px; line-height:1.2; border-radius: 10px 0 0 10px; ">Technique</td>
             <td style="background-color:white; border:1px solid #6A0DAD; padding:4px 8px; line-height:1.2; border-radius: 0 10px 10px 0; ">{disp(row['Technique'])}</td>
             </tr>
             <tr>
@@ -271,8 +244,19 @@ st.markdown("""
   .stSlider { 
       margin-top: 5px;
       margin-bottom: 12px;
+   }
+   
+   /* Custom columns layout: 20px gap between filter and main */
+    .custom-col-container {
+        display: flex;
+        gap: 20px;
     }
     
+    /* Force equal height by filling both columns */
+    .fill-height {
+        flex: 1;
+    }
+
     /* Reduce space between checkboxes */
 div.stCheckbox {
     margin-top: -5px;  /* adjust to your preference */
@@ -344,11 +328,9 @@ def extract_unique_values(series):
     ))
 
 # Create two columns with a 20px gap using Streamlit's built-in layout
-# Removed gap from st.columns and moved to CSS for more control.
-col_filter, col_main = st.columns([1, 3])
+col_filter, col_main, space = st.columns([1, 3, 0.1], gap= "large")
 
 # Custom container with manual gap
-# This container now wraps the st.columns content
 st.markdown('<div class="custom-col-container">', unsafe_allow_html=True)
 
 # Filter column (1/4 width)
@@ -424,10 +406,10 @@ with col_main:
 
     # Existence
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Existence</div>', unsafe_allow_html=True)
-    exist_opts       = extract_unique_values(df['Existence'])
+    exist_opts      = extract_unique_values(df['Existence'])
     existence_selected = st.multiselect(label=" ", options=exist_opts, key="exist", label_visibility="collapsed")
 
-      # --- NEW: Filters for Sheet 2 data ---
+     # --- NEW: Filters for Sheet 2 data ---
     st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 8px">Physiological Studies or Applications</div>', unsafe_allow_html=True)
     topic_opts = extract_unique_values(df['Topic'])
     topic_selected = st.multiselect(label=" ", options=topic_opts, key="topic", label_visibility="collapsed")
@@ -441,6 +423,10 @@ with col_main:
     technique_selected = st.multiselect(label=" ", options=technique_opts, key="technique", label_visibility="collapsed")
 
     st.markdown('</div>', unsafe_allow_html=True)
+
+with space:
+    st.markdown("""
+    """, unsafe_allow_html=True)
 
 # Close outer flex div
 st.markdown('</div>', unsafe_allow_html=True)
@@ -512,8 +498,8 @@ if technique_selected:
     right_filters_active = True
 
 # 3) Apply left-side sliders ONLY if:
-#     - They're not at their default values, OR
-#     - No right-side filters are active
+#    - They're not at their default values, OR
+#    - No right-side filters are active
 default_ranges = {
     'Monoisotopic Mass': (200.0, 14000.0),
     'Length': (2, 130),
@@ -669,14 +655,12 @@ if fasta_clicked:
     if selected_rows.empty:
         st.warning("⚠️ Please select at least one peptide to download FASTA file.")
     else:
-        # Corrected: Use 'Active Sequence' for FASTA sequence, or 'Sequence' if that's the canonical one.
-        # Assuming 'Sequence' is the correct column for the actual peptide sequence.
         fasta_str = "\n".join(
-            f">{row['cNPDB ID']}\n{row['Sequence']}" for _, row in selected_rows.iterrows()
+            f">{row['ID']}\n{row['Sequence']}" for _, row in selected_rows.iterrows()
         )
         st.download_button(
             "Download FASTA File",
-            data=fasta_str, # Use fasta_str, not fasta_content (which is undefined)
+            data=fasta_content,
             file_name="cNPDB_Search_Result.fasta",
             mime="text/plain",
             type="primary",
@@ -712,13 +696,13 @@ if zip_clicked:
         zip_buf.seek(0)
         st.download_button(
             "Download 3D Structures + MSI",
-            data=zip_buf, # Use zip_buf, not cif_zip_buffer (undefined)
+            data=cif_zip_buffer,
             file_name="cNDPD_3D_Structures_MSI.zip",
             mime="application/zip",
             type="primary",
             key="download_zip"
         )
-        
+    
 # 5) Close container div
 st.markdown(
     "</div>",
@@ -728,6 +712,6 @@ st.markdown(
 # Footer
 st.markdown("""
 <div style="text-align: center; font-size:14px; color:#2a2541;">
-    <em>Last update: Jul 2025</em>
+  <em>Last update: Jul 2025</em>
 </div>
 """, unsafe_allow_html=True)
