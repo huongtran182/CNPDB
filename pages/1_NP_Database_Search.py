@@ -205,7 +205,7 @@ def display_peptide_details(row: pd.Series):
             with open(cif_file, "rb") as f:
                 cif_bytes = f.read()
 
-            left_space, right_button = st.columns([1,4])
+            left_space, right_button = st.columns([1,6])
             with right_button:
                 st.download_button(
                     label="Download Peptide's 3D Structure",
