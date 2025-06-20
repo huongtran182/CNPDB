@@ -576,7 +576,7 @@ with col1:
 # --- Download Search Results (Excel) ---
 with col2:
     if selected_rows.empty:
-        st.button("Download Search Results", type="primary", disabled=True)
+        st.warning("⚠️ Please select at least one peptide to download Search Results.")
     else:
         excel_buf = io.BytesIO()
         with pd.ExcelWriter(excel_buf, engine="openpyxl") as writer:
@@ -594,7 +594,7 @@ with col2:
 # --- Download FASTA File ---
 with col3:
     if selected_rows.empty:
-        st.button("Download FASTA File", type="primary", disabled=True)
+        st.warning("⚠️ Please select at least one peptide to download FATSA file.")
     else:
         fasta_str = "\n".join(
             f">{row['ID']}\n{row['Sequence']}" for _, row in selected_rows.iterrows()
@@ -611,7 +611,7 @@ with col3:
 # --- Download ZIP (CIF + MSI) ---
 with col4:
     if selected_rows.empty:
-        st.button("Download 3D Structures + MSI", type="primary", disabled=True)
+        st.warning("⚠️ Please select at least one peptide to download 3D structures and MSI files.")
     else:
         zip_buf = io.BytesIO()
         with zipfile.ZipFile(zip_buf, "w") as zipf:
