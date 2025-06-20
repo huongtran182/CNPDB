@@ -326,7 +326,7 @@ col1, col2, col3 = st.columns([1.8, 1, 1])
 with col2:
     reset_blast = st.button("Reset", key="reset_blast", type="primary")
 if reset_blast:
-    for key, val in default_values.items():
+    for key, val in blast_defaults.items():
         st.session_state[key] = val
     st.rerun()
 
