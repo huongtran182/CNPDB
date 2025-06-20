@@ -354,7 +354,7 @@ st.sidebar.header("BLAST Settings")
 st.markdown("### BLAST Settings")
 col_param = st.columns(5)
 with col_param[0]:
-    e_value_thresh = st.number_input("E-value Threshold", key="e_value_thresh" step=0.1)
+    e_value_thresh = st.number_input("E-value Threshold", key="e_value_thresh", step=0.1)
 with col_param[1]:
     matrix_options = ["BLOSUM62", "BLOSUM80", "BLOSUM45", "PAM30", "PAM70"]
     st.selectbox("Matrix", matrix_options, key="matrix_select")
