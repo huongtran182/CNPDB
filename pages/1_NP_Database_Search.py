@@ -393,6 +393,15 @@ with col_main:
 # Close outer flex div
 st.markdown('</div>', unsafe_allow_html=True)
 
+def match_multivalue_column(selected_list, cell_value):
+    """
+    Check if any selected item is found in the split values of a cell (handles ; or , and trims spaces).
+    """
+    if pd.isna(cell_value):
+        return False
+    split_values = [entry.strip() for entry in re.split(r'[;,]', str(cell_value))]
+    return any(sel.strip() in split_values for sel in selected_list)
+    
 # Filtering logic
 df_filtered = df.copy()
 
@@ -416,47 +425,41 @@ if family_selected:
 if existence_selected:
     df_filtered = df_filtered[df_filtered['Existence'].isin(existence_selected)]
     right_filters_active = True
-
-# Tissue filter (multi-value)
+    
+# --- MULTI-VALUE FILTERS ---
 if tissue_selected:
     df_filtered = df_filtered[df_filtered['Tissue'].apply(
-        lambda x: any(t in re.split(r'[;,]', str(x)) for t in tissue_selected)
+        lambda x: match_multivalue_column(tissue_selected, x)
     )]
     right_filters_active = True
 
-# Organism filter (multi-value)
 if organisms_selected:
     df_filtered = df_filtered[df_filtered['OS'].apply(
-        lambda x: any(o in re.split(r'[;,]', str(x)) for o in organisms_selected)
+        lambda x: match_multivalue_column(organisms_selected, x)
     )]
     right_filters_active = True
 
-# PTM filter (multi-value)
 if ptm_selected:
     df_filtered = df_filtered[df_filtered['PTM'].apply(
-        lambda x: any(p in re.split(r'[;,]', str(x)) for p in ptm_selected)
+        lambda x: match_multivalue_column(ptm_selected, x)
     )]
     right_filters_active = True
 
-
-# Topic filter (multi-value)
 if topic_selected:
     df_filtered = df_filtered[df_filtered['Topic'].apply(
-        lambda x: any(t in re.split(r'[;,]', str(x)) for t in topic_selected)
+        lambda x: match_multivalue_column(topic_selected, x)
     )]
     right_filters_active = True
 
-# Instrument filter (multi-value)
 if instrument_selected:
     df_filtered = df_filtered[df_filtered['Instrument'].apply(
-        lambda x: any(i in re.split(r'[;,]', str(x)) for i in instrument_selected)
+        lambda x: match_multivalue_column(instrument_selected, x)
     )]
     right_filters_active = True
 
-# Technique filter (multi-value)
 if technique_selected:
     df_filtered = df_filtered[df_filtered['Technique'].apply(
-        lambda x: any(t in re.split(r'[;,]', str(x)) for t in technique_selected)
+        lambda x: match_multivalue_column(technique_selected, x)
     )]
     right_filters_active = True
 
