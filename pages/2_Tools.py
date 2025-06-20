@@ -323,7 +323,7 @@ st.markdown(
 
 st.markdown("""
 <div style='font-size:15px; padding:10px 10px;'>
-BLAST Search allows users to compare their peptide sequence against the cNPDB database and identify similar neuropeptides. Default parameters are optimized for typical neuropeptide BLAST searches, but users can customize settings to suit their needs. See <i>Glossary</i> and <i>Tutorials</i> pages for more details.
+BLAST Search allows users to compare their peptide sequence against the cNPDB database or the Uniprot database and identify similar neuropeptides. Default parameters are optimized for typical neuropeptide BLAST searches, but users can customize settings to suit their needs. See <i>Glossary</i> and <i>Tutorials</i> pages for more details.
 </div>
 """, unsafe_allow_html=True)
 
