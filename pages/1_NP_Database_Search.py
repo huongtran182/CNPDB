@@ -597,7 +597,7 @@ if st.session_state.view_details:
 
 # Download Search Results (Excel)
 with col2:
-    if st.button("Download Search Results", type="primary"):
+    if st.button("Download Search Results", type="primary", key="search_button"):
         if selected_rows.empty:
             st.warning("⚠️ Please select at least one peptide to download search results.")
         else:
@@ -617,7 +617,7 @@ with col2:
 
 # Download FASTA
 with col3:
-    if st.button("Download FASTA File", type="primary"):
+    if st.button("Download FASTA File", type="primary", key="fasta_button"):
         if selected_rows.empty:
             st.warning("⚠️ Please select at least one peptide to download FASTA file.")
         else:
@@ -636,7 +636,7 @@ with col3:
 
 # Download ZIP of CIFs + MSI
 with col4:
-    if st.button("Download 3D Structures + MSI", type="primary"):
+    if st.button("Download 3D Structures + MSI", type="primary", key="3D_MSI_button"):
         if selected_rows.empty:
             st.warning("⚠️ Please select at least one peptide to download 3D structure and MSI files.")
         else:
