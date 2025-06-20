@@ -562,30 +562,27 @@ if len(df_filtered) > 0:
 #5. Download or view results
 
 # Ensure selected_indices are within valid range
-valid_indices = [i for i in selected_indices if 0 <= i < len(df_filtered)]
-selected_rows = df_filtered.iloc[valid_indices] if valid_indices else pd.DataFrame()
+selected_rows = df_filtered.loc[selected_indices] if selected_indices else pd.DataFrame()
 col1, col2, col3, col4 = st.columns([1, 1.1, 1, 1.2])
 
-# --- View Details Button ---
+# View Details
 with col1:
-    left_space, right_button = st.columns([1, 4])
+    left_space, right_button = st.columns([1,4])
     with right_button:
         if "view_details" not in st.session_state:
             st.session_state.view_details = False
         
         if st.button("View Details", type="primary"):
             st.session_state.view_details = True
-    # --- View Details Section ---
-    if st.session_state.view_details:
-        if selected_rows.empty:
-            st.warning("⚠️ Please select at least one peptide to view details.")
-        else:
-            for _, row in selected_rows.iterrows():
-                # Replace with your actual display function
-                display_peptide_details(row)
-                
-                # Optional: separator
-                st.markdown("<hr style='border: 1px solid #6a51a3; margin: 40px 0;'>", unsafe_allow_html=True)
+
+# View Details
+if st.session_state.view_details:
+    if selected_rows.empty:
+        st.warning("⚠️ Please select at least one peptide to view details.")
+    else:
+        for _, row in selected_rows.iterrows():
+            display_peptide_details(row)
+            st.markdown("<hr style='border: 1px solid #6a51a3; margin: 40px 0;'>", unsafe_allow_html=True)
 
 with col2:
     
