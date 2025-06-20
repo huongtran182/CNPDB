@@ -365,40 +365,40 @@ with col_main:
     st.markdown("</div>", unsafe_allow_html=True)
 
     # Family
-    st.markdown('<div class="section-title" style="margin-top: -10px; margin-bottom: 24px;">Family</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: -10px; margin-bottom: 8px;">Family</div>', unsafe_allow_html=True)
     family_opts = sorted(df['Family'].dropna().unique())
     family_selected = st.multiselect(label=" ", options=family_opts, key="fam", label_visibility="collapsed")
 
     # Organisms
-    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 24px">Organisms</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: 20px; margin-bottom: 8px">Organisms</div>', unsafe_allow_html=True)
     org_opts = extract_unique_values(df['OS'])
     organisms_selected = st.multiselect(label=" ", options=org_opts, key="org", label_visibility="collapsed")
 
     # Tissue
-    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 24px">Tissue</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: 20px; margin-bottom: 8px">Tissue</div>', unsafe_allow_html=True)
     tissue_opts = extract_unique_values(df['Tissue'])
     tissue_selected = st.multiselect(label=" ", options=tissue_opts, key="tissue", label_visibility="collapsed")
 
     # PTM
-    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 24px">Post-translational modifications (PTM)</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: 20px; margin-bottom: 8px">Post-translational modifications (PTM)</div>', unsafe_allow_html=True)
     ptm_opts = extract_unique_values(df['PTM'])
     ptm_selected = st.multiselect(label=" ", options=ptm_opts, key="ptm", label_visibility="collapsed")
 
     # Existence
-    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 24px">Existence</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: 20px; margin-bottom: 8px">Existence</div>', unsafe_allow_html=True)
     exist_opts      = extract_unique_values(df['Existence'])
     existence_selected = st.multiselect(label=" ", options=exist_opts, key="exist", label_visibility="collapsed")
 
      # --- NEW: Filters for Sheet 2 data ---
-    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 24px">Physiological Studies or Applications</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: 20px; margin-bottom: 8px">Physiological Studies or Applications</div>', unsafe_allow_html=True)
     topic_opts = extract_unique_values(df['Topic'])
     topic_selected = st.multiselect(label=" ", options=topic_opts, key="topic", label_visibility="collapsed")
 
-    st.markdown('<div class="section-title" style="margin-top: 0px; margin-bottom: 24px">Instrument</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: 20px; margin-bottom: 8px">Instrument</div>', unsafe_allow_html=True)
     instrument_opts = extract_unique_values(df['Instrument'])
     instrument_selected = st.multiselect(label=" ", options=instrument_opts, key="instrument", label_visibility="collapsed")
     
-    st.markdown('<div class="section-title" style="margin-top: 0px">Technique</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-title" style="margin-top: 20px; margin-bottom: 8px">Technique</div>', unsafe_allow_html=True)
     technique_opts = extract_unique_values(df['Technique'])
     technique_selected = st.multiselect(label=" ", options=technique_opts, key="technique", label_visibility="collapsed")
 
