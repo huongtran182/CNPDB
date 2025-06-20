@@ -584,7 +584,7 @@ else:
     # 1. View Details
     with col1:
         left_space, right_button = st.columns([1,3])
-       with right_button:
+        with right_button:
            view_clicked = st.button("View details", type="primary")
 
     # 2. Download Search Results as Excel
