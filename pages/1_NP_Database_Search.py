@@ -626,7 +626,7 @@ if fasta_clicked:
         )
         st.download_button(
             "Download FASTA File",
-            data=fasta_content,
+            data=fasta_str,
             file_name="cNPDB_Search_Result.fasta",
             mime="text/plain",
             type="primary",
