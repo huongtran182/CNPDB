@@ -563,6 +563,10 @@ if len(df_filtered) > 0:
 selected_rows = df_filtered.loc[selected_indices] if selected_indices else pd.DataFrame()
 col1, col2, col3, col4 = st.columns([1, 1.1, 1, 1.2])
 
+for key in ['download_excel_ready', 'download_fasta_ready', 'download_zip_ready', 'view_details']:
+    if key not in st.session_state:
+        st.session_state[key] = False
+
 # --- View Details Button ---
 with col1:
     left_space, right_button = st.columns([1, 4])
