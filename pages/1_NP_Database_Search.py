@@ -208,7 +208,10 @@ def display_peptide_details(row: pd.Series):
         for blk in msi_blocks:
             st.markdown(blk, unsafe_allow_html=True)
 
-
+# --- Separator Line ---
+st.markdown("""
+<hr style='border: none; border-top: 2px solid #6a51a3; margin-top: 10px; margin-bottom: 0px; margin-left: 30px; margin-right: 30px;'>
+""", unsafe_allow_html=True)
 
 st.markdown("""
 <style>
