@@ -132,7 +132,7 @@ st.markdown("""
 # --- peptide allignment Search ---
 st.markdown(
     '<h2 class="custom-title">'
-    'PEPTIDE ALIGNMENT 2'
+    'PEPTIDE SEQUENCE ALIGNMENT'
     '</h2>',
     unsafe_allow_html=True
 )
