@@ -183,7 +183,7 @@ def generate_alignment_text(query_seq, target_seq, alignment_type, match_score, 
     report.write(custom_format_alignment(alignment) + "\n")
     return report.getvalue()
 
-# --- SESSION STATE DEFAULTS ---
+# --- Default values for resetting ---
 default_values = {
     "query_seq": "",
     "target_seq": "",
@@ -193,13 +193,21 @@ default_values = {
     "gap_extend": -0.1,
     "alignment_type": "global"
 }
-for key, value in default_values.items():
-    if key not in st.session_state:
-        st.session_state.setdefault(key, value)
 
-# User inputs
-query_seq = st.text_area("Enter first peptide sequence:", value=st.session_state.query_seq, height=68, key="query_seq")
-target_seq = st.text_area("Enter second sequence for alignment:", value=st.session_state.target_seq, height=68, key="target_seq")
+# Initialize session_state variables if not present
+for key, val in default_values.items():
+    if key not in st.session_state:
+        st.session_state[key] = val
+
+# Handle Reset button first — this must happen before widgets are created!
+if st.button("Reset", key="reset_button"):
+    for key, val in default_values.items():
+        st.session_state[key] = val
+    st.experimental_rerun()
+
+# Text areas (just use keys, no `value=`)
+query_seq = st.text_area("Enter first peptide sequence:", key="query_seq", height=68)
+target_seq = st.text_area("Enter second sequence for alignment:", key="target_seq", height=68)
 
 # Alignment parameters in compact column layout
 st.markdown("### Alignment Settings")
@@ -215,20 +223,13 @@ with col_param[3]:
 with col_param[4]:
     gap_extend = st.number_input("Gap Extend", value=st.session_state.gap_extend, key="gap_extend")
 
-# --- Buttons: Run + Reset ---
-col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
-with col2:
-    run_clicked = st.button("Run Alignment", type="primary")
-with col3:
-    if st.button("Reset", type="primary"):
-        for key, value in default_values.items():
-            st.session_state[key] = value
-        st.experimental_rerun()
-
 # Run Alignment Button
+run_clicked = st.button("Run Alignment", type="primary", key="run_button")
+
 if run_clicked:
     cleaned_query = clean_sequence(st.session_state.query_seq)
     cleaned_target = clean_sequence(st.session_state.target_seq)
+
     if not cleaned_query or not cleaned_target:
         st.error("❌ Please input both peptide sequences.")
     else:
@@ -245,10 +246,10 @@ if run_clicked:
             if alignments:
                 top_alignment = alignments[0]
                 matches, aln_length, percent_id = compute_percent_identity(top_alignment)
-                
+
                 st.success("Alignment result:")
                 st.markdown(f"""
-                - **Alignment Score:** {top_alignment.score:.2f}
+                - **Alignment Score:** {top_alignment.score:.2f}  
                 - **Alignment Length:** {aln_length}  
                 - **Identical Matches:** {matches}  
                 - **Percent Identity:** {percent_id:.2f}%
@@ -271,7 +272,7 @@ if run_clicked:
                     st.download_button(
                         label="Download Alignment Results",
                         data=alignment_txt,
-                        file_name="cNPDB_pairwise_alignment.txt",
+                        file_name="peptide_pairwise_alignment.txt",
                         mime="text/plain"
                     )
             else:
