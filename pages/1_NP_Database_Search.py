@@ -557,29 +557,47 @@ if len(df_filtered) > 0:
                     </div>
                 </div>
             """, unsafe_allow_html=True)
-
+            
+            
 #5. Download or view results
 
 selected_rows = df_filtered.loc[selected_indices] if selected_indices else pd.DataFrame()
 col1, col2, col3, col4 = st.columns([1, 1.1, 1, 1.2])
 
-for key in ['download_excel_ready', 'download_fasta_ready', 'download_zip_ready', 'view_details']:
-    if key not in st.session_state:
-        st.session_state[key] = False
-
-# --- View Details Button ---
+# View Details
 with col1:
-    left_space, right_button = st.columns([1, 4])
+    left_space, right_button = st.columns([1,4])
     with right_button:
         if "view_details" not in st.session_state:
             st.session_state.view_details = False
         
         if st.button("View Details", type="primary"):
             st.session_state.view_details = True
-            
+
+# Download Search Results (Excel)
 with col2:
+    search_result_clicked = st.button("Download Search Results", type="primary")
+
+# Download FASTA
+with col3:
+    fasta_clicked = st.button("Download FASTA File", type="primary")
+
+# Download CIF + MSI ZIP
+with col4:
+    zip_clicked = st.button("Download 3D Structures + MSI", type="primary")
+
+# View Details
+if st.session_state.view_details:
     if selected_rows.empty:
-        st.button("Download Search Results", type="primary", disabled=True)
+        st.warning("⚠️ Please select at least one peptide to view details.")
+    else:
+        for _, row in selected_rows.iterrows():
+            display_peptide_details(row)
+            st.markdown("<hr style='border: 1px solid #6a51a3; margin: 40px 0;'>", unsafe_allow_html=True)
+
+# Download Excel
+if search_result_clicked:
+    if selected_rows.empty:
         st.warning("⚠️ Please select at least one peptide to download search results.")
     else:
         excel_buf = io.BytesIO()
@@ -591,13 +609,13 @@ with col2:
             data=excel_buf,
             file_name="cNPDB_Search_Results.xlsx",
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            type="primary",
-            key="download_excel"
+            key="download_excel",
+            type="primary"
         )
-        
-with col3:
+
+# Download FASTA
+if fasta_clicked:
     if selected_rows.empty:
-        st.button("Download FASTA File", type="primary", disabled=True)
         st.warning("⚠️ Please select at least one peptide to download FASTA file.")
     else:
         fasta_str = "\n".join(
@@ -605,16 +623,16 @@ with col3:
         )
         st.download_button(
             "Download FASTA File",
-            data=fasta_str,
+            data=fasta_content,
             file_name="cNPDB_Search_Result.fasta",
             mime="text/plain",
             type="primary",
             key="download_fasta"
         )
 
-with col4:
+# Download ZIP of CIFs + MSI
+if zip_clicked:
     if selected_rows.empty:
-        st.button("Download 3D Structures + MSI", type="primary", disabled=True)
         st.warning("⚠️ Please select at least one peptide to download 3D structure and MSI files.")
     else:
         zip_buf = io.BytesIO()
@@ -622,12 +640,12 @@ with col4:
             for _, row in selected_rows.iterrows():
                 cnp_id = row['cNPDB ID']
 
-                # Add CIF file
+                # Add CIF
                 cif_path = f"Assets/3D Structure/3D cNP{cnp_id}.cif"
                 if os.path.exists(cif_path):
                     zipf.write(cif_path, arcname=f"3D_Structures/{os.path.basename(cif_path)}")
 
-                # Add MSI images
+                # Add MSI
                 for tissue_col, asset_folder in [
                     ("MSI Tissue 1", "Assets/MSImaging"),
                     ("MSI Tissue 2", "Assets/MSImaging"),
@@ -641,21 +659,13 @@ with col4:
         zip_buf.seek(0)
         st.download_button(
             "Download 3D Structures + MSI",
-            data=zip_buf,
-            file_name="cNPDB_3D_Structures_MSI.zip",
+            data=cif_zip_buffer,
+            file_name="cNDPD_3D_Structures_MSI.zip",
             mime="application/zip",
             type="primary",
             key="download_zip"
         )
 
-# --- View Details Section ---
-if st.session_state.view_details:
-    if selected_rows.empty:
-        st.warning("⚠️ Please select at least one peptide to view details.")
-    else:
-        for _, row in selected_rows.iterrows():
-            display_peptide_details(row)
-            st.markdown("<hr style='border: 1px solid #6a51a3; margin: 40px 0;'>", unsafe_allow_html=True)
     
 # 5) Close container div
 st.markdown(
