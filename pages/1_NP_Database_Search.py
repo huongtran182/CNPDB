@@ -11,23 +11,10 @@ import streamlit.components.v1 as components
 import io
 import zipfile
 
-def show_structure(cif_path, width=350, height=250):
-    # load the CIF text
-    with open(cif_path, 'r') as f:
-        cif_data = f.read()
-    # set up the viewer
-    view = py3Dmol.view(width=width, height=height)
-    view.addModel(cif_data, 'cif')
-    view.setStyle({'cartoon': {'color':'spectrum'}})
-    view.zoomTo()
-    # embed it
-    html = view._make_html()
-    components.html(html, height=height)
-    
 st.set_page_config(
     page_title="NP Database search",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
 render_sidebar()
@@ -55,6 +42,19 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+def show_structure(cif_path, width=350, height=250):
+    # load the CIF text
+    with open(cif_path, 'r') as f:
+        cif_data = f.read()
+    # set up the viewer
+    view = py3Dmol.view(width=width, height=height)
+    view.addModel(cif_data, 'cif')
+    view.setStyle({'cartoon': {'color':'spectrum'}})
+    view.zoomTo()
+    # embed it
+    html = view._make_html()
+    components.html(html, height=height)
 
 def img_html(path):
     """Return a base64 <img> tag filling 100% width of its container."""   
