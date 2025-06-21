@@ -58,7 +58,7 @@ if os.path.exists(image_path):
 
     st.markdown(f"""
         <div style="margin: 0 auto; text-align: center;">
-            <img src="data:image/png;base64,{img_b64}" style="width: auto; max-height: 300px;" />
+            <img src="data:image/png;base64,{img_b64}" style="width: auto; max-height: 500px;" />
         </div>
     """, unsafe_allow_html=True)
 else:
