@@ -272,7 +272,7 @@ with col_param[0]:
 with col_param[1]:
     match_score = st.number_input("Match", value=st.session_state.match_score, key="match_score")
 with col_param[2]:
-    mismatch_score = st.number_input("Mismatch", , value=st.session_state.mismatch_score, key="mismatch_score")
+    mismatch_score = st.number_input("Mismatch", value=st.session_state.mismatch_score, key="mismatch_score")
 with col_param[3]:
     gap_open = st.number_input("Gap Open", value=st.session_state.gap_open, key="gap_open")
 with col_param[4]:
