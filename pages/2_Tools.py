@@ -181,7 +181,11 @@ def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_sco
 
         match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
         family = match_row.get('Family', 'N/A') if match_row is not None else 'N/A'
-        summary_data.append((family, db_seq, score, identity))
+        organism = match_row.get('OS', 'N/A') if match_row is not None else 'N/A'
+        tissue = match_row.get('Tissue', 'N/A') if match_row is not None else 'N/A'
+        active_seq = match_row.get('Active Sequence', 'N/A') if match_row is not None else 'N/A'
+        
+        summary_data.append((i + 1, family, db_seq, score, identity))
 
     df_summary = pd.DataFrame(summary_data, columns=["No", "Family", "Sequence", "Score", "Percent Identity"])
     df_summary = df_summary.sort_values(by=["Score", "Percent Identity"], ascending=[False, False])
@@ -212,8 +216,13 @@ def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_sco
             report.write("\u26a0\ufe0f No valid alignment.\n")
 
         match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
-        family = match_row.get('Family', 'N/A') if match_row is not None else 'N/A'
-        report.write(f"Family: {family}\n\n")
+        if match_row is not None:
+            report.write(f"Family: {match_row.get('Family', 'N/A')}\n")
+            report.write(f"Organism (OS): {match_row.get('OS', 'N/A')}\n")
+            report.write(f"Tissue: {match_row.get('Tissue', 'N/A')}\n")
+            report.write(f"Active Sequence: {match_row.get('Active Sequence', 'N/A')}\n")
+        
+        report.write("\n")
 
     return report.getvalue(), df_summary
 
