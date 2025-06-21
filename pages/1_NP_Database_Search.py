@@ -254,7 +254,7 @@ st.markdown("""
     /* Adjusting space for sliders in col_filter */
   .stSlider { 
       margin-top: 5px;
-      margin-bottom: 12px;
+      margin-bottom: 9px;
    }
    
    /* Custom columns layout: 20px gap between filter and main */
