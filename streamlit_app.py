@@ -50,23 +50,16 @@ For detailed instructions on how to navigate cNPDB, please refer to the “Tutor
 """)
 
 # Load Home page image and convert to base64
-try:
-    image = Image.open("Assets/Img/Home page.png")
-    buffered = io.BytesIO()
-    image.save(buffered, format="PNG")
-    img_b64 = base64.b64encode(buffered.getvalue()).decode()
-
-    # Embed the image with HTML <img> and style
-    st.markdown(
-        f"""
-        <div style="text-align:center;">
-            <img src="data:image/png;base64,{img_b64}" style="max-height:300px; width:auto;"/>
+st.markdown("""
+image_path = os.path.join("Assets", "Img", "Home page.png")
+if os.path.exists(image_path):
+    st.markdown(f"""
+        <div style="margin: 0 auto; text-align: center;">
+            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: auto; height: 300px;" />
         </div>
-        """,
-        unsafe_allow_html=True
-    )
-except:
-    st.error("Image not found")
+    """, unsafe_allow_html=True)
+else:
+    st.error(f"Image not found at {image_path}")
 
 st.markdown("""
 ### DATABASE SOURCES AND CURATION
