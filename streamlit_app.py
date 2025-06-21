@@ -76,7 +76,7 @@ st.markdown("""
 ### GET INVOLVED & CONTRIBUTE
 
 cNPDB is a community-driven initiative! We welcome contributions from researchers in the field of peptidomics, neurobiology, and comparative physiology.
-If you’d like to contribute, please visit the "Contact Us" page and fill out the Feedback Form. Here are  a few ways you can get involved:
+If you would like to contribute, please visit the "Contact Us" page and fill out the Feedback Form. Here are  a few ways you can get involved:
 - Submit newly discovered neuropeptide sequences
 - Report missing data or suggest data corrections
 - Provide references or annotations
