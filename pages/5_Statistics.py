@@ -63,7 +63,35 @@ else:
     st.error(f"Image not found at {image_path}")
 
 st.markdown("""
-<h4 style="margin-top: 40px; margin-bottom: 10px;">3. Properties of All Peptides in cNPDB</h4>
+<h4 style="margin-top: 40px; margin-bottom: 10px;">3. Physiological and Biological Studies of Neuropeptides in cNPDB</h4>
+""", unsafe_allow_html=True)
+image_path = os.path.join("Assets", "Statistics", "Pie Chart Biological Application.png")
+if os.path.exists(image_path):
+    st.markdown(f"""
+        <div style="margin: 0 auto; text-align: center;">
+            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: auto; height: 400px;" />
+        </div>
+    """, unsafe_allow_html=True)
+else:
+    st.error(f"Image not found at {image_path}")
+
+st.markdown("""
+<h4 style="margin-top: 40px; margin-bottom: 10px;">4. Techniques to Study Neuropeptides in cNPDB</h4>
+""", unsafe_allow_html=True)
+image_path = os.path.join("Assets", "Statistics", "Pie Chart Technique.png")
+if os.path.exists(image_path):
+    st.markdown(f"""
+        <div style="margin: 0 auto; text-align: center;">
+            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: auto; height: 400px;" />
+        </div>
+    """, unsafe_allow_html=True)
+else:
+    st.error(f"Image not found at {image_path}")
+
+
+
+st.markdown("""
+<h4 style="margin-top: 40px; margin-bottom: 10px;">5. Properties of All Peptides in cNPDB</h4>
 """, unsafe_allow_html=True)
 image_path = os.path.join("Assets", "Statistics", "Peptide Property Violin.png")
 if os.path.exists(image_path):
@@ -76,7 +104,7 @@ else:
     st.error(f"Image not found at {image_path}")
 
 st.markdown("""
-<h4 style="margin-top: 40px; margin-bottom: 10px;">4. Distribution of Existence Evidence for All Peptides in cNPDB</h4>
+<h4 style="margin-top: 40px; margin-bottom: 10px;">6. Distribution of Existence Evidence for All Peptides in cNPDB</h4>
 """, unsafe_allow_html=True)
 image_path = os.path.join("Assets", "Statistics", "Pie Chart Existence Distribution.png")
 if os.path.exists(image_path):
@@ -89,7 +117,7 @@ else:
     st.error(f"Image not found at {image_path}")
 
 st.markdown("""
-<h4 style="margin-top: 40px; margin-bottom: 10px;">5. Amino Acids Composition from All Peptides in cNPDB</h4>
+<h4 style="margin-top: 40px; margin-bottom: 10px;">7. Amino Acids Composition from All Peptides in cNPDB</h4>
 """, unsafe_allow_html=True)
 image_path = os.path.join("Assets", "Statistics", "Amino Acid Composition.png")
 if os.path.exists(image_path):
