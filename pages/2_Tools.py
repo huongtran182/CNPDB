@@ -207,7 +207,7 @@ def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_sco
     report.write("="*40 + "\n")
 
     for i, (score, db_seq, aln) in enumerate(top_hits):
-        report.write(f"Hit #{i+1} - Score: {score:.2f}\n, Percent Identity: {identity:.2f}%\n")
+        report.write(f"Hit #{i+1} - Score: {score:.2f}, Percent Identity: {identity:.2f}%\n")
         report.write("-"*30 + "\n")
         if aln:
             formatted, identity = custom_format_alignment(aln)
