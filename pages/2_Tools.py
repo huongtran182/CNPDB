@@ -168,9 +168,9 @@ for key, val in DEFAULTS.items():
         st.session_state[key] = val
 
 # Reset button (centered above inputs)
-col_reset_left, col_reset_mid, col_reset_right = st.columns([1.7, 1, 1])
+col_reset_left, col_reset_mid, col_reset_right = st.columns([1.8, 1, 1])
 with col_reset_mid:
-    if st.button("Reset"):
+    if st.button("Reset", type="primary"):
         # Reset session state to defaults
         for key, val in DEFAULTS.items():
             st.session_state[key] = val
