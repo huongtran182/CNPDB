@@ -14,7 +14,7 @@ render_sidebar()
 st.markdown("""<div style="padding:0;margin:0;">""", unsafe_allow_html=True)
 
 try:
-    banner = Image.open("Assets/Img/CNPD_Banner.png")
+    banner = Image.open("Assets/Img/cNPDB_Banner.png")
     st.image(banner, use_container_width=True)
 except:
     st.error("Banner image not found")
