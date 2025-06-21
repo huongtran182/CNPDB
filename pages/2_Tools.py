@@ -150,30 +150,37 @@ def load_data():
 
 df = load_data()
 
-# Default values for alignment parameters (set once)
-DEFAULTS = {
-    "query_seq": "",
-    "target_seq": "",
-    "use_database": False,
-    "alignment_type": "global",
-    "match_score": 2,
-    "mismatch_score": -1,
-    "gap_open": -0.5,
-    "gap_extend": -0.1,
-}
-
-# Initialize session state variables with defaults if not set
-for key, val in DEFAULTS.items():
-    if key not in st.session_state:
-        st.session_state[key] = val
+# Initialize default values in session_state if not set
+if "match_score" not in st.session_state:
+    st.session_state.match_score = 2
+if "mismatch_score" not in st.session_state:
+    st.session_state.mismatch_score = -1
+if "gap_open" not in st.session_state:
+    st.session_state.gap_open = -0.5
+if "gap_extend" not in st.session_state:
+    st.session_state.gap_extend = -0.1
+if "alignment_type" not in st.session_state:
+    st.session_state.alignment_type = "global"
+if "query_seq" not in st.session_state:
+    st.session_state.query_seq = ""
+if "target_seq" not in st.session_state:
+    st.session_state.target_seq = ""
+if "use_database" not in st.session_state:
+    st.session_state.use_database = False
 
 # Reset button (centered above inputs)
 col_reset_left, col_reset_mid, col_reset_right = st.columns([1.8, 1, 1])
 with col_reset_mid:
     if st.button("Reset", type="primary"):
-        # Reset session state to defaults
-        for key, val in DEFAULTS.items():
-            st.session_state[key] = val
+        # Reset all session state keys to default values
+        st.session_state.match_score = 2
+        st.session_state.mismatch_score = -1
+        st.session_state.gap_open = -0.5
+        st.session_state.gap_extend = -0.1
+        st.session_state.alignment_type = "global"
+        st.session_state.query_seq = ""
+        st.session_state.target_seq = ""
+        st.session_state.use_database = False
 
 
 # Utility functions
@@ -253,14 +260,18 @@ def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_sco
     return report.getvalue(), df_summary
 
 # User input
-query_seq = st.text_area("Enter your peptide sequence (Only one sequence at a time):", value=st.session_state.query_seq, height=68, key="query_seq")
-target_seq = st.text_area("Enter second sequence for alignment (optional):", value=st.session_state.target_seq, height=68, key="target_seq")
+query_seq = st.text_area("Enter your peptide sequence (Only one sequence at a time):", height=68, key="query_seq")
+target_seq = st.text_area("Enter second sequence for alignment (optional):", height=68, key="target_seq")
 
 query_seq = clean_sequence(query_seq)
 target_seq = clean_sequence(target_seq)
 
-if not target_seq:
-    use_database = st.checkbox("Align against the cNPDB database", value=st.session_state.use_database, key="use_database")
+if not st.session_state.target_seq:
+    use_database = st.checkbox(
+        "Align against the cNPDB database",
+        key="use_database",
+        value=st.session_state.use_database
+    )
 else:
     use_database = None
 
@@ -268,15 +279,15 @@ else:
 st.markdown("### Alignment Settings")
 col_param = st.columns(5)
 with col_param[0]:
-    alignment_type = st.selectbox("Type", ["global", "local"], index=0 if st.session_state.alignment_type=="global" else 1, key="alignment_type")
+    alignment_type = st.selectbox("Type", ["global", "local"], key="alignment_type")
 with col_param[1]:
-    match_score = st.number_input("Match", value=st.session_state.match_score, key="match_score")
+    match_score = st.number_input("Match", key="match_score")
 with col_param[2]:
-    mismatch_score = st.number_input("Mismatch", value=st.session_state.mismatch_score, key="mismatch_score")
+    mismatch_score = st.number_input("Mismatch", key="mismatch_score")
 with col_param[3]:
-    gap_open = st.number_input("Gap Open", value=st.session_state.gap_open, key="gap_open")
+    gap_open = st.number_input("Gap Open", key="gap_open")
 with col_param[4]:
-    gap_extend = st.number_input("Gap Extend", value=st.session_state.gap_extend, key="gap_extend")
+    gap_extend = st.number_input("Gap Extend", key="gap_extend")
 
 # Run Alignment Button
 button_disabled = not st.session_state.query_seq or (not st.session_state.use_database and not st.session_state.target_seq)
