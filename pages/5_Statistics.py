@@ -63,7 +63,7 @@ else:
     st.error(f"Image not found at {image_path}")
 
 st.markdown("""
-<h4 style="margin-top: 40px; margin-bottom: 10px;">3. Physiological and Biological Studies of Neuropeptides in cNPDB</h4>
+<h4 style="margin-top: 40px; margin-bottom: 10px;">3. Composition of Neuropeptides per Physiological and Biological Studies in cNPDB</h4>
 """, unsafe_allow_html=True)
 image_path = os.path.join("Assets", "Statistics", "Pie chart Biological Application.png")
 if os.path.exists(image_path):
@@ -76,7 +76,7 @@ else:
     st.error(f"Image not found at {image_path}")
 
 st.markdown("""
-<h4 style="margin-top: 40px; margin-bottom: 10px;">4. Techniques to Study Neuropeptides in cNPDB</h4>
+<h4 style="margin-top: 40px; margin-bottom: 10px;">4. Composition of Neuropeptides per Investigation Techniques in cNPDB</h4>
 """, unsafe_allow_html=True)
 image_path = os.path.join("Assets", "Statistics", "Pie chart Technique.png")
 if os.path.exists(image_path):
