@@ -171,7 +171,7 @@ def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_sco
     report = StringIO()
     summary_data = []
 
-    df_summary = pd.DataFrame(columns=["Family", "Sequence", "Score", "Percent Identity"])
+    df_summary = pd.DataFrame(columns=["No", "Family", "Sequence", "Score", "Percent Identity"])
 
     for i, (score, db_seq, aln) in enumerate(top_hits):
         if aln:
@@ -183,8 +183,9 @@ def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_sco
         family = match_row.get('Family', 'N/A') if match_row is not None else 'N/A'
         summary_data.append((family, db_seq, score, identity))
 
-    df_summary = pd.DataFrame(summary_data, columns=["Family", "Sequence", "Score", "Percent Identity"])
+    df_summary = pd.DataFrame(summary_data, columns=["No", "Family", "Sequence", "Score", "Percent Identity"])
     df_summary = df_summary.sort_values(by=["Score", "Percent Identity"], ascending=[False, False])
+    df_summary.set_index("No", inplace=True)
 
     # Report content starts
     report.write("Peptide Sequence Alignment Report\n")
