@@ -49,6 +49,25 @@ Each cNPDB search entry provides:
 For detailed instructions on how to navigate cNPDB, please refer to the “Tutorials” page from the left sidebar. 
 """)
 
+# Load Home page image and convert to base64
+try:
+    image = Image.open("Assets/Img/Home page.png")
+    buffered = io.BytesIO()
+    image.save(buffered, format="PNG")
+    img_b64 = base64.b64encode(buffered.getvalue()).decode()
+
+    # Embed the image with HTML <img> and style
+    st.markdown(
+        f"""
+        <div style="text-align:center;">
+            <img src="data:image/png;base64,{img_b64}" style="max-height:400px; width:auto;"/>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+except:
+    st.error("Image not found")
+
 st.markdown("""
 ### DATABASE SOURCES AND CURATION
 cNPDB integrates data from peer-reviewed studies and public proteomics repositories:
