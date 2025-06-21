@@ -171,6 +171,22 @@ def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_sco
     report = StringIO()
     summary_data = []
 
+    df_summary = pd.DataFrame(columns=["Family", "Sequence", "Score", "Percent Identity"])
+
+    for i, (score, db_seq, aln) in enumerate(top_hits):
+        if aln:
+            formatted, identity = custom_format_alignment(aln)
+        else:
+            formatted, identity = "\u26a0\ufe0f No valid alignment.", 0
+
+        match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
+        family = match_row.get('Family', 'N/A') if match_row is not None else 'N/A'
+        summary_data.append((family, db_seq, score, identity))
+
+    df_summary = pd.DataFrame(summary_data, columns=["Family", "Sequence", "Score", "Percent Identity"])
+    df_summary = df_summary.sort_values(by=["Score", "Percent Identity"], ascending=[False, False])
+
+    # Report content starts
     report.write("Peptide Sequence Alignment Report\n")
     report.write("="*40 + "\n")
     report.write(f"Query Sequence: {query_seq}\n")
@@ -178,27 +194,25 @@ def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_sco
     report.write(f"Match Score: {match_score}, Mismatch Penalty: {mismatch_score}\n")
     report.write(f"Gap Open: {gap_open}, Gap Extend: {gap_extend}\n\n")
 
+    # Summary Table FIRST
+    report.write("Summary Table\n")
+    report.write("="*40 + "\n")
+    report.write(df_summary.to_string(index=False))
+    report.write("\n\nAlignment Details\n")
+    report.write("="*40 + "\n")
+
     for i, (score, db_seq, aln) in enumerate(top_hits):
         report.write(f"Hit #{i+1} - Score: {score:.2f}\n")
         report.write("-"*30 + "\n")
         if aln:
             formatted, identity = custom_format_alignment(aln)
-            report.write(formatted + f"\n\nPercent Identity: {identity:.2f}%\n")
+            report.write(formatted + "\n")
         else:
-            identity = 0
             report.write("\u26a0\ufe0f No valid alignment.\n")
 
         match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
         family = match_row.get('Family', 'N/A') if match_row is not None else 'N/A'
         report.write(f"Family: {family}\n\n")
-        summary_data.append((family, db_seq, score, identity))
-
-    # Summary table
-    report.write("Summary Table\n")
-    report.write("="*40 + "\n")
-    df_summary = pd.DataFrame(summary_data, columns=["Family", "Sequence", "Score", "Percent Identity"])
-    df_summary = df_summary.sort_values(by=["Score", "Percent Identity"], ascending=[False, False])
-    report.write(df_summary.to_string(index=False))
 
     return report.getvalue(), df_summary
 
@@ -282,8 +296,17 @@ if run_clicked:
                     mime="text/plain"
                 )
 
-            st.markdown("### Summary Table (Top Hits Sorted by Score & Identity)")
-            st.dataframe(df_summary, use_container_width=True)
+            st.markdown("### Top Hits Sorted by Score & Percent Identity")
+            st.dataframe(
+                df_summary,
+                use_container_width=True,
+                column_config={
+                    "Family": st.column_config.Column(width="small"),
+                    "Sequence": st.column_config.Column(width="large"),
+                    "Score": st.column_config.Column(width="small"),
+                    "Percent Identity": st.column_config.Column(width="small"),
+                }
+            )
 
             for i, (score, db_seq, aln) in enumerate(top_hits):
                 match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
