@@ -50,12 +50,15 @@ For detailed instructions on how to navigate cNPDB, please refer to the “Tutor
 """)
 
 # Load Home page image and convert to base64
-st.markdown("""
 image_path = os.path.join("Assets", "Img", "Home page.png")
 if os.path.exists(image_path):
+    with open(image_path, "rb") as img_file:
+        img_bytes = img_file.read()
+        img_b64 = base64.b64encode(img_bytes).decode()
+
     st.markdown(f"""
         <div style="margin: 0 auto; text-align: center;">
-            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: auto; height: 300px;" />
+            <img src="data:image/png;base64,{img_b64}" style="width: auto; max-height: 300px;" />
         </div>
     """, unsafe_allow_html=True)
 else:
