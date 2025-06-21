@@ -60,7 +60,7 @@ try:
     st.markdown(
         f"""
         <div style="text-align:center;">
-            <img src="data:image/png;base64,{img_b64}" style="max-height:400px; width:auto;"/>
+            <img src="data:image/png;base64,{img_b64}" style="max-height:300px; width:auto;"/>
         </div>
         """,
         unsafe_allow_html=True
