@@ -65,7 +65,7 @@ else:
 st.markdown("""
 <h4 style="margin-top: 40px; margin-bottom: 10px;">3. Physiological and Biological Studies of Neuropeptides in cNPDB</h4>
 """, unsafe_allow_html=True)
-image_path = os.path.join("Assets", "Statistics", "Pie Chart Biological Application.png")
+image_path = os.path.join("Assets", "Statistics", "Pie chart Biological Application.png")
 if os.path.exists(image_path):
     st.markdown(f"""
         <div style="margin: 0 auto; text-align: center;">
@@ -78,7 +78,7 @@ else:
 st.markdown("""
 <h4 style="margin-top: 40px; margin-bottom: 10px;">4. Techniques to Study Neuropeptides in cNPDB</h4>
 """, unsafe_allow_html=True)
-image_path = os.path.join("Assets", "Statistics", "Pie Chart Technique.png")
+image_path = os.path.join("Assets", "Statistics", "Pie chart Technique.png")
 if os.path.exists(image_path):
     st.markdown(f"""
         <div style="margin: 0 auto; text-align: center;">
