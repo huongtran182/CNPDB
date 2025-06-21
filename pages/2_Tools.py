@@ -165,7 +165,7 @@ def custom_format_alignment(aln):
     seqB = aln.seqB
     midline = "".join("|" if a == b else " " for a, b in zip(seqA, seqB))
     identity = calculate_percent_identity(seqA, seqB)
-    return f"{seqA}\n{midline}\n{seqB}\n\nPercent Identity: {identity:.2f}%", identity
+    return f"{seqA}\n{midline}\n{seqB}", identity
 
 def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_score, gap_open, gap_extend, top_hits, df):
     report = StringIO()
@@ -183,7 +183,7 @@ def generate_alignment_text(query_seq, alignment_type, match_score, mismatch_sco
         report.write("-"*30 + "\n")
         if aln:
             formatted, identity = custom_format_alignment(aln)
-            report.write(formatted + "\n")
+            report.write(formatted + f"\n\nPercent Identity: {identity:.2f}%\n")
         else:
             identity = 0
             report.write("\u26a0\ufe0f No valid alignment.\n")
@@ -249,7 +249,7 @@ if run_clicked:
                 )
                 formatted, identity = custom_format_alignment(alignments[0])
                 st.success("Top alignment result:")
-                st.code(formatted)
+                st.code(f"{formatted}\n\nPercent Identity: {identity:.2f}%")
             except Exception as e:
                 st.error(f"Alignment failed: {e}")
         else:
@@ -282,6 +282,9 @@ if run_clicked:
                     mime="text/plain"
                 )
 
+            st.markdown("### Summary Table (Top Hits Sorted by Score & Identity)")
+            st.dataframe(df_summary, use_container_width=True)
+
             for i, (score, db_seq, aln) in enumerate(top_hits):
                 match_row = df[df["Sequence"] == db_seq].iloc[0] if not df[df["Sequence"] == db_seq].empty else None
                 formatted, identity = custom_format_alignment(aln) if aln else ("No valid alignment.", 0)
@@ -307,9 +310,6 @@ if run_clicked:
                     """, unsafe_allow_html=True)
                 else:
                     st.warning("No additional info found for this hit.")
-
-            st.markdown("### Summary Table (Top Hits Sorted by Score & Identity)")
-            st.dataframe(df_summary, use_container_width=True)
 
 # --- Sequence alignment calculator ---
 # st.markdown(
