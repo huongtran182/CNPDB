@@ -201,39 +201,39 @@ tool_faqs = [
     },
     {
         "num": "05",
-        "question": "What do the BLAST settings mean?",
-        "answer": textwrap.dedent("""
-            For detailed explanations, visit the <i>Glossary</i> page under the <b>Tools</b> section. 
-        """)
-    },
-    {
-        "num": "06",
-        "question": "What is the difference between BLOSUM and PAM matrices?",
-        "answer": textwrap.dedent("""
-            Both are substitution matrices used to score alignments based on evolutionary similarity:
-            1. BLOSUM (BLOcks SUbstitution Matrix): Based on observed substitutions in conserved protein regions.
-            2. PAM (Point Accepted Mutation): Based on predicted mutations over evolutionary time.
-        """)
-    },
-    {
-        "num": "07",
-        "question": "Which scoring matrix should I choose?",
-        "answer": textwrap.dedent("""
-            It's based on how closely related your sequences are.
-            1. BLOSUM80: Closely related peptide sequences
-            2. BLOSUM62: General use (default in many bioinformatics tools)
-            3. BLOSUM45: More distantly related sequences
-            4. PAM30: Short peptide alignments with high sensitivity
-            5. PAM70: Moderately divergent sequences
-        """)
-    },
-    {
-        "num": "08",
         "question": "Can I download the search results?",
         "answer": textwrap.dedent("""
-            Yes. Simply click on the "Download Alignment Results" or "Download BLAST Results" buttons after perfoming your search to download the results in txt file.
+            Yes. Simply click on the "Download Alignment Results" buttons after perfoming your search to download the results in txt file.
         """)
     },
+    # {
+    #     "num": "05",
+    #     "question": "What do the BLAST settings mean?",
+    #     "answer": textwrap.dedent("""
+    #         For detailed explanations, visit the <i>Glossary</i> page under the <b>Tools</b> section. 
+    #     """)
+    # },
+    # {
+    #     "num": "06",
+    #     "question": "What is the difference between BLOSUM and PAM matrices?",
+    #     "answer": textwrap.dedent("""
+    #         Both are substitution matrices used to score alignments based on evolutionary similarity:
+    #         1. BLOSUM (BLOcks SUbstitution Matrix): Based on observed substitutions in conserved protein regions.
+    #         2. PAM (Point Accepted Mutation): Based on predicted mutations over evolutionary time.
+    #     """)
+    # },
+    # {
+    #     "num": "07",
+    #     "question": "Which scoring matrix should I choose?",
+    #     "answer": textwrap.dedent("""
+    #         It's based on how closely related your sequences are.
+    #         1. BLOSUM80: Closely related peptide sequences
+    #         2. BLOSUM62: General use (default in many bioinformatics tools)
+    #         3. BLOSUM45: More distantly related sequences
+    #         4. PAM30: Short peptide alignments with high sensitivity
+    #         5. PAM70: Moderately divergent sequences
+    #     """)
+    # },
 ]
 
 # --- RENDER ALL SECTIONS ---
