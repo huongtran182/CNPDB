@@ -745,6 +745,11 @@ with col4:
                     if os.path.exists(cif_path):
                         zipf.write(cif_path, arcname=f"3D_Structures/{os.path.basename(cif_path)}")
 
+                    # ✅ Add Meta PDB
+                    pdb_path = f"Assets/3D Structure Meta/3D Meta cNP{cnp_id}.pdb"
+                    if os.path.exists(pdb_path):
+                        zipf.write(pdb_path, arcname=f"Meta_3D_Structures/{os.path.basename(pdb_path)}")
+
                     # Add MSI images
                     for tissue_col, asset_folder in [
                         ("MSI Tissue 1", "Assets/MSImaging"),
