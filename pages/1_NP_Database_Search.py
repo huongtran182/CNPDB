@@ -19,11 +19,6 @@ st.set_page_config(
 
 render_sidebar()
 
-test_path = "Assets/3D Structure Meta/3D Meta cNP1162.pdb"
-abs_path = os.path.abspath(test_path)
-st.write("Absolute path:", abs_path)
-st.write("Exists:", os.path.exists(abs_path))
-
 st.markdown(
     """
     <style>
@@ -68,7 +63,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-def show_structure(cif_path, width=350, height=250):
+def show_structure_cif(cif_path, width=350, height=250):
     # load the CIF text
     with open(cif_path, 'r') as f:
         cif_data = f.read()
@@ -78,6 +73,21 @@ def show_structure(cif_path, width=350, height=250):
     view.setStyle({'cartoon': {'color':'spectrum'}})
     view.zoomTo()
     # embed it
+    html = view._make_html()
+    components.html(html, height=height)
+
+def show_structure_pdb(pdb_path, width=350, height=250):
+    # Load the PDB file
+    with open(pdb_path, 'r') as f:
+        pdb_data = f.read()
+    
+    # Set up the 3Dmol viewer
+    view = py3Dmol.view(width=width, height=height)
+    view.addModel(pdb_data, 'pdb')  # specify it's a PDB model
+    view.setStyle({'cartoon': {'color': 'spectrum'}})
+    view.zoomTo()
+    
+    # Render the HTML and display it in Streamlit
     html = view._make_html()
     components.html(html, height=height)
 
@@ -241,7 +251,7 @@ def display_peptide_details(row: pd.Series):
         )
         cif_file = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
         if os.path.exists(cif_file):
-            show_structure(cif_file, width=350, height=250)
+            show_structure_cif(cif_file, width=350, height=250)
             # Add download button right below 3D view
             with open(cif_file, "rb") as f:
                 cif_bytes = f.read()
@@ -280,7 +290,7 @@ def display_peptide_details(row: pd.Series):
                 unsafe_allow_html=True
             )
     
-            show_structure(meta_pdb_file, width=350, height=250)
+            show_structure_pdb(meta_pdb_file, width=350, height=250)
     
             # Download button for PDB
             with open(meta_pdb_file, "rb") as f:
