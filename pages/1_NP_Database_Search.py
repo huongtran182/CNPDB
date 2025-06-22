@@ -182,8 +182,8 @@ def display_peptide_details(row: pd.Series):
         ("MSI Tissue 3", "Assets/MSImaging"),
     ]:
         tissue = disp(row.get(tissue_col))
-        suffix = "" if tissue_col.endswith("1") else " " + tissue_col[-1]
-        png_path = f"{asset_folder}/MSI cNP{cNPDB_id} {suffix}.png"
+        suffix = " " + tissue_col.split()[-1]
+        png_path = f"{asset_folder}/MSI cNP{cNPDB_id}{suffix}.png"
         block = f"""
         <div style="color:#6a51a3; font-size:16px; font-weight:bold; text-align:center;">
           MS Imaging – {tissue}
