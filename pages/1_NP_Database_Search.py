@@ -257,7 +257,7 @@ def display_peptide_details(row: pd.Series):
                        border-radius:8px;
                        box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
                      ">
-                    Download Peptide's 3D Structure
+                    Download 3D Structure by AlphaFold 3
                   </a>
                 </div>
                 """,
@@ -297,7 +297,7 @@ def display_peptide_details(row: pd.Series):
                        border-radius:6px;
                        box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
                      ">
-                    Download Meta Structure (.pdb)
+                    Download 3D Structure by Meta
                   </a>
                 </div>
                 """,
