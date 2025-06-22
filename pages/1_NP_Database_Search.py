@@ -183,7 +183,7 @@ def display_peptide_details(row: pd.Series):
     ]:
         tissue = disp(row.get(tissue_col))
         suffix = "" if tissue_col.endswith("1") else " " + tissue_col[-1]
-        png_path = f"{asset_folder}/MSI cNP{cNPDB_id}{suffix}.png"
+        png_path = f"{asset_folder}/MSI cNP{cNPDB_id} {suffix}.png"
         block = f"""
         <div style="color:#6a51a3; font-size:16px; font-weight:bold; text-align:center;">
           MS Imaging – {tissue}
@@ -230,8 +230,8 @@ def display_peptide_details(row: pd.Series):
             st.write("No CIF found at", cif_file)
 
     with col_msi:
-        for blk in msi_blocks:
-            st.markdown(blk, unsafe_allow_html=True)
+        for block in msi_blocks:
+            st.markdown(block, unsafe_allow_html=True)
 
 st.markdown("""
 <style>
