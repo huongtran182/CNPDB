@@ -19,6 +19,11 @@ st.set_page_config(
 
 render_sidebar()
 
+st.write("Working directory:", os.getcwd())
+test_path = "Assets/3D Structure Meta/3D Meta cNP1162.pdb"
+st.write("File exists:", os.path.exists(test_path))
+
+
 st.markdown(
     """
     <style>
