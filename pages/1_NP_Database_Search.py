@@ -191,17 +191,33 @@ def display_peptide_details(row: pd.Series):
         ("MSI Tissue 3", "Assets/MSImaging"),
     ]:
         tissue = disp(row.get(tissue_col))
+        if not tissue:
+            continue  # Skip if tissue info is missing
+    
         suffix = " " + tissue_col.split()[-1]
         png_path = f"{asset_folder}/MSI cNP{cNPDB_id}{suffix}.png"
+    
+        if not os.path.exists(png_path):
+            continue  # Skip if image not found
+    
+        # Create block if both tissue and image are available
         block = f"""
-        <div style="color:#6a51a3; font-size:16px; font-weight:bold; text-align:center;">
+        <div style="color:#6a51a3; font-size:16px; font-weight:bold; text-align:center; margin-bottom:5px;">
           MS Imaging – {tissue}
         </div>
-        <div style="border:2px dashed #6a51a3; padding:10px; margin-top:5px;">
+        <div style="border:2px dashed #6a51a3; padding:10px; margin-bottom:20px;">
           {img_html(png_path)}
         </div>
         """
         msi_blocks.append(block)
+    
+    # Fallback if no MSI data available
+    if not msi_blocks:
+        msi_blocks.append("""
+        <div style="text-align:center; color:#888; font-style:italic; margin-top:20px;">
+          No MSI data is available for this peptide.
+        </div>
+        """)
 
     # — Now lay out in three real Streamlit columns —
     st.markdown(
