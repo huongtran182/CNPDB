@@ -272,7 +272,7 @@ def display_peptide_details(row: pd.Series):
             st.write("No CIF found at", cif_file)
 
          # Meta PDB file
-        meta_pdb_file = f"Assets/3D Structure Meta/3D Meta cNP{cNPDB_id}.pdb"
+        meta_pdb_file = f"Assets/3D Structure/3D Meta cNP{cNPDB_id}.pdb"
         if os.path.exists(meta_pdb_file):
             st.markdown("<hr style='margin:20px 0;'>", unsafe_allow_html=True)
             st.markdown(
@@ -751,7 +751,7 @@ with col4:
                         zipf.write(cif_path, arcname=f"3D_Structures/{os.path.basename(cif_path)}")
 
                     # ✅ Add Meta PDB
-                    pdb_path = f"Assets/3D Structure Meta/3D Meta cNP{cnp_id}.pdb"
+                    pdb_path = f"Assets/3D Structure/3D Meta cNP{cnp_id}.pdb"
                     if os.path.exists(pdb_path):
                         zipf.write(pdb_path, arcname=f"Meta_3D_Structures/{os.path.basename(pdb_path)}")
 
