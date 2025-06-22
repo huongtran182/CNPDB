@@ -131,12 +131,14 @@ species = [
     ("Cpa", "<i>Cancer pagurus</i> – Rock crab"),
     ("Cbo", "<i>Cancer borealis</i> – Jonah crab or Stone crab"),
     ("Cila", "<i>Homarus americanus</i> – American lobster"),
+    ("Cirr", "<i>Cancer irroratus</i> – Atlantic rock crab"),
     ("Cmag", "<i>Cancer magister</i> – Dungeness crab"),
     ("Cpag", "<i>Cancer pagarus</i> – Edible crab or Brown crab"),
     ("Cpro", "<i>Cancer productus</i> – Red rock crab"),
     ("Csap", "<i>Callinectes sapidus</i> – Blue crab"),
     ("Dpu", "<i>Daphnia pulex</i> – Common water flea"),
     ("Eur", "<i>Eurydice</i> – Sand burrowing isopods"),
+    ("Lma", "<i>Lithodes maja</i> – Norway king crab"),
     ("Lva", "<i>Litopenaeus vannamei</i> – Pacific white shrimp"),
     ("Mens", "<i>Metapenaeus ensis</i> – Greasyback shrimp or Sand shrimp"),
     ("Mjap", "<i>Marsupenaeus japonicus</i> – Kuruma shrimp, Kuruma prawn, or Japanese tiger prawn"),
@@ -149,6 +151,7 @@ species = [
     ("Pbo", "<i>Pandalus_borealis</i> – Northern prawn"),
     ("Pcla", "<i>Procambarus clarkii</i> – Red swamp crayfish"),
     ("Pint", "<i>Panulirus interruptus</i> – California spiny lobster"),
+    ("Ppro", "<i>Pugettia producta</i> – Northern kelp crab"),
     ("Sser", "<i>Scylla serrata</i> – Giant mud crab"),
 ]
 
