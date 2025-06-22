@@ -266,6 +266,46 @@ def display_peptide_details(row: pd.Series):
         else:
             st.write("No CIF found at", cif_file)
 
+         # Meta PDB file
+        meta_pdb_file = f"Assets/3D Structure Meta/3D Meta cNP{cNPDB_id}.pdb"
+        if os.path.exists(meta_pdb_file):
+            st.markdown("<hr style='margin:20px 0;'>", unsafe_allow_html=True)
+            st.markdown(
+                "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>Meta-predicted 3D Structure</div>",
+                unsafe_allow_html=True
+            )
+    
+            show_structure(meta_pdb_file, width=350, height=250)
+    
+            # Download button for PDB
+            with open(meta_pdb_file, "rb") as f:
+                pdb_bytes = f.read()
+                pdb_base64 = base64.b64encode(pdb_bytes).decode()
+    
+            st.markdown(
+                f"""
+                <div style="text-align:center; margin-top:10px;">
+                  <a download="3D_Meta_cNP{cNPDB_id}.pdb"
+                     href="data:chemical/x-pdb;base64,{pdb_base64}"
+                     style="
+                       display:inline-block;
+                       padding:8px 16px;
+                       background-color:#6a51a3;
+                       color:white;
+                       font-weight:bold;
+                       text-decoration:none;
+                       border-radius:6px;
+                       box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+                     ">
+                    Download Meta Structure (.pdb)
+                  </a>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+        else:
+            st.write("No Meta PDB found at", meta_pdb_file)
+
     with col_msi:
         for block in msi_blocks:
             st.markdown(block, unsafe_allow_html=True)
