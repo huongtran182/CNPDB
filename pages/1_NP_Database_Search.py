@@ -220,18 +220,11 @@ def display_peptide_details(row: pd.Series):
         )
         cif_file = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
         if os.path.exists(cif_file):
+            show_structure(cif_file, width=350, height=250)
             # Add download button right below 3D view
             with open(cif_file, "rb") as f:
                 cif_bytes = f.read()
                 cif_base64 = base64.b64encode(cif_bytes).decode()
-
-            # Show CIF viewer in dashed box
-            st.markdown(
-                "<div style='border:2px dashed #6a51a3; padding:10px; margin-top:5px;'>",
-                unsafe_allow_html=True
-            )
-            show_structure(cif_file, width=350, height=250)
-            st.markdown("</div>", unsafe_allow_html=True)
 
             st.markdown(
                 f"""
