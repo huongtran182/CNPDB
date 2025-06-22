@@ -19,10 +19,10 @@ st.set_page_config(
 
 render_sidebar()
 
-st.write("Working directory:", os.getcwd())
 test_path = "Assets/3D Structure Meta/3D Meta cNP1162.pdb"
-st.write("File exists:", os.path.exists(test_path))
-
+abs_path = os.path.abspath(test_path)
+st.write("Absolute path:", abs_path)
+st.write("Exists:", os.path.exists(abs_path))
 
 st.markdown(
     """
