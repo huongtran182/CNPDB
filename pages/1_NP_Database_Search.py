@@ -51,7 +51,7 @@ st.markdown(
         word-wrap: break-word;
         white-space: normal !important;
         overflow-wrap: anywhere;
-        max-width: 550px;
+        max-width: 560px;
       }
     </style>
     """,
@@ -220,7 +220,7 @@ def display_peptide_details(row: pd.Series):
             with open(cif_file, "rb") as f:
                 cif_bytes = f.read()
 
-            left_space, right_button = st.columns([1,8])
+            left_space, right_button = st.columns([1,10])
             with right_button:
                 st.download_button(
                     label="Download Peptide's 3D Structure",
