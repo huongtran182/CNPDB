@@ -51,6 +51,7 @@ st.markdown(
         word-wrap: break-word;
         white-space: normal !important;
         overflow-wrap: anywhere;
+        max-width: 550px;
       }
     </style>
     """,
