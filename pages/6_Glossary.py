@@ -126,13 +126,12 @@ tools = [
 
 species = [
     ("Arm", "<i>Armadillidium</i> – Woodlouse"),
-    ("Bthe", "<i>Homarus americanus</i> – American lobster"),
-    ("Cmae", "<i>Carcinus maenas</i> – European green crab"),
-    ("Cpa", "<i>Cancer pagurus</i> – Rock crab"),
     ("Cbo", "<i>Cancer borealis</i> – Jonah crab or Stone crab"),
-    ("Cila", "<i>Homarus americanus</i> – American lobster"),
     ("Cirr", "<i>Cancer irroratus</i> – Atlantic rock crab"),
+    ("Cmae", "<i>Carcinus maenas</i> – European green crab"),
     ("Cmag", "<i>Cancer magister</i> – Dungeness crab"),
+    ("Cqua", "<i>Cherax quadricarinatus</i> – Australian crayfish"),
+    ("Cpa", "<i>Cancer pagurus</i> – Rock crab"),
     ("Cpag", "<i>Cancer pagarus</i> – Edible crab or Brown crab"),
     ("Cpro", "<i>Cancer productus</i> – Red rock crab"),
     ("Csap", "<i>Callinectes sapidus</i> – Blue crab"),
@@ -152,6 +151,7 @@ species = [
     ("Pcla", "<i>Procambarus clarkii</i> – Red swamp crayfish"),
     ("Pint", "<i>Panulirus interruptus</i> – California spiny lobster"),
     ("Ppro", "<i>Pugettia producta</i> – Northern kelp crab"),
+    ("Spar", "<i>Scylla paramamosain</i> – Southeast Asia mud crab"),
     ("Sser", "<i>Scylla serrata</i> – Giant mud crab"),
 ]
 
