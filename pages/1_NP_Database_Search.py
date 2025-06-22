@@ -39,8 +39,15 @@ st.markdown(
         table-layout: auto;
         border-collapse: separate !important;
         border-spacing: 0 3px !important;
-        margin-top:10px;
       }
+    
+      .peptide-details table {
+        width: 100%;
+        table-layout: auto;
+        border-collapse: separate !important;
+        border-spacing: 0 3px !important;
+        margin-top:10px;
+      }  
       .peptide-details td:first-child {
         white-space: nowrap;
         width: 1%;
@@ -49,9 +56,7 @@ st.markdown(
       .peptide-details td:last-child {
         background-color: white;
         word-wrap: break-word;
-        white-space: normal !important;
         overflow-wrap: anywhere;
-        max-width: 560px;
       }
     </style>
     """,
@@ -215,21 +220,40 @@ def display_peptide_details(row: pd.Series):
         )
         cif_file = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
         if os.path.exists(cif_file):
-            show_structure(cif_file, width=350, height=250)
             # Add download button right below 3D view
             with open(cif_file, "rb") as f:
                 cif_bytes = f.read()
+                cif_base64 = base64.b64encode(cif_bytes).decode()
 
-            left_space, right_button = st.columns([1,10])
-            with right_button:
-                st.download_button(
-                    label="Download Peptide's 3D Structure",
-                    data=cif_bytes,
-                    file_name=f"3D_cNP{cNPDB_id}.cif",
-                    mime="chemical/x-cif",
-                    key=f"download_cif_{cNPDB_id}",
-                    type="primary"
-                )
+            # Show CIF viewer in dashed box
+            st.markdown(
+                "<div style='border:2px dashed #6a51a3; padding:10px; margin-top:5px;'>",
+                unsafe_allow_html=True
+            )
+            show_structure(cif_file, width=350, height=250)
+            st.markdown("</div>", unsafe_allow_html=True)
+
+            st.markdown(
+                f"""
+                <div style="text-align:center; margin-top:15px;">
+                  <a download="3D_cNP{cNPDB_id}.cif"
+                     href="data:chemical/x-cif;base64,{cif_base64}"
+                     style="
+                       display:inline-block;
+                       padding:10px 20px;
+                       background-color:#6a51a3;
+                       color:white;
+                       font-weight:bold;
+                       text-decoration:none;
+                       border-radius:8px;
+                       box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+                     ">
+                    Download Peptide's 3D Structure
+                  </a>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
         else:
             st.write("No CIF found at", cif_file)
 
