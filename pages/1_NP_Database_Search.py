@@ -48,6 +48,10 @@ st.markdown(
       }
       .peptide-details td:last-child {
         background-color: white;
+        word-wrap: break-word;
+        white-space: normal !important;
+        overflow-wrap: anywhere;
+        max-width: 500px;
       }
     </style>
     """,
