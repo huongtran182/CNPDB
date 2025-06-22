@@ -246,7 +246,7 @@ def display_peptide_details(row: pd.Series):
 
     with col_struct:
         st.markdown(
-          "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>3D Structure</div>",
+          "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>AlphaFold3-predicted 3D Structure</div>",
           unsafe_allow_html=True
         )
         cif_file = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
@@ -272,7 +272,7 @@ def display_peptide_details(row: pd.Series):
                        border-radius:8px;
                        box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
                      ">
-                    Download 3D Structure by AlphaFold 3
+                    Download AlphaFold3-predicted 3D Structure
                   </a>
                 </div>
                 """,
@@ -312,7 +312,7 @@ def display_peptide_details(row: pd.Series):
                        border-radius:6px;
                        box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
                      ">
-                    Download 3D Structure by Meta
+                    Download Meta-predicted 3D Structure
                   </a>
                 </div>
                 """,
