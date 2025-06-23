@@ -214,7 +214,7 @@ def display_peptide_details(row: pd.Series):
         png_path = f"{asset_folder}/MSI cNP{cNPDB_id}{suffix}.png"
     
         if not os.path.exists(png_path):
-            continue  # Skip if image not foun
+            continue  # Skip if image not found
             
         # Encode image as base64 for download
         with open(png_path, "rb") as f:
@@ -794,7 +794,7 @@ with col4:
                         ("MSI Tissue 2", "Assets/MSImaging"),
                         ("MSI Tissue 3", "Assets/MSImaging"),
                     ]:
-                        suffix = "" if tissue_col.endswith("1") else " " + tissue_col[-1]
+                        suffix = " " + tissue_col.split()[-1]
                         msi_path = f"{asset_folder}/MSI cNP{cnp_id}{suffix}.png"
                         if os.path.exists(msi_path):
                             zipf.write(msi_path, arcname=f"MSI_Images/{os.path.basename(msi_path)}")
