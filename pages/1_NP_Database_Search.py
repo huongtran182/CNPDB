@@ -272,7 +272,7 @@ def display_peptide_details(row: pd.Series):
                        border-radius:8px;
                        box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
                      ">
-                    Download AlphaFold3-predicted 3D Structure
+                    Download AlphaFold-predicted 3D Structure
                   </a>
                 </div>
                 """,
