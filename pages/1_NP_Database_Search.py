@@ -213,9 +213,12 @@ def display_peptide_details(row: pd.Series):
         suffix = "_" + tissue_col.split()[-1]
         png_path = f"Assets/MSImaging/MSI cNP{cNPDB_id}{suffix}.png"
     
+        print(f"Checking {png_path}")
         if not os.path.exists(png_path):
+            print(f"❌ File not found: {png_path}")
+            print(f"cNPDB_id: {cNPDB_id}, suffix: {suffix}")
             continue
-    
+            
         # Encode image as base64 for download
         with open(png_path, "rb") as f:
             img_bytes = f.read()
@@ -243,7 +246,7 @@ def display_peptide_details(row: pd.Series):
                border-radius:8px;
                box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
              ">
-            ⬇️ Download Peptide's MSI Image
+            Download Peptide's MSI Image
           </a>
         </div>
         """
