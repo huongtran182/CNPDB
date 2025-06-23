@@ -246,7 +246,7 @@ def display_peptide_details(row: pd.Series):
 
     with col_struct:
         st.markdown(
-          "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>AlphaFold3-predicted 3D Structure</div>",
+          "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>AlphaFold-predicted 3D Structure</div>",
           unsafe_allow_html=True
         )
         cif_file = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
@@ -286,7 +286,7 @@ def display_peptide_details(row: pd.Series):
         if os.path.exists(meta_pdb_file):
             st.markdown("<div style='margin-top:10px;'></div>", unsafe_allow_html=True)
             st.markdown(
-                "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>Meta-predicted 3D Structure</div>",
+                "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>ESMfold-predicted 3D Structure</div>",
                 unsafe_allow_html=True
             )
     
@@ -312,7 +312,7 @@ def display_peptide_details(row: pd.Series):
                        border-radius:6px;
                        box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
                      ">
-                    Download Meta-predicted 3D Structure
+                    Download ESMfold-predicted 3D Structure
                   </a>
                 </div>
                 """,
@@ -758,12 +758,12 @@ with col4:
                     # Add CIF
                     cif_path = f"Assets/3D Structure/3D cNP{cnp_id}.cif"
                     if os.path.exists(cif_path):
-                        zipf.write(cif_path, arcname=f"3D_Structures/{os.path.basename(cif_path)}")
+                        zipf.write(cif_path, arcname=f"AlphaFold_3D_Structures/{os.path.basename(cif_path)}")
 
                     # ✅ Add Meta PDB
                     pdb_path = f"Assets/3D Structure/3D Meta cNP{cnp_id}.pdb"
                     if os.path.exists(pdb_path):
-                        zipf.write(pdb_path, arcname=f"Meta_3D_Structures/{os.path.basename(pdb_path)}")
+                        zipf.write(pdb_path, arcname=f"ESMfold_3D_Structures/{os.path.basename(pdb_path)}")
 
                     # Add MSI images
                     for tissue_col, asset_folder in [
