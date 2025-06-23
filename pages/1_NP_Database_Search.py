@@ -222,18 +222,18 @@ def display_peptide_details(row: pd.Series):
         <div style="border:2px dashed #6a51a3; padding:10px; margin-bottom:20px; text-align:center;">
           {img_html(png_path)}
         </div>
-        <div style=
+        <div style="text-align:center; margin-bottom:30px;">
           <a href="{png_path}" download 
              style="
-                       display:inline-block;
-                       padding:10px 20px;
-                       background-color:#6a51a3;
-                       color:white;
-                       font-weight:bold;
-                       text-decoration:none;
-                       border-radius:8px;
-                       box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-                     ">      
+               display:inline-block;
+               padding:10px 20px;
+               background-color:#6a51a3;
+               color:white;
+               font-weight:bold;
+               text-decoration:none;
+               border-radius:8px;
+               box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+             ">      
             Download Peptide's MSI Image
           </a>
         </div>
