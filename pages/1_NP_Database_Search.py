@@ -10,6 +10,7 @@ import py3Dmol
 import streamlit.components.v1 as components
 import io
 import zipfile
+import mimetypes
 
 st.set_page_config(
     page_title="NP Database search",
@@ -200,7 +201,6 @@ def display_peptide_details(row: pd.Series):
     """
      # — Prepare MSI HTML blocks —
     msi_blocks = []
-    asset_folder = "Assets/MSImaging"
     for tissue_col, asset_folder in [
         ("MSI Tissue 1", "Assets/MSImaging"),
         ("MSI Tissue 2", "Assets/MSImaging"),
@@ -208,23 +208,31 @@ def display_peptide_details(row: pd.Series):
     ]:
         tissue = disp(row.get(tissue_col))
         if not tissue:
-            continue  # Skip if tissue info is missing
+            continue
     
-        suffix = " " + tissue_col.split()[-1]
-        png_path = f"{asset_folder}/MSI cNP{cNPDB_id}{suffix}.png"
+        suffix = "_" + tissue_col.split()[-1]
+        png_path = f"{asset_folder}/MSI_cNP{cNPDB_id}{suffix}.png"  # remove spaces!
     
         if not os.path.exists(png_path):
-            continue  # Skip if image not found
-        # Create block with image and download button
+            continue
+    
+        # Encode image as base64 for download
+        with open(png_path, "rb") as f:
+            img_bytes = f.read()
+            img_base64 = base64.b64encode(img_bytes).decode()
+            mime = mimetypes.guess_type(png_path)[0] or "image/png"
+    
+        # Create block with image preview + downloadable base64 link
         block = f"""
         <div style="color:#6a51a3; font-size:16px; font-weight:bold; text-align:center; margin-bottom:5px;">
           MS Imaging – {tissue}
         </div>
-        <div style="border:2px dashed #6a51a3; padding:10px; margin-bottom:20px; text-align:center;">
+        <div style="border:2px dashed #6a51a3; padding:10px; margin-bottom:10px; text-align:center;">
           {img_html(png_path)}
         </div>
         <div style="text-align:center; margin-bottom:30px;">
-          <a href="{png_path}" download 
+          <a download="MSI_cNP{cNPDB_id}{suffix}.png"
+             href="data:{mime};base64,{img_base64}"
              style="
                display:inline-block;
                padding:10px 20px;
@@ -234,8 +242,8 @@ def display_peptide_details(row: pd.Series):
                text-decoration:none;
                border-radius:8px;
                box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-             ">      
-            Download Peptide's MSI Image
+             ">
+            ⬇️ Download Peptide's MSI Image
           </a>
         </div>
         """
