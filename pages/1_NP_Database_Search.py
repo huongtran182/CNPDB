@@ -206,17 +206,22 @@ def display_peptide_details(row: pd.Series):
         ("MSI Tissue 2", "Assets/MSImaging"),
         ("MSI Tissue 3", "Assets/MSImaging"),
     ]:
-        tissue = disp(row.get(tissue_col))
+       raw_val = row.get(tissue_col)
+        print(f"🔍 Tissue column: {tissue_col} → raw value: {raw_val!r}")
+        
+        tissue = disp(raw_val)
+        print(f"🧪 After disp(): {tissue!r}")
+        
         if not tissue:
-            continue
-    
+            print(f"⏭️ Skipping {tissue_col} due to empty or NaN")
+            continue  # Skip if tissue info is missing
+
         suffix = "_" + tissue_col.split()[-1]
-        png_path = f"Assets/MSImaging/MSI cNP{cNPDB_id}{suffix}.png"
-    
-        print(f"Checking {png_path}")
+        png_path = f"Assets/MSImaging/MSI_cNP{cNPDB_id}{suffix}.png"
+        print(f"📁 Checking file: {png_path}")
+        
         if not os.path.exists(png_path):
             print(f"❌ File not found: {png_path}")
-            print(f"cNPDB_id: {cNPDB_id}, suffix: {suffix}")
             continue
             
         # Encode image as base64 for download
