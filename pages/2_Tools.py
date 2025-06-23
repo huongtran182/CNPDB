@@ -14,21 +14,38 @@ st.set_page_config(
 )
 
 render_sidebar()
+st.markdown(
+    """
+    <style>
+      
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
 st.markdown("""
-<style>
-.stDownloadButton>button {
-    background-color: #54278f !important;
-    color: white !important;
-    border: none;
-    border-radius: 0.5rem;
-    padding: 0.6rem 1.2rem;
-    font-weight: 600;
-    transition: background-color 0.2s ease;
-}
-.stDownloadButton>button:hover {
-    background-color: #3f007d !important;
-}
+    <style>
+    .stDownloadButton>button {
+        background-color: #54278f !important;
+        color: white !important;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.6rem 1.2rem;
+        font-weight: 600;
+        transition: background-color 0.2s ease;
+    },
+    .stDownloadButton>button:hover {
+        background-color: #3f007d !important;
+    },
+    /* Prevent horizontal scroll */
+    body, .main, .block-container {
+    overflow-x: hidden !important;
+    },
+    /* Limit max width of the entire interface */
+    .main-search-container {
+    max-width: 100vw;
+    overflow-x: hidden;
+    }      
 </style>
 """, unsafe_allow_html=True)
 
