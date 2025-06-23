@@ -284,6 +284,7 @@ def display_peptide_details(row: pd.Series):
          # Meta PDB file
         meta_pdb_file = f"Assets/3D Structure/3D Meta cNP{cNPDB_id}.pdb"
         if os.path.exists(meta_pdb_file):
+            st.markdown("<div style='margin-top:10px;'></div>", unsafe_allow_html=True)
             st.markdown(
                 "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>Meta-predicted 3D Structure</div>",
                 unsafe_allow_html=True
