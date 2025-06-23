@@ -211,7 +211,7 @@ def display_peptide_details(row: pd.Series):
             continue
     
         suffix = "_" + tissue_col.split()[-1]
-        png_path = f"{asset_folder}/MSI_cNP{cNPDB_id}{suffix}.png"  # remove spaces!
+        png_path = f"Assets/MSImaging/MSI cNP{cNPDB_id}{suffix}.png"
     
         if not os.path.exists(png_path):
             continue
@@ -225,7 +225,7 @@ def display_peptide_details(row: pd.Series):
         # Create block with image preview + downloadable base64 link
         block = f"""
         <div style="color:#6a51a3; font-size:16px; font-weight:bold; text-align:center; margin-bottom:5px;">
-          MS Imaging – {tissue}
+          Mass Spectrometry Imaging – {tissue}
         </div>
         <div style="border:2px dashed #6a51a3; padding:10px; margin-bottom:10px; text-align:center;">
           {img_html(png_path)}
