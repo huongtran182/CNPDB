@@ -206,7 +206,7 @@ def display_peptide_details(row: pd.Series):
         ("MSI Tissue 2", "Assets/MSImaging"),
         ("MSI Tissue 3", "Assets/MSImaging"),
     ]:
-       raw_val = row.get(tissue_col)
+        raw_val = row.get(tissue_col)
         print(f"🔍 Tissue column: {tissue_col} → raw value: {raw_val!r}")
         
         tissue = disp(raw_val)
