@@ -286,7 +286,7 @@ def display_peptide_details(row: pd.Series):
                        border-radius:8px;
                        box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
                      ">
-                    Download AlphaFold-predicted 3D Structure
+                    Download AlphaFold 3D Structure
                   </a>
                 </div>
                 """,
@@ -326,7 +326,7 @@ def display_peptide_details(row: pd.Series):
                        border-radius:6px;
                        box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
                      ">
-                    Download ESMfold-predicted 3D Structure
+                    Download ESMfold 3D Structure
                   </a>
                 </div>
                 """,
