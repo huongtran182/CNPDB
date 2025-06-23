@@ -206,17 +206,15 @@ def display_peptide_details(row: pd.Series):
         ("MSI Tissue 2", "Assets/MSImaging"),
         ("MSI Tissue 3", "Assets/MSImaging"),
     ]:
-
         tissue = disp(row.get(tissue_col))
         if not tissue:
-            continue
+            continue  # Skip if tissue info is missing
     
         suffix = " " + tissue_col.split()[-1]
-        png_path = f"asset_folder/MSI cNP{cNPDB_id}{suffix}.png"
-        
+        png_path = f"{asset_folder}/MSI cNP{cNPDB_id}{suffix}.png"
+    
         if not os.path.exists(png_path):
-            print(f"❌ File not found: {png_path}")
-            continue
+            continue  # Skip if image not foun
             
         # Encode image as base64 for download
         with open(png_path, "rb") as f:
