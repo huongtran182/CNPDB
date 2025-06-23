@@ -221,7 +221,8 @@ def display_peptide_details(row: pd.Series):
         </div>
         <div style="border:2px dashed #6a51a3; padding:10px; margin-bottom:20px; text-align:center;">
           {img_html(png_path)}
-          <br/>
+        </div>
+        <div style=
           <a href="{png_path}" download style="padding:10px 20px;
                        background-color:#6a51a3;
                        color:white;
