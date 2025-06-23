@@ -200,6 +200,7 @@ def display_peptide_details(row: pd.Series):
     """
      # — Prepare MSI HTML blocks —
     msi_blocks = []
+    asset_folder = "Assets/MSImaging"
     for tissue_col, asset_folder in [
         ("MSI Tissue 1", "Assets/MSImaging"),
         ("MSI Tissue 2", "Assets/MSImaging"),
