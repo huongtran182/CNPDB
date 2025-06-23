@@ -291,7 +291,7 @@ with col_param[4]:
 
 # Run Alignment Button
 button_disabled = not st.session_state.query_seq or (not st.session_state.use_database and not st.session_state.target_seq)
-col1, col2, col3 = st.columns([1.6, 1, 1])
+col1, col2, col3 = st.columns([1.7, 1, 1])
 with col2:
     run_clicked = st.button("Run Alignment", type="primary")
 
