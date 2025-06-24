@@ -179,6 +179,16 @@ papers = [
         "link": "https://pubs.acs.org/doi/full/10.1021/acs.jproteome.3c00758"
     },
     {
+        "img": "Assets/Publication_TOC/Quantitative MS.png",
+        "title": "Quantitative neuropeptide analysis by mass spectrometry: advancing methodologies for biological discovery",
+        "summary": (
+            "This review evaluates state-of-the-art quantitative mass spectrometry (MS)-based peptidomics, emphasizing their "
+            "impact on neuropeptide analysis. We highlight how strategies in label-free and label-based quantitation, tandem MS "
+            "acquisition, and MSI provide unprecedented sensitivity and throughput for capturing the landscape of neuropeptides and their PTMs."
+        ),
+        "link": "https://pubs.rsc.org/en/content/articlelanding/2025/cb/d5cb00082c"
+    },
+    {
         "img": "Assets/Publication_TOC/AcuteCocaine.jpeg",
         "title": "Cocaine-Induced Remodeling of the Rat Brain Peptidome: Quantitative MS Reveals Anatomically Specific Patterns of Cocaine-Regulated Peptide Changes",
         "summary": (
