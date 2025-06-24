@@ -99,7 +99,7 @@ def show_structure_pdb(pdb_path, width=350, height=250):
         'colorfunc': 'b',
         'colorscheme': {
             'prop': 'b',
-            'gradient': 'blueRed',
+            'gradient': 'roygb',
             'min': 0,
             'max': 100
         }
