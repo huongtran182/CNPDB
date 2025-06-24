@@ -268,6 +268,16 @@ papers = [
         ),
         "link": "https://www.nature.com/articles/s41586-024-07487-w",
     },
+    {
+        "img": os.path.join("Assets", "Publication_TOC", "ESMFold.jpg"),
+        "title": "ESMFold",
+        "summary": (
+            "Fast, end-to-end protein structure prediction model developed by Meta AI, based on large-scale transformer language models trained on protein sequences."
+            "ESMFold predicts 3D structures directly from single sequences, making it significantly faster and suitable for large-scale or real-time applications "
+            "with limited evolutionary data."
+        ),
+        "link": "https://www.science.org/doi/abs/10.1126/science.ade2574",
+    },
    ]
 
 # create three equal columns
