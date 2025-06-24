@@ -94,7 +94,7 @@ form button:hover {
 
   <!-- Centered primary-style submit button -->
   <div style="text-align:center;">
-    <button type="submit" style="padding:10px 20px; background-color:#007BFF; color:white; border:none; border-radius:5px; cursor:pointer;">
+    <button type="submit" style="padding:10px 20px; type="primary";">
       Submit
     </button>
   </div>
