@@ -1,4 +1,6 @@
-![CNPD Logo](https://raw.githubusercontent.com/huongtran182/CNPD/main/Assets/Img/CNPD_Banner.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/huongtran182/CNPD/main/Assets/Img/CNPD_Banner.png" alt="CNPD Logo" width="100%" />
+</p>
 
 ## Welcome to cNPDB: The Crustacean Neuropeptide Database
 
@@ -58,8 +60,8 @@ As genomic and experimental data become available for more crustacean species, n
 
 Stay updated on the latest cNPDB developments by following us on our social media:
 
-- X and Bluesky: @LiResearch
-- Facebook and LinkedIn: Lingjun Li Lab
+- [**X**](https://x.com/LiResearch) and [**BlueSky**](https://bsky.app/profile/liresearch.bsky.social): @LiResearch
+- [**Facebook**](https://www.facebook.com/profile.php?id=100057624782828) and [**LinkedIn**](https://www.linkedin.com/company/lingjun-li-lab): Lingjun Li Lab
 
 ## CITATION AND FUNDING
 If you use cNPDB in your research, please cite:
