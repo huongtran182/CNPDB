@@ -112,7 +112,7 @@ st.markdown("""
     </p>
   </div>
 
-  <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+  <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
     <input type="hidden" name="access_key" value="4a443824-a2fc-40d1-a217-3334f40cabc9" />
     <input type="hidden" name="subject" value="New Contact Form Submission from Web3Forms" />
     <input type="hidden" name="from_name" value="My Website" />
@@ -139,14 +139,6 @@ st.markdown("""
   </form>
 </section>
 """, unsafe_allow_html=True)
-
-# ─── Footer ───────────────────────────────────────────────────────────────
-st.markdown("""
-<div style="text-align: center; font-size: 14px; color: #2a2541;">
-  <em>Last update: Jul 2025</em>
-</div>
-""", unsafe_allow_html=True)
-
 
 
 # ─── Footer ───────────────────────────────────────────────────────────────
