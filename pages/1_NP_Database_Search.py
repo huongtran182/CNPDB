@@ -71,7 +71,16 @@ def show_structure_cif(cif_path, width=350, height=250):
     # set up the viewer
     view = py3Dmol.view(width=width, height=height)
     view.addModel(cif_data, 'cif')
-    view.setStyle({'cartoon': {'color':'spectrum'}})
+    # Set cartoon style using B-factor as color (pLDDT scores)
+    view.setStyle({'cartoon': {
+        'colorfunc': 'b',
+        'colorscheme': {
+            'prop': 'b',
+            'gradient': 'roygb',
+            'min': 0,
+            'max': 100
+        }
+    }})
     view.zoomTo()
     # embed it
     html = view._make_html()
@@ -85,7 +94,16 @@ def show_structure_pdb(pdb_path, width=350, height=250):
     # Set up the 3Dmol viewer
     view = py3Dmol.view(width=width, height=height)
     view.addModel(pdb_data, 'pdb')  # specify it's a PDB model
-    view.setStyle({'cartoon': {'color': 'spectrum'}})
+    # Use B-factor for coloring if it stores pLDDT (AlphaFold-style)
+    view.setStyle({'cartoon': {
+        'colorfunc': 'b',
+        'colorscheme': {
+            'prop': 'b',
+            'gradient': 'roygb',
+            'min': 0,
+            'max': 100
+        }
+    }})
     view.zoomTo()
     
     # Render the HTML and display it in Streamlit
