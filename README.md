@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/huongtran182/CNPD/main/Assets/Img/CNPD_Banner.png" alt="CNPD Logo" width="100%" />
+  <img src="https://raw.githubusercontent.com/huongtran182/CNPD/main/Assets/Img/cNPDB_Banner.png" alt="cNPDB Logo" width="100%" />
 </p>
 
 ## Welcome to cNPDB: The Crustacean Neuropeptide Database
