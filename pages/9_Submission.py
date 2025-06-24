@@ -1,22 +1,5 @@
 import streamlit as st
-from PIL import Image
 import os
-import base64
-from sidebar import render_sidebar
-
-st.set_page_config(
-    page_title="Contact Us",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
-render_sidebar()
-
-# ─── Feedback form ────────────────────────────────────────────────────────
-import streamlit as st
-from PIL import Image
-import os
-import base64
 from sidebar import render_sidebar
 
 st.set_page_config(
@@ -112,10 +95,11 @@ st.markdown("""
     </p>
   </div>
 
-  <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+  <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="access_key" value="4a443824-a2fc-40d1-a217-3334f40cabc9" />
     <input type="hidden" name="subject" value="New Contact Form Submission from Web3Forms" />
     <input type="hidden" name="from_name" value="My Website" />
+    <input type="hidden" name="template" value="box" />
 
     <div class="form-group-container">
       <div class="form-group">
