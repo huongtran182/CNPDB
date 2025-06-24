@@ -195,6 +195,16 @@ papers = [
         "link": "https://pubs.acs.org/doi/10.1021/jasms.4c00192",
     },
     {
+        "img": os.path.join("Assets", "Publication_TOC", "Crustacean DIA dataset.jpg"),
+        "title": "Crustacean DIA Spectral Library",
+        "summary": (
+            "With spectral libraries serving as a means to interpret DIA-MS output spectra, "
+            "and Cancer borealis as a model of choice for neuropeptide analysis, we performed the first spectral library mapping of crustacean neuropeptides. "
+            "The library is comprised of 333 unique neuropeptides."
+        ),
+        "link": "https://analyticalsciencejournals.onlinelibrary.wiley.com/doi/10.1002/pmic.202300285",
+    },
+    {
         "img": os.path.join("Assets", "Publication_TOC", "HyPep.jpeg"),
         "title": "HyPep",
         "summary": (
