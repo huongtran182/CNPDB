@@ -101,7 +101,7 @@ st.markdown("""
 If you use cNPDB in your research, please cite: 
 
 <div style="margin-left: 1cm;">
-    cNPDB: A Comprehensive Empirical Neuropeptide Database. Tran, V.N.H.; Duong, T.U.; Fields, L.; Beaver, M.; Tourlouskis, K.; and Li, L. <b>Nucleic Acids Research</b>. 2025.
+    cNPDB: A Comprehensive Empirical Neuropeptide Database. Tran, V.N.H.; Duong, T.U.; Fields, L.; Tourlouskis, K.; Beaver, M.; and Li, L. <b>Nucleic Acids Research</b>. 2025.
 </div>
 
 <br>
