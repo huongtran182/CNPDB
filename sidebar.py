@@ -162,6 +162,7 @@ def render_sidebar():
             st.page_link("pages/6_Glossary.py", label="Glossary"),
             st.page_link("pages/7_FAQ.py", label="Frequently Asked Questions"),
             st.page_link("pages/8_Contact_Us.py", label="Contact Us"),
+            st.page_link("pages/8_Contact_Us.py", label="Submission"),
         ]
         st.markdown('</div>', unsafe_allow_html=True)
 
