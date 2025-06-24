@@ -92,7 +92,12 @@ form button:hover {
   <label for="attachment">Attach a file (optional)</label><br>
   <input type="file" name="attachment"><br><br>
 
-  <button type="submit" style="padding:5px 5px; type="primary"">Submit</button>
+  <!-- Centered primary-style submit button -->
+  <div style="text-align:center;">
+    <button type="submit" style="padding:10px 20px; background-color:#007BFF; color:white; border:none; border-radius:5px; cursor:pointer;">
+      Submit
+    </button>
+  </div>
 </form>
 """, unsafe_allow_html=True)
 
