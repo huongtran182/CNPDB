@@ -13,7 +13,7 @@ st.set_page_config(
 render_sidebar()
 
 # ─── Feedback form ────────────────────────────────────────────────────────
-st.markdown("### FEEDBACK FORM")
+st.markdown("### SUBMISSION FORM")
 
 st.markdown("""
 <style>
@@ -69,13 +69,13 @@ form button:hover {
   <label for="email">Email Address *</label><br>
   <input type="email" name="email" required style="width:100%; padding:5px;"><br><br>
 
-  <label for="message">Your Feedback/Message *</label><br>
+  <label for="message">Your Message/Feedback *</label><br>
   <textarea name="message" required rows="6" style="width:100%; padding:5px;"></textarea><br><br>
 
   <label for="attachment">Attach a file (optional)</label><br>
   <input type="file" name="attachment"><br><br>
 
-  <button type="submit" style="padding:5px 5px;">Submit Feedback</button>
+  <button type="submit" style="padding:5px 5px;">Submit</button>
 </form>
 """, unsafe_allow_html=True)
 
