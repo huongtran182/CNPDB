@@ -101,25 +101,25 @@ st.markdown("""
     <input type="hidden" name="from_name" value="My Website" />
     <input type="hidden" name="template" value="box" />
 
-    <div class="form-group-container">
-      <div class="form-group">
-        <label for="name" class="form-label">Name*</label>
-        <input id="name" name="name" class="form-input" placeholder="Your name" type="text" required />
-      </div>
-      <div class="form-group">
-        <label for="email" class="form-label">Email*</label>
-        <input id="email" name="email" class="form-input" placeholder="Your email" type="email" required />
-      </div>
-      <div class="form-group">
-        <label for="phone" class="form-label">Institution/Organization</label>
-        <input id="phone" name="phone" class="form-input" placeholder="+1 (234) 56789" type="text" />
-      </div>
-      <div class="form-group">
-        <label for="message" class="form-label">Message*</label>
-        <textarea class="form-textarea" id="message" name="message" placeholder="Your message" required></textarea>
-      </div>
-    </div>
-    <button class="form-submit" type="submit">SUBMIT</button>
+    <label for="name">Full Name *</label><br>
+    <input type="text" name="name" required style="width:100%; padding:5px;"><br><br>
+
+    <label for="title">Title/Position (optional)</label><br>
+    <input type="text" name="title" style="width:100%; padding:5px;"><br><br>
+    
+    <label for="institution">Institution/Organization *</label><br>
+    <input type="text" name="institution" required style="width:100%; padding:5px;"><br><br>
+    
+    <label for="email">Email Address *</label><br>
+    <input type="email" name="email" required style="width:100%; padding:5px;"><br><br>
+    
+    <label for="message">Your Message/Feedback *</label><br>
+    <textarea name="message" required rows="6" style="width:100%; padding:5px;"></textarea><br><br>
+    
+    <label for="attachment">Attach a file (optional)</label><br>
+    <input type="file" name="attachment"><br>
+    
+    <button type="submit" style="padding:5px 5px; type="primary"">Submit</button>
   </form>
 </section>
 """, unsafe_allow_html=True)
