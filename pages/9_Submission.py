@@ -13,78 +13,119 @@ st.set_page_config(
 render_sidebar()
 
 # ─── Feedback form ────────────────────────────────────────────────────────
-st.markdown(f"""
 <style>
- /* 1) Centered title with10px top margin */
-  h2.custom-title {{
-    text-align: center !important;
-    margin-top: 0px !important;
-    color: #29004c;
-  }}
-  form label {{
-      display: block;
-      margin-top: 0px;
-      margin-bottom: 0px;
-      font-weight: bold;
-  }}
-  form input[type="text"],
-  form input[type="email"],
-  form textarea {{
-      width: 100%;
-      padding: 0px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      margin-bottom: 0px; 
-  }}
-  form input[type="file"] {{
-      margin-top: 3px;
-  }}
-  form button {{
-      margin-top: 0px;
-      background-color: #9e9ac8;
-      color: #000000;
-      padding: 2px 4px;
-      border-radius: 5px;
-      font-size: 1.2em;
-      cursor: pointer;
-  }}
-  form button:hover {{
-      background-color: #6a51a3;
-  }}
+.contact-section {
+  width: 100%;
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 3rem 1rem;
+}
+
+.contact-intro > * + * {
+  margin-top: 1rem;
+}
+
+.contact-title {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+}
+
+.contact-description {
+  color: rgb(107 114 128);
+}
+
+.form-group-container {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  margin-bottom: 0.5rem;
+}
+
+.form-input,
+.form-textarea {
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.form-input::placeholder,
+.form-textarea:focus-visible {
+  color: #6b7280;
+}
+
+.form-input:focus-visible,
+.form-textarea:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.form-textarea {
+  min-height: 120px;
+}
+
+.form-submit {
+  width: 100%;
+  margin-top: 1.2rem;
+  background-color: #3124ca;
+  color: #fff;
+  padding: 13px 5px;
+  border-radius: 0.375rem;
+}
 </style>
 
 
-<h2 class="custom-title">SUBMISSION FORM</h2>
+<section class="contact-section">
+  <div class="contact-intro">
+    <h2 class="contact-title">Get in Touch</h2>
+    <p class="contact-description">
+      Fill out the form below and we'll get back to you as soon as possible.
+    </p>
+  </div>
 
-<form action="https://api.web3forms.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="4a443824-a2fc-40d1-a217-3334f40cabc9">
-    
-      <label for="name">Full Name *</label><br>
-      <input type="text" name="name" required><br>
-    
-      <label for="title">Title/Position (optional)</label><br>
-      <input type="text" name="title"><br>
-    
-      <label for="institution">Institution/Organization *</label><br>
-      <input type="text" name="institution" required><br>
-    
-      <label for="email">Email Address *</label><br>
-      <input type="email" name="email" required><br>
-    
-      <label for="message">Your Message/Feedback *</label><br>
-      <textarea name="message" required rows="6"></textarea><br>
-    
-      <label for="attachment">Attach a file (optional)</label><br>
-      <input type="file" name="attachment"><br>
+  <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
 
-      <!-- Honeypot Spam Protection -->
-      <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-    
-      <div style="text-align:center;">
-        <button type="submit" style="padding:10px 20px;">Submit</button>
+    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+    <input type="hidden" name="subject" value="New Contact Form Submission from Web3Forms" />
+    <input type="hidden" name="from_name" value="My Website" />
+    <!-- More custom ization options available in the docs: https://docs.web3forms.com -->
+
+    <div class="form-group-container">
+      <div class="form-group">
+        <label for="name" class="form-label">Name</label>
+        <input id="name" name="name" class="form-input" placeholder="Your name" type="text" />
       </div>
-</form>
-""", unsafe_allow_html=True)
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input id="email" name="email" class="form-input" placeholder="Your email" type="email" />
+      </div>
+      <div class="form-group">
+        <label for="phone" class="form-label">Phone</label>
+        <input id="phone" name="phone" class="form-input" placeholder="+1 (234) 56789" type="text" />
+      </div>
+      <div class="form-group">
+        <label for="message" class="form-label">Message</label>
+        <textarea class="form-textarea" id="message" name="message" placeholder="Your message"></textarea>
+      </div>
+    </div>
+    <button class="form-submit" type="submit">Send Message</button>
+  </form>
+
+</section>
 
 
 # ─── Footer ───────────────────────────────────────────────────────────────
