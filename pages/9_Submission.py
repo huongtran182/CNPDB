@@ -1,5 +1,4 @@
 import streamlit as st
-import os
 from sidebar import render_sidebar
 
 st.set_page_config(
@@ -13,117 +12,86 @@ render_sidebar()
 # ─── Feedback form ────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-.contact-section {
-  width: 100%;
-  max-width: 40rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 3rem 1rem;
+ /* 1) Centered title with10px top margin */
+  h2.custom-title {
+    text-align: center !important;
+    margin-top: 0px !important;
+    color: #29004c;
+  }
+</style>
+""", unsafe_allow_html=True)
+
+# --- Centered, spaced title ---
+st.markdown(
+    '<h2 class="custom-title">'
+    'SUBMISSION FORM'
+    '</h2>',
+    unsafe_allow_html=True
+)
+
+st.markdown("""
+<style>
+/* Add spacing between fields */
+form label {
+    display: block;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: bold;
 }
 
-.contact-intro > * + * {
-  margin-top: 1rem;
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: 100%;
+    padding: 0px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 0px; 
 }
 
-.contact-title {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-  font-weight: 700;
+/* File upload spacing */
+form input[type="file"] {
+    margin-top: 3px;
 }
 
-.contact-description {
-  color: rgb(107 114 128);
+/* Submit button styling */
+form button {
+    margin-top: 0px;
+    background-color: #9e9ac8; /* purple */
+    color: #000000;
+    padding: 2px 4px;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
 }
 
-.form-group-container {
-  display: grid;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-label {
-  margin-bottom: 0.5rem;
-}
-
-.form-input,
-.form-textarea {
-  padding: 0.5rem;
-  border: 1px solid #e5e7eb;
-  display: flex;
-  height: 2.5rem;
-  width: 100%;
-  border-radius: 0.375rem;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-.form-input::placeholder,
-.form-textarea:focus-visible {
-  color: #6b7280;
-}
-
-.form-input:focus-visible,
-.form-textarea:focus-visible {
-  outline: 2px solid #2563eb;
-  outline-offset: 2px;
-}
-
-.form-textarea {
-  min-height: 120px;
-}
-
-.form-submit {
-  width: 100%;
-  margin-top: 1.2rem;
-  background-color: #3124ca;
-  color: #fff;
-  padding: 13px 5px;
-  border-radius: 0.375rem;
+form button:hover {
+    background-color: #6a51a3;
 }
 </style>
 
-<section class="contact-section">
-  <div class="contact-intro">
-    <h2 class="contact-title">SUBMISSION FORM</h2>
-    <p class="contact-description">
-      Fill out the form below and we'll get back to you as soon as possible.
-    </p>
-  </div>
+<form action="https://formsubmit.co/vtran23@wisc.edu" method="POST" enctype="multipart/form-data">
+  <label for="name">Full Name *</label><br>
+  <input type="text" name="name" required style="width:100%; padding:5px;"><br><br>
 
-  <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="access_key" value="4a443824-a2fc-40d1-a217-3334f40cabc9" />
-    <input type="hidden" name="subject" value="New Contact Form Submission from Web3Forms" />
-    <input type="hidden" name="from_name" value="My Website" />
-    <input type="hidden" name="template" value="box" />
+  <label for="title">Title/Position (optional)</label><br>
+  <input type="text" name="title" style="width:100%; padding:5px;"><br><br>
 
-    <label for="name">Full Name *</label><br>
-    <input type="text" name="name" required style="width:100%; padding:5px;"><br><br>
+  <label for="institution">Institution/Organization *</label><br>
+  <input type="text" name="institution" required style="width:100%; padding:5px;"><br><br>
 
-    <label for="title">Title/Position (optional)</label><br>
-    <input type="text" name="title" style="width:100%; padding:5px;"><br><br>
-    
-    <label for="institution">Institution/Organization *</label><br>
-    <input type="text" name="institution" required style="width:100%; padding:5px;"><br><br>
-    
-    <label for="email">Email Address *</label><br>
-    <input type="email" name="email" required style="width:100%; padding:5px;"><br><br>
-    
-    <label for="message">Your Message/Feedback *</label><br>
-    <textarea name="message" required rows="6" style="width:100%; padding:5px;"></textarea><br><br>
-    
-    <label for="attachment">Attach a file (optional)</label><br>
-    <input type="file" name="attachment"><br>
-    
-    <button type="submit" style="padding:5px 5px; type="primary"">Submit</button>
-  </form>
-</section>
+  <label for="email">Email Address *</label><br>
+  <input type="email" name="email" required style="width:100%; padding:5px;"><br><br>
+
+  <label for="message">Your Message/Feedback *</label><br>
+  <textarea name="message" required rows="6" style="width:100%; padding:5px;"></textarea><br><br>
+
+  <label for="attachment">Attach a file (optional)</label><br>
+  <input type="file" name="attachment"><br><br>
+
+  <button type="submit" style="padding:5px 5px; type="primary"">Submit</button>
+</form>
 """, unsafe_allow_html=True)
-
 
 # ─── Footer ───────────────────────────────────────────────────────────────
 st.markdown("""
