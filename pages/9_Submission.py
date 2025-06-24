@@ -13,6 +13,22 @@ st.set_page_config(
 render_sidebar()
 
 # ─── Feedback form ────────────────────────────────────────────────────────
+import streamlit as st
+from PIL import Image
+import os
+import base64
+from sidebar import render_sidebar
+
+st.set_page_config(
+    page_title="Contact Us",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+render_sidebar()
+
+# ─── Feedback form ────────────────────────────────────────────────────────
+st.markdown("""
 <style>
 .contact-section {
   width: 100%;
@@ -88,44 +104,49 @@ render_sidebar()
 }
 </style>
 
-
 <section class="contact-section">
   <div class="contact-intro">
-    <h2 class="contact-title">Get in Touch</h2>
+    <h2 class="contact-title">SUBMISSION FORM</h2>
     <p class="contact-description">
       Fill out the form below and we'll get back to you as soon as possible.
     </p>
   </div>
 
-  <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-
+  <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="access_key" value="4a443824-a2fc-40d1-a217-3334f40cabc9" />
     <input type="hidden" name="subject" value="New Contact Form Submission from Web3Forms" />
     <input type="hidden" name="from_name" value="My Website" />
-    <!-- More custom ization options available in the docs: https://docs.web3forms.com -->
 
     <div class="form-group-container">
       <div class="form-group">
-        <label for="name" class="form-label">Name</label>
-        <input id="name" name="name" class="form-input" placeholder="Your name" type="text" />
+        <label for="name" class="form-label">Name*</label>
+        <input id="name" name="name" class="form-input" placeholder="Your name" type="text" required />
       </div>
       <div class="form-group">
-        <label for="email" class="form-label">Email</label>
-        <input id="email" name="email" class="form-input" placeholder="Your email" type="email" />
+        <label for="email" class="form-label">Email*</label>
+        <input id="email" name="email" class="form-input" placeholder="Your email" type="email" required />
       </div>
       <div class="form-group">
-        <label for="phone" class="form-label">Phone</label>
+        <label for="phone" class="form-label">Institution/Organization</label>
         <input id="phone" name="phone" class="form-input" placeholder="+1 (234) 56789" type="text" />
       </div>
       <div class="form-group">
-        <label for="message" class="form-label">Message</label>
-        <textarea class="form-textarea" id="message" name="message" placeholder="Your message"></textarea>
+        <label for="message" class="form-label">Message*</label>
+        <textarea class="form-textarea" id="message" name="message" placeholder="Your message" required></textarea>
       </div>
     </div>
-    <button class="form-submit" type="submit">Send Message</button>
+    <button class="form-submit" type="submit">SUBMIT</button>
   </form>
-
 </section>
+""", unsafe_allow_html=True)
+
+# ─── Footer ───────────────────────────────────────────────────────────────
+st.markdown("""
+<div style="text-align: center; font-size: 14px; color: #2a2541;">
+  <em>Last update: Jul 2025</em>
+</div>
+""", unsafe_allow_html=True)
+
 
 
 # ─── Footer ───────────────────────────────────────────────────────────────
