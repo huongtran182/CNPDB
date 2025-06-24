@@ -269,7 +269,7 @@ papers = [
         "link": "https://www.nature.com/articles/s41586-024-07487-w",
     },
     {
-        "img": os.path.join("Assets", "Publication_TOC", "ESMFold.jpg"),
+        "img": os.path.join("Assets", "Publication_TOC", "ESMFold.png"),
         "title": "ESMFold",
         "summary": (
             "Fast, end-to-end protein structure prediction model developed by Meta AI, based on large-scale transformer language models trained on protein sequences."
