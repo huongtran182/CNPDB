@@ -97,7 +97,7 @@ image_path = os.path.join("Assets", "Statistics", "Peptide Property Violin.png")
 if os.path.exists(image_path):
     st.markdown(f"""
         <div style="margin: 0 auto; text-align: center;">
-            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: auto; height: 500px;" />
+            <img src="data:image/png;base64,{base64.b64encode(open(image_path, "rb").read()).decode()}" style="width: auto; height: 600px;" />
         </div>
     """, unsafe_allow_html=True)
 else:
