@@ -53,32 +53,36 @@ st.markdown(f"""
   }}
 </style>
 
+
 <h2 class="custom-title">SUBMISSION FORM</h2>
 
-<form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
-  <input type="hidden" name="access_key" value="4a443824-a2fc-40d1-a217-3334f40cabc9" />
+<form action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="4a443824-a2fc-40d1-a217-3334f40cabc9">
+    
+      <label for="name">Full Name *</label><br>
+      <input type="text" name="name" required><br>
+    
+      <label for="title">Title/Position (optional)</label><br>
+      <input type="text" name="title"><br>
+    
+      <label for="institution">Institution/Organization *</label><br>
+      <input type="text" name="institution" required><br>
+    
+      <label for="email">Email Address *</label><br>
+      <input type="email" name="email" required><br>
+    
+      <label for="message">Your Message/Feedback *</label><br>
+      <textarea name="message" required rows="6"></textarea><br>
+    
+      <label for="attachment">Attach a file (optional)</label><br>
+      <input type="file" name="attachment"><br>
 
-  <label for="name">Full Name *</label><br>
-  <input type="text" name="name" required><br><br>
-
-  <label for="title">Title/Position (optional)</label><br>
-  <input type="text" name="title"><br><br>
-
-  <label for="institution">Institution/Organization *</label><br>
-  <input type="text" name="institution" required><br><br>
-
-  <label for="email">Email Address *</label><br>
-  <input type="email" name="email" required><br><br>
-
-  <label for="message">Your Message/Feedback *</label><br>
-  <textarea name="message" required rows="6"></textarea><br><br>
-
-  <label for="attachment">Attach a file (optional)</label><br>
-  <input type="file" name="attachment"><br><br>
-
-  <div style="text-align:center;">
-    <button type="submit" style="padding:10px 20px;">Submit</button>
-  </div>
+      <!-- Honeypot Spam Protection -->
+      <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+    
+      <div style="text-align:center;">
+        <button type="submit" style="padding:10px 20px;">Submit</button>
+      </div>
 </form>
 """, unsafe_allow_html=True)
 
