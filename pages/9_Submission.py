@@ -13,7 +13,24 @@ st.set_page_config(
 render_sidebar()
 
 # ─── Feedback form ────────────────────────────────────────────────────────
-st.markdown("### SUBMISSION FORM")
+st.markdown("""
+<style>
+ /* 1) Centered title with10px top margin */
+  h2.custom-title {
+    text-align: center !important;
+    margin-top: 0px !important;
+    color: #29004c;
+  }
+</style>
+""", unsafe_allow_html=True)
+
+# --- Centered, spaced title ---
+st.markdown(
+    '<h2 class="custom-title">'
+    'SUBMISSION FORM'
+    '</h2>',
+    unsafe_allow_html=True
+)
 
 st.markdown("""
 <style>
