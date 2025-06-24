@@ -86,32 +86,10 @@ def show_structure_cif(cif_path, width=350, height=250):
     html = view._make_html()
     components.html(html, height=height)
 
-def scale_bfactor(pdb_data):
-    """
-    Scale B-factors from 0–1 to 0–100 in a PDB string.
-    """
-    lines = pdb_data.splitlines()
-    new_lines = []
-    for line in lines:
-        if line.startswith("ATOM") or line.startswith("HETATM"):
-            try:
-                bfactor = float(line[60:66])
-                if 0 <= bfactor <= 1:
-                    # Scale and reformat to fixed-width
-                    scaled = f"{bfactor * 100:6.2f}"
-                    line = line[:60] + scaled + line[66:]
-            except ValueError:
-                pass  # keep original if conversion fails
-        new_lines.append(line)
-    return "\n".join(new_lines)
-
 def show_structure_pdb(pdb_path, width=350, height=250):
     # Load the PDB file
     with open(pdb_path, 'r') as f:
         pdb_data = f.read()
-
-    # Scale B-factors if needed
-    pdb_data = scale_bfactor(pdb_data)
     
     # Set up the 3Dmol viewer
     view = py3Dmol.view(width=width, height=height)
@@ -123,7 +101,7 @@ def show_structure_pdb(pdb_path, width=350, height=250):
             'prop': 'b',
             'gradient': 'roygb',
             'min': 0,
-            'max': 100
+            'max': 1
         }
     }})
     view.zoomTo()
