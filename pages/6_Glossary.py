@@ -133,7 +133,6 @@ species = [
     ("Cpa", "<i>Cancer pagurus</i> – Rock crab"),
     ("Cpag", "<i>Cancer pagarus</i> – Edible crab or Brown crab"),
     ("Cpro", "<i>Cancer productus</i> – Red rock crab"),
-    ("Cqua", "<i>Cherax quadricarinatus</i> – Australian crayfish"),
     ("Csap", "<i>Callinectes sapidus</i> – Blue crab"),
     ("Dpu", "<i>Daphnia pulex</i> – Common water flea"),
     ("Eur", "<i>Eurydice</i> – Sand burrowing isopods"),
