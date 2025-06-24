@@ -72,7 +72,7 @@ cNPDB: A Comprehensive Empirical Neuropeptide Database. Tran, V.N.H.; Duong, T.U
 
 For other tools developed by the Li Lab, please visit [**www.lilabs.org/resources**](https://www.lilabs.org/resources).
 
-##COPYRIGHTS
+## COPYRIGHTS
 Copyright 2025 Department of Pharmaceutical Sciences, University of Wisconsin-Madison, **All Rights Reserved**
 
 *Last update: Jul 2025*
