@@ -320,7 +320,7 @@ def display_peptide_details(row: pd.Series):
                 unsafe_allow_html=True
             )
         else:
-            st.write("No CIF found at", cif_file)
+            st.write("No AlphaFold-predicted 3D structure are available for this peptide")
 
          # Meta PDB file
         meta_pdb_file = f"Assets/3D Structure/3D Meta cNP{cNPDB_id}.pdb"
@@ -360,7 +360,7 @@ def display_peptide_details(row: pd.Series):
                 unsafe_allow_html=True
             )
         else:
-            st.write("No Meta PDB found at", meta_pdb_file)
+            st.write("No ESMFold-predicted 3D structure are available for this peptide")
 
     with col_msi:
         for block in msi_blocks:
