@@ -28,6 +28,21 @@ Despite their significance, crustacean neuropeptides remain underrepresented in 
 
 """)
 
+# Load Home page image and convert to base64
+image_path = os.path.join("Assets", "Img", "Home page.png")
+if os.path.exists(image_path):
+    with open(image_path, "rb") as img_file:
+        img_bytes = img_file.read()
+        img_b64 = base64.b64encode(img_bytes).decode()
+
+    st.markdown(f"""
+        <div style="margin: 0 auto; text-align: center;">
+            <img src="data:image/png;base64,{img_b64}" style="width: auto; max-height: 500px;" />
+        </div>
+    """, unsafe_allow_html=True)
+else:
+    st.error(f"Image not found at {image_path}")
+    
 st.markdown("""
 ### TOOLS & FEATURES
 The current release of cNPDB (Version 1.0, 2025) contains **1239** curated neuropeptide entries from **28** crustacean species, organized into **46** neuropeptide families. Some representative species include *Homarus americanus*  (American Lobster), *Callinectes sapidus*  (Blue Crab), *Cancer borealis*  (Jonah Crab), *Carcinus maenas*  (European green crab), and *Panulirus interruptus*  (California spiny lobster). cNPDB offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
@@ -48,21 +63,6 @@ Each cNPDB search entry provides:
 
 For detailed instructions on how to navigate cNPDB, please refer to the “Tutorials” page from the left sidebar. 
 """)
-
-# Load Home page image and convert to base64
-image_path = os.path.join("Assets", "Img", "Home page.png")
-if os.path.exists(image_path):
-    with open(image_path, "rb") as img_file:
-        img_bytes = img_file.read()
-        img_b64 = base64.b64encode(img_bytes).decode()
-
-    st.markdown(f"""
-        <div style="margin: 0 auto; text-align: center;">
-            <img src="data:image/png;base64,{img_b64}" style="width: auto; max-height: 500px;" />
-        </div>
-    """, unsafe_allow_html=True)
-else:
-    st.error(f"Image not found at {image_path}")
 
 st.markdown("""
 ### DATABASE SOURCES AND CURATION
