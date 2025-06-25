@@ -31,9 +31,9 @@ def render_sidebar():
         align-items:center !important;
         justify-content:flex-start !important;
 
-        min-width: 320px !important;  
-        max-width: 320px !important;
-        width: 320px !important;
+        min-width: 350px !important;  
+        max-width: 350px !important;
+        width: 350px !important;
         }
 
         /* Fixes ghost search bar and mobile collapse weirdness */
