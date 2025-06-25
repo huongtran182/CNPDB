@@ -229,16 +229,16 @@ def display_peptide_details(row: pd.Series):
             continue  # Skip if tissue info is missing
     
         suffix = " " + tissue_col.split()[-1]
-        png_path = f"{asset_folder}/MSI cNP{cNPDB_id}{suffix}.png"
+        jpeg_path = f"{asset_folder}/MSI cNP{cNPDB_id}{suffix}.jpeg"
     
-        if not os.path.exists(png_path):
+        if not os.path.exists(jpeg_path):
             continue  # Skip if image not found
             
         # Encode image as base64 for download
-        with open(png_path, "rb") as f:
+        with open(jpeg_path, "rb") as f:
             img_bytes = f.read()
             img_base64 = base64.b64encode(img_bytes).decode()
-            mime = mimetypes.guess_type(png_path)[0] or "image/png"
+            mime = mimetypes.guess_type(jpeg_path)[0] or "image/jpeg"
     
         # Create block with image preview + downloadable base64 link
         block = f"""
@@ -246,10 +246,10 @@ def display_peptide_details(row: pd.Series):
           Mass Spectrometry Imaging – {tissue}
         </div>
         <div style="border:2px dashed #6a51a3; padding:10px; margin-bottom:10px; text-align:center;">
-          {img_html(png_path)}
+          {img_html(jpeg_path)}
         </div>
         <div style="text-align:center; margin-bottom:30px;">
-          <a download="MSI cNP{cNPDB_id}{suffix}.png"
+          <a download="MSI cNP{cNPDB_id}{suffix}.jpeg"
              href="data:{mime};base64,{img_base64}"
              style="
                display:inline-block;
@@ -813,7 +813,7 @@ with col4:
                         ("MSI Tissue 3", "Assets/MSImaging"),
                     ]:
                         suffix = " " + tissue_col.split()[-1]
-                        msi_path = f"{asset_folder}/MSI cNP{cnp_id}{suffix}.png"
+                        msi_path = f"{asset_folder}/MSI cNP{cnp_id}{suffix}.jpeg"
                         if os.path.exists(msi_path):
                             zipf.write(msi_path, arcname=f"MSI_Images/{os.path.basename(msi_path)}")
 
