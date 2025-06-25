@@ -651,7 +651,12 @@ if apply_slider_filters:
         df_filtered['Aliphatic Index'].between(*aliphatic_index_value) &
         df_filtered['Boman Index'].between(*boman_index_value)
     ]
-
+    
+if df_filtered.empty:
+    st.warning("No peptides in the cNPDB database match your search criteria. Please refine the search parameters.")
+else:
+    st.dataframe(df_filtered)  # Or your preferred way to display data
+    
 # --- Separator Line ---
 st.markdown("""
 <hr style='border: none; border-top: 2px solid #6a51a3; margin: 0px 30px;'>
