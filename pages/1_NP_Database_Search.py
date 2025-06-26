@@ -727,7 +727,7 @@ selected_indices = selected_indices if 'selected_indices' in locals() else []
 
 selected_rows = df_filtered.loc[selected_indices] if selected_indices else pd.DataFrame()
 if selected_rows.empty:
-    st.warning("⚠️ No peptides selected. Please select peptides from the search results to view details or download files.")
+    st.warning("⚠️ No peptides in the cNPDB dataset match your search criteria. Please refine the search parameters.")
 else:
     col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
     
