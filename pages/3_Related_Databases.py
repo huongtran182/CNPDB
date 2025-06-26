@@ -138,7 +138,7 @@ st.markdown("""
           </tr>
           <tr>
             <td><a href="https://neurostresspep.eu/diner/insectneuropeptides" target="_blank">DINeR</a></td>
-            <td>2020</td>
+            <td>2017</td>
             <td>A tailored database for insect neuropeptide research</td>
           </tr>
         </tbody>
