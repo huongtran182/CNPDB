@@ -132,7 +132,12 @@ st.markdown("""
             <td>NeuroPred contains genome-derived neuropeptides precursors for many invertebrates and vertebrates</td>
           </tr>
           <tr>
-            <td><a href="https://neurostresspep.eu/diner/insectneuropeptides" target="_blank">nEUROPSTRESSPEP</a></td>
+            <td><a href="https://academic.oup.com/bioinformatics/article/27/19/2772/230751?login=false" target="_blank">NeuroPedia</a></td>
+            <td>2006</td>
+            <td>A neuropeptide encyclopedia of peptide sequences (including genomic and taxonomic information) and spectral libraries of identified MS/MS spectra of homolog neuropeptides from multiple species</td>
+          </tr>
+          <tr>
+            <td><a href="https://neurostresspep.eu/diner/insectneuropeptides" target="_blank">DINeR</a></td>
             <td>2020</td>
             <td>A tailored database for insect neuropeptide research</td>
           </tr>
