@@ -679,10 +679,6 @@ with col2:
     # align right
     st.markdown(f"<div style='text-align: right;'>Hit: {len(df_filtered)} peptides</div>", unsafe_allow_html=True)
 
-# Initialize selected_indices safely
-selected_indices = selected_indices if 'selected_indices' in locals() else []
-
-
 # 4) Peptide cards in three columns
 if len(df_filtered) > 0:
     cols = st.columns(3)
@@ -726,12 +722,13 @@ if len(df_filtered) > 0:
             
             
 #5. Download or view results
+# Initialize selected_indices safely
+selected_indices = selected_indices if 'selected_indices' in locals() else []
 
 selected_rows = df_filtered.loc[selected_indices] if selected_indices else pd.DataFrame()
 if selected_rows.empty:
     st.warning("⚠️ No peptides selected. Please select peptides from the search results to view details or download files.")
-
-if not selected_rows.empty:
+else
     col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
     
     # View Details
