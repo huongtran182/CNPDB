@@ -86,29 +86,29 @@ def show_structure_cif(cif_path, width=350, height=250):
     html = view._make_html()
     components.html(html, height=height)
 
-def show_structure_pdb(pdb_path, width=350, height=250):
-    # Load the PDB file
-    with open(pdb_path, 'r') as f:
-        pdb_data = f.read()
+#def show_structure_pdb(pdb_path, width=350, height=250):
+#    # Load the PDB file
+#    with open(pdb_path, 'r') as f:
+#        pdb_data = f.read()
     
-    # Set up the 3Dmol viewer
-    view = py3Dmol.view(width=width, height=height)
-    view.addModel(pdb_data, 'pdb')  # specify it's a PDB model
-    # Use B-factor for coloring if it stores pLDDT (AlphaFold-style)
-    view.setStyle({'cartoon': {
-        'colorfunc': 'b',
-        'colorscheme': {
-            'prop': 'b',
-            'gradient': 'roygb',
-            'min': 0,
-            'max': 1
-        }
-    }})
-    view.zoomTo()
+#    # Set up the 3Dmol viewer
+#    view = py3Dmol.view(width=width, height=height)
+#    view.addModel(pdb_data, 'pdb')  # specify it's a PDB model
+#    # Use B-factor for coloring if it stores pLDDT (AlphaFold-style)
+#    view.setStyle({'cartoon': {
+#        'colorfunc': 'b',
+#        'colorscheme': {
+#            'prop': 'b',
+#            'gradient': 'roygb',
+#            'min': 0,
+#            'max': 1
+#        }
+#    }})
+#    view.zoomTo()
     
-    # Render the HTML and display it in Streamlit
-    html = view._make_html()
-    components.html(html, height=height)
+#    # Render the HTML and display it in Streamlit
+#    html = view._make_html()
+#    components.html(html, height=height)
 
 def img_html(path):
     """Return a base64 <img> tag filling 100% width of its container."""   
@@ -323,44 +323,44 @@ def display_peptide_details(row: pd.Series):
             st.write("No AlphaFold-predicted 3D structure are available for this peptide")
 
          # Meta PDB file
-        meta_pdb_file = f"Assets/3D Structure/3D Meta cNP{cNPDB_id}.pdb"
-        if os.path.exists(meta_pdb_file):
-            st.markdown("<div style='margin-top:10px;'></div>", unsafe_allow_html=True)
-            st.markdown(
-                "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>ESMfold-predicted 3D Structure</div>",
-                unsafe_allow_html=True
-            )
+#        meta_pdb_file = f"Assets/3D Structure/3D Meta cNP{cNPDB_id}.pdb"
+#        if os.path.exists(meta_pdb_file):
+#            st.markdown("<div style='margin-top:10px;'></div>", unsafe_allow_html=True)
+#            st.markdown(
+#                "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>ESMfold-predicted 3D Structure</div>",
+#                unsafe_allow_html=True
+#            )
     
-            show_structure_pdb(meta_pdb_file, width=350, height=250)
+#            show_structure_pdb(meta_pdb_file, width=350, height=250)
     
-            # Download button for PDB
-            with open(meta_pdb_file, "rb") as f:
-                pdb_bytes = f.read()
-                pdb_base64 = base64.b64encode(pdb_bytes).decode()
+#            # Download button for PDB
+#            with open(meta_pdb_file, "rb") as f:
+#                pdb_bytes = f.read()
+#                pdb_base64 = base64.b64encode(pdb_bytes).decode()
     
-            st.markdown(
-                f"""
-                <div style="text-align:center; margin-top:10px;">
-                  <a download="3D_Meta_cNP{cNPDB_id}.pdb"
-                     href="data:chemical/x-pdb;base64,{pdb_base64}"
-                     style="
-                       display:inline-block;
-                       padding:8px 16px;
-                       background-color:#6a51a3;
-                       color:white;
-                       font-weight:bold;
-                       text-decoration:none;
-                       border-radius:6px;
-                       box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-                     ">
-                    Download ESMfold 3D Structure
-                  </a>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-        else:
-            st.write("No ESMFold-predicted 3D structure are available for this peptide")
+#           st.markdown(
+#               f"""
+#               <div style="text-align:center; margin-top:10px;">
+#                 <a download="3D_Meta_cNP{cNPDB_id}.pdb"
+#                    href="data:chemical/x-pdb;base64,{pdb_base64}"
+#                    style="
+#                      display:inline-block;
+#                      padding:8px 16px;
+#                      background-color:#6a51a3;
+#                      color:white;
+#                      font-weight:bold;
+#                      text-decoration:none;
+#                      border-radius:6px;
+#                    box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+#                    ">
+#                   Download ESMfold 3D Structure
+#                 </a>
+#               </div>
+#               """,
+#               unsafe_allow_html=True
+#           )
+#       else:
+#           st.write("No ESMFold-predicted 3D structure are available for this peptide")
 
     with col_msi:
         for block in msi_blocks:
