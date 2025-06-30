@@ -86,29 +86,29 @@ def show_structure_cif(cif_path, width=350, height=250):
     html = view._make_html()
     components.html(html, height=height)
 
-def show_structure_pdb(pdb_path, width=350, height=250):
-    # Load the PDB file
-    with open(pdb_path, 'r') as f:
-        pdb_data = f.read()
+#def show_structure_pdb(pdb_path, width=350, height=250):
+#    # Load the PDB file
+#    with open(pdb_path, 'r') as f:
+#        pdb_data = f.read()
     
-    # Set up the 3Dmol viewer
-    view = py3Dmol.view(width=width, height=height)
-    view.addModel(pdb_data, 'pdb')  # specify it's a PDB model
-    # Use B-factor for coloring if it stores pLDDT (AlphaFold-style)
-    view.setStyle({'cartoon': {
-        'colorfunc': 'b',
-        'colorscheme': {
-            'prop': 'b',
-            'gradient': 'roygb',
-            'min': 0,
-            'max': 1
-        }
-    }})
-    view.zoomTo()
+#    # Set up the 3Dmol viewer
+#    view = py3Dmol.view(width=width, height=height)
+#    view.addModel(pdb_data, 'pdb')  # specify it's a PDB model
+#    # Use B-factor for coloring if it stores pLDDT (AlphaFold-style)
+#    view.setStyle({'cartoon': {
+#        'colorfunc': 'b',
+#        'colorscheme': {
+#            'prop': 'b',
+#            'gradient': 'roygb',
+#            'min': 0,
+#            'max': 1
+#        }
+#    }})
+#    view.zoomTo()
     
-    # Render the HTML and display it in Streamlit
-    html = view._make_html()
-    components.html(html, height=height)
+#    # Render the HTML and display it in Streamlit
+#    html = view._make_html()
+#    components.html(html, height=height)
 
 def img_html(path):
     """Return a base64 <img> tag filling 100% width of its container."""   
@@ -290,7 +290,13 @@ def display_peptide_details(row: pd.Series):
           "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>AlphaFold-predicted 3D Structure</div>",
           unsafe_allow_html=True
         )
-        cif_file = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
+
+        if cNPDB_id <= 1000:
+            folder = "Assets/3D Structure AlphaFold 1_1000"
+        else:
+            folder = "Assets/3D Structure AlphaFold 1001_2000"
+        
+        cif_file = os.path.join(folder, f"3D cNP {cNPDB_id}.cif")
         if os.path.exists(cif_file):
             show_structure_cif(cif_file, width=350, height=250)
             # Add download button right below 3D view
@@ -301,7 +307,7 @@ def display_peptide_details(row: pd.Series):
             st.markdown(
                 f"""
                 <div style="text-align:center; margin-top:15px;">
-                  <a download="3D_cNP{cNPDB_id}.cif"
+                  <a download="3D_cNP {cNPDB_id}.cif"
                      href="data:chemical/x-cif;base64,{cif_base64}"
                      style="
                        display:inline-block;
@@ -320,47 +326,47 @@ def display_peptide_details(row: pd.Series):
                 unsafe_allow_html=True
             )
         else:
-            st.write("No CIF found at", cif_file)
+            st.write("No AlphaFold-predicted 3D structure are available for this peptide")
 
          # Meta PDB file
-        meta_pdb_file = f"Assets/3D Structure/3D Meta cNP{cNPDB_id}.pdb"
-        if os.path.exists(meta_pdb_file):
-            st.markdown("<div style='margin-top:10px;'></div>", unsafe_allow_html=True)
-            st.markdown(
-                "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>ESMfold-predicted 3D Structure</div>",
-                unsafe_allow_html=True
-            )
+#        meta_pdb_file = f"Assets/3D Structure/3D Meta cNP{cNPDB_id}.pdb"
+#        if os.path.exists(meta_pdb_file):
+#            st.markdown("<div style='margin-top:10px;'></div>", unsafe_allow_html=True)
+#            st.markdown(
+#                "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>ESMfold-predicted 3D Structure</div>",
+#                unsafe_allow_html=True
+#            )
     
-            show_structure_pdb(meta_pdb_file, width=350, height=250)
+#            show_structure_pdb(meta_pdb_file, width=350, height=250)
     
-            # Download button for PDB
-            with open(meta_pdb_file, "rb") as f:
-                pdb_bytes = f.read()
-                pdb_base64 = base64.b64encode(pdb_bytes).decode()
+#            # Download button for PDB
+#            with open(meta_pdb_file, "rb") as f:
+#                pdb_bytes = f.read()
+#                pdb_base64 = base64.b64encode(pdb_bytes).decode()
     
-            st.markdown(
-                f"""
-                <div style="text-align:center; margin-top:10px;">
-                  <a download="3D_Meta_cNP{cNPDB_id}.pdb"
-                     href="data:chemical/x-pdb;base64,{pdb_base64}"
-                     style="
-                       display:inline-block;
-                       padding:8px 16px;
-                       background-color:#6a51a3;
-                       color:white;
-                       font-weight:bold;
-                       text-decoration:none;
-                       border-radius:6px;
-                       box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-                     ">
-                    Download ESMfold 3D Structure
-                  </a>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-        else:
-            st.write("No Meta PDB found at", meta_pdb_file)
+#           st.markdown(
+#               f"""
+#               <div style="text-align:center; margin-top:10px;">
+#                 <a download="3D_Meta_cNP{cNPDB_id}.pdb"
+#                    href="data:chemical/x-pdb;base64,{pdb_base64}"
+#                    style="
+#                      display:inline-block;
+#                      padding:8px 16px;
+#                      background-color:#6a51a3;
+#                      color:white;
+#                      font-weight:bold;
+#                      text-decoration:none;
+#                      border-radius:6px;
+#                    box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+#                    ">
+#                   Download ESMfold 3D Structure
+#                 </a>
+#               </div>
+#               """,
+#               unsafe_allow_html=True
+#           )
+#       else:
+#           st.write("No ESMFold-predicted 3D structure are available for this peptide")
 
     with col_msi:
         for block in msi_blocks:
@@ -651,7 +657,7 @@ if apply_slider_filters:
         df_filtered['Aliphatic Index'].between(*aliphatic_index_value) &
         df_filtered['Boman Index'].between(*boman_index_value)
     ]
-
+    
 # --- Separator Line ---
 st.markdown("""
 <hr style='border: none; border-top: 2px solid #6a51a3; margin: 0px 30px;'>
@@ -680,9 +686,11 @@ with col2:
     st.markdown(f"<div style='text-align: right;'>Hit: {len(df_filtered)} peptides</div>", unsafe_allow_html=True)
 
 # 4) Peptide cards in three columns
+
+selected_indices = []
+
 if len(df_filtered) > 0:
     cols = st.columns(3)
-    selected_indices = []
 
     for i, (idx, row) in enumerate(df_filtered.iterrows()):
         with cols[i % 3]:
@@ -720,113 +728,115 @@ if len(df_filtered) > 0:
                 </div>
             """, unsafe_allow_html=True)
             
-            
-#5. Download or view results
-
-selected_rows = df_filtered.loc[selected_indices] if selected_indices else pd.DataFrame()
-col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
-
-# View Details
-with col1:
-    left_space, right_button = st.columns([1,4])
-    with right_button:
-        if "view_details" not in st.session_state:
-            st.session_state.view_details = False
-        
-        if st.button("View Details", type="primary"):
-            st.session_state.view_details = True
-
-# View Details
-if st.session_state.view_details:
-    if selected_rows.empty:
-        st.warning("⚠️ Please select at least one peptide to view details.")
-    else:
-        for _, row in selected_rows.iterrows():
-            display_peptide_details(row)
-            st.markdown("<hr style='border: 1px solid #6a51a3; margin: 40px 0;'>", unsafe_allow_html=True)
-
-# Download Excel
-with col2:
-    with st.container():
-        if selected_rows.empty:
-            st.button("Download Search Results", type="primary", disabled=True)
-            st.warning("⚠️ Please select at least one peptide to download search results.")
-        else:
-            excel_buf = io.BytesIO()
-            with pd.ExcelWriter(excel_buf, engine="openpyxl") as writer:
-                selected_rows.to_excel(writer, index=False, sheet_name="Selected")
-            excel_buf.seek(0)
-            st.download_button(
-                "Download Search Results",
-                data=excel_buf,
-                file_name="cNPDB_Search_Results.xlsx",
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                type="primary",
-                key="download_excel"
-            )
-
-# --- Download FASTA File ---
-with col3:
-    with st.container():
-        if selected_rows.empty:
-            st.button("Download FASTA File", type="primary", disabled=True)
-            st.warning("⚠️ Please select at least one peptide to download FASTA file.")
-        else:
-            fasta_str = "\n".join(
-                f">{row['ID'].lstrip('>')}\n{row['Sequence']}" for _, row in selected_rows.iterrows()
-            )
-            st.download_button(
-                "Download FASTA File",
-                data=fasta_str,
-                file_name="cNPDB_Search_Result.fasta",
-                mime="text/plain",
-                type="primary",
-                key="download_fasta"
-            )
-
-# --- Download ZIP (CIF + MSI) ---
-with col4:
-    with st.container():
-        if selected_rows.empty:
-            st.button("Download 3D Structures + MSI", type="primary", disabled=True)
-            st.warning("⚠️ Please select at least one peptide to download 3D structure and MSI files.")
-        else:
-            zip_buf = io.BytesIO()
-            with zipfile.ZipFile(zip_buf, "w") as zipf:
-                for _, row in selected_rows.iterrows():
-                    cnp_id = row['cNPDB ID']
-
-                    # Add CIF
-                    cif_path = f"Assets/3D Structure/3D cNP{cnp_id}.cif"
-                    if os.path.exists(cif_path):
-                        zipf.write(cif_path, arcname=f"AlphaFold_3D_Structures/{os.path.basename(cif_path)}")
-
-                    # ✅ Add Meta PDB
-                    pdb_path = f"Assets/3D Structure/3D Meta cNP{cnp_id}.pdb"
-                    if os.path.exists(pdb_path):
-                        zipf.write(pdb_path, arcname=f"ESMfold_3D_Structures/{os.path.basename(pdb_path)}")
-
-                    # Add MSI images
-                    for tissue_col, asset_folder in [
-                        ("MSI Tissue 1", "Assets/MSImaging"),
-                        ("MSI Tissue 2", "Assets/MSImaging"),
-                        ("MSI Tissue 3", "Assets/MSImaging"),
-                    ]:
-                        suffix = " " + tissue_col.split()[-1]
-                        msi_path = f"{asset_folder}/MSI cNP{cnp_id}{suffix}.jpeg"
-                        if os.path.exists(msi_path):
-                            zipf.write(msi_path, arcname=f"MSI_Images/{os.path.basename(msi_path)}")
-
-            zip_buf.seek(0)
-            st.download_button(
-                "Download 3D Structures + MSI",
-                data=zip_buf,
-                file_name="cNPDB_3D_Structures_MSI.zip",
-                mime="application/zip",
-                type="primary",
-                key="download_zip"
-            )
+    #5. Download or view results
     
+    selected_rows = df_filtered.loc[selected_indices] if selected_indices else pd.DataFrame()
+    col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
+    
+    # View Details
+    with col1:
+        left_space, right_button = st.columns([1,4])
+        with right_button:
+            if "view_details" not in st.session_state:
+                st.session_state.view_details = False
+            
+            if st.button("View Details", type="primary"):
+                st.session_state.view_details = True
+    
+    # View Details
+    if st.session_state.view_details:
+        if selected_rows.empty:
+            st.warning("⚠️ Please select at least one peptide to view details.")
+        else:
+            for _, row in selected_rows.iterrows():
+                display_peptide_details(row)
+                st.markdown("<hr style='border: 1px solid #6a51a3; margin: 40px 0;'>", unsafe_allow_html=True)
+    
+    # Download Excel
+    with col2:
+        with st.container():
+            if selected_rows.empty:
+                st.button("Download Search Results", type="primary", disabled=True)
+                st.warning("⚠️ Please select at least one peptide to download search results.")
+            else:
+                excel_buf = io.BytesIO()
+                with pd.ExcelWriter(excel_buf, engine="openpyxl") as writer:
+                    selected_rows.to_excel(writer, index=False, sheet_name="Selected")
+                excel_buf.seek(0)
+                st.download_button(
+                    "Download Search Results",
+                    data=excel_buf,
+                    file_name="cNPDB_Search_Results.xlsx",
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    type="primary",
+                    key="download_excel"
+                )
+    
+    # --- Download FASTA File ---
+    with col3:
+        with st.container():
+            if selected_rows.empty:
+                st.button("Download FASTA File", type="primary", disabled=True)
+                st.warning("⚠️ Please select at least one peptide to download FASTA file.")
+            else:
+                fasta_str = "\n".join(
+                    f">{row['ID'].lstrip('>')}\n{row['Sequence']}" for _, row in selected_rows.iterrows()
+                )
+                st.download_button(
+                    "Download FASTA File",
+                    data=fasta_str,
+                    file_name="cNPDB_Search_Result.fasta",
+                    mime="text/plain",
+                    type="primary",
+                    key="download_fasta"
+                )
+    
+    # --- Download ZIP (CIF + MSI) ---
+    with col4:
+        with st.container():
+            if selected_rows.empty:
+                st.button("Download 3D Structures + MSI", type="primary", disabled=True)
+                st.warning("⚠️ Please select at least one peptide to download 3D structure and MSI files.")
+            else:
+                zip_buf = io.BytesIO()
+                with zipfile.ZipFile(zip_buf, "w") as zipf:
+                    for _, row in selected_rows.iterrows():
+                        cnp_id = row['cNPDB ID']
+    
+                        # Add CIF
+                        cif_path = f"Assets/3D Structure/3D cNP{cnp_id}.cif"
+                        if os.path.exists(cif_path):
+                            zipf.write(cif_path, arcname=f"AlphaFold_3D_Structures/{os.path.basename(cif_path)}")
+    
+                        # ✅ Add Meta PDB
+                        pdb_path = f"Assets/3D Structure/3D Meta cNP{cnp_id}.pdb"
+                        if os.path.exists(pdb_path):
+                            zipf.write(pdb_path, arcname=f"ESMfold_3D_Structures/{os.path.basename(pdb_path)}")
+    
+                        # Add MSI images
+                        for tissue_col, asset_folder in [
+                            ("MSI Tissue 1", "Assets/MSImaging"),
+                            ("MSI Tissue 2", "Assets/MSImaging"),
+                            ("MSI Tissue 3", "Assets/MSImaging"),
+                        ]:
+                            suffix = " " + tissue_col.split()[-1]
+                            msi_path = f"{asset_folder}/MSI cNP{cnp_id}{suffix}.jpeg"
+                            if os.path.exists(msi_path):
+                                zipf.write(msi_path, arcname=f"MSI_Images/{os.path.basename(msi_path)}")
+    
+                zip_buf.seek(0)
+                st.download_button(
+                    "Download 3D Structures + MSI",
+                    data=zip_buf,
+                    file_name="cNPDB_3D_Structures_MSI.zip",
+                    mime="application/zip",
+                    type="primary",
+                    key="download_zip"
+                ) 
+
+else:
+    st.warning("❌ No peptides match your search criteria. Please refine your parameters.")
+
 # 5) Close container div
 st.markdown(
     "</div>",

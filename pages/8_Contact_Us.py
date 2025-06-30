@@ -46,7 +46,7 @@ st.markdown("""
     If you’re interested in advancing neuropeptide research or initiating collaborations, please reach out to Prof. Li at <a href="mailto:lingjun.li@wisc.edu">lingjun.li@wisc.edu</a>.
   </p>
   <p style="margin-bottom: 0.8em;">
-    If you want to submit new data to cNPDB, report an error, request new features and suggestions, or have any trouble accessing this database, please fill out the Feedback form below.
+    If you want to submit new data to cNPDB, report an error, request new features and suggestions, or have any trouble accessing this database, please fill out the Submission Form under the <i>Submission</i> page.
   </p>
 </div>
 """, unsafe_allow_html=True)

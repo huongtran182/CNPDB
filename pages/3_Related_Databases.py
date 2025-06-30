@@ -116,24 +116,29 @@ st.markdown("""
         </thead>
         <tbody>
           <tr>
+            <td><a href="http://stagbeetle.animal.uiuc.edu/cgi-bin/neuropred.py" target="_blank">NeuroPred</a></td>
+            <td>2006</td>
+            <td>NeuroPred contains genome-derived neuropeptides precursors for many invertebrates and vertebrates</td>
+          </tr>
+          <tr>
             <td><a href="http://neuropeptides.nl" target="_blank">neuropeptides.nl</a></td>
             <td>2010</td>
             <td>A curated collection of neuropeptide genes, precursor proteins, and processed peptide information, including links to genomic and 
             transcriptomic databases, structural data, and brain expression details</td>
           </tr>
           <tr>
+            <td><a href="https://academic.oup.com/bioinformatics/article/27/19/2772/230751?login=false" target="_blank">NeuroPedia</a></td>
+            <td>2011</td>
+            <td>A neuropeptide encyclopedia of peptide sequences (including genomic and taxonomic information) and spectral libraries of identified MS/MS spectra of homolog neuropeptides from multiple species</td>
+          </tr>
+          <tr>
             <td><a href="https://neuropep.org" target="_blank">NeuroPep</a></td>
-            <td>2015</td>
+            <td>2015, 2023</td>
             <td>NeuroPep holds 5949 non-redundant neuropeptide entries originating from 493 organisms belonging to 65 neuropeptide families.</td>
           </tr>
           <tr>
-            <td><a href="http://stagbeetle.animal.uiuc.edu/cgi-bin/neuropred.py" target="_blank">NeuroPred</a></td>
-            <td>2006</td>
-            <td>NeuroPred contains genome-derived neuropeptides precursors for many invertebrates and vertebrates</td>
-          </tr>
-          <tr>
-            <td><a href="https://neurostresspep.eu/diner/insectneuropeptides" target="_blank">nEUROPSTRESSPEP</a></td>
-            <td>2020</td>
+            <td><a href="https://neurostresspep.eu/diner/insectneuropeptides" target="_blank">DINeR</a></td>
+            <td>2017</td>
             <td>A tailored database for insect neuropeptide research</td>
           </tr>
         </tbody>
