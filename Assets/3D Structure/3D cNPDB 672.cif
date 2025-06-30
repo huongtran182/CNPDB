@@ -1,0 +1,305 @@
+# By using this file you agree to the legally binding terms of use found at alphafoldserver.com/output-terms
+data_3c73f15e8029fd5f
+#
+_entry.id 3c73f15e8029fd5f
+#
+loop_
+_atom_type.symbol
+C 
+N 
+O 
+S 
+#
+loop_
+_audit_author.name
+_audit_author.pdbx_ordinal
+"Google DeepMind" 1 
+"Isomorphic Labs" 2 
+#
+_audit_conform.dict_location https://raw.githubusercontent.com/ihmwg/ModelCIF/master/dist/mmcif_ma.dic
+_audit_conform.dict_name     mmcif_ma.dic
+_audit_conform.dict_version  1.4.5
+#
+loop_
+_chem_comp.formula
+_chem_comp.formula_weight
+_chem_comp.id
+_chem_comp.mon_nstd_flag
+_chem_comp.name
+_chem_comp.pdbx_smiles
+_chem_comp.pdbx_synonyms
+_chem_comp.type
+"C6 H15 N4 O2" 175.209 ARG y ARGININE        N[C@@H](CCCNC(N)=[NH2+])C(O)=O ? "L-PEPTIDE LINKING" 
+"C4 H8 N2 O3"  132.118 ASN y ASPARAGINE      N[C@@H](CC(N)=O)C(O)=O         ? "L-PEPTIDE LINKING" 
+"C4 H7 N O4"   133.103 ASP y "ASPARTIC ACID" N[C@@H](CC(O)=O)C(O)=O         ? "L-PEPTIDE LINKING" 
+"C3 H7 N O2 S" 121.158 CYS y CYSTEINE        N[C@@H](CS)C(O)=O              ? "L-PEPTIDE LINKING" 
+"C5 H10 N2 O3" 146.144 GLN y GLUTAMINE       N[C@@H](CCC(N)=O)C(O)=O        ? "L-PEPTIDE LINKING" 
+"C2 H5 N O2"   75.067  GLY y GLYCINE         NCC(O)=O                       ? "PEPTIDE LINKING"   
+"C6 H13 N O2"  131.173 ILE y ISOLEUCINE      CC[C@H](C)[C@H](N)C(O)=O       ? "L-PEPTIDE LINKING" 
+"C9 H11 N O2"  165.189 PHE y PHENYLALANINE   N[C@@H](Cc1ccccc1)C(O)=O       ? "L-PEPTIDE LINKING" 
+#
+_citation.book_publisher          ?
+_citation.country                 UK
+_citation.id                      primary
+_citation.journal_full            Nature
+_citation.journal_id_ASTM         NATUAS
+_citation.journal_id_CSD          0006
+_citation.journal_id_ISSN         0028-0836
+_citation.journal_volume          630
+_citation.page_first              493
+_citation.page_last               500
+_citation.pdbx_database_id_DOI    10.1038/s41586-024-07487-w
+_citation.pdbx_database_id_PubMed 38718835
+_citation.title                   "Accurate structure prediction of biomolecular interactions with AlphaFold 3"
+_citation.year                    2024
+#
+loop_
+_citation_author.citation_id
+_citation_author.name
+_citation_author.ordinal
+primary "Google DeepMind" 1 
+primary "Isomorphic Labs" 2 
+#
+_entity.id               1
+_entity.pdbx_description .
+_entity.type             polymer
+#
+_entity_poly.entity_id      1
+_entity_poly.pdbx_strand_id A
+_entity_poly.type           polypeptide(L)
+#
+loop_
+_entity_poly_seq.entity_id
+_entity_poly_seq.hetero
+_entity_poly_seq.mon_id
+_entity_poly_seq.num
+1 n ILE 1  
+1 n ASN 2  
+1 n ASN 3  
+1 n ASP 4  
+1 n CYS 5  
+1 n GLN 6  
+1 n ASN 7  
+1 n PHE 8  
+1 n ILE 9  
+1 n GLY 10 
+1 n ASN 11 
+1 n ARG 12 
+#
+_ma_data.content_type "model coordinates"
+_ma_data.id           1
+_ma_data.name         Model
+#
+_ma_model_list.data_id          1
+_ma_model_list.model_group_id   1
+_ma_model_list.model_group_name "AlphaFold-beta-20231127 (2b86f29d-618d-47cf-8aef-20020b1102eb @ 2025-06-25 09:13:25)"
+_ma_model_list.model_id         1
+_ma_model_list.model_name       "Top ranked model"
+_ma_model_list.model_type       "Ab initio model"
+_ma_model_list.ordinal_id       1
+#
+loop_
+_ma_protocol_step.method_type
+_ma_protocol_step.ordinal_id
+_ma_protocol_step.protocol_id
+_ma_protocol_step.step_id
+"coevolution MSA" 1 1 1 
+"template search" 2 1 2 
+modeling          3 1 3 
+#
+loop_
+_ma_qa_metric.id
+_ma_qa_metric.mode
+_ma_qa_metric.name
+_ma_qa_metric.software_group_id
+_ma_qa_metric.type
+1 global pLDDT 1 pLDDT 
+2 local  pLDDT 1 pLDDT 
+#
+_ma_qa_metric_global.metric_id    1
+_ma_qa_metric_global.metric_value 84.92
+_ma_qa_metric_global.model_id     1
+_ma_qa_metric_global.ordinal_id   1
+#
+_ma_software_group.group_id    1
+_ma_software_group.ordinal_id  1
+_ma_software_group.software_id 1
+#
+_ma_target_entity.data_id   1
+_ma_target_entity.entity_id 1
+_ma_target_entity.origin    .
+#
+_ma_target_entity_instance.asym_id   A
+_ma_target_entity_instance.details   .
+_ma_target_entity_instance.entity_id 1
+#
+loop_
+_pdbx_data_usage.details
+_pdbx_data_usage.id
+_pdbx_data_usage.type
+_pdbx_data_usage.url
+;NON-COMMERCIAL USE ONLY, BY USING THIS FILE YOU AGREE TO THE TERMS OF USE FOUND
+AT alphafoldserver.com/output-terms.
+;
+1 license    ? 
+;THE INFORMATION IS NOT INTENDED FOR, HAS NOT BEEN VALIDATED FOR, AND IS NOT
+APPROVED FOR CLINICAL USE. IT SHOULD NOT BE USED FOR CLINICAL PURPOSE OR RELIED
+ON FOR MEDICAL OR OTHER PROFESSIONAL ADVICE. IT IS THEORETICAL MODELLING ONLY
+AND CAUTION SHOULD BE EXERCISED IN ITS USE. IT IS PROVIDED "AS-IS" WITHOUT ANY
+WARRANTY OF ANY KIND, WHETHER EXPRESSED OR IMPLIED. NO WARRANTY IS GIVEN THAT
+USE OF THE INFORMATION SHALL NOT INFRINGE THE RIGHTS OF ANY THIRD PARTY.
+;
+2 disclaimer ? 
+#
+loop_
+_pdbx_poly_seq_scheme.asym_id
+_pdbx_poly_seq_scheme.auth_seq_num
+_pdbx_poly_seq_scheme.entity_id
+_pdbx_poly_seq_scheme.hetero
+_pdbx_poly_seq_scheme.mon_id
+_pdbx_poly_seq_scheme.pdb_ins_code
+_pdbx_poly_seq_scheme.pdb_seq_num
+_pdbx_poly_seq_scheme.pdb_strand_id
+_pdbx_poly_seq_scheme.seq_id
+A 1  1 n ILE . 1  A 1  
+A 2  1 n ASN . 2  A 2  
+A 3  1 n ASN . 3  A 3  
+A 4  1 n ASP . 4  A 4  
+A 5  1 n CYS . 5  A 5  
+A 6  1 n GLN . 6  A 6  
+A 7  1 n ASN . 7  A 7  
+A 8  1 n PHE . 8  A 8  
+A 9  1 n ILE . 9  A 9  
+A 10 1 n GLY . 10 A 10 
+A 11 1 n ASN . 11 A 11 
+A 12 1 n ARG . 12 A 12 
+#
+_software.classification other
+_software.date           ?
+_software.description    "Structure prediction"
+_software.name           AlphaFold
+_software.pdbx_ordinal   1
+_software.type           package
+_software.version        "AlphaFold-beta-20231127 (2b86f29d-618d-47cf-8aef-20020b1102eb @ 2025-06-25 09:13:25)"
+#
+_struct_asym.entity_id 1
+_struct_asym.id        A
+#
+loop_
+_atom_site.group_PDB
+_atom_site.id
+_atom_site.type_symbol
+_atom_site.label_atom_id
+_atom_site.label_alt_id
+_atom_site.label_comp_id
+_atom_site.label_asym_id
+_atom_site.label_entity_id
+_atom_site.label_seq_id
+_atom_site.pdbx_PDB_ins_code
+_atom_site.Cartn_x
+_atom_site.Cartn_y
+_atom_site.Cartn_z
+_atom_site.occupancy
+_atom_site.B_iso_or_equiv
+_atom_site.auth_seq_id
+_atom_site.auth_asym_id
+_atom_site.pdbx_PDB_model_num
+ATOM 1  N N   . ILE A 1 1  ? 1.179  12.310 -2.887 1.00 83.28 1  A 1 
+ATOM 2  C CA  . ILE A 1 1  ? 1.938  11.219 -2.256 1.00 87.32 1  A 1 
+ATOM 3  C C   . ILE A 1 1  ? 1.616  9.874  -2.893 1.00 89.94 1  A 1 
+ATOM 4  O O   . ILE A 1 1  ? 0.537  9.677  -3.445 1.00 88.03 1  A 1 
+ATOM 5  C CB  . ILE A 1 1  ? 1.643  11.124 -0.747 1.00 85.08 1  A 1 
+ATOM 6  C CG1 . ILE A 1 1  ? 0.152  10.908 -0.517 1.00 82.01 1  A 1 
+ATOM 7  C CG2 . ILE A 1 1  ? 2.121  12.389 -0.046 1.00 80.23 1  A 1 
+ATOM 8  C CD1 . ILE A 1 1  ? -0.217 10.681 0.935  1.00 76.20 1  A 1 
+ATOM 9  N N   . ASN A 1 2  ? 2.551  8.954  -2.809 1.00 81.83 2  A 1 
+ATOM 10 C CA  . ASN A 1 2  ? 2.367  7.624  -3.365 1.00 83.39 2  A 1 
+ATOM 11 C C   . ASN A 1 2  ? 2.906  6.565  -2.412 1.00 84.29 2  A 1 
+ATOM 12 O O   . ASN A 1 2  ? 3.034  5.397  -2.753 1.00 81.45 2  A 1 
+ATOM 13 C CB  . ASN A 1 2  ? 3.057  7.512  -4.723 1.00 79.31 2  A 1 
+ATOM 14 C CG  . ASN A 1 2  ? 2.596  6.296  -5.490 1.00 76.74 2  A 1 
+ATOM 15 O OD1 . ASN A 1 2  ? 1.551  6.309  -6.129 1.00 73.09 2  A 1 
+ATOM 16 N ND2 . ASN A 1 2  ? 3.376  5.231  -5.471 1.00 72.91 2  A 1 
+ATOM 17 N N   . ASN A 1 3  ? 3.229  6.981  -1.210 1.00 86.14 3  A 1 
+ATOM 18 C CA  . ASN A 1 3  ? 3.769  6.083  -0.196 1.00 87.48 3  A 1 
+ATOM 19 C C   . ASN A 1 3  ? 2.682  5.201  0.380  1.00 89.55 3  A 1 
+ATOM 20 O O   . ASN A 1 3  ? 2.855  3.991  0.530  1.00 87.44 3  A 1 
+ATOM 21 C CB  . ASN A 1 3  ? 4.435  6.882  0.923  1.00 84.63 3  A 1 
+ATOM 22 C CG  . ASN A 1 3  ? 5.058  5.969  1.962  1.00 82.71 3  A 1 
+ATOM 23 O OD1 . ASN A 1 3  ? 6.138  5.422  1.760  1.00 78.32 3  A 1 
+ATOM 24 N ND2 . ASN A 1 3  ? 4.395  5.796  3.086  1.00 77.05 3  A 1 
+ATOM 25 N N   . ASP A 1 4  ? 1.551  5.807  0.702  1.00 87.05 4  A 1 
+ATOM 26 C CA  . ASP A 1 4  ? 0.427  5.061  1.247  1.00 88.41 4  A 1 
+ATOM 27 C C   . ASP A 1 4  ? -0.161 4.126  0.204  1.00 90.16 4  A 1 
+ATOM 28 O O   . ASP A 1 4  ? -0.619 3.033  0.524  1.00 88.16 4  A 1 
+ATOM 29 C CB  . ASP A 1 4  ? -0.656 6.027  1.740  1.00 86.55 4  A 1 
+ATOM 30 C CG  . ASP A 1 4  ? -0.207 6.788  2.966  1.00 83.64 4  A 1 
+ATOM 31 O OD1 . ASP A 1 4  ? 0.490  7.802  2.804  1.00 80.24 4  A 1 
+ATOM 32 O OD2 . ASP A 1 4  ? -0.558 6.362  4.083  1.00 81.18 4  A 1 
+ATOM 33 N N   . CYS A 1 5  ? -0.133 4.546  -1.033 1.00 89.48 5  A 1 
+ATOM 34 C CA  . CYS A 1 5  ? -0.630 3.734  -2.128 1.00 89.52 5  A 1 
+ATOM 35 C C   . CYS A 1 5  ? 0.213  2.470  -2.276 1.00 90.38 5  A 1 
+ATOM 36 O O   . CYS A 1 5  ? -0.298 1.400  -2.582 1.00 88.47 5  A 1 
+ATOM 37 C CB  . CYS A 1 5  ? -0.617 4.527  -3.436 1.00 87.21 5  A 1 
+ATOM 38 S SG  . CYS A 1 5  ? -1.457 3.690  -4.791 1.00 83.91 5  A 1 
+ATOM 39 N N   . GLN A 1 6  ? 1.500  2.621  -2.038 1.00 86.47 6  A 1 
+ATOM 40 C CA  . GLN A 1 6  ? 2.411  1.492  -2.117 1.00 87.75 6  A 1 
+ATOM 41 C C   . GLN A 1 6  ? 2.188  0.536  -0.951 1.00 88.64 6  A 1 
+ATOM 42 O O   . GLN A 1 6  ? 2.333  -0.675 -1.078 1.00 86.57 6  A 1 
+ATOM 43 C CB  . GLN A 1 6  ? 3.855  1.981  -2.127 1.00 86.52 6  A 1 
+ATOM 44 C CG  . GLN A 1 6  ? 4.874  0.859  -2.177 1.00 81.67 6  A 1 
+ATOM 45 C CD  . GLN A 1 6  ? 4.660  -0.072 -3.353 1.00 81.32 6  A 1 
+ATOM 46 O OE1 . GLN A 1 6  ? 4.541  0.369  -4.488 1.00 76.71 6  A 1 
+ATOM 47 N NE2 . GLN A 1 6  ? 4.600  -1.360 -3.091 1.00 74.57 6  A 1 
+ATOM 48 N N   . ASN A 1 7  ? 1.820  1.102  0.186  1.00 89.16 7  A 1 
+ATOM 49 C CA  . ASN A 1 7  ? 1.551  0.304  1.380  1.00 89.31 7  A 1 
+ATOM 50 C C   . ASN A 1 7  ? 0.273  -0.500 1.209  1.00 90.48 7  A 1 
+ATOM 51 O O   . ASN A 1 7  ? 0.132  -1.594 1.754  1.00 89.51 7  A 1 
+ATOM 52 C CB  . ASN A 1 7  ? 1.427  1.199  2.615  1.00 87.58 7  A 1 
+ATOM 53 C CG  . ASN A 1 7  ? 1.284  0.396  3.890  1.00 84.97 7  A 1 
+ATOM 54 O OD1 . ASN A 1 7  ? 2.120  -0.442 4.203  1.00 81.03 7  A 1 
+ATOM 55 N ND2 . ASN A 1 7  ? 0.231  0.643  4.644  1.00 80.91 7  A 1 
+ATOM 56 N N   . PHE A 1 8  ? -0.654 0.043  0.454  1.00 88.71 8  A 1 
+ATOM 57 C CA  . PHE A 1 8  ? -1.917 -0.634 0.192  1.00 88.76 8  A 1 
+ATOM 58 C C   . PHE A 1 8  ? -1.749 -1.763 -0.816 1.00 90.20 8  A 1 
+ATOM 59 O O   . PHE A 1 8  ? -2.124 -2.908 -0.567 1.00 89.18 8  A 1 
+ATOM 60 C CB  . PHE A 1 8  ? -2.942 0.379  -0.314 1.00 88.01 8  A 1 
+ATOM 61 C CG  . PHE A 1 8  ? -4.183 -0.267 -0.880 1.00 87.32 8  A 1 
+ATOM 62 C CD1 . PHE A 1 8  ? -5.010 -1.016 -0.068 1.00 85.20 8  A 1 
+ATOM 63 C CD2 . PHE A 1 8  ? -4.511 -0.121 -2.212 1.00 85.92 8  A 1 
+ATOM 64 C CE1 . PHE A 1 8  ? -6.138 -1.614 -0.585 1.00 84.94 8  A 1 
+ATOM 65 C CE2 . PHE A 1 8  ? -5.642 -0.727 -2.729 1.00 84.93 8  A 1 
+ATOM 66 C CZ  . PHE A 1 8  ? -6.459 -1.473 -1.910 1.00 84.59 8  A 1 
+ATOM 67 N N   . ILE A 1 9  ? -1.184 -1.421 -1.943 1.00 93.12 9  A 1 
+ATOM 68 C CA  . ILE A 1 9  ? -0.987 -2.390 -3.013 1.00 93.05 9  A 1 
+ATOM 69 C C   . ILE A 1 9  ? 0.196  -3.303 -2.727 1.00 93.33 9  A 1 
+ATOM 70 O O   . ILE A 1 9  ? 0.183  -4.493 -3.036 1.00 92.28 9  A 1 
+ATOM 71 C CB  . ILE A 1 9  ? -0.785 -1.685 -4.362 1.00 92.46 9  A 1 
+ATOM 72 C CG1 . ILE A 1 9  ? -1.976 -0.766 -4.669 1.00 90.44 9  A 1 
+ATOM 73 C CG2 . ILE A 1 9  ? -0.606 -2.720 -5.476 1.00 89.07 9  A 1 
+ATOM 74 C CD1 . ILE A 1 9  ? -1.803 0.054  -5.924 1.00 86.43 9  A 1 
+ATOM 75 N N   . GLY A 1 10 ? 1.211  -2.731 -2.116 1.00 92.71 10 A 1 
+ATOM 76 C CA  . GLY A 1 10 ? 2.416  -3.486 -1.809 1.00 91.90 10 A 1 
+ATOM 77 C C   . GLY A 1 10 ? 2.203  -4.524 -0.721 1.00 92.69 10 A 1 
+ATOM 78 O O   . GLY A 1 10 ? 2.976  -5.475 -0.593 1.00 90.69 10 A 1 
+ATOM 79 N N   . ASN A 1 11 ? 1.162  -4.336 0.062  1.00 87.50 11 A 1 
+ATOM 80 C CA  . ASN A 1 11 ? 0.845  -5.262 1.153  1.00 87.83 11 A 1 
+ATOM 81 C C   . ASN A 1 11 ? -0.423 -6.050 0.857  1.00 88.38 11 A 1 
+ATOM 82 O O   . ASN A 1 11 ? -1.167 -6.454 1.747  1.00 85.42 11 A 1 
+ATOM 83 C CB  . ASN A 1 11 ? 0.706  -4.518 2.481  1.00 84.69 11 A 1 
+ATOM 84 C CG  . ASN A 1 11 ? 0.741  -5.452 3.674  1.00 80.57 11 A 1 
+ATOM 85 O OD1 . ASN A 1 11 ? 1.798  -5.910 4.091  1.00 77.33 11 A 1 
+ATOM 86 N ND2 . ASN A 1 11 ? -0.409 -5.722 4.264  1.00 76.67 11 A 1 
+ATOM 87 N N   . ARG A 1 12 ? -0.665 -6.268 -0.415 1.00 89.13 12 A 1 
+ATOM 88 C CA  . ARG A 1 12 ? -1.841 -7.015 -0.827 1.00 86.66 12 A 1 
+ATOM 89 C C   . ARG A 1 12 ? -1.431 -8.209 -1.682 1.00 81.72 12 A 1 
+ATOM 90 O O   . ARG A 1 12 ? -1.012 -7.982 -2.833 1.00 77.45 12 A 1 
+ATOM 91 C CB  . ARG A 1 12 ? -2.817 -6.143 -1.616 1.00 81.95 12 A 1 
+ATOM 92 C CG  . ARG A 1 12 ? -4.079 -6.874 -2.013 1.00 81.53 12 A 1 
+ATOM 93 C CD  . ARG A 1 12 ? -4.983 -6.053 -2.920 1.00 80.00 12 A 1 
+ATOM 94 N NE  . ARG A 1 12 ? -6.191 -6.785 -3.306 1.00 78.29 12 A 1 
+ATOM 95 C CZ  . ARG A 1 12 ? -6.222 -7.699 -4.257 1.00 78.22 12 A 1 
+ATOM 96 N NH1 . ARG A 1 12 ? -5.141 -8.003 -4.945 1.00 76.02 12 A 1 
+ATOM 97 N NH2 . ARG A 1 12 ? -7.354 -8.320 -4.535 1.00 73.11 12 A 1 
+ATOM 98 O OXT . ARG A 1 12 ? -1.538 -9.321 -1.165 1.00 77.67 12 A 1 
+#
