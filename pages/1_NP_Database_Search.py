@@ -290,7 +290,13 @@ def display_peptide_details(row: pd.Series):
           "<div style='text-align:center;font-weight:bold;color:#6a51a3;'>AlphaFold-predicted 3D Structure</div>",
           unsafe_allow_html=True
         )
-        cif_file = f"Assets/3D Structure/3D cNP{cNPDB_id}.cif"
+
+        if cNPDB_id <= 1000:
+            folder = "Assets/3D Structure AlphaFold 1_1000"
+        else:
+            folder = "Assets/3D Structure AlphaFold 1001_2000"
+        
+        cif_file = f"Assets/3D Structure/3D cNP {cNPDB_id}.cif"
         if os.path.exists(cif_file):
             show_structure_cif(cif_file, width=350, height=250)
             # Add download button right below 3D view
@@ -301,7 +307,7 @@ def display_peptide_details(row: pd.Series):
             st.markdown(
                 f"""
                 <div style="text-align:center; margin-top:15px;">
-                  <a download="3D_cNP{cNPDB_id}.cif"
+                  <a download="3D_cNP {cNPDB_id}.cif"
                      href="data:chemical/x-cif;base64,{cif_base64}"
                      style="
                        display:inline-block;
