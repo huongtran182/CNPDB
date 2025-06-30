@@ -115,6 +115,8 @@ st.markdown("""
 ### COPYRIGHTS
 Copyright 2025 Department of Pharmaceutical Sciences, University of Wisconsin-Madison, **All Rights Reserved**
 
+**Disclaimer:** While we strive to provide accurate and up-to-date information, this database may contain errors, omissions, or outdated data. Users are encouraged to independently verify any information and consult original sources when making decisions or drawing conclusions based on the content provided here.
+
 """)
 
 st.markdown("""
