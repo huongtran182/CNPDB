@@ -296,7 +296,7 @@ def display_peptide_details(row: pd.Series):
         else:
             folder = "Assets/3D Structure AlphaFold 1001_2000"
         
-        cif_file = f"Assets/3D Structure/3D cNP {cNPDB_id}.cif"
+        cif_file = os.path.join(folder, f"3D cNP {cNPDB_id}.cif")
         if os.path.exists(cif_file):
             show_structure_cif(cif_file, width=350, height=250)
             # Add download button right below 3D view
