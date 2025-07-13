@@ -45,7 +45,7 @@ else:
     
 st.markdown("""
 ### TOOLS & FEATURES
-The current release of cNPDB (Version 1.0, 2025) contains **1239** curated neuropeptide entries from **28** crustacean species, organized into **46** neuropeptide families. Some representative species include *Homarus americanus*  (American Lobster), *Callinectes sapidus*  (Blue Crab), *Cancer borealis*  (Jonah Crab), *Carcinus maenas*  (European green crab), and *Panulirus interruptus*  (California spiny lobster). cNPDB offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
+The current release of cNPDB (Version 1.0, 2025) contains **1364** curated neuropeptide entries from **29** crustacean species, organized into **55** neuropeptide families. Some representative species include *Homarus americanus*  (American Lobster), *Callinectes sapidus*  (Blue Crab), *Cancer borealis*  (Jonah Crab), *Carcinus maenas*  (European green crab), and *Panulirus interruptus*  (California spiny lobster). cNPDB offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
 - **Custom Search Engine** – Find neuropeptides by sequence, species, families, tissues, post-translational modifications (PTMs), and desired peptide physiological properties, with an option to download the resulted FASTA file.
 - **Sequence Alignment & Homology Search** – Identify conserved motifs and sequence similarities.
 - **Peptide Property Calculator** – Compute GRAVY scores, hydrophobicity, instability index, and other physiological properties.
@@ -114,6 +114,8 @@ Stay updated on the latest cNPDB developments by following us on our social medi
 st.markdown("""
 ### COPYRIGHTS
 Copyright 2025 Department of Pharmaceutical Sciences, University of Wisconsin-Madison, **All Rights Reserved**
+
+**Disclaimer:** While we strive to provide accurate and up-to-date information, this database may contain errors, omissions, or outdated data. Users are encouraged to independently verify any information and consult original sources when making decisions or drawing conclusions based on the content provided here.
 
 """)
 

@@ -16,7 +16,7 @@ st.markdown("""
 1. How to navigate cNPDB website
 </h3>
 """, unsafe_allow_html=True)
-video_path = os.path.join("Assets", "Statistics", "example.mp4")
+video_path = os.path.join("Assets", "Statistics", "cNPDB_General_Compressed.mp4")
 if os.path.exists(video_path):
     video_bytes = open(video_path, "rb").read()
     video_base64 = base64.b64encode(video_bytes).decode()
@@ -38,7 +38,7 @@ st.markdown("""
 2. How to use Database Search Engine to search for your desired peptides and download FASTA file
 </h3>
 """, unsafe_allow_html=True)
-video_path = os.path.join("Assets", "Statistics", "search_tutorial.mp4")
+video_path = os.path.join("Assets", "Statistics", "cNPDB_NP Database search_Compressed.mp4")
 if os.path.exists(video_path):
     video_bytes = open(video_path, "rb").read()
     video_base64 = base64.b64encode(video_bytes).decode()
