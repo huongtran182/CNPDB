@@ -128,7 +128,7 @@ def disp(val):
 
 def display_peptide_details(row: pd.Series):
     active_seq = row["Active Sequence"]
-    cNPDB_id    = row["cNPDB ID"]
+    cNPDB_id    = int(row["cNPDB ID"])
 
 # Prepare all content as HTML strings first
     # 1) Metadata table
