@@ -132,7 +132,7 @@ st.markdown("""
             <td>A neuropeptide encyclopedia of peptide sequences (including genomic and taxonomic information) and spectral libraries of identified MS/MS spectra of homolog neuropeptides from multiple species</td>
           </tr>
           <tr>
-            <td><a href="https://neuropep.org" target="_blank">NeuroPep</a></td>
+            <td><a href="http://www.isyslab.info/NeuroPepV2/home.jsp" target="_blank">NeuroPep</a></td>
             <td>2015, 2023</td>
             <td>NeuroPep holds 5949 non-redundant neuropeptide entries originating from 493 organisms belonging to 65 neuropeptide families.</td>
           </tr>
