@@ -51,7 +51,7 @@ page_views = get_active_users()
 
 # ---- Horizontal Stats Bar ----
 st.markdown("---")
-st.markdown("""
+st.markdown(f"""
 <div style="display: flex; width: 100%;">
         <div style="flex: 1; background-color: #dadaeb; text-align: center; padding: 20px 0;">
             <h2 style="color:#4a3666; margin-left: 15px;">1364</h2>
