@@ -3,6 +3,10 @@ from sidebar import render_sidebar
 from PIL import Image
 import os
 import base64
+import json
+from google.analytics.data_v1beta import BetaAnalyticsDataClient
+from google.analytics.data_v1beta.types import RunRealtimeReportRequest
+
 
 st.set_page_config(
     page_title="Statistics",
@@ -11,6 +15,33 @@ st.set_page_config(
 )
 
 render_sidebar()
+
+# --- Load Google Analytics Credentials from Streamlit Secrets ---
+service_account_info = st.secrets["google_service_account"]
+with open("tmp_service_account.json", "w") as f:
+    json.dump(service_account_info, f)
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "tmp_service_account.json"
+
+# --- GA4 Property ID ---
+PROPERTY_ID = "497897321"
+
+# --- Function to fetch total pageviews ---
+def get_total_pageviews():
+    client = BetaAnalyticsDataClient()
+
+    request = RunReportRequest(
+        property=f"properties/{PROPERTY_ID}",
+        dimensions=[],
+        metrics=[{"name": "screenPageViews"}],
+        date_ranges=[{"start_date": "2025-07-01", "end_date": "today"}],
+    )
+
+    response = client.run_report(request)
+    return response.rows[0].metric_values[0].value if response.rows else "0"
+
+# Fetch live pageviews
+page_views = get_total_pageviews()
 
 # ---- Horizontal Stats Bar ----
 st.markdown("---")
@@ -29,7 +60,7 @@ st.markdown("""
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Neuropeptide Families</p>
         </div>
         <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0;">
-            <h2 style="color:#4a3666; margin-left: 15px;">3,218</h2>
+            <h2 style="color:#4a3666; margin-left: 15px;">{page_views}</h2>
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Page Views</p>
         </div>
     </div>
