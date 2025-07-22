@@ -3,8 +3,9 @@ from sidebar import render_sidebar
 from PIL import Image
 import os
 import base64
+import json
 import atexit
-import collections.abc  # needed for Streamlit secrets compatibility
+import collections.abc
 
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import RunRealtimeReportRequest
