@@ -809,7 +809,7 @@ if len(df_filtered) > 0:
                 zip_buf = io.BytesIO()
                 with zipfile.ZipFile(zip_buf, "w") as zipf:
                     for _, row in selected_rows.iterrows():
-                        cnp_id = row['cNPDB ID']
+                        cnp_id = int(row["cNPDB ID"])
 
                         # Determine AlphaFold folder
                         if cnp_id <= 1000:
