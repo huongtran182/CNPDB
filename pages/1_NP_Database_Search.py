@@ -331,7 +331,13 @@ def display_peptide_details(row: pd.Series):
             st.write("No AlphaFold-predicted 3D structure are available for this peptide")
 
          # Meta PDB file
-        meta_pdb_file = f"Assets/3D Structure ESMFold/3D Meta cNP{cNPDB_id}.pdb"
+        if cNPDB_id <= 1000:
+            esm_folder = "Assets/3D Structure ESMFold 1_1000"
+        else:
+            esm_folder = "Assets/3D Structure ESMFold 1001_2000"
+        
+        meta_pdb_file = os.path.join(esm_folder, f"3D Meta cNP{cNPDB_id}.pdb")
+
         if os.path.exists(meta_pdb_file):
             st.markdown("<div style='margin-top:10px;'></div>", unsafe_allow_html=True)
             st.markdown(
