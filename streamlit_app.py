@@ -4,19 +4,18 @@ import os
 import base64
 from io import BytesIO
 from sidebar import render_sidebar
+import streamlit.components.v1 as components
 
-st.markdown("""
-<!-- Global site tag (gtag.js) - Google Analytics -->
+components.html("""
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-VWK5FWH61R"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-VWK5FWH61R');
 </script>
-""", unsafe_allow_html=True)
-
+""", height=0)
 # Set page config
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
