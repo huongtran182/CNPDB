@@ -1,0 +1,17 @@
+ID	Sequence	Length	Organism	Family	Name	PMID
+NP00727	RSVEGSSRMERLLSSGSSSSEPLSFLSQDQSVN	33	Procambarus clarkii	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide(Potential)	
+NP00728	QVFDQACKGIYDRAIFKKLDRVCEDCYNLYRKPYVATTCRQNCYANSVFRQCLDDLLLIDVVDEYISGVQTV	72	Procambarus clarkii	Arthropod CHH/MIH/GIH/VIH hormone	Crustacean hyperglycemic hormone	7821776
+NP01024	ETFQYSHGWTN	11	Procambarus clarkii	Corazonin	Corazonin	14706537
+NP01239	GYRKPPFNGSIFG	13	Procambarus clarkii	FMRFamide related peptide	SIFamide	14723891
+NP01918	NRNFLRF	7	Procambarus clarkii	FMRFamide related peptide	Cardio-excitatory FMRFamide homolog NF1	8387183
+NP01919	DRNFLRF	7	Procambarus clarkii	FMRFamide related peptide	Cardio-excitatory FMRFamide homolog DF2	8387183
+NP01920	AGGDSLYEPGKALASACQVAVEACAAWFPGPE	32	Procambarus clarkii	FMRFamide related peptide	C-terminal peptide (Potential)	
+NP01921	GYRKPPFNGSIF	12	Procambarus clarkii	FMRFamide related peptide	GYRKPPFNGSIF-amide	14723891
+NP04209	FDAFTTGFGHN	11	Procambarus clarkii	Orcokinin	Orcomyotropin	14528921
+NP04385	NFDEIDRSGFGFA	13	Procambarus clarkii	Orcokinin	Orcokinin	
+NP04386	NFDEIDRSGFGFN	13	Procambarus clarkii	Orcokinin	Orcokinin	
+NP04387	NFDEIDRSGFGFV	13	Procambarus clarkii	Orcokinin	Orcokinin-like peptide 2	
+NP04388	VYVPRYIANLY	11	Procambarus clarkii	Orcokinin	Orcokinin-like peptide 3	
+NP04389	NFDEIDRTGFGFH	13	Procambarus clarkii	Orcokinin	Orcokinin-like peptide 4	
+NP04390	FDAFTTGFGHS	11	Procambarus clarkii	Orcokinin	Orcomyotropin-like peptide	
+NP05539	APSGFLGMR	9	Procambarus clarkii	Tachykinin	Tachykinin-related peptide	15066180

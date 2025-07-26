@@ -1,0 +1,149 @@
+ID	Sequence	Length	Organism	Family	Name	PMID
+NP00470	AGPYAFGL	8	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00471	ARPYSFGL	8	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00472	DGPYSFGL	8	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00473	EAYAGFL	7	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00474	EPQYSFGL	8	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00475	EPYAFGL	7	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00476	FSGASPYGL	9	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00477	KLPTGYQFGL	10	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00478	PRDYAFGL	8	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00479	RGPYAFGL	8	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00480	SDMYSFGL	8	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00481	SGHYIFGL	8	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00482	SNPYSFGL	8	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00483	SRPYSFGL	8	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00484	TRPYSFGL	8	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00485	YDFEASSYSFGL	12	Ocypode ceratophthalma	Allatostatin	Allatostatin A	23298572
+NP00486	AWSNLGQAW	9	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00487	DDWSQFQGSW	10	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00488	DGSSNLRGAW	10	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00489	GNWNKFQGSW	10	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00490	NNWSKFQGSW	10	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00491	SDGWSPSGDGSW	12	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00492	SGDWSSLRGAW	11	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00493	SPNDWAHFRGSW	12	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00494	STNWSSCPTSAW	12	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00495	STNWSSLRSAW	11	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00496	TGWSSTSRAW	10	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00497	TGWSVFQGSW	10	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00498	TQWSKFQGSW	10	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00499	TSWGKFQGSW	10	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00500	TSWGKYQGSW	10	Ocypode ceratophthalma	Allatostatin	Allatostatin B	23298572
+NP00668	GPAESSGESAHPLE	14	Ocypode ceratophthalma	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	23298572
+NP00669	LLTSLRGPAESSGESAHPLE	20	Ocypode ceratophthalma	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	23298572
+NP00670	LPSAHPLE	8	Ocypode ceratophthalma	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	23298572
+NP00671	LTSLRGPAESSGESAHPLE	19	Ocypode ceratophthalma	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	23298572
+NP00672	RGPAESSGESAHPLE	15	Ocypode ceratophthalma	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	23298572
+NP00673	SLRGPAESDGESAHPLE	17	Ocypode ceratophthalma	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	23298572
+NP00674	SLRGPAESSGESAHPLE	17	Ocypode ceratophthalma	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	23298572
+NP00675	SLRGPAESSGESALSE	16	Ocypode ceratophthalma	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	23298572
+NP00676	TSLRGPAESSGESAHPLE	18	Ocypode ceratophthalma	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	23298572
+NP00741	NSELINSILGLPK	13	Ocypode ceratophthalma	Arthropod PDH	Pigment-dispersing hormone	23298572
+NP00742	NSELINSILGLPKVM	15	Ocypode ceratophthalma	Arthropod PDH	Pigment-dispersing hormone	23298572
+NP00743	NSELINSILGLPKVMNDA	18	Ocypode ceratophthalma	Arthropod PDH	Pigment-dispersing hormone	23298572
+NP00744	SELINSILGLPKVMNDA	17	Ocypode ceratophthalma	Arthropod PDH	Pigment-dispersing hormone	23298572
+NP00891	PFCNAFTGC	9	Ocypode ceratophthalma	CCAP	Crustacean cardioactive peptide	23298572
+NP01531	AHKNFLRF	8	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01532	AHRNFLRF	8	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01533	APRNFLRF	8	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01534	AYNQSFLRF	9	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01535	DENRNFLRF	9	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01536	DGNRNFLRF	9	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01537	DRNFLRF	7	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01538	EFVDPNLRF	9	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01539	GAHKNYLRF	9	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01540	GDRNFLRF	8	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01541	GNRNFLRF	8	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01542	GRNFLRF	7	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01543	GRPNFLRF	8	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01544	NFLRF	5	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01545	NPSDFLRF	8	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01546	NQPGVNFL	8	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01547	NRNFLRF	7	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01548	NRSNLRF	7	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01549	PKSNFLRF	8	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01550	RDRNFLRF	8	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01551	SKNYLRF	7	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01552	SVGNRNFLRF	10	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01553	TNYGGFLRF	9	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01554	YGNKNYLRF	9	Ocypode ceratophthalma	FMRFamide related peptide	FLP-extended-FLRFa	23298572
+NP01555	GYRKPPFNOSIF	12	Ocypode ceratophthalma	FMRFamide related peptide	SIFamide	23298572
+NP01556	RKPPFNGSIF	10	Ocypode ceratophthalma	FMRFamide related peptide	SIFamide	23298572
+NP03069	QDLDHVFLRF	10	Ocypode ceratophthalma	Myosuppressin	Myosuppressin	23298572
+NP03403	HIGSLLR	7	Ocypode ceratophthalma	NA	NA	23298572
+NP03404	RYLPT	5	Ocypode ceratophthalma	NA	Proctolin	23298572
+NP03405	HIGSLYR	7	Ocypode ceratophthalma	NA	YRamide	23298572
+NP03831	DVRAPALRLRF	11	Ocypode ceratophthalma	NPY	Short neuropeptide F	23298572
+NP03832	PSLRLRF	7	Ocypode ceratophthalma	NPY	Short neuropeptide F	23298572
+NP03833	PSMRLRF	7	Ocypode ceratophthalma	NPY	Short neuropeptide F	23298572
+NP03834	SMPSLRLRF	9	Ocypode ceratophthalma	NPY	Short neuropeptide F	23298572
+NP04007	EGFYSQRY	8	Ocypode ceratophthalma	NPY	RYamide	23298572
+NP04008	FVGGSRY	7	Ocypode ceratophthalma	NPY	RYamide	23298572
+NP04009	FYANRY	6	Ocypode ceratophthalma	NPY	RYamide	23298572
+NP04010	FYSQRY	6	Ocypode ceratophthalma	NPY	Ryamide	23298572
+NP04011	SGFNSPSPRY	10	Ocypode ceratophthalma	NPY	RYamide	23298572
+NP04012	SGFYADRY	8	Ocypode ceratophthalma	NPY	RYamide	23298572
+NP04013	SGFYALRY	8	Ocypode ceratophthalma	NPY	RYamide	23298572
+NP04014	SGFYANRY	8	Ocypode ceratophthalma	NPY	RYamide	23298572
+NP04015	SGFYAPRY	8	Ocypode ceratophthalma	NPY	RYamide	23298572
+NP04016	SGFYCNRY	8	Ocypode ceratophthalma	NPY	RYamide	23298572
+NP04017	SGFYSDRY	8	Ocypode ceratophthalma	NPY	RYamide	23298572
+NP04018	SGFYSNRY	8	Ocypode ceratophthalma	NPY	RYamide	23298572
+NP04019	SSRFVGGSRY	10	Ocypode ceratophthalma	NPY	RYamide	23298572
+NP04324	DEIDRSGFGFA	11	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04325	DFDEIDR	7	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04326	DFDEIDRSG	9	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04327	DFDEIDRSGFA	11	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04328	DFDEIDRSGFG	11	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04329	DFDEIDRSGFGF	12	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04330	DFDEIDRSGFGFA	13	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04331	DFDEIDRSGFGFV	13	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04332	DFDEIDRSSFA	11	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04333	DFDEIDRSSFG	11	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04334	DFDEIDRSSFGF	12	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04335	DFDEIDRSSFGFA	13	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04336	DFDEIDRSSFGFH	13	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04337	DFDEIDRSSFGFN	13	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04338	EIDRSGFGFA	10	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04339	EIDRSSFGFH	10	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04340	FDEIDRSGFA	10	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04341	FDEIDRSGFGFA	12	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04342	FDEIDRSGFGFV	12	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04343	FDEIDRSSFA	10	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04344	FDEIDRSSFGF	11	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04345	FDEIDRSSFGFA	12	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04346	NFDEIDR	7	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04347	NFDEIDRS	8	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04348	NFDEIDRSA	9	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04349	NFDEIDRSDFA	11	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04350	NFDEIDRSG	9	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04351	NFDEIDRSGF	10	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04352	NFDEIDRSGFA	11	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04353	NFDEIDRSGFG	11	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04354	NFDEIDRSGFGF	12	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04355	NFDEIDRSGFGFA	13	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04356	NFDEIDRSGFGFV	13	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04357	NFDEIDRSGFV	11	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04358	NFDEIDRSGYGFV	13	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04359	NFDEIDRSS	9	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04360	NFDEIDRSSF	10	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04361	NFDEIDRSSFA	11	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04362	NFDEIDRSSFG	11	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04363	NFDEIDRSSFGF	12	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04364	NFDEIDRSSFGFA	13	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04365	NFDEIDRSSFGFH	13	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04366	NFDEIDRSSFGFV	13	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04367	NFDEIDRTGFGFH	13	Ocypode ceratophthalma	Orcokinin	Orcokinin	23298572
+NP04368	FDAFTTGFGH	10	Ocypode ceratophthalma	Orcokinin	Orcomyotropin	23298572
+NP04369	FDAFTTGFGHS	11	Ocypode ceratophthalma	Orcokinin	Orcomyotropin	23298572
+NP04370	FDAYTTGFGHS	11	Ocypode ceratophthalma	Orcokinin	Orcomyotropin	23298572
+NP04371	FPAFTTGFGHS	11	Ocypode ceratophthalma	Orcokinin	Orcomyotropin	23298572
+NP04372	TPRDIANLY	9	Ocypode ceratophthalma	Orcokinin	Ork/Orcomyotropin-related peptide	23298572
+NP04996	LYFAPRL	7	Ocypode ceratophthalma	Pyrokinin	Pyrokinin	23298572
+NP04997	TDGFAFSPRL	10	Ocypode ceratophthalma	Pyrokinin	Pyrokinin	23298572
+NP05592	APSGFLGMR	9	Ocypode ceratophthalma	Tachykinin	Tachykinin-related peptide	23298572
+NP05593	APSGFLGMRG	10	Ocypode ceratophthalma	Tachykinin	Tachykinin-related peptide	23298572
+NP05594	PSGFLGMR	8	Ocypode ceratophthalma	Tachykinin	Tachykinin-related peptide	23298572
+NP05595	SGFLGMR	7	Ocypode ceratophthalma	Tachykinin	Tachykinin-related peptide	23298572
+NP05596	TPSGFLGMR	9	Ocypode ceratophthalma	Tachykinin	Tachykinin-related peptide	23298572

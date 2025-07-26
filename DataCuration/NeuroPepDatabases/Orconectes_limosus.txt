@@ -1,0 +1,13 @@
+ID	Sequence	Length	Organism	Family	Name	PMID
+NP00255	PRVYGFGL	8	Orconectes limosus	Allatostatin	Allatostatin A	10477125
+NP00256	AGPYAFGL	8	Orconectes limosus	Allatostatin	Carcinustatin-8	10477125
+NP00257	SAGPYAFGL	9	Orconectes limosus	Allatostatin	orcostatin I	10477125
+NP00677	RSVESSGSSSSEPLSFLSQDQSVN	24	Orconectes limosus	Arthropod CHH/MIH/GIH/VIH hormone	CPRPv1	14981133
+NP00678	RSVESSGSSSSEPLSFLSQDQSVS	24	Orconectes limosus	Arthropod CHH/MIH/GIH/VIH hormone	CPRPv2	14981133
+NP00703	RSVEGSSRMERLLSSGSSSSEPLSFLSQDQSVS	33	Orconectes limosus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide A	1788131
+NP00704	QVFDQACKGIYDRAIFKKLDRVCEDCYNLYRKPYVATTCRQNCYANSVFRQCLDDLLLIDVLDEYISGVQTV	72	Orconectes limosus	Arthropod CHH/MIH/GIH/VIH hormone	Crustacean hyperglycemic hormone	1800954
+NP00705	RSVEGSSRMERLLSSGSSSSEPLSFLSQDQSVN	33	Orconectes limosus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide A	1788131
+NP00760	NSELINAILGSPTLFGEV	18	Orconectes limosus	Arthropod PDH	Pigment-dispersing hormone B	14981133
+NP00761	NSELINAILGSPTLMGEV	18	Orconectes limosus	Arthropod PDH	Pigment-dispersing hormone C	14981133
+NP04383	NFDEIDRSGFGFN	13	Orconectes limosus	Orcokinin	Orcokinin	1480511
+NP04384	FDAFTTGF	8	Orconectes limosus	Orcokinin	Orcomyotropin	10952880

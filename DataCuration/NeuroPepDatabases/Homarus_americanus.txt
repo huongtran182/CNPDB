@@ -1,0 +1,122 @@
+ID	Sequence	Length	Organism	Family	Name	PMID
+NP00101	QLNFSPGW	8	Homarus americanus	AKH/HRTH/RPCH	Red pigment-concentrating hormone	18304551
+NP00411	AGGAYSFGL	9	Homarus americanus	Allatostatin	Allatostatin A	18304551
+NP00412	AGPYAFGL	8	Homarus americanus	Allatostatin	Allatostatin A	18304551
+NP00413	AGPYSFGL	8	Homarus americanus	Allatostatin	Allatostatin A	18088365
+NP00414	ASPYAFGL	8	Homarus americanus	Allatostatin	Allatostatin A	20025296
+NP00415	EPYAFGL	7	Homarus americanus	Allatostatin	Allatostatin A	18304551
+NP00416	ERAYSFGL	8	Homarus americanus	Allatostatin	Allatostatin A	20025296
+NP00417	PRDYAFGL	8	Homarus americanus	Allatostatin	Allatostatin A	22860213
+NP00418	PRNYAFGL	8	Homarus americanus	Allatostatin	Allatostatin A	22860213
+NP00419	RQYAFGL	7	Homarus americanus	Allatostatin	Allatostatin A	22860213
+NP00420	SGPYAFGL	8	Homarus americanus	Allatostatin	Allatostatin A	18304551
+NP00421	SGPYSFGL	8	Homarus americanus	Allatostatin	Allatostatin A	18304551
+NP00422	SPYAFGL	7	Homarus americanus	Allatostatin	Allatostatin A	18304551
+NP00423	SQYTFGL	7	Homarus americanus	Allatostatin	Allatostatin A	18304551
+NP00424	TPSYAFGL	8	Homarus americanus	Allatostatin	Allatostatin A	18304551
+NP00425	VGPYAFGL	8	Homarus americanus	Allatostatin	Allatostatin A	18304551
+NP00426	VPRYAFG	7	Homarus americanus	Allatostatin	Allatostatin A	20025296
+NP00427	GNWNKFQGSW	10	Homarus americanus	Allatostatin	Allatostatin B	18304551
+NP00428	NWNKFQGSW	9	Homarus americanus	Allatostatin	Allatostatin B	18304551
+NP00429	STNWSSLRSAW	11	Homarus americanus	Allatostatin	Allatostatin B	22860213
+NP00430	TNWNKFQGSW	10	Homarus americanus	Allatostatin	Allatostatin B	22860213
+NP00431	QIRYHQCYFNPISCF	15	Homarus americanus	Allatostatin	Allatostatin C	20025296
+NP00653	PLGFLSQDHS	10	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	20025296
+NP00654	PLGFLSQDHSV	11	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	20025296
+NP00655	PLGFLSQDHSVN	12	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	18304551
+NP00656	RSVEGASRMEKL	12	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	18304551
+NP00657	RSVEGASRMEKLL	13	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	20025296
+NP00658	RSVEGASRMEKLLS	14	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	20025296
+NP00659	RSVEGASRMEKLLSS	15	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	18304551
+NP00660	RSVEGASRMEKLLSSS	16	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	20025296
+NP00661	RSVEGASRMEKLLSSSN	17	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	20025296
+NP00662	RSVEGASRMEKLLT	14	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	20025296
+NP00663	RSVEGVSRME	10	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	20025296
+NP00664	RSVEGVSRMEKLL	13	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	20025296
+NP00665	RSVEGVSRMEKLLS	14	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	20025296
+NP00666	RSVEGVSRMEKLLSSISPSSTPLGFLSQDHSVN	33	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	18304551
+NP00667	RSVEGVSRMEKLLT	14	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	18304551
+NP00688	RSVEGASRMEKLLSSSNSPSSTPLGFLSQDHSVN	34	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide A(Potential)	
+NP00689	QVFDQACKGVYDRNLFKKLDRVCEDCYNLYRKPFVATTCRENCYSNWVFRQCLDDLLLSDVIDEYVSNVQMV	72	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	Crustacean hyperglycemic hormone A	2169734
+NP00690	RSVEGVSRMEKLLSSSISPSSTPLGFLSQDHSVN	34	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide B	1788131
+NP00691	QVFDQACKGVYDRNLFKKLNRVCEDCYNLYRKPFIVTTCRENCYSNRVFRQCLDDLLLSDVIDEYVSNVQMV	72	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	Crustacean hyperglycemic hormone B	
+NP00692	ASAWFTNDECPGVMGNRDLYEKVAWVCNDCANIFRNNDVGVMCKKDCFHTMDFLWCVYATERHGEIDQFRKWVSILRA	78	Homarus americanus	Arthropod CHH/MIH/GIH/VIH hormone	Gonad-inhibiting hormone	1791922
+NP00738	NSELINSILGLPKVMNDA	18	Homarus americanus	Arthropod PDH	β-PDH	16214114
+NP00739	NSELINSLLGISRLMNEA	18	Homarus americanus	Arthropod PDH	β-PDH	16214114
+NP00859	GLDLGLGRGFSGSQAAKHLMGLAAANFAGGP	31	Homarus americanus	Calcitonin-like peptide	Calcitonin-like diuretic hormone	20008368
+NP00889	PFCNAFTGC	9	Homarus americanus	CCAP	Crustacean cardioactive peptide	20025296
+NP01032	QTFQYSRGWTN	11	Homarus americanus	Corazonin	Corazonin	20025296
+NP01476	APQRNFLRF	9	Homarus americanus	FMRFamide related peptide	FMRFamide-like peptide	18304551
+NP01477	DRNFLRF	7	Homarus americanus	FMRFamide related peptide	FMRFamide-like peptide	20025296
+NP01478	NFLRF	5	Homarus americanus	FMRFamide related peptide	FMRFamide-like peptide	20025296
+NP01479	RNFLRF	6	Homarus americanus	FMRFamide related peptide	FMRFamide-like peptide	20025296
+NP01480	SKNFLRF	7	Homarus americanus	FMRFamide related peptide	FMRFamide-like peptide	20025296
+NP01481	APSKNFLRF	9	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	22860213
+NP01482	DQNRNFLRF	9	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	22860213
+NP01483	DRNYLRF	7	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	20025296
+NP01484	DTSTPALRLRF	11	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	22860213
+NP01485	FEPSLRLRF	9	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	18304551
+NP01486	FSHDRNFLRF	10	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	22860213
+NP01487	GAHKNYLRF	9	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	22860213
+NP01488	GDRNFLRF	8	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	22860213
+NP01489	GGGEYDDYGHLRF	13	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	18304551
+NP01490	GGRNFLRF	8	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	22860213
+NP01491	GNRNFLRF	8	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	22860213
+NP01492	GPPSLRLRF	9	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	22860213
+NP01493	GPRNFLRF	8	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	20025296
+NP01494	GYPSRNYLRF	10	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	20025296
+NP01495	GYSDRNYLRF	10	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	22860213
+NP01496	HDRNFLRF	8	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	20025296
+NP01497	QLDRNFLRF	9	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	20025296
+NP01498	QPRNFLRF	8	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	20025296
+NP01499	SDRNYLRF	8	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	20025296
+NP01500	SGRNFLRF	8	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	22860213
+NP01501	SMPSLRLRF	9	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	22860213
+NP01502	SPKNFLRF	8	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	20025296
+NP01503	YSDRNYLRF	9	Homarus americanus	FMRFamide related peptide	FMRFamide-related peptide	20025296
+NP01504	NRNFLRF	7	Homarus americanus	FMRFamide related peptide	RFamide	18088365
+NP01505	RKPPFNGSIF	10	Homarus americanus	FMRFamide related peptide	SIFamide	18304551
+NP01506	VYRKPPFNGSIF	12	Homarus americanus	FMRFamide related peptide	SIFamide	22860213
+NP01758	SDRNFLRF	8	Homarus americanus	FMRFamide related peptide	FMRFamide-like neuropeptide 3	3429714
+NP01759	TNRNFLRF	8	Homarus americanus	FMRFamide related peptide	FMRFamide-like neuropeptide 4	3429714
+NP03064	QDLDHVFLRF	10	Homarus americanus	Myosuppressin	Myosuppressin	22860213
+NP03387	DIGDLLEGKD	10	Homarus americanus	NA	CCAP precursor-related peptides	18304551
+NP03388	AVLLPKKTEKK	11	Homarus americanus	NA	NA	18304551
+NP03389	DLPKVDTALK	10	Homarus americanus	NA	NA	18304551
+NP03390	EVEEPEAPAPPAK	13	Homarus americanus	NA	NA	18304551
+NP03391	GPSGGFNGALAR	12	Homarus americanus	NA	NA	18304551
+NP03392	KPKTEKK	7	Homarus americanus	NA	NA	18304551
+NP03393	LRVAPEEHPVLL	12	Homarus americanus	NA	NA	18304551
+NP03394	HI/LASLYKPR	9	Homarus americanus	NA	NA	22860213
+NP03395	RYLPT	5	Homarus americanus	NA	Proctolin	22860213
+NP03396	HIGSLYR	7	Homarus americanus	NA	YRamide	22860213
+NP03816	PSLRLRF	7	Homarus americanus	NPY	Short neuropeptide F	18304551
+NP04281	SSEDMDRL/IGFG	11	Homarus americanus	Orcokinin	Hoa-Orcokinins	16214114
+NP04282	SSEDMDRL/IGFGFN	13	Homarus americanus	Orcokinin	Hoa-Orcokinins	16214114
+NP04283	FDAFTTGFGHN	11	Homarus americanus	Orcokinin	Orcokinin	22860213
+NP04284	NFDEIDRSGF	10	Homarus americanus	Orcokinin	Orcokinin	20025296
+NP04285	NFDEIDRSGFA	11	Homarus americanus	Orcokinin	Orcokinin	22860213
+NP04286	NFDEIDRSGFG	11	Homarus americanus	Orcokinin	Orcokinin	22860213
+NP04287	NFDEIDRSGFGF	12	Homarus americanus	Orcokinin	Orcokinin	22860213
+NP04288	NFDEIDRSGFGFA	13	Homarus americanus	Orcokinin	Orcokinin	16214114
+NP04289	NFDEIDRSGFGFH	13	Homarus americanus	Orcokinin	Orcokinin	22860213
+NP04290	NFDEIDRSGFGFN	13	Homarus americanus	Orcokinin	Orcokinin	22860213
+NP04291	NFDEIDRSGFGFV	13	Homarus americanus	Orcokinin	Orcokinin	22860213
+NP04292	NFDEIDRSSFA	11	Homarus americanus	Orcokinin	Orcokinin	16214114
+NP04293	NFDEIDRSSFG	11	Homarus americanus	Orcokinin	Orcokinin	16214114
+NP04294	NFDEIDRSSFGFN	13	Homarus americanus	Orcokinin	Orcokinin	18304551
+NP04295	NFDEIDRSSFGFV	13	Homarus americanus	Orcokinin	Orcokinin	16214114
+NP04296	NFDELDRSGFGFH	13	Homarus americanus	Orcokinin	Orcokinin	16214114
+NP04297	SSEDMDRLGFA	11	Homarus americanus	Orcokinin	Orcokinin	18304551
+NP04298	SSEDMDRLGFG	11	Homarus americanus	Orcokinin	Orcokinin	20025296
+NP04299	SSEDMDRLGFGFN	13	Homarus americanus	Orcokinin	Orcokinin	22860213
+NP04300	VYGPRDIANLY	11	Homarus americanus	Orcokinin	Orcokinin	22860213
+NP04301	FDAFTTGF	8	Homarus americanus	Orcokinin	Orcomyotropin	18304551
+NP04302	FDAFTTGFGHS	11	Homarus americanus	Orcokinin	Orcomyotropin	16214114
+NP04969	FSPRL	5	Homarus americanus	Pyrokinin	Pyrokinin	18304551
+NP05528	TPSGFLGMR	9	Homarus americanus	Tachykinin	Tachykinin-related peptide	18706463
+NP05573	APSGFLGMR	9	Homarus americanus	Tachykinin	Tachykinin	22860213
+NP05574	APSGFLGMR	9	Homarus americanus	Tachykinin	Tachykinin	22860213
+NP05575	APSGFLGMRG	10	Homarus americanus	Tachykinin	Tachykinin	18304551
+NP05576	SGFLGMR	7	Homarus americanus	Tachykinin	Tachykinin	18304551
+NP05577	PSGFLGMR	8	Homarus americanus	Tachykinin	Tachykinin-related peptide	18304551

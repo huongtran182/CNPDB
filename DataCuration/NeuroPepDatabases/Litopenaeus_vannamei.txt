@@ -1,0 +1,66 @@
+ID	Sequence	Length	Organism	Family	Name	PMID
+NP00106	ELNFSPGW	8	Litopenaeus vannamei	AKH/HRTH/RPCH	Red pigment-concentrating hormone	19852991
+NP00434	ANQYAFGL	8	Litopenaeus vannamei	Allatostatin	Allatostatin A	19852991
+NP00435	DRLYAFGL	8	Litopenaeus vannamei	Allatostatin	Allatostatin A	19852991
+NP00436	HGSYAFGL	8	Litopenaeus vannamei	Allatostatin	Allatostatin A	19852991
+NP00437	SSKPYAFGL	9	Litopenaeus vannamei	Allatostatin	Allatostatin A	19852991
+NP00438	ADWNKFQGSW	10	Litopenaeus vannamei	Allatostatin	Allatostatin B	19852991
+NP00439	KWAAGRSAW	9	Litopenaeus vannamei	Allatostatin	Allatostatin B	19852991
+NP00440	LTWNKFQGSW	10	Litopenaeus vannamei	Allatostatin	Allatostatin B	19852991
+NP00441	NWNKFQGSW	9	Litopenaeus vannamei	Allatostatin	Allatostatin B	19852991
+NP00442	RWSKFQGSW	9	Litopenaeus vannamei	Allatostatin	Allatostatin B	19852991
+NP00443	SADWNSLRGTW	11	Litopenaeus vannamei	Allatostatin	Allatostatin B	19852991
+NP00444	STNWSNLRGTW	11	Litopenaeus vannamei	Allatostatin	Allatostatin B	19852991
+NP00445	VPNDWAHFRGSW	12	Litopenaeus vannamei	Allatostatin	Allatostatin B	19852991
+NP00695	SLFDPSCTGVFDRQLLRRLRRVCDDCFNVFREPNVSTECRSNCYNNEVFRQCMEYLLPPHLHEEHRLAVQMV	72	Litopenaeus vannamei	Arthropod CHH/MIH/GIH/VIH hormone	Crustacean hyperglycemic hormone	8812330
+NP00696	DTFDHSCKGIYDRELFRKLDRVCEDCYNVFREPKVATECKSNCFVNKRFNVCVADLRHDVSRFLKMANSALS	72	Litopenaeus vannamei	Arthropod CHH/MIH/GIH/VIH hormone	Molt-inhibiting hormone-like	
+NP01507	APERNFLRF	9	Litopenaeus vannamei	FMRFamide related peptide	FMRFamide-related peptide	19852991
+NP01508	DGRNFLRF	8	Litopenaeus vannamei	FMRFamide related peptide	FMRFamide-related peptide	19852991
+NP01509	GYSNKDFVRF	10	Litopenaeus vannamei	FMRFamide related peptide	FMRFamide-related peptide	19852991
+NP01510	GYSNKNFVRF	10	Litopenaeus vannamei	FMRFamide related peptide	FMRFamide-related peptide	19852991
+NP01511	NRNFLRF	7	Litopenaeus vannamei	FMRFamide related peptide	FMRFamide-related peptide	19852991
+NP01512	SENRNFLRF	9	Litopenaeus vannamei	FMRFamide related peptide	FMRFamide-related peptide	19852991
+NP01513	GYRKPPFNGSIF	12	Litopenaeus vannamei	FMRFamide related peptide	SIFamide	19852991
+NP01514	RKPPFNGSIF	10	Litopenaeus vannamei	FMRFamide related peptide	SIFamide	19852991
+NP02044	AGGSGGVGGEYDDYGHL/I	17	Litopenaeus vannamei	Gastrin/cholecystokinin	Sulfakinin-1	12437988
+NP03065	QDLDHVFLRF	10	Litopenaeus vannamei	Myosuppressin	Myosuppressin	19852991
+NP03125	RYLPT	5	Litopenaeus vannamei	NA	Proctolin	19852991
+NP03820	DGRTPALRLRF	11	Litopenaeus vannamei	NPY	Short neuropeptide F	19852991
+NP03821	PSLRLRF	7	Litopenaeus vannamei	NPY	Short neuropeptide F	19852991
+NP03822	PSMRLRF	7	Litopenaeus vannamei	NPY	Short neuropeptide F	19852991
+NP03823	SMPSLRLRF	9	Litopenaeus vannamei	NPY	Short neuropeptide F	19852991
+NP03999	EGFYSQRY	8	Litopenaeus vannamei	NPY	RYamide	19852991
+NP04000	SGFYANRY	8	Litopenaeus vannamei	NPY	RYamide	19852991
+NP04305	DEIDRAGMGFA	11	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04306	DFDEIDRAGF	10	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04307	EIDRSGFGFA	10	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04308	FDEIDRAGMG	10	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04309	FDEIDRAGMGFA	12	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04310	NFDEIDRA	8	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04311	NFDEIDRAG	9	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04312	NFDEIDRAGF	10	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04313	NFDEIDRAGFGFL	13	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04314	NFDEIDRAGFGFN	13	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04315	NFDEIDRAGMGF	12	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04316	NFDEIDRAGMGFA	13	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04317	NFDEIDRSGF	10	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04318	NFDEIDRSGFA	11	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04319	NFDEIDRSGFG	11	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04320	NFDEIDRSGFGFA	13	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04321	NFDEIDRSGFGFN	13	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04322	NFDEIDRTGFGFH	13	Litopenaeus vannamei	Orcokinin	Orcokinin	19852991
+NP04323	FDAFTTGFGHS	11	Litopenaeus vannamei	Orcokinin	orcomyotropin	19852991
+NP04974	ADFAFNPRL	9	Litopenaeus vannamei	Pyrokinin	pyrokinin	19852991
+NP04975	ADFAFSPRL	9	Litopenaeus vannamei	Pyrokinin	pyrokinin	19852991
+NP04976	DFAFNPRL	8	Litopenaeus vannamei	Pyrokinin	pyrokinin	19852991
+NP04977	DFAFSPRL	8	Litopenaeus vannamei	Pyrokinin	pyrokinin	19852991
+NP04978	DFSFNPRL	8	Litopenaeus vannamei	Pyrokinin	pyrokinin	19852991
+NP04979	GDFAFNPRL	9	Litopenaeus vannamei	Pyrokinin	pyrokinin	19852991
+NP04980	GDFAFSPRL	9	Litopenaeus vannamei	Pyrokinin	pyrokinin	19852991
+NP04981	SGGFAFSPRL	10	Litopenaeus vannamei	Pyrokinin	Pyrokinin	19852991
+NP04982	YSFLPRL	7	Litopenaeus vannamei	Pyrokinin	pyrokinin	19852991
+NP05580	APAGFLGMR	9	Litopenaeus vannamei	Tachykinin	Tachykinin-related peptide	19852991
+NP05581	APSGFLDMR	9	Litopenaeus vannamei	Tachykinin	Tachykinin-related peptide	19852991
+NP05582	APSGFLGMR	9	Litopenaeus vannamei	Tachykinin	Tachykinin-related peptide	19852991
+NP05583	APSGFLGMRG	10	Litopenaeus vannamei	Tachykinin	Tachykinin-related peptide	19852991
+NP05584	APSGFNGMR	9	Litopenaeus vannamei	Tachykinin	Tachykinin-related peptide	19852991
