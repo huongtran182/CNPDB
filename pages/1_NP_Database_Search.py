@@ -331,7 +331,13 @@ def display_peptide_details(row: pd.Series):
             st.write("No AlphaFold-predicted 3D structure are available for this peptide")
 
          # Meta PDB file
-        meta_pdb_file = f"Assets/3D Structure ESMFold/3D Meta cNP{cNPDB_id}.pdb"
+        if cNPDB_id <= 1000:
+            esm_folder = "Assets/3D Structure ESMFold 1_1000"
+        else:
+            esm_folder = "Assets/3D Structure ESMFold 1001_2000"
+        
+        meta_pdb_file = os.path.join(esm_folder, f"3D Meta cNP{cNPDB_id}.pdb")
+
         if os.path.exists(meta_pdb_file):
             st.markdown("<div style='margin-top:10px;'></div>", unsafe_allow_html=True)
             st.markdown(
@@ -803,17 +809,28 @@ if len(df_filtered) > 0:
                 zip_buf = io.BytesIO()
                 with zipfile.ZipFile(zip_buf, "w") as zipf:
                     for _, row in selected_rows.iterrows():
-                        cnp_id = row['cNPDB ID']
+                        cnp_id = int(row["cNPDB ID"])
+
+                        # Determine AlphaFold folder
+                        if cnp_id <= 1000:
+                            alphafold_folder = "Assets/3D Structure AlphaFold 1_1000"
+                        else:
+                            alphafold_folder = "Assets/3D Structure AlphaFold 1001_2000"
     
-                        # Add CIF
-                        cif_path = f"Assets/3D Structure/3D cNP{cnp_id}.cif"
+                        cif_path = os.path.join(alphafold_folder, f"3D cNP {cnp_id}.cif")
                         if os.path.exists(cif_path):
                             zipf.write(cif_path, arcname=f"AlphaFold_3D_Structures/{os.path.basename(cif_path)}")
     
-                        # ✅ Add Meta PDB
-                        pdb_path = f"Assets/3D Structure/3D Meta cNP{cnp_id}.pdb"
+                        # Determine ESMFold folder
+                        if cnp_id <= 1000:
+                            esmfold_folder = "Assets/3D Structure ESMFold 1_1000"
+                        else:
+                            esmfold_folder = "Assets/3D Structure ESMFold 1001_2000"
+    
+                        pdb_path = os.path.join(esmfold_folder, f"3D Meta cNP{cnp_id}.pdb")
                         if os.path.exists(pdb_path):
                             zipf.write(pdb_path, arcname=f"ESMfold_3D_Structures/{os.path.basename(pdb_path)}")
+
     
                         # Add MSI images
                         for tissue_col, asset_folder in [
