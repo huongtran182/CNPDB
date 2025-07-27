@@ -156,7 +156,7 @@ species = [
     ("Ppro", "<i>Pugettia producta</i> – Northern kelp crab"),
     ("Spar", "<i>Scylla paramamosain</i> – Southeast Asia mud crab"),
     ("Sser", "<i>Scylla serrata</i> – Giant mud crab"),
-    ("Sser", "<i>Sagmariasus verreauxi</i> – Rock lobster"),
+    ("Sver", "<i>Sagmariasus verreauxi</i> – Rock lobster"),
 ]
 
 # Helper to render one section
