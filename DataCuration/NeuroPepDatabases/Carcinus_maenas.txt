@@ -1,0 +1,121 @@
+ID	Sequence	Length	Organism	Family	Name	PMID
+NP00233	QLNFSPGW	8	Carcinus maenas	AKH/HRTH/RPCH	Red pigment-concentrating hormone	19523386
+NP00356	AAPYAFGL	8	Carcinus maenas	Allatostatin	Allatostatin A	19523386
+NP00357	AASPYSFGL	9	Carcinus maenas	Allatostatin	Allatostatin A	19523386
+NP00358	APGPYAFGL	9	Carcinus maenas	Allatostatin	Allatostatin A	19523386
+NP00359	ARPYAFGL	8	Carcinus maenas	Allatostatin	Allatostatin A	19523386
+NP00360	ARPYSFGL	8	Carcinus maenas	Allatostatin	Allatostatin A	19523386
+NP00361	EPYEFGL	7	Carcinus maenas	Allatostatin	Allatostatin A	19523386
+NP00362	FSGASPYGL	9	Carcinus maenas	Allatostatin	Allatostatin A	19523386
+NP00363	GKPYAFGL	8	Carcinus maenas	Allatostatin	Allatostatin A	19523386
+NP00364	KLPYSFGL	8	Carcinus maenas	Allatostatin	Allatostatin A	19523386
+NP00365	LKAYDFGL	8	Carcinus maenas	Allatostatin	Allatostatin A	19523386
+NP00366	PADLYEFGL	9	Carcinus maenas	Allatostatin	Allatostatin A	19523386
+NP00367	RGPYAFGL	8	Carcinus maenas	Allatostatin	Allatostatin A	19523386
+NP00368	TRPYSFGL	8	Carcinus maenas	Allatostatin	Allatostatin A	19523386
+NP00369	AGWNKFQGSW	10	Carcinus maenas	Allatostatin	Allatostatin B	19523386
+NP00370	AWSNLGQAW	9	Carcinus maenas	Allatostatin	Allatostatin B	19523386
+NP00371	GSNWSNLRGAW	11	Carcinus maenas	Allatostatin	Allatostatin B	19523386
+NP00372	GVNWSNLRGAW	11	Carcinus maenas	Allatostatin	Allatostatin B	19523386
+NP00373	NNNWSKFQGSW	11	Carcinus maenas	Allatostatin	Allatostatin B	19523386
+NP00374	NNWSKFQGSW	10	Carcinus maenas	Allatostatin	Allatostatin B	19523386
+NP00375	QWSSMRGAW	9	Carcinus maenas	Allatostatin	Allatostatin B	19523386
+NP00376	SGKWSNLRGAW	11	Carcinus maenas	Allatostatin	Allatostatin B	19523386
+NP00377	STNWSSLRSAW	11	Carcinus maenas	Allatostatin	Allatostatin B	19523386
+NP00378	TSWGKFQGSW	10	Carcinus maenas	Allatostatin	Allatostatin B	19523386
+NP00379	VPNDWAHFRGSW	12	Carcinus maenas	Allatostatin	Allatostatin B	19523386
+NP00380	VTWGKFQGSW	10	Carcinus maenas	Allatostatin	Allatostatin B	19523386
+NP00381	GGPYSXGL	8	Carcinus maenas	Allatostatin	Carcinustatin-16	9461295
+NP00519	APQPYAFGL	9	Carcinus maenas	Allatostatin	Carcinustatin-10	9461295
+NP00520	ATGQYAFGL	9	Carcinus maenas	Allatostatin	Carcinustatin-11	9461295
+NP00521	PDMYAFGL	8	Carcinus maenas	Allatostatin	Carcinustatin-12	9461295
+NP00522	EYDDMYTEKRPKVYAFGL	18	Carcinus maenas	Allatostatin	Carcinustatin-13	9461295
+NP00523	YSFGL	5	Carcinus maenas	Allatostatin	Carcinustatin-14	9461295
+NP00524	AGPYSFGL	8	Carcinus maenas	Allatostatin	Carcinustatin-15	9461295
+NP00525	GGPYSYGL	8	Carcinus maenas	Allatostatin	Carcinustatin-16	9461295
+NP00526	SGQYSFGL	8	Carcinus maenas	Allatostatin	Carcinustatin-17	9461295
+NP00527	SDMYSFGL	8	Carcinus maenas	Allatostatin	Carcinustatin-18	9461295
+NP00528	APTDMYSFGL	10	Carcinus maenas	Allatostatin	Carcinustatin-19	9461295
+NP00529	EAYAFGL	7	Carcinus maenas	Allatostatin	Carcinustatin-2	9461295
+NP00530	GYEDEDEDRPFYALGLGKRPRTYSFGL	27	Carcinus maenas	Allatostatin	Carcinustatin-20	9461295
+NP00531	EPYAFGL	7	Carcinus maenas	Allatostatin	Carcinustatin-3	9461295
+NP00532	DPYAFGL	7	Carcinus maenas	Allatostatin	Carcinustatin-4	9461295
+NP00533	NPYAFGL	7	Carcinus maenas	Allatostatin	Carcinustatin-5	9461295
+NP00534	YAFGL	5	Carcinus maenas	Allatostatin	Carcinustatin-1	9461295
+NP00535	SPYAFGL	7	Carcinus maenas	Allatostatin	Carcinustatin-6	9461295
+NP00536	ASPYAFGL	8	Carcinus maenas	Allatostatin	Carcinustatin-7	9461295
+NP00537	AGPYAFGL	8	Carcinus maenas	Allatostatin	Carcinustatin-8	9461295
+NP00538	GGPYAFGL	8	Carcinus maenas	Allatostatin	Carcinustatin-9	9461295
+NP00644	PSAALAVEHGTTHPLE	16	Carcinus maenas	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	19523386
+NP00645	RSTPGYGRMDRIL	13	Carcinus maenas	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	19523386
+NP00646	RSTPGYGRMDRILAA	15	Carcinus maenas	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	19523386
+NP00647	RSTPGYGRMDRILAALKTSPMEPSAALAVEHGTTHPLE	38	Carcinus maenas	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	19523386
+NP00648	RSTQGYGRMDPIL	13	Carcinus maenas	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	19523386
+NP00649	RSTQGYGRMDRILAA	15	Carcinus maenas	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	19523386
+NP00650	RSTQGYGRMDRILAALKTSPMEPSAALAVEHGTTHPLE	38	Carcinus maenas	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	19523386
+NP00651	SPMEPSAALAVEHGTTHPLE	20	Carcinus maenas	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	19523386
+NP00652	TSPMEPSAALAVEHGTTHPLE	21	Carcinus maenas	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	19523386
+NP00684	RSTQGYGRMDRILAALKTSPMEPSAALAVENGTTHPLE	38	Carcinus maenas	Arthropod CHH/MIH/GIH/VIH hormone	CHH precursor-related peptide	1788131
+NP00685	QIYDTSCKGVYDRALFNDLEHVCDDCYNLYRTSYVASACRSNCYSNLVFRQCMDDLLMMDEFDQYARKVQMV	72	Carcinus maenas	Arthropod CHH/MIH/GIH/VIH hormone	Crustacean hyperglycemic hormone	2792364,8841399
+NP00686	RVINDECPNLIGNRDLYKKVEWICEDCSNIFRKTGMASLCRRNCFFNEDFVWCVHATERSEELRDLEEWVGILGAGRD	78	Carcinus maenas	Arthropod CHH/MIH/GIH/VIH hormone	Molt-inhibiting hormone	1679945
+NP00766	NSELINSILGLPKVMNDA	18	Carcinus maenas	Arthropod PDH	Pigment-dispersing hormone	19523386
+NP00893	PFCNAFTGC	9	Carcinus maenas	CCAP	Cardioactive peptide	16593803
+NP01028	QTFQYSRGWTN	11	Carcinus maenas	Corazonin	Corazonin	19523386
+NP01445	APQGNFLRF	9	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01446	APQRNFLRF	9	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01447	DARTPALRLRF	11	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01448	DGNRNFLRF	9	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01449	DRNFLRF	7	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01450	EMPSLRLRF	9	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01451	GAHKNYLRF	9	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01452	GLSRNYLRF	9	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01453	NRNFLRF	7	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01454	NRSFLRF	7	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01455	QGNFLRF	7	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01456	RNFLRF	6	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01457	SENRNFLRF	9	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01458	SMPSLRLRF	9	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01459	SRNYLRF	7	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01460	YGNRSFLRF	9	Carcinus maenas	FMRFamide related peptide	FMRFamide-like peptide	19523386
+NP01461	GYRKPPFNGSIF	12	Carcinus maenas	FMRFamide related peptide	SIFamide	19523386
+NP01462	RKPPFNGSIF	10	Carcinus maenas	FMRFamide related peptide	SIFamide	19523386
+NP01463	VYRKPPFNGSIF	12	Carcinus maenas	FMRFamide related peptide	SIFamide	19523386
+NP03061	QDLDHVFLRF	10	Carcinus maenas	Myosuppressin	Myosuppressin	19523386
+NP03343	KIFEPLR	7	Carcinus maenas	NA	NA	19523386
+NP03344	KIFEPLRDKN	10	Carcinus maenas	NA	NA	19523386
+NP03345	KIFEPLRDKNL	11	Carcinus maenas	NA	NA	19523386
+NP03346	KIFEPLVA	8	Carcinus maenas	NA	NA	19523386
+NP03347	HIGSLYR	7	Carcinus maenas	NA	YRamide	19523386
+NP03522	RYLPT	5	Carcinus maenas	NA	Proctolin	2872661
+NP03808	PSLRLRF	7	Carcinus maenas	NPY	Short neuropeptide F	19523386
+NP03809	PSMRLRF	7	Carcinus maenas	NPY	Short neuropeptide F	19523386
+NP03989	EGFYSQRY	8	Carcinus maenas	NPY	RYamide	19523386
+NP03990	FVGGSRY	7	Carcinus maenas	NPY	RYamide	19523386
+NP03991	FYANRY	6	Carcinus maenas	NPY	RYamide	19523386
+NP03992	FYSQRY	6	Carcinus maenas	NPY	RYamide	19523386
+NP03993	SGFYADRY	8	Carcinus maenas	NPY	RYamide	19523386
+NP03994	SGFYAPRY	8	Carcinus maenas	NPY	RYamide	19523386
+NP03995	SSRFVGGSRY	10	Carcinus maenas	NPY	RYamide	19523386
+NP04260	EIDRSGFGFA	10	Carcinus maenas	Orcokinin	Orcokinin	19523386
+NP04261	FDEIDRSGFGFA	12	Carcinus maenas	Orcokinin	Orcokinin	19523386
+NP04262	NFDEIDRSGF	10	Carcinus maenas	Orcokinin	Orcokinin	19523386
+NP04263	NFDEIDRSGFA	11	Carcinus maenas	Orcokinin	Orcokinin	19523386
+NP04264	NFDEIDRSGFG	11	Carcinus maenas	Orcokinin	Orcokinin	19523386
+NP04265	NFDEIDRSGFGF	12	Carcinus maenas	Orcokinin	Orcokinin	19523386
+NP04266	NFDEIDRSGFGFA	13	Carcinus maenas	Orcokinin	Orcokinin	19523386
+NP04267	NFDEIDRSGFGFN	13	Carcinus maenas	Orcokinin	Orcokinin	19523386
+NP04268	NFDEIDRSGFGFV	13	Carcinus maenas	Orcokinin	Orcokinin	19523386
+NP04269	NFDEIDRSSF	10	Carcinus maenas	Orcokinin	Orcokinin	19523386
+NP04270	NFDEIDRSSFA	11	Carcinus maenas	Orcokinin	Orcokinin	19523386
+NP04271	NFDEIDRSSFG	11	Carcinus maenas	Orcokinin	Orcokinin	19523386
+NP04272	NFDEIDRSSFGFN	13	Carcinus maenas	Orcokinin	Orcokinin	19523386
+NP04273	NFDEIDRSSFGFV	13	Carcinus maenas	Orcokinin	Orcokinin	19523386
+NP04274	FDAFTTGFGHS	11	Carcinus maenas	Orcokinin	Orcomyotropin	19523386
+NP04962	DTGFAFSPRL	10	Carcinus maenas	Pyrokinin	Pyrokinin	19523386
+NP04963	LYFAPRL	7	Carcinus maenas	Pyrokinin	Pyrokinin	19523386
+NP04964	TSFAFSPRL	9	Carcinus maenas	Pyrokinin	Pyrokinin	19523386
+NP05556	APSGFLGMR	9	Carcinus maenas	Tachykinin	Tachykinin	19523386
+NP05557	APSGFLGMRG	10	Carcinus maenas	Tachykinin	Tachykinin	19523386
+NP05558	TPSGFLGMR	9	Carcinus maenas	Tachykinin	Tachykinin	19523386
+NP05559	PSGFLGMR	8	Carcinus maenas	Tachykinin	Tachykinin-related peptide	19523386
+NP05560	SGFLGMR	7	Carcinus maenas	Tachykinin	Tachykinin-related peptide	19523386

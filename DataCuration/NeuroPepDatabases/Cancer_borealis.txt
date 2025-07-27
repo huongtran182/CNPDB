@@ -1,0 +1,104 @@
+ID	Sequence	Length	Organism	Family	Name	PMID
+NP00093	QLNFSPGW	8	Cancer borealis	AKH/HRTH/RPCH	Red pigment-concentrating hormone	18700782
+NP00250	QIRYHQCYFNPISCF	15	Cancer borealis	Allatostatin	Allatostatin C	19505516
+NP00251	SYWKQCAFNAVSCF	14	Cancer borealis	Allatostatin	Allatostatin C	19505516
+NP00333	DPYAFGL	7	Cancer borealis	Allatostatin	Allatostatin A	18700782
+NP00334	ERAYSFGL	8	Cancer borealis	Allatostatin	Allatostatin A	17381149
+NP00335	ERPYSFGL	8	Cancer borealis	Allatostatin	Allatostatin A	18700782
+NP00336	ERPYSGL	7	Cancer borealis	Allatostatin	Allatostatin A	19185513
+NP00337	PDMYAFGL	8	Cancer borealis	Allatostatin	Allatostatin A	18700782
+NP00338	PRDYAFGL	8	Cancer borealis	Allatostatin	Allatostatin A	17381149
+NP00339	SPYAFGL	7	Cancer borealis	Allatostatin	Allatostatin A	18700782
+NP00340	YAFGL	5	Cancer borealis	Allatostatin	Allatostatin A	18700782
+NP00341	YSFGL	5	Cancer borealis	Allatostatin	Allatostatin A	18700782
+NP00342	GNWNKFQGSW	10	Cancer borealis	Allatostatin	Allatostatin B	17381149
+NP00343	NNNWSKFQGSW	11	Cancer borealis	Allatostatin	Allatostatin B	18700782
+NP00344	NNWSKFQGSW	10	Cancer borealis	Allatostatin	Allatostatin B	17381149
+NP00345	NWNKFQGSW	9	Cancer borealis	Allatostatin	Allatostatin B	18700782
+NP00346	STNWSSLRSAW	11	Cancer borealis	Allatostatin	Allatostatin B	17381149
+NP00347	TSWFKFQGSW	10	Cancer borealis	Allatostatin	Allatostatin B	18700782
+NP00348	VPNDWAHFRGSW	12	Cancer borealis	Allatostatin	Allatostatin B	17381149
+NP00349	GGSLYSFGL	9	Cancer borealis	Allatostatin	Allatostatin-3	14535947
+NP00624	RVINDDCPNLIGNR	14	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MIH[1-14]	23028060
+NP00625	RVINDDCPNLIGNRD	15	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MIH[1-15]	23028060
+NP00626	KVEWICEDCSNIFR	14	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MIH[19-32]	23028060
+NP00627	VEWICEDCSNIFR	13	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MIH[20-32]	23028060
+NP00628	VINDDCPNLIGNR	13	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MIH[2-14]	23028060
+NP00629	VINDDCPNLIGNRDLYK	17	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MIH[2-18]	23028060
+NP00630	NTGMATLCR	9	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MIH[33-41]	23028060
+NP00631	KNCFFNEDFLWCVYATER	18	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MIH[42-59]	23028060
+NP00632	NCFFNEDFLWCVYATER	17	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MIH[43-59]	23028060
+NP00633	RRINNDCQNFIGNRAMYE	18	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MOIH[1-18]	23028060
+NP00634	VDWICKDCANIFR	13	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MOIH[20-32]	23028060
+NP00635	RINNDCQNFIGNR	13	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MOIH[2-14]	23028060
+NP00636	DCANIFR	7	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MOIH[26-32]	23028060
+NP00637	DCANIFRQDGLLNNCR	16	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MOIH[26-41]	23028060
+NP00638	CANIFRKDGLLNNCRSNCFYNTE	23	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MOIH[27-49]	23028060
+NP00639	INNDCQNFIGNR	12	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MOIH[3-14]	23028060
+NP00640	QDGLLNNCR	9	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MOIH[33-41]	23028060
+NP00641	SNCFYNTEFLWCIDATENTR	20	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MOIH[42-61]	23028060
+NP00642	EQLEQWAAILGAGWN	15	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MOIH[64-78]	23028060
+NP00643	QWAAILGAGWN	11	Cancer borealis	Arthropod CHH/MIH/GIH/VIH hormone	MOIH[68-78]	23028060
+NP00735	NSELINSILGLPKVMNDA	18	Cancer borealis	Arthropod PDH	β-PDH	16214114
+NP00736	NSELINSLLGISRLMNEA	18	Cancer borealis	Arthropod PDH	β-PDH	16214114
+NP00885	PFCNAFTGC	9	Cancer borealis	CCAP	Crustacean cardioactive peptide	18700782
+NP00886	PFNAFTG	7	Cancer borealis	CCAP	Crustacean cardioactive peptide	19185513
+NP01027	QTFQYSRGWTN	11	Cancer borealis	Corazonin	Corazonin	14535947
+NP01424	DRNFLRF	7	Cancer borealis	FMRFamide related peptide	DF2	18700782
+NP01425	TNRNFLRF	8	Cancer borealis	FMRFamide related peptide	FMRFamide-like neuropeptide 4	18700782
+NP01426	APQRNFLRF	9	Cancer borealis	FMRFamide related peptide	RFamide	23544036
+NP01427	APRNFLRF	8	Cancer borealis	FMRFamide related peptide	RFamide	19185513
+NP01428	AYNRSFLRF	9	Cancer borealis	FMRFamide related peptide	RFamide	17381149
+NP01429	DGGRNFLRF	9	Cancer borealis	FMRFamide related peptide	RFamide	18700782
+NP01430	DVRTPALRLRF	11	Cancer borealis	FMRFamide related peptide	RFamide	23544036
+NP01431	GAHKNYLRF	9	Cancer borealis	FMRFamide related peptide	RFamide	19185513
+NP01432	GGRNFLRF	8	Cancer borealis	FMRFamide related peptide	RFamide	18700782
+NP01433	GNRNFLRF	8	Cancer borealis	FMRFamide related peptide	RFamide	17381149
+NP01434	GPRNFLRF	8	Cancer borealis	FMRFamide related peptide	RFamide	19185513
+NP01435	GYSKNYLRF	9	Cancer borealis	FMRFamide related peptide	RFamide	17381149
+NP01436	NRNFLRF	7	Cancer borealis	FMRFamide related peptide	RFamide	23544036
+NP01437	RNFLRF	6	Cancer borealis	FMRFamide related peptide	RFamide	18700782
+NP01438	RSFLRF	6	Cancer borealis	FMRFamide related peptide	RFamide	18700782
+NP01439	SDRNFLRF	8	Cancer borealis	FMRFamide related peptide	RFamide	18700782
+NP01440	SENRNFLRF	9	Cancer borealis	FMRFamide related peptide	RFamide	18700782
+NP01441	SGRNFLRF	8	Cancer borealis	FMRFamide related peptide	RFamide	18700782
+NP01442	SMPSLRLRF	9	Cancer borealis	FMRFamide related peptide	RFamide	23544036
+NP01443	GYRKPPFNGSIF	12	Cancer borealis	FMRFamide related peptide	SIFamide	23544036
+NP03335	DPYAFGLGKRPADL	14	Cancer borealis	NA	Allatostatin combos	18700782
+NP03336	DPYAFGLGKRPADLYEFGL	19	Cancer borealis	NA	Allatostatin combos	18700782
+NP03337	KIFEPLREDNL	11	Cancer borealis	NA	Cryptocyanin fragments	18700782
+NP03338	YKIFEPL	7	Cancer borealis	NA	Cryptocyanin fragments	18700782
+NP03339	YKIFEPLRESN	11	Cancer borealis	NA	Cryptocyanin fragments	18700782
+NP03340	YKIFEPLRESNL	12	Cancer borealis	NA	Cryptocyanin fragments	18700782
+NP03341	RYLPT	5	Cancer borealis	NA	Proctolin	16214114
+NP03342	HIGSLYR	7	Cancer borealis	NA	YRamide	23544036
+NP03981	PAFYSQRY	8	Cancer borealis	NPY	PAFYSQRYa	14535947
+NP03982	EGFYSQRY	8	Cancer borealis	NPY	RYamide	18700782
+NP03983	FVGGSRY	7	Cancer borealis	NPY	RYamide	18700782
+NP03984	FVNSRY	6	Cancer borealis	NPY	RYamide	14535947
+NP03985	FYANRY	6	Cancer borealis	NPY	RYamide	14535947
+NP03986	FYSQRY	6	Cancer borealis	NPY	RYamide	17381149
+NP03987	SGFYANRY	8	Cancer borealis	NPY	RYamide	18700782
+NP03988	SSRFVGGSRY	10	Cancer borealis	NPY	RYamide	17381149
+NP04245	NFDEIDRSGF	10	Cancer borealis	Orcokinin	Orcokinin	16214114
+NP04246	NFDEIDRSGFG	11	Cancer borealis	Orcokinin	Orcokinin	19185513
+NP04247	NFDEIDRSGFGF	12	Cancer borealis	Orcokinin	Orcokinin	18700782
+NP04248	NFDEIDRSGFGFA	13	Cancer borealis	Orcokinin	Orcokinin	23544036
+NP04249	NFDEIDRSGFGFH	13	Cancer borealis	Orcokinin	Orcokinin	18700782
+NP04250	NFDEIDRSGFGFN	13	Cancer borealis	Orcokinin	Orcokinin	18700782
+NP04251	NFDEIDRSGFGFV	13	Cancer borealis	Orcokinin	Orcokinin	23544036
+NP04252	NFDEIDRSSFA	11	Cancer borealis	Orcokinin	Orcokinin	16214114
+NP04253	NFDEIDRSSFG	11	Cancer borealis	Orcokinin	Orcokinin	16214114
+NP04254	NFDEIDRSSFGFN	13	Cancer borealis	Orcokinin	Orcokinin	23544036
+NP04255	NFDEIDRSSFGFV	13	Cancer borealis	Orcokinin	Orcokinin	23544036
+NP04256	NFDEIDRTGFGFH	13	Cancer borealis	Orcokinin	Orcokinin	23544036
+NP04257	NFDELDRSGFGFH	13	Cancer borealis	Orcokinin	Orcokinin	16214114
+NP04258	FDAFTTGFGHN	11	Cancer borealis	Orcokinin	Orcomyotropin	16214114
+NP04259	FDAFTTGFGHS	11	Cancer borealis	Orcokinin	Orcomyotropin	16214114
+NP04961	TNFAFSPRL	9	Cancer borealis	Pyrokinin	Pyrokinin-1	18700782
+NP05524	APSGFLGMRG	10	Cancer borealis	Tachykinin	Tachykinin-related peptide Ia	18088365
+NP05551	APSGFLGMR	9	Cancer borealis	Tachykinin	Tachykinin-related peptide	23544036
+NP05552	APSGFQ	6	Cancer borealis	Tachykinin	Tachykinin-related peptide	18700782
+NP05553	GFLGMR	6	Cancer borealis	Tachykinin	Tachykinin-related peptide	18700782
+NP05554	TPSGFLGMR	9	Cancer borealis	Tachykinin	Tachykinin-related peptide	19185513
+NP05555	SGFLGMR	7	Cancer borealis	Tachykinin	Tachykinin-related peptide Ib	14535947

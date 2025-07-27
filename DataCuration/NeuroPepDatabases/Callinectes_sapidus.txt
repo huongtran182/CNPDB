@@ -1,0 +1,171 @@
+ID	Sequence	Length	Organism	Family	Name	PMID
+NP00092	ELNFSPGW	8	Callinectes sapidus	AKH/HRTH/RPCH	Red pigment-concentrating hormone	21740068
+NP00283	AAGLQNYDFG	10	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00284	AGLSALYSFG	10	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00285	AGPYSFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00286	ALTTLYAFGL	10	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00287	APQPYAFGL	9	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00288	APRPYSFGL	9	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00289	ARAYDFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00290	ARGYDFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00291	ARPYSFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00292	ASPYAFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00293	DGPYSFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00294	DPYAFGL	7	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00295	ERAYSFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00296	FSGTYNFGL	9	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00297	GPPYSFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00298	GPYSFGL	7	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00299	GSGQYAYGLGKAGQYSFGL	19	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00300	NGSYPFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00301	NPYSFGL	7	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00302	NVYSFGL	7	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00303	PRVYSFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00304	QWLYSMFGL	9	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00305	RNMYSFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00306	SDMYSFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00307	SGHYNFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00308	SGNYNFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00309	SNPYSFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00310	SSGQYAFGL	9	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00311	TAPYAFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00312	THPTYSFGL	9	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00313	TPQANSFGL	9	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00314	TRPYSFGL	8	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00315	YAFGL	5	Callinectes sapidus	Allatostatin	Allatostatin A	22627023
+NP00316	AGWNKFQGSW	10	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00317	AGWSSLKGAW	10	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00318	AGWSSMRGAW	10	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00319	AWSNLQGAW	9	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00320	GNWNKFQGSW	10	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00321	NDWSKFGQSW	10	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00322	NNNWSKFQGSW	11	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00323	NNNWTKFQGSW	11	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00324	NNWSKFQGSW	10	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00325	NWNKFQGSW	9	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00326	SGDWSSLRGAW	11	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00327	SGKWSNLRGAW	11	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00328	STDWSSLRSAW	11	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00329	STNWSSLRSAW	11	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00330	TGWNKFQGSW	10	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00331	TSWGKFQGSW	10	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00332	VPNDWAHFRGSW	12	Callinectes sapidus	Allatostatin	Allatostatin B	22627023
+NP00615	RSAEGLGRMG	10	Callinectes sapidus	Arthropod CHH/MIH/GIH/VIH hormone	CPRP[1-10]	21740068
+NP00616	RSAEGLGRMGRL	12	Callinectes sapidus	Arthropod CHH/MIH/GIH/VIH hormone	CPRP[1-12]	21740068
+NP00617	RSAEGLGRMGRLL	13	Callinectes sapidus	Arthropod CHH/MIH/GIH/VIH hormone	CPRP[1-13]	21740068
+NP00618	LASLKSDTVTPLR	13	Callinectes sapidus	Arthropod CHH/MIH/GIH/VIH hormone	CPRP[13-25]	21740068
+NP00619	ASLKSDTVTPLR	12	Callinectes sapidus	Arthropod CHH/MIH/GIH/VIH hormone	CPRP[14-25]	21740068
+NP00620	SLKSDTVTPLR	11	Callinectes sapidus	Arthropod CHH/MIH/GIH/VIH hormone	CPRP[15-25]	21740068
+NP00621	SDTVTPLRGFE	11	Callinectes sapidus	Arthropod CHH/MIH/GIH/VIH hormone	CPRP[18-28]	21740068
+NP00622	RSAEGLGRM	9	Callinectes sapidus	Arthropod CHH/MIH/GIH/VIH hormone	CPRP[1-9]	21740068
+NP00623	TPLRGFEGETGHPLE	15	Callinectes sapidus	Arthropod CHH/MIH/GIH/VIH hormone	CPRP[22-36]	21740068
+NP00682	RVINDDCPNLIGNRDLYKKVEWICDDCANIYRSTGMASLCRKDCFFNEDFLWCVRATERSEDLAQLKQWVTILGAGRI	78	Callinectes sapidus	Arthropod CHH/MIH/GIH/VIH hormone	Molt-inhibiting hormone	
+NP00734	QELHVPEREA	10	Callinectes sapidus	Arthropod PDH	Pigment-dispersing hormone	21740068
+NP00765	NSELINSILGLPKVMNDA	18	Callinectes sapidus	Arthropod PDH	Pigment-dispersing hormone	21740068
+NP00884	PFCNAFTGC	9	Callinectes sapidus	CCAP	Crustacean cardioactive peptide	22627023
+NP01164	EGRF	4	Callinectes sapidus	FMRFamide related peptide	CP1/Antho-RFamide	8462277
+NP01165	TNRNFLRF	8	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like neuropeptide 4	17804580
+NP01380	AHKNFLRF	8	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01381	APQGNFLRF	9	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01382	APQRNFLRF	9	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01383	AYNRSFLRF	9	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01384	DDNFLRF	7	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01385	DENRNFLRF	9	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01386	DRNFLRF	7	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01387	FDDFLRF	7	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01388	GAHKNYLRF	9	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01389	GDRNFLRF	8	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01390	GHDFEVFLRF	10	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01391	GLSRNYLRF	9	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01392	GNNFLRF	7	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01393	GNRNFLRF	8	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01394	GPFLRF	6	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01395	GRPNFLRF	8	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01396	GYSKNYLRF	9	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01397	NFLRF	5	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01398	NQPNFLRF	8	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01399	NRNFLRF	7	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01400	NRSFLRF	7	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01401	NVGSHGFLRF	10	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01402	PGVNFLRF	8	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01403	PSDNFLRF	8	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01404	QGNFLRF	7	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01405	RNFLRF	6	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01406	RQFLRF	6	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01407	SENRNFLRF	9	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01408	SKNYLRF	7	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01409	SPRNFLRF	8	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01410	SQPSKNYLRF	10	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01411	THPFLRF	7	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01412	YEQDFLRF	8	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01413	YGAHVFLRF	9	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01414	YGNRSFLRF	9	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like peptide	22627023
+NP01415	AHRNFLRF	8	Callinectes sapidus	FMRFamide related peptide	RFamide	21740068
+NP01416	DARTAPLRLRF	11	Callinectes sapidus	FMRFamide related peptide	RFamide	21740068
+NP01417	DHVPFLRF	8	Callinectes sapidus	FMRFamide related peptide	RFamide	21740068
+NP01418	ETNFLRF	7	Callinectes sapidus	FMRFamide related peptide	RFamide	21740068
+NP01419	FTSKNYLRF	9	Callinectes sapidus	FMRFamide related peptide	RFamide	21740068
+NP01420	GHRNFLRF	8	Callinectes sapidus	FMRFamide related peptide	RFamide	21740068
+NP01421	YGSDRNFLRF	10	Callinectes sapidus	FMRFamide related peptide	RFamide	21740068
+NP01422	DLDSVLDPSIF	11	Callinectes sapidus	FMRFamide related peptide	SIFamide	22627023
+NP01423	GYRKPPFNGSIF	12	Callinectes sapidus	FMRFamide related peptide	SIFamide	22627023
+NP01670	GYNRSFLRF	9	Callinectes sapidus	FMRFamide related peptide	FMRFamide-like neuropeptide	1815216
+NP03058	HVFLRF	6	Callinectes sapidus	Myosuppressin	Myosuppressin	22627023
+NP03059	QDLDHVFLR	9	Callinectes sapidus	Myosuppressin	Myosuppressin	22627023
+NP03060	QDLDHVFLRF	10	Callinectes sapidus	Myosuppressin	Myosuppressin	22627023
+NP03108	ELGRF	5	Callinectes sapidus	NA	CP2	8462277
+NP03329	KIFEPLR	7	Callinectes sapidus	NA	NA	21740068
+NP03330	KIFEPLRDKN	10	Callinectes sapidus	NA	NA	21740068
+NP03331	KIFEPLRDKNL	11	Callinectes sapidus	NA	NA	22627023
+NP03332	RYLPT	5	Callinectes sapidus	NA	Proctolin	22627023
+NP03333	HIGSLYR	7	Callinectes sapidus	NA	YRamide	21740068
+NP03334	HLGSLYR	7	Callinectes sapidus	NA	YRamide	22627023
+NP03807	PSMRLRF	7	Callinectes sapidus	NPY	Short neuropeptide F	22627023
+NP03971	EGFYSQRY	8	Callinectes sapidus	NPY	RYamide	22627023
+NP03972	FVGGSRY	7	Callinectes sapidus	NPY	RYamide	22627023
+NP03973	FYANRY	6	Callinectes sapidus	NPY	RYamide	22627023
+NP03974	FYSQRY	6	Callinectes sapidus	NPY	RYamide	22627023
+NP03975	SGFYANRY	8	Callinectes sapidus	NPY	RYamide	22627023
+NP03976	SGFYAPRY	8	Callinectes sapidus	NPY	RYamide	22627023
+NP03977	SRFVGGSRY	9	Callinectes sapidus	NPY	RYamide	22627023
+NP03978	SSRFVGGSRY	10	Callinectes sapidus	NPY	RYamide	22627023
+NP03979	VGFYANRY	8	Callinectes sapidus	NPY	RYamide	22627023
+NP03980	SGYNANRY	8	Callinectes sapidus	NPY	RYamide 	22627023
+NP04211	DEIDRSGFGFA	11	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04212	DFDEIDRSGFA	11	Callinectes sapidus	Orcokinin	Orcokinin	21740068
+NP04213	DFDEIDRSGFG	11	Callinectes sapidus	Orcokinin	Orcokinin	21740068
+NP04214	DFDEIDRSGFGFA	13	Callinectes sapidus	Orcokinin	Orcokinin	21740068
+NP04215	DFDEIDRSGFGFV	13	Callinectes sapidus	Orcokinin	Orcokinin	21740068
+NP04216	DFDEIDRSSFA	11	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04217	DFDEIDRSSFG	11	Callinectes sapidus	Orcokinin	Orcokinin	21740068
+NP04218	DFDEIDRSSFGFA	13	Callinectes sapidus	Orcokinin	Orcokinin	21740068
+NP04219	DFDEIDRSSFGFN	13	Callinectes sapidus	Orcokinin	Orcokinin	21740068
+NP04220	DFDEIDRSSFGFV	13	Callinectes sapidus	Orcokinin	Orcokinin	21740068
+NP04221	EIDRSGFGF	9	Callinectes sapidus	Orcokinin	Orcokinin	21740068
+NP04222	EIDRSGFGFA	10	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04223	FDEIDRSGFA	10	Callinectes sapidus	Orcokinin	Orcokinin	21740068
+NP04224	FDEIDRSGFG	10	Callinectes sapidus	Orcokinin	Orcokinin	21740068
+NP04225	FDEIDRSGFGFA	12	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04226	FDEIDRSSFA	10	Callinectes sapidus	Orcokinin	Orcokinin	21740068
+NP04227	NFDEIDRSA	9	Callinectes sapidus	Orcokinin	Orcokinin	21740068
+NP04228	NFDEIDRSGF	10	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04229	NFDEIDRSGFA	11	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04230	NFDEIDRSGFG	11	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04231	NFDEIDRSGFGF	12	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04232	NFDEIDRSGFGFA	13	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04233	NFDEIDRSGFGFV	13	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04234	NFDEIDRSSF	10	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04235	NFDEIDRSSFA	11	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04236	NFDEIDRSSFG	11	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04237	NFDEIDRSSFGF	12	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04238	NFDEIDRSSFGFA	13	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04239	NFDEIDRSSFGFN	13	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04240	NFDEIDRSSFGFV	13	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04241	NFDEIDRTGFGFH	13	Callinectes sapidus	Orcokinin	Orcokinin	22627023
+NP04242	FDAFTTGFGHS	11	Callinectes sapidus	Orcokinin	Orcomyotropin	22627023
+NP04243	FPAFTTGFGHS	11	Callinectes sapidus	Orcokinin	Orcomyotropin	21740068
+NP04244	TPRDIANLY	9	Callinectes sapidus	Orcokinin	Ork/Orcomyotropin-related peptide	21740068
+NP04960	TNFAFSPRL	9	Callinectes sapidus	Pyrokinin	Pyrokinin	22627023
+NP05523	YPSGFLGMR	9	Callinectes sapidus	Tachykinin	Tachykinin-related peptide	22247794
+NP05549	APSGFLGMR	9	Callinectes sapidus	Tachykinin	Tachykinin-related peptide	21740068
+NP05550	TPSGFLGMR	9	Callinectes sapidus	Tachykinin	Tachykinin-related peptide	21740068

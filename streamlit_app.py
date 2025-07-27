@@ -4,7 +4,18 @@ import os
 import base64
 from io import BytesIO
 from sidebar import render_sidebar
+import streamlit.components.v1 as components
 
+components.html("""
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWK5FWH61R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-VWK5FWH61R');
+</script>
+""", height=0)
 # Set page config
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
@@ -45,7 +56,7 @@ else:
     
 st.markdown("""
 ### TOOLS & FEATURES
-The current release of cNPDB (Version 1.0, 2025) contains **1364** curated neuropeptide entries from **29** crustacean species, organized into **55** neuropeptide families. Some representative species include *Homarus americanus*  (American Lobster), *Callinectes sapidus*  (Blue Crab), *Cancer borealis*  (Jonah Crab), *Carcinus maenas*  (European green crab), and *Panulirus interruptus*  (California spiny lobster). cNPDB offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
+The current release of cNPDB (Version 1.0, 2025) contains **1379** curated neuropeptide entries from **30** crustacean species, organized into **55** neuropeptide families. Some representative species include *Homarus americanus*  (American Lobster), *Callinectes sapidus*  (Blue Crab), *Cancer borealis*  (Jonah Crab), *Carcinus maenas*  (European green crab), and *Panulirus interruptus*  (California spiny lobster). cNPDB offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
 - **Custom Search Engine** – Find neuropeptides by sequence, species, families, tissues, post-translational modifications (PTMs), and desired peptide physiological properties, with an option to download the resulted FASTA file.
 - **Sequence Alignment & Homology Search** – Identify conserved motifs and sequence similarities.
 - **Peptide Property Calculator** – Compute GRAVY scores, hydrophobicity, instability index, and other physiological properties.
