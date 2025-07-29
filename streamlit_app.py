@@ -3,8 +3,10 @@ from PIL import Image, ImageDraw
 import os
 import base64
 from io import BytesIO
-from sidebar import render_sidebar
 import streamlit.components.v1 as components
+
+# Set page config
+st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
 GA_MEASUREMENT_ID = "G-VWK5FWH61R"  # replace with your own
 
@@ -21,9 +23,7 @@ components.html(f"""
 </script>
 """, height=0)
 
-# Set page config
-st.set_page_config(layout="wide", initial_sidebar_state="expanded")
-
+from sidebar import render_sidebar
 render_sidebar()
 
 # Main content area
