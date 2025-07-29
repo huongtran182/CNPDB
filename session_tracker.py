@@ -64,12 +64,14 @@ def track_session():
                 count = int(f.read().strip())
                 f.seek(0)
                 f.write(str(count + 1))
-
-        # Calculate session count
-            try:
-                df = pd.read_csv('session_log.csv')
-                session_count = len(df)
-            except FileNotFoundError:
-                session_count = 0
+    # Calculate session count
+    try:
+        df = pd.read_csv('session_log.csv')
+        session_count = len(df)
+    except FileNotFoundError:
+        session_count = 0
         
-            return session_count
+    return session_count
+
+
+        
