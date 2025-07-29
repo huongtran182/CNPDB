@@ -17,17 +17,19 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# ---- Google Sheets Setup ----
+SHEET_ID = "1-h6G1QKP9gIa7V9T9Ked_V3pusBYOQLgC922Wy7_Pvg"
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+
+# Get credentials from secrets (make sure you added this in Streamlit secrets)
+creds_dict = st.secrets["gcp_service_account"]
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+client = gspread.authorize(creds)
+sheet = client.open_by_key(SHEET_ID).sheet1
+
 # ---- Constants ----
 SESSION_LOG_FILE = "session_log.csv"
 SESSION_COUNT_FILE = "total_sessions.txt"
-SERVICE_ACCOUNT_FILE = "service_account.json"
-SHEET_ID = "1-h6G1QKP9gIa7V9T9Ked_V3pusBYOQLgC922Wy7_Pvg"  # <-- Replace with your Google Sheet ID
-
-# ---- Setup Google Sheets Client ----
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name(SERVICE_ACCOUNT_FILE, scope)
-client = gspread.authorize(creds)
-sheet = client.open_by_key(SHEET_ID).sheet1
 
 # ---- Create local log file if not exists ----
 if not os.path.exists(SESSION_LOG_FILE):
@@ -53,7 +55,7 @@ if "session_tracked" not in st.session_state:
         ip_address = "Error"
         country = "Error"
 
-    user_agent = "Streamlit App"  # You can improve this if needed
+    user_agent = "Streamlit App"
 
     # Append to local CSV log
     with open(SESSION_LOG_FILE, "a", newline='') as f:
@@ -64,7 +66,7 @@ if "session_tracked" not in st.session_state:
     try:
         sheet.append_row([session_id, timestamp, ip_address, country, user_agent])
     except Exception as e:
-        st.error("Failed to log to Google Sheet.")
+        st.error("❌ Failed to log to Google Sheet.")
         st.exception(e)
 
     # Increment session count
@@ -78,7 +80,7 @@ if "session_tracked" not in st.session_state:
             f.seek(0)
             f.write(str(count))
 
-# ---- Read session count ----
+# ---- Display session count ----
 with open(SESSION_COUNT_FILE, "r") as f:
     session_count = int(f.read().strip())
 
