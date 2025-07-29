@@ -14,8 +14,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-render_sidebar
-
 import uuid
 # Path to store total sessions
 SESSION_COUNT_FILE = "total_sessions.txt"
@@ -38,8 +36,7 @@ if "session_tracked" not in st.session_state:
 with open(SESSION_COUNT_FILE, "r") as f:
     session_count = int(f.read().strip())
 
-# ---- STREAMLIT UI ----
-st.markdown(f"**Total page views** {session_count}")
+render_sidebar()
 
 # ---- Horizontal Stats Bar ----
 st.markdown("---")
