@@ -20,13 +20,13 @@ st.set_page_config(
 
 components.html(f"""
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={G-VWK5FWH61R}"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWK5FWH61R"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){{dataLayer.push(arguments);}}
   gtag('js', new Date());
 
-  gtag('config', '{GA_MEASUREMENT_ID}');
+  gtag('config', 'G-VWK5FWH61R');
 </script>
 """, height=0)
 
