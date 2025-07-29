@@ -8,7 +8,7 @@ from Bio.Align import substitution_matrices
 import re
 
 from session_tracker import track_session
-session_count = track_session()
+track_session()
 
 
 st.set_page_config(
