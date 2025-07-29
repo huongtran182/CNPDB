@@ -3,9 +3,10 @@ from sidebar import render_sidebar
 from PIL import Image
 import os
 import base64
-import json
-import atexit
-import collections.abc
+import uuid
+import os
+import csv
+import requests
 
 # Page settings
 st.set_page_config(
@@ -14,14 +15,49 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-import uuid
-# Path to store total sessions
+st.set_page_config(
+    page_title="Statistics",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# ---- Constants ----
+SESSION_LOG_FILE = "session_log.csv"
 SESSION_COUNT_FILE = "total_sessions.txt"
 
-# Initialize session state
+# ---- Create log file if not exists ----
+if not os.path.exists(SESSION_LOG_FILE):
+    with open(SESSION_LOG_FILE, "w", newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(["SessionID", "Timestamp", "IP", "Country", "UserAgent"])
+
+# ---- Track New Session ----
 if "session_tracked" not in st.session_state:
-    st.session_state.session_tracked = True  # Mark as tracked
-    # Create the file if it doesn't exist
+    st.session_state.session_tracked = True
+
+    # Generate unique session ID
+    session_id = str(uuid.uuid4())
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # IP and country detection (via API)
+    try:
+        res = requests.get("https://ipapi.co/json/")
+        data = res.json()
+        ip_address = data.get("ip", "Unknown")
+        country = data.get("country_name", "Unknown")
+    except Exception as e:
+        ip_address = "Error"
+        country = "Error"
+
+    # Browser info (optional)
+    user_agent = st.request.headers.get('User-Agent', 'Unknown') if hasattr(st, 'request') else "N/A"
+
+    # Append session to log
+    with open(SESSION_LOG_FILE, "a", newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow([session_id, timestamp, ip_address, country, user_agent])
+
+    # Increment total session count
     if not os.path.exists(SESSION_COUNT_FILE):
         with open(SESSION_COUNT_FILE, "w") as f:
             f.write("1")
@@ -32,7 +68,7 @@ if "session_tracked" not in st.session_state:
             f.seek(0)
             f.write(str(count))
 
-# Read current session count
+# ---- Read Total Count ----
 with open(SESSION_COUNT_FILE, "r") as f:
     session_count = int(f.read().strip())
 
