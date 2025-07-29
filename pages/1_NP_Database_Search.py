@@ -12,6 +12,10 @@ import io
 import zipfile
 import mimetypes
 
+from session_tracker import track_session
+track_session()
+
+
 st.set_page_config(
     page_title="NP Database search",
     layout="wide",
