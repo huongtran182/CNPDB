@@ -2,12 +2,23 @@ import streamlit as st
 from sidebar import render_sidebar
 import base64
 import os
+import streamlit.components.v1 as components
 
 st.set_page_config(
     page_title="Related Databases",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWK5FWH61R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VWK5FWH61R');
+</script>
 
 render_sidebar()
 
