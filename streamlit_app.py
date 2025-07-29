@@ -8,20 +8,9 @@ import streamlit.components.v1 as components
 # Set page config
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
-GA_MEASUREMENT_ID = "G-VWK5FWH61R"  # replace with your own
-
-# Inject GA tracking script
-components.html(f"""
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={GA_MEASUREMENT_ID}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){{dataLayer.push(arguments);}}
-  gtag('js', new Date());
-
-  gtag('config', '{GA_MEASUREMENT_ID}');
-</script>
-""", height=0)
+with open("google_analytics.html", "r") as f:
+    html_code = f.read()
+    components.html(html_code, height=0)
 
 from sidebar import render_sidebar
 render_sidebar()
