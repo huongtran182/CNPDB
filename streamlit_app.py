@@ -8,6 +8,66 @@ import streamlit.components.v1 as components
 # Set page config
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
+from datetime import datetime
+import uuid
+
+# ---- SETTINGS ----
+LOG_FILE = "interaction_log.csv"
+
+# ---- INITIALIZE SESSION ----
+if "session_id" not in st.session_state:
+    st.session_state.session_id = str(uuid.uuid4())  # Unique user session
+
+# ---- LOAD OR CREATE LOG ----
+if os.path.exists(LOG_FILE):
+    log_df = pd.read_csv(LOG_FILE)
+else:
+    log_df = pd.DataFrame(columns=["timestamp", "session_id", "event_type", "details"])
+
+# ---- HELPER: Log an interaction ----
+def log_event(event_type, details=""):
+    global log_df
+    new_entry = {
+        "timestamp": datetime.now().isoformat(),
+        "session_id": st.session_state.session_id,
+        "event_type": event_type,
+        "details": details,
+    }
+    log_df = pd.concat([log_df, pd.DataFrame([new_entry])], ignore_index=True)
+    log_df.to_csv(LOG_FILE, index=False)
+
+# ---- INTERACTIVE WIDGETS ----
+st.title("My Streamlit App with Built-In Analytics")
+
+if st.button("Click Me"):
+    st.write("You clicked the button!")
+    log_event("button_click", "Click Me")
+
+slider_value = st.slider("Move this slider", 0, 100, 50)
+log_event("slider_change", f"Value: {slider_value}")
+
+text_input = st.text_input("Type something:")
+if text_input:
+    log_event("text_input", f"Typed: {text_input}")
+
+# ---- ANALYTICS DASHBOARD ----
+st.header("📊 Analytics Dashboard")
+
+# Summary Stats
+total_sessions = log_df["session_id"].nunique()
+total_events = len(log_df)
+event_counts = log_df["event_type"].value_counts()
+
+st.write(f"**Total Sessions:** {total_sessions}")
+st.write(f"**Total Events:** {total_events}")
+st.write("**Event Breakdown:**")
+st.bar_chart(event_counts)
+
+# Show event log
+st.subheader("Event Log")
+st.dataframe(log_df.tail(20))  # Show last 20 events
+
+
 from sidebar import render_sidebar
 render_sidebar()
 
