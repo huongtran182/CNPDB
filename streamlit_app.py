@@ -101,6 +101,7 @@ Stay updated on the latest cNPDB developments by following us on our social medi
 
 st.markdown("""
 CITATION AND FUNDING
+
 If you use cNPDB in your research, please cite: 
 
 <div style="margin-left: 1cm;">
