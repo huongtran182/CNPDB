@@ -10,6 +10,7 @@ st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
 from datetime import datetime
 import uuid
+import pandas as pd
 
 # ---- SETTINGS ----
 LOG_FILE = "interaction_log.csv"
