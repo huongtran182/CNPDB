@@ -8,6 +8,12 @@ import streamlit.components.v1 as components
 # Set page config
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
+import streamlit_analytics
+
+with streamlit_analytics.track():
+    st.text_input("Write something")
+    st.button("Click me")
+
 from sidebar import render_sidebar
 render_sidebar()
 
