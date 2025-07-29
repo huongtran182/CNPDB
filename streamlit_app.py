@@ -8,10 +8,6 @@ import streamlit.components.v1 as components
 # Set page config
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
-with open("google_analytics.html", "r") as f:
-    html_code = f.read()
-    components.html(html_code, height=0)
-
 from sidebar import render_sidebar
 render_sidebar()
 
