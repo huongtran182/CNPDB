@@ -6,16 +6,21 @@ from io import BytesIO
 from sidebar import render_sidebar
 import streamlit.components.v1 as components
 
-components.html("""
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWK5FWH61R"></script>
+GA_MEASUREMENT_ID = "G-VWK5FWH61R"  # replace with your own
+
+# Inject GA tracking script
+components.html(f"""
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA_MEASUREMENT_ID}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag(){{dataLayer.push(arguments);}}
   gtag('js', new Date());
-  gtag('config', 'G-VWK5FWH61R');
+
+  gtag('config', '{GA_MEASUREMENT_ID}');
 </script>
 """, height=0)
+
 # Set page config
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
