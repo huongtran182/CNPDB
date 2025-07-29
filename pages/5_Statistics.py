@@ -5,7 +5,7 @@ import os
 import base64
 
 from session_tracker import track_session
-track_session()
+session_count = track_session()
 
 # Page settings
 st.set_page_config(
