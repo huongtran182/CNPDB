@@ -5,4 +5,6 @@ openpyxl
 biopython
 py3Dmol>=0.8.1
 google-analytics-data
-
+gspread
+oauth2client
+requests
