@@ -4,6 +4,9 @@ import base64
 import os
 import streamlit.components.v1 as components
 
+from session_tracker import track_session
+track_session()
+
 st.set_page_config(
     page_title="Related Databases",
     layout="wide",
