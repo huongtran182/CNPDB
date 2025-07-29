@@ -7,14 +7,10 @@ from datetime import datetime
 import uuid
 import csv
 import requests
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 # Page settings
-st.set_page_config(
-    page_title="Statistics",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
 st.set_page_config(
     page_title="Statistics",
     layout="wide",
@@ -24,8 +20,16 @@ st.set_page_config(
 # ---- Constants ----
 SESSION_LOG_FILE = "session_log.csv"
 SESSION_COUNT_FILE = "total_sessions.txt"
+SERVICE_ACCOUNT_FILE = "service_account.json"
+SHEET_ID = "1-h6G1QKP9gIa7V9T9Ked_V3pusBYOQLgC922Wy7_Pvg"  # <-- Replace with your Google Sheet ID
 
-# ---- Create log file if not exists ----
+# ---- Setup Google Sheets Client ----
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+creds = ServiceAccountCredentials.from_json_keyfile_name(SERVICE_ACCOUNT_FILE, scope)
+client = gspread.authorize(creds)
+sheet = client.open_by_key(SHEET_ID).sheet1
+
+# ---- Create local log file if not exists ----
 if not os.path.exists(SESSION_LOG_FILE):
     with open(SESSION_LOG_FILE, "w", newline='') as f:
         writer = csv.writer(f)
@@ -35,29 +39,35 @@ if not os.path.exists(SESSION_LOG_FILE):
 if "session_tracked" not in st.session_state:
     st.session_state.session_tracked = True
 
-    # Generate unique session ID
+    # Generate session info
     session_id = str(uuid.uuid4())
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    # IP and country detection (via API)
+    # IP and Country
     try:
         res = requests.get("https://ipapi.co/json/")
         data = res.json()
         ip_address = data.get("ip", "Unknown")
         country = data.get("country_name", "Unknown")
-    except Exception as e:
+    except Exception:
         ip_address = "Error"
         country = "Error"
 
-    # Browser info (optional)
-    user_agent = st.request.headers.get('User-Agent', 'Unknown') if hasattr(st, 'request') else "N/A"
+    user_agent = "Streamlit App"  # You can improve this if needed
 
-    # Append session to log
+    # Append to local CSV log
     with open(SESSION_LOG_FILE, "a", newline='') as f:
         writer = csv.writer(f)
         writer.writerow([session_id, timestamp, ip_address, country, user_agent])
 
-    # Increment total session count
+    # Append to Google Sheet
+    try:
+        sheet.append_row([session_id, timestamp, ip_address, country, user_agent])
+    except Exception as e:
+        st.error("Failed to log to Google Sheet.")
+        st.exception(e)
+
+    # Increment session count
     if not os.path.exists(SESSION_COUNT_FILE):
         with open(SESSION_COUNT_FILE, "w") as f:
             f.write("1")
@@ -68,7 +78,7 @@ if "session_tracked" not in st.session_state:
             f.seek(0)
             f.write(str(count))
 
-# ---- Read Total Count ----
+# ---- Read session count ----
 with open(SESSION_COUNT_FILE, "r") as f:
     session_count = int(f.read().strip())
 
