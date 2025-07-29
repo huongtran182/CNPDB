@@ -7,6 +7,10 @@ from io import StringIO
 from Bio.Align import substitution_matrices
 import re
 
+from session_tracker import track_session
+track_session()
+
+
 st.set_page_config(
     page_title="Tools",
     layout="wide",
