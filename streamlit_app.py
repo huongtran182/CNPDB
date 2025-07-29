@@ -4,6 +4,8 @@ import os
 import base64
 from io import BytesIO
 import streamlit.components.v1 as components
+from session_tracker import track_session
+track_session()
 
 # Set page config
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
