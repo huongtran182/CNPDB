@@ -8,32 +8,6 @@ import streamlit.components.v1 as components
 # Set page config
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
-import uuid
-
-# Path to store total sessions
-SESSION_COUNT_FILE = "total_sessions.txt"
-
-# Initialize session state
-if "session_tracked" not in st.session_state:
-    st.session_state.session_tracked = True  # Mark as tracked
-    # Create the file if it doesn't exist
-    if not os.path.exists(SESSION_COUNT_FILE):
-        with open(SESSION_COUNT_FILE, "w") as f:
-            f.write("1")
-    else:
-        with open(SESSION_COUNT_FILE, "r+") as f:
-            count = int(f.read().strip())
-            count += 1
-            f.seek(0)
-            f.write(str(count))
-
-# Read current session count
-with open(SESSION_COUNT_FILE, "r") as f:
-    session_count = int(f.read().strip())
-
-# ---- STREAMLIT UI ----
-st.markdown(f"**Total page views** {session_count}")
-
 from sidebar import render_sidebar
 render_sidebar()
 
