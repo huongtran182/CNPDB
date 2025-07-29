@@ -34,7 +34,7 @@ st.markdown(f"""
         </div>
         <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0;">
             <h2 style="color:#4a3666; margin-left: 15px;">12</h2>
-            <p style="margin: 0; font-weight: bold; color:#4a3666;">Page Views</p>
+            <p style="margin: 0; font-weight: bold; color:#4a3666;">Unique Visitors</p>
         </div>
     </div>
 """, unsafe_allow_html=True)
