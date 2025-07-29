@@ -2,6 +2,10 @@ import streamlit as st
 from sidebar import render_sidebar
 import textwrap
 
+from session_tracker import track_session
+track_session()
+
+
 st.set_page_config(
     page_title="FAQ",
     layout="wide",
