@@ -7,10 +7,6 @@ import json
 import atexit
 import collections.abc
 
-from google.analytics.data_v1beta import BetaAnalyticsDataClient
-from google.analytics.data_v1beta.types import RunRealtimeReportRequest
-from google.oauth2 import service_account
-
 # Page settings
 st.set_page_config(
     page_title="Statistics",
@@ -18,49 +14,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-import streamlit.components.v1 as components
-components.html(f"""
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWK5FWH61R"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){{dataLayer.push(arguments);}}
-  gtag('js', new Date());
-
-  gtag('config', 'G-VWK5FWH61R');
-</script>
-""", height=0)
-
 render_sidebar()
-
-# --- Load GA4 Credentials ---
-service_account_info = dict(st.secrets["google_service_account"])  # convert from AttrDict
-with open("tmp_service_account.json", "w") as f:
-    json.dump(service_account_info, f)
-
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "tmp_service_account.json"
-
-# Cleanup on exit
-atexit.register(lambda: os.remove("tmp_service_account.json") if os.path.exists("tmp_service_account.json") else None)
-
-# --- GA4 Property ID ---
-PROPERTY_ID = "497897321"
-
-# --- Function to fetch total pageviews ---
-def get_active_users():
-    client = BetaAnalyticsDataClient()
-
-    request = RunRealtimeReportRequest(
-        property=f"properties/{PROPERTY_ID}",
-        dimensions=[],
-        metrics=[{"name": "activeUsers"}],
-    )
-
-    response = client.run_realtime_report(request)
-    return response.rows[0].metric_values[0].value if response.rows else "0"
-
-# Fetch live pageviews
-page_views = get_active_users()
 
 # ---- Horizontal Stats Bar ----
 st.markdown("---")
@@ -79,7 +33,7 @@ st.markdown(f"""
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Neuropeptide Families</p>
         </div>
         <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0;">
-            <h2 style="color:#4a3666; margin-left: 15px;">{page_views}</h2>
+            <h2 style="color:#4a3666; margin-left: 15px;">12</h2>
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Page Views</p>
         </div>
     </div>
