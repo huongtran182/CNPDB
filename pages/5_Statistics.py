@@ -14,7 +14,32 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-render_sidebar()
+render_sidebar
+
+import uuid
+# Path to store total sessions
+SESSION_COUNT_FILE = "total_sessions.txt"
+
+# Initialize session state
+if "session_tracked" not in st.session_state:
+    st.session_state.session_tracked = True  # Mark as tracked
+    # Create the file if it doesn't exist
+    if not os.path.exists(SESSION_COUNT_FILE):
+        with open(SESSION_COUNT_FILE, "w") as f:
+            f.write("1")
+    else:
+        with open(SESSION_COUNT_FILE, "r+") as f:
+            count = int(f.read().strip())
+            count += 1
+            f.seek(0)
+            f.write(str(count))
+
+# Read current session count
+with open(SESSION_COUNT_FILE, "r") as f:
+    session_count = int(f.read().strip())
+
+# ---- STREAMLIT UI ----
+st.markdown(f"**Total page views** {session_count}")
 
 # ---- Horizontal Stats Bar ----
 st.markdown("---")
@@ -33,8 +58,8 @@ st.markdown(f"""
             <p style="margin: 0; font-weight: bold; color:#4a3666;">Neuropeptide Families</p>
         </div>
         <div style="flex: 1; background-color: #eeeeee; text-align: center; padding: 20px 0;">
-            <h2 style="color:#4a3666; margin-left: 15px;">12</h2>
-            <p style="margin: 0; font-weight: bold; color:#4a3666;">Unique Visitors</p>
+            <h2 style="color:#4a3666; margin-left: 15px;">{session_count}</h2>
+            <p style="margin: 0; font-weight: bold; color:#4a3666;">Page visits</p>
         </div>
     </div>
 """, unsafe_allow_html=True)
