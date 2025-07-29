@@ -13,7 +13,7 @@ import zipfile
 import mimetypes
 
 from session_tracker import track_session
-track_session()
+session_count = track_session()
 
 
 st.set_page_config(
