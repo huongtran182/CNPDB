@@ -7,6 +7,7 @@ import requests
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import streamlit as st
+import pandas as pd
 
 SHEET_ID = "1-h6G1QKP9gIa7V9T9Ked_V3pusBYOQLgC922Wy7_Pvg"
 SESSION_LOG_FILE = "session_log.csv"
@@ -63,3 +64,12 @@ def track_session():
                 count = int(f.read().strip())
                 f.seek(0)
                 f.write(str(count + 1))
+
+        # Calculate session count
+            try:
+                df = pd.read_csv('session_log.csv')
+                session_count = len(df)
+            except FileNotFoundError:
+                session_count = 0
+        
+            return session_count
