@@ -105,7 +105,7 @@ st.markdown("""
 If you use cNPDB in your research, please cite: 
 
 <div style="margin-left: 1cm;">
-    Tran, V.N.H.; Duong, T.U.; Fields, L.; Tourlouskis, K.; Beaver, M.; and Li, L. cNPDB: A comprehensive empirical crustacean neuropeptide database. <b>bioRxiv</b>. 2025.
+    Tran, V.N.H.; Duong, T.U.; Fields, L.; Tourloukis, K.; Beaver, M.; and Li, L. cNPDB: A comprehensive empirical crustacean neuropeptide database. <b>bioRxiv</b>. 2025.
 </div>
 
 <br>
