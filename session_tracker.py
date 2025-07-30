@@ -14,13 +14,13 @@ SESSION_COUNT_FILE = "total_sessions.txt"
 
 def get_or_create_user_session_id():
     # Use URL parameters as a workaround for browser-sticky session tracking
-    query_params = st.experimental_get_query_params()
+    query_params = st.query_params()
     
     if "sid" in query_params:
         session_id = query_params["sid"][0]
     else:
         session_id = str(uuid.uuid4())
-        st.experimental_set_query_params(sid=session_id)
+        st.query_params(sid=session_id)
     
     return session_id
 
