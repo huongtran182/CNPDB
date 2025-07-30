@@ -11,18 +11,25 @@ import pandas as pd
 SHEET_ID = "1-h6G1QKP9gIa7V9T9Ked_V3pusBYOQLgC922Wy7_Pvg"
 SESSION_LOG_FILE = "session_log.csv"
 SESSION_COUNT_FILE = "total_sessions.txt"
+SESSION_EXPIRY_HOURS = 24
 
 def get_or_create_user_session_id():
-    # Use URL parameters as a workaround for browser-sticky session tracking
-    query_params = st.query_params
-    
-    if "sid" in query_params:
-        session_id = query_params["sid"][0]
-    else:
-        session_id = str(uuid.uuid4())
-        st.query_params.update({"sid": session_id})
-    
-    return session_id
+    now = datetime.now()
+
+    # Check if we already have a session ID and timestamp
+    session_id = st.session_state.get("session_id", None)
+    session_start = st.session_state.get("session_start", None)
+
+    if session_id and session_start:
+        elapsed = now - session_start
+        if elapsed < timedelta(hours=SESSION_EXPIRY_HOURS):
+            return session_id  # Still valid session
+
+    # Otherwise, create new session
+    new_id = str(uuid.uuid4())
+    st.session_state["session_id"] = new_id
+    st.session_state["session_start"] = now
+    return new_id
 
 
 def track_session():
