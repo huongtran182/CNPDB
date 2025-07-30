@@ -66,7 +66,7 @@ Stay updated on the latest cNPDB developments by following us on our social medi
 ## CITATION AND FUNDING
 If you use cNPDB in your research, please cite:
 
-Tran, V.N.H.; Duong, T.U.; Fields, L.; Tourlouskis, K.; Beaver, M.; and Li, L. cNPDB: A comprehensive empirical crustacean neuropeptide database. bioRxiv. 2025.
+Tran, V.N.H.; Duong, T.U.; Fields, L.; Tourloukis, K.; Beaver, M.; and Li, L. cNPDB: A comprehensive empirical crustacean neuropeptide database. bioRxiv. 2025.
 
 **Funding:** This work is supported by in part by National Institutes of Health (NIH) through grants R01DK071801 and the Research Forward grant by University of Wisconsin - Madison Office of the Vice Chancellor for Research with funding from the Wisconsin Alumni Research Foundation. LF was supported in part by the National Institute of General Medical Sciences of the National Institutes of Health under Award Number T32GM008505 (Chemistry–Biology Interface Training Program), the 2024 Eli Lilly and Company/ACS Analytical Graduate Fellowship, and a predoctoral fellowship supported by the NIH, under Ruth L. Kirschstein National Research Service Award (NRSA) from the National Institutes of Health-General Medical Sciences F31GM156104. LL would like to acknowledge NIH grants R01AG052324, S10OD028473, and S10OD025084, as well as funding support from a Vilas Distinguished Achievement Professorship and Charles Melbourne Johnson Professorship with funding provided by the Wisconsin Alumni Research Foundation and University of Wisconsin-Madison School of Pharmacy.
 
