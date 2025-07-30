@@ -11,23 +11,29 @@ import pandas as pd
 SHEET_ID = "1-h6G1QKP9gIa7V9T9Ked_V3pusBYOQLgC922Wy7_Pvg"
 SESSION_LOG_FILE = "session_log.csv"
 SESSION_COUNT_FILE = "total_sessions.txt"
-COOLDOWN_SECONDS = 18  # 30 minutes
+
+def get_or_create_user_session_id():
+    # Use URL parameters as a workaround for browser-sticky session tracking
+    query_params = st.experimental_get_query_params()
+    
+    if "sid" in query_params:
+        session_id = query_params["sid"][0]
+    else:
+        session_id = str(uuid.uuid4())
+        st.experimental_set_query_params(sid=session_id)
+    
+    return session_id
+
 
 def track_session():
     now = datetime.now()
+    session_id = get_or_create_user_session_id()
 
-    # Check cooldown
+    # Avoid duplicate logging in same session
     if "session_tracked" in st.session_state:
-        last_logged = st.session_state.get("last_tracked", datetime.min)
-        elapsed = (now - last_logged).total_seconds()
-        if elapsed < COOLDOWN_SECONDS:
-            # Skip tracking to prevent duplicate logging
-            df = pd.read_csv(SESSION_LOG_FILE) if os.path.exists(SESSION_LOG_FILE) else pd.DataFrame()
-            return len(df)
+        return get_logged_session_count()
 
-    # Update session state for cooldown
     st.session_state.session_tracked = True
-    st.session_state.last_tracked = now
 
     # Google Sheets setup
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
@@ -36,8 +42,6 @@ def track_session():
     client = gspread.authorize(creds)
     sheet = client.open_by_key(SHEET_ID).sheet1
 
-    # Generate session info
-    session_id = str(uuid.uuid4())
     timestamp = now.strftime("%Y-%m-%d %H:%M:%S")
 
     try:
@@ -51,7 +55,7 @@ def track_session():
 
     user_agent = "Streamlit App"
 
-    # Log locally
+    # Local log
     if not os.path.exists(SESSION_LOG_FILE):
         with open(SESSION_LOG_FILE, "w", newline='') as f:
             writer = csv.writer(f)
@@ -60,14 +64,14 @@ def track_session():
         writer = csv.writer(f)
         writer.writerow([session_id, timestamp, ip_address, country, user_agent])
 
-    # Log to Google Sheet
+    # Google Sheet log
     try:
         sheet.append_row([session_id, timestamp, ip_address, country, user_agent])
     except Exception as e:
         st.warning("Could not log to Google Sheet.")
         st.exception(e)
 
-    # Update session count file
+    # Session counter
     if not os.path.exists(SESSION_COUNT_FILE):
         with open(SESSION_COUNT_FILE, "w") as f:
             f.write("1")
@@ -77,7 +81,10 @@ def track_session():
             f.seek(0)
             f.write(str(count + 1))
 
+    return get_logged_session_count()
+
     # Return count from CSV
+def get_logged_session_count():
     try:
         df = pd.read_csv(SESSION_LOG_FILE)
         session_count = len(df)
