@@ -11,7 +11,7 @@ import pandas as pd
 SHEET_ID = "1-h6G1QKP9gIa7V9T9Ked_V3pusBYOQLgC922Wy7_Pvg"
 SESSION_LOG_FILE = "session_log.csv"
 SESSION_COUNT_FILE = "total_sessions.txt"
-COOLDOWN_SECONDS = 1800  # 30 minutes
+COOLDOWN_SECONDS = 18  # 30 minutes
 
 def track_session():
     now = datetime.now()
