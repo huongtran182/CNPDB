@@ -17,6 +17,11 @@ def track_session():
     if "session_tracked" not in st.session_state:
         st.session_state.session_tracked = True
 
+         # 🧠 Get user IP from frontend JS
+        ip_address = st_javascript("await fetch('https://api.ipify.org?format=json').then(r => r.json()).then(j => j.ip)")
+        if ip_address is None:
+            ip_address = "Unknown"
+
         # Google Sheets setup
         scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
         creds_dict = st.secrets["gcp_service_account"]
@@ -28,13 +33,12 @@ def track_session():
         session_id = str(uuid.uuid4())
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
+         # Optionally get country from IP (server-side backup)
         try:
-            res = requests.get("https://ipapi.co/json/")
+            res = requests.get(f"https://ipapi.co/{ip_address}/json/")
             data = res.json()
-            ip_address = data.get("ip", "Unknown")
             country = data.get("country_name", "Unknown")
         except Exception:
-            ip_address = "Error"
             country = "Error"
 
         user_agent = "Streamlit App"
