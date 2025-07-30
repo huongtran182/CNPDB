@@ -20,7 +20,7 @@ def get_or_create_user_session_id():
         session_id = query_params["sid"][0]
     else:
         session_id = str(uuid.uuid4())
-        st.query_params(sid=session_id)
+        st.query_params.update({"sid": session_id})
     
     return session_id
 
