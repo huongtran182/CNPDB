@@ -49,7 +49,7 @@ def set_and_get_cookies_js(cookie_name, cookie_value=None, days_expire=30):
     result = components.html(js_code, height=0)
     return result
 
-def track_session_custom():
+def track_session():
     now = datetime.now()
 
     # Use JS to set/get visitor_id and last_visit cookies
