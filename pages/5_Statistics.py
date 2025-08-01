@@ -4,7 +4,7 @@ from PIL import Image
 import os
 import base64
 
-from utils.session_tracker import track_session
+from utils.session_tracker import log_new_session_if_needed, get_logged_session_count
 if "session_logged" not in st.session_state:
     log_new_session_if_needed()
     st.session_state["session_logged"] = True
