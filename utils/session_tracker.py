@@ -34,6 +34,8 @@ def track_session():
         except Exception as e:
             st.error("Error logging page view to Google Sheet.")
             st.exception(e)
+ # Return the updated count after the session has been logged
+    return get_logged_session_count()
 
 def get_logged_session_count():
     """Retrieves the total number of sessions from the Google Sheet."""
