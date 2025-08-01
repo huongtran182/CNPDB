@@ -21,7 +21,7 @@ def get_google_sheet_client():
         st.exception(e)
         return None
 
-def log_page_view():
+def track_session():
     """Appends a new row to the Google Sheet for every page view."""
     sheet = get_google_sheet_client()
     if sheet:
