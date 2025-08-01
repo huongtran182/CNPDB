@@ -34,8 +34,8 @@ def track_session():
 
     if should_log:
         session_id = session_cookie or str(uuid.uuid4())
-        cookie_controller.set("visitor_id", session_id, expires_at=None)
-        cookie_controller.set("last_visit", now.isoformat(), expires_at=None)
+        cookie_controller.set("visitor_id", session_id, expires=None)
+        cookie_controller.set("last_visit", now.isoformat(), expires=None)
 
         log_to_csv(session_id, now)
 
