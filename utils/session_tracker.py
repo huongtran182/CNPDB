@@ -4,19 +4,21 @@ import pandas as pd
 import os
 import csv
 import streamlit as st
-from streamlit_extras.cookie_manager import CookieManager
+from streamlit_cookies_controller import CookieController
 
 SHEET_ID = "1-h6G1QKP9gIa7V9T9Ked_V3pusBYOQLgC922Wy7_Pvg"
 SESSION_LOG_FILE = "session_log.csv"
 COOKIE_EXPIRY_MINUTES = 30  # Only count again after 30 minutes
 
-cookie_manager = CookieManager()
-cookie_manager.get_all()  # Must call this first in app
+# Initialize the CookieController
+cookie_controller = CookieController()
+# You might need to add a short delay to ensure the controller is ready
+# st.write(cookie_controller.get_all()) # You can use this to debug if needed
 
-def track_session(): #track_with_cookie
+def track_session():
     now = datetime.now()
-    session_cookie = cookie_manager.get("visitor_id")
-    last_visit_cookie = cookie_manager.get("last_visit")
+    session_cookie = cookie_controller.get("visitor_id")
+    last_visit_cookie = cookie_controller.get("last_visit")
 
     should_log = False
 
@@ -25,15 +27,15 @@ def track_session(): #track_with_cookie
             last_visit = datetime.fromisoformat(last_visit_cookie)
             if now - last_visit > timedelta(minutes=COOKIE_EXPIRY_MINUTES):
                 should_log = True
-        except Exception:
+        except (ValueError, TypeError): # Handle potential errors with isoformat
             should_log = True
     else:
         should_log = True
 
     if should_log:
         session_id = session_cookie or str(uuid.uuid4())
-        cookie_manager.set("visitor_id", session_id, expires_at=None)
-        cookie_manager.set("last_visit", now.isoformat(), expires_at=None)
+        cookie_controller.set("visitor_id", session_id, expires_at=None)
+        cookie_controller.set("last_visit", now.isoformat(), expires_at=None)
 
         log_to_csv(session_id, now)
 
