@@ -51,9 +51,6 @@ def track_session():
 
     timestamp = now.strftime("%Y-%m-%d %H:%M:%S")
 
-
-
-
     try:
         res = requests.get("https://ipapi.co/json/")
         data = res.json()
@@ -92,8 +89,6 @@ def track_session():
             f.write(str(count + 1))
 
     return get_logged_session_count()
-
-
 
     # Return count from CSV
 def get_logged_session_count():
