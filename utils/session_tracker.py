@@ -41,9 +41,11 @@ def get_logged_session_count():
     if sheet:
         try:
             all_records = sheet.get_all_records()
-            return len(all_records)
+            session_count = len(all_records)
         except Exception as e:
             st.warning("Could not retrieve session count from Google Sheet.")
             st.exception(e)
-            # Return 0 on error instead of letting it default to None
-    return 0
+            session_count = 0
+
+    return session_count
+
