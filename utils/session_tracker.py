@@ -33,17 +33,42 @@ def log_to_google_sheet(session_id, timestamp, ip_address, country, user_agent):
         st.exception(e)
 
 def get_logged_session_count():
-    """Retrieves the total session count from the Google Sheet."""
+    """
+    Retrieves and processes all records from the Google Sheet to count
+    unique visits based on a simple 5-minute time window.
+    """
     try:
         sheet = get_google_sheet_client()
         all_records = sheet.get_all_records()
+
+        if not all_records:
+            return 0
         
-        # You can add logic here to deduplicate visits based on IP/Session ID and timestamp
-        # if you want a "unique visitor" count rather than a "page visit" count.
-        # However, for a simple count, len(all_records) is fine.
+        df = pd.DataFrame(all_records)
+        df['Timestamp'] = pd.to_datetime(df['Timestamp'])
         
-        session_count = len(all_records)
-        return session_count
+        # Sort by timestamp to ensure chronological order
+        df = df.sort_values(by='Timestamp').reset_index(drop=True)
+        
+        # Define the time window for deduplication
+        DEDUPLICATION_WINDOW_MINUTES = 5
+        
+        unique_timestamps = []
+        if not df.empty:
+            # The first entry is always counted as a unique visit
+            unique_timestamps.append(df.iloc[0]['Timestamp'])
+            
+            # Iterate through the rest of the DataFrame
+            for index, row in df.iloc[1:].iterrows():
+                # Get the timestamp of the last unique visit we kept
+                last_unique_timestamp = unique_timestamps[-1]
+                
+                # Check if the current timestamp is more than the window after the last unique one
+                if row['Timestamp'] - last_unique_timestamp > timedelta(minutes=DEDUPLICATION_WINDOW_MINUTES):
+                    unique_timestamps.append(row['Timestamp'])
+        
+        return len(unique_timestamps)
+
     except Exception as e:
         st.warning("Could not retrieve session count from Google Sheet.")
         st.exception(e)
