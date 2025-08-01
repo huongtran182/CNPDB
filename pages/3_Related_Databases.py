@@ -4,7 +4,7 @@ import base64
 import os
 import streamlit.components.v1 as components
 
-from session_tracker import track_session
+from utils.session_tracker import track_session
 track_session()
 
 st.set_page_config(
