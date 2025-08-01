@@ -8,5 +8,3 @@ gspread
 oauth2client
 requests
 streamlit-javascript
-streamlit-cookies-controller
-streamlit-cookies-manager
