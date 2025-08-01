@@ -35,18 +35,21 @@ def track_session():
             st.error("Error logging page view to Google Sheet.")
             st.exception(e)
 
-def get_page_view_count():
-    """Retrieves the total number of page views from the Google Sheet."""
-    sheet = get_google_sheet_client()
-    if sheet:
-        try:
-            all_records = sheet.get_all_records()
-            session_count = len(all_records)
-            return len(all_records)
-            
-        except Exception as e:
-            st.warning("Could not retrieve session count from Google Sheet.")
-            st.exception(e)
-            session_count = 0
+def get_logged_session_count():
+    try:
+        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+        creds_dict = st.secrets["gcp_service_account"]
+        creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+        client = gspread.authorize(creds)
+        sheet = client.open_by_key(SHEET_ID).sheet1
+
+        all_records = sheet.get_all_records()
+        session_count = len(all_records)
+
+    except Exception as e:
+        st.warning("Could not retrieve session count from Google Sheet.")
+        st.exception(e)
+        session_count = 0
 
     return session_count
+
