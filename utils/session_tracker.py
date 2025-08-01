@@ -93,17 +93,19 @@ def track_session():
     # Return count from CSV
 def get_logged_session_count():
     try:
-        df = pd.read_csv(
-            SESSION_LOG_FILE,
-            names=["SessionID", "Timestamp", "IP", "Country", "UserAgent"],
-            header=0,  # Skip the header row if already present
-            on_bad_lines='skip'  # Skip corrupted lines
-        )
-        session_count = len(df)
-    except FileNotFoundError:
-        session_count = 0
+        # Google Sheets setup
+        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+        creds_dict = st.secrets["gcp_service_account"]
+        creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+        client = gspread.authorize(creds)
+        sheet = client.open_by_key(SHEET_ID).sheet1
+
+        all_records = sheet.get_all_records()  # Skips the header
+        session_count = len(all_records)
+
     except Exception as e:
-        st.warning(f"Failed to read session log: {e}")
+        st.warning("Could not retrieve session count from Google Sheet.")
+        st.exception(e)
         session_count = 0
 
     return session_count
