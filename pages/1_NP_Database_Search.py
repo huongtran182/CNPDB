@@ -469,10 +469,10 @@ with col_filter:
     st.markdown('<div class="fill-height">', unsafe_allow_html=True)
 
     st.markdown('<div class="section-title">Monoisotopic mass (m/z)</div>', unsafe_allow_html=True)
-    mono_mass_range = st.slider("", 200.0, 14000.0, (200.0, 14000.0), label_visibility="collapsed")
+    mono_mass_range = st.slider("", 200.0, 16000.0, (200.0, 16000.0), label_visibility="collapsed")
 
     st.markdown('<div class="section-title">Length (amino acids)</div>', unsafe_allow_html=True)
-    length_range = st.slider("", 2, 130, (2, 130), label_visibility="collapsed")
+    length_range = st.slider("", 2, 150, (2, 150), label_visibility="collapsed")
 
     st.markdown('<div class="section-title">GRAVY Score</div>', unsafe_allow_html=True)
     gravy_range = st.slider("", -5.0, 5.0, (-5.0, 5.0), label_visibility="collapsed")
@@ -632,8 +632,8 @@ if technique_selected:
 #    - They're not at their default values, OR
 #    - No right-side filters are active
 default_ranges = {
-    'Monoisotopic Mass': (200.0, 14000.0),
-    'Length': (2, 130),
+    'Monoisotopic Mass': (200.0, 16000.0),
+    'Length': (2, 150),
     'GRAVY': (-5.0, 5.0),
     '% Hydrophobic Residue': (-1, 100),
     'Instability Index Value': (-100, 250),
