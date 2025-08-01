@@ -1,11 +1,16 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import uuid
 import streamlit as st
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from streamlit_cookies_controller import CookieController
 
 # Your Google Sheet ID
 SHEET_ID = "1-h6G1QKP9gIa7V9T9Ked_V3pusBYOQLgC922Wy7_Pvg"
+COOKIE_EXPIRY_MINUTES = 30  # Only count again after 30 minutes
+
+# Initialize the CookieController
+cookie_controller = CookieController()
 
 def get_google_sheet_client():
     """Returns an authorized gspread client and the target sheet."""
@@ -21,21 +26,16 @@ def get_google_sheet_client():
         st.exception(e)
         return None
 
-def track_session():
-    """Appends a new row to the Google Sheet for every page view."""
+def log_to_google_sheet(session_id, timestamp):
+    """Appends a new session row to the Google Sheet."""
     sheet = get_google_sheet_client()
     if sheet:
         try:
-            timestamp = datetime.now()
-            # Generate a new unique ID for each page view
-            page_view_id = str(uuid.uuid4())
-            row = [page_view_id, timestamp.strftime("%Y-%m-%d %H:%M:%S")]
+            row = [session_id, timestamp.strftime("%Y-%m-%d %H:%M:%S")]
             sheet.append_row(row)
         except Exception as e:
-            st.error("Error logging page view to Google Sheet.")
+            st.error("Error logging session to Google Sheet.")
             st.exception(e)
- # Return the updated count after the session has been logged
-    return get_logged_session_count()
 
 def get_logged_session_count():
     """Retrieves the total number of sessions from the Google Sheet."""
@@ -51,3 +51,34 @@ def get_logged_session_count():
 
         return session_count
 
+def track_session():
+    """
+    Tracks a session based on a cookie and logs a new entry if the session is new or expired.
+    Returns the total session count.
+    """
+    now = datetime.now()
+    session_cookie = cookie_controller.get("visitor_id")
+    last_visit_cookie = cookie_controller.get("last_visit")
+
+    should_log = False
+
+    if session_cookie and last_visit_cookie:
+        try:
+            last_visit = datetime.fromisoformat(last_visit_cookie)
+            if now - last_visit > timedelta(minutes=COOKIE_EXPIRY_MINUTES):
+                should_log = True
+        except (ValueError, TypeError):
+            # If the cookie is malformed, treat it as a new session
+            should_log = True
+    else:
+        # No cookies found, so this is a new session
+        should_log = True
+
+    if should_log:
+        session_id = session_cookie or str(uuid.uuid4())
+        cookie_controller.set("visitor_id", session_id, expires=None)
+        cookie_controller.set("last_visit", now.isoformat(), expires=None)
+        log_to_google_sheet(session_id, now)
+
+    # Always return the current total count, whether a new session was logged or not
+    return get_logged_session_count()
