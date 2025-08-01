@@ -70,7 +70,7 @@ def track_session():
     visitor_id = get_or_create_visitor_id()
 
     # If visitor_id is not yet set in session_state, try to grab it from component output
-    # We can add a workaround by reading the value from st.experimental_get_query_params or other ways,
+    # We can add a workaround by reading the value from st.query_params or other ways,
     # but here we require the app to rerun after the cookie is set, so on second run visitor_id is available.
 
     if visitor_id is None:
