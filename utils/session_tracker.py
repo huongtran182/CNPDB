@@ -45,8 +45,8 @@ def get_page_view_count():
             return len(all_records)
             
         except Exception as e:
-        st.warning("Could not retrieve session count from Google Sheet.")
-        st.exception(e)
-        session_count = 0
+            st.warning("Could not retrieve session count from Google Sheet.")
+            st.exception(e)
+            session_count = 0
 
     return session_count
