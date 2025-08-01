@@ -75,7 +75,7 @@ def track_session():
 
     if visitor_id is None:
         # First run, visitor_id not ready, wait for next rerun
-        st.experimental_rerun()
+        st.rerun()
         return
 
     # Save visitor_id to session_state for reuse
