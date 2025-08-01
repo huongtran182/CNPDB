@@ -1,26 +1,20 @@
-from datetime import datetime, timedelta
+import os
+import csv
 import uuid
-import streamlit as st
+from datetime import datetime, timedelta
+import requests
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from streamlit_cookies_manager import EncryptedCookieManager
-import os
+import streamlit as st
+import pandas as pd
 
 SHEET_ID = "1-h6G1QKP9gIa7V9T9Ked_V3pusBYOQLgC922Wy7_Pvg"
-COOKIE_EXPIRY_MINUTES = 30
-
-# This should be at the very top of your script
-cookies = EncryptedCookieManager(
-    prefix="your_app_name/",  # Change this to a unique identifier for your app
-    password=os.environ.get("COOKIES_PASSWORD", "default_secret")
-)
-
-# This is the critical part to prevent the race condition
-if not cookies.ready():
-    st.stop()
+# Set a duration for what constitutes a "new" visit.
+# This logic will be applied on the Google Sheet side, not the app side.
+# Your app's job is just to log a single visit per session.
 
 def get_google_sheet_client():
-    # Your existing function
+    """Returns an authorized gspread client and the target sheet."""
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     creds_dict = st.secrets["gcp_service_account"]
     creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
@@ -28,56 +22,73 @@ def get_google_sheet_client():
     sheet = client.open_by_key(SHEET_ID).sheet1
     return sheet
 
-def log_to_google_sheet(session_id, timestamp):
-    # Your existing function
+def log_to_google_sheet(session_id, timestamp, ip_address, country, user_agent):
+    """Appends a new session row to the Google Sheet."""
     try:
         sheet = get_google_sheet_client()
-        row = [session_id, timestamp.strftime("%Y-%m-%d %H:%M:%S")]
+        row = [session_id, timestamp, ip_address, country, user_agent]
         sheet.append_row(row)
     except Exception as e:
-        st.error("Error logging session to Google Sheet.")
+        st.warning("Error logging session to Google Sheet.")
         st.exception(e)
 
 def get_logged_session_count():
-    # Your existing function
+    """Retrieves the total session count from the Google Sheet."""
     try:
         sheet = get_google_sheet_client()
         all_records = sheet.get_all_records()
+        
+        # You can add logic here to deduplicate visits based on IP/Session ID and timestamp
+        # if you want a "unique visitor" count rather than a "page visit" count.
+        # However, for a simple count, len(all_records) is fine.
+        
         session_count = len(all_records)
-
+        return session_count
     except Exception as e:
         st.warning("Could not retrieve session count from Google Sheet.")
         st.exception(e)
-        session_count = 0
-
-    return session_count
-
+        return 0
 
 def track_session():
+    """
+    Tracks a user session by generating a unique ID and logging it to Google Sheets
+    only once per Streamlit session (browser tab).
+    """
+    # Use a session state variable as a flag to prevent re-logging in the same session
+    if "session_logged" in st.session_state:
+        # Session already logged, do nothing and return the current count
+        return get_logged_session_count()
+
+    # If it's a new session, get a unique ID for this session.
+    # This ID will persist for as long as the user keeps the tab open.
+    if "session_id" not in st.session_state:
+        st.session_state.session_id = str(uuid.uuid4())
+    
+    # Get user info
     now = datetime.now()
-    session_id_from_cookie = cookies.get("visitor_id")
-    last_visit_from_cookie = cookies.get("last_visit")
-
-    should_log = False
-
-    if session_id_from_cookie and last_visit_from_cookie:
-        try:
-            last_visit = datetime.fromisoformat(last_visit_from_cookie)
-            if now - last_visit > timedelta(minutes=COOKIE_EXPIRY_MINUTES):
-                should_log = True
-        except (ValueError, TypeError):
-            should_log = True
-    else:
-        should_log = True
-
-    if should_log:
-        session_id = session_id_from_cookie or str(uuid.uuid4())
-
-        # Set cookies using the manager's dictionary-like interface
-        cookies["visitor_id"] = session_id
-        cookies["last_visit"] = now.isoformat()
-        
-        # Log to the Google Sheet
-        log_to_google_sheet(session_id, now)
-
+    timestamp = now.strftime("%Y-%m-%d %H:%M:%S")
+    
+    try:
+        res = requests.get("https://ipapi.co/json/")
+        data = res.json()
+        ip_address = data.get("ip", "Unknown")
+        country = data.get("country_name", "Unknown")
+    except Exception:
+        ip_address = "Error"
+        country = "Error"
+    
+    user_agent = "Streamlit App" # Streamlit doesn't expose the real user-agent easily
+    
+    # Log the session to the Google Sheet
+    log_to_google_sheet(
+        st.session_state.session_id, 
+        timestamp, 
+        ip_address, 
+        country, 
+        user_agent
+    )
+    
+    # Set the flag to true so we don't log again in this session
+    st.session_state.session_logged = True
+    
     return get_logged_session_count()
