@@ -6,69 +6,54 @@ import requests
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import streamlit as st
-import streamlit.components.v1 as components
 import pandas as pd
 
-SESSION_LOG_FILE = "session_log.csv"
-SESSION_EXPIRY_HOURS = 24
 SHEET_ID = "1-h6G1QKP9gIa7V9T9Ked_V3pusBYOQLgC922Wy7_Pvg"
+SESSION_LOG_FILE = "session_log.csv"
+SESSION_COUNT_FILE = "total_sessions.txt"
+SESSION_EXPIRY_HOURS = 24
 
-# -------------------
-# JS Cookie Helper
-# -------------------
-def set_and_get_cookie(cookie_name, cookie_value=None, days_expire=30):
-    js_code = f"""
-    <script>
-        function setCookie(name, value, days) {{
-            const d = new Date();
-            d.setTime(d.getTime() + (days*24*60*60*1000));
-            let expires = "expires=" + d.toUTCString();
-            document.cookie = name + "=" + value + ";" + expires + ";path=/";
-        }}
-
-        function getCookie(name) {{
-            let nameEQ = name + "=";
-            let ca = document.cookie.split(';');
-            for (let i = 0; i < ca.length; i++) {{
-                let c = ca[i];
-                while (c.charAt(0) === ' ') c = c.substring(1);
-                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-            }}
-            return "";
-        }}
-
-        let cookieVal = getCookie("{cookie_name}");
-        if (!cookieVal && "{cookie_value}" !== "") {{
-            setCookie("{cookie_name}", "{cookie_value}", {days_expire});
-            document.body.innerText = "{cookie_value}";
-        }} else {{
-            document.body.innerText = cookieVal;
-        }}
-    </script>
-    """
-    return components.html(js_code, height=0)
-
-# -------------------
-# Track User Session
-# -------------------
-def track_session():
+def get_or_create_user_session_id():
     now = datetime.now()
 
-    # Use cookie to persist visitor ID
-    session_id = str(uuid.uuid4())
-    visitor_id = set_and_get_cookie("visitor_id", session_id)
+    # Check if we already have a session ID and timestamp
+    session_id = st.session_state.get("session_id", None)
+    session_start = st.session_state.get("session_start", None)
 
-    if "visitor_id" not in st.session_state:
-        st.session_state["visitor_id"] = visitor_id
-    else:
-        visitor_id = st.session_state["visitor_id"]
+    if session_id and session_start:
+        elapsed = now - session_start
+        if elapsed < timedelta(hours=SESSION_EXPIRY_HOURS):
+            return session_id  # Still valid session
 
+    # Otherwise, create new session
+    new_id = str(uuid.uuid4())
+    st.session_state["session_id"] = new_id
+    st.session_state["session_start"] = now
+    return new_id
+
+
+def track_session():
+    now = datetime.now()
+    session_id = get_or_create_user_session_id()
+
+    # Avoid duplicate logging in same session
     if "session_tracked" in st.session_state:
         return get_logged_session_count()
 
-    st.session_state["session_tracked"] = True
+    st.session_state.session_tracked = True
 
-    # Log user IP
+    # Google Sheets setup
+    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    creds_dict = st.secrets["gcp_service_account"]
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+    client = gspread.authorize(creds)
+    sheet = client.open_by_key(SHEET_ID).sheet1
+
+    timestamp = now.strftime("%Y-%m-%d %H:%M:%S")
+
+
+
+
     try:
         res = requests.get("https://ipapi.co/json/")
         data = res.json()
@@ -79,35 +64,43 @@ def track_session():
         country = "Error"
 
     user_agent = "Streamlit App"
-    timestamp = now.strftime("%Y-%m-%d %H:%M:%S")
 
-    # Log to CSV
+    # Local log
     if not os.path.exists(SESSION_LOG_FILE):
         with open(SESSION_LOG_FILE, "w", newline='') as f:
             writer = csv.writer(f)
             writer.writerow(["SessionID", "Timestamp", "IP", "Country", "UserAgent"])
     with open(SESSION_LOG_FILE, "a", newline='') as f:
         writer = csv.writer(f)
-        writer.writerow([visitor_id, timestamp, ip_address, country, user_agent])
+        writer.writerow([session_id, timestamp, ip_address, country, user_agent])
 
-    # Log to Google Sheets
+    # Google Sheet log
     try:
-        scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-        creds_dict = st.secrets["gcp_service_account"]
-        creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
-        client = gspread.authorize(creds)
-        sheet = client.open_by_key(SHEET_ID).sheet1
-        sheet.append_row([visitor_id, timestamp, ip_address, country, user_agent])
+        sheet.append_row([session_id, timestamp, ip_address, country, user_agent])
     except Exception as e:
-        st.warning("⚠️ Could not log to Google Sheet.")
+        st.warning("Could not log to Google Sheet.")
         st.exception(e)
+
+    # Session counter
+    if not os.path.exists(SESSION_COUNT_FILE):
+        with open(SESSION_COUNT_FILE, "w") as f:
+            f.write("1")
+    else:
+        with open(SESSION_COUNT_FILE, "r+") as f:
+            count = int(f.read().strip())
+            f.seek(0)
+            f.write(str(count + 1))
 
     return get_logged_session_count()
 
+
+
+    # Return count from CSV
 def get_logged_session_count():
     try:
-        df = pd.read_csv(SESSION_LOG_FILE, on_bad_lines='skip')  # 👈 skip malformed lines)
-        return len(df)
+        df = pd.read_csv(SESSION_LOG_FILE)
+        session_count = len(df)
     except FileNotFoundError:
-        return 0
+        session_count = 0
 
+    return session_count
