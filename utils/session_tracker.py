@@ -52,7 +52,7 @@ def get_logged_session_count():
 
         valid_timestamps = []
 
-        ffor i, t1 in enumerate(timestamps):
+        for i, t1 in enumerate(timestamps):
             has_invalid_match = False
             for j, t2 in enumerate(timestamps):
                 if i == j:
