@@ -48,20 +48,20 @@ def get_logged_session_count():
         df = df.sort_values(by='Timestamp').reset_index(drop=True)
 
         timestamps = df['Timestamp'].tolist()
-        FIVE_MINUTES = 5 * 60  # in seconds
+        invalid_deltas = {5 * 60, 10 * 60, 15 * 60}  # in seconds
 
         valid_timestamps = []
 
-        for i, t1 in enumerate(timestamps):
-            has_exact_match = False
+        ffor i, t1 in enumerate(timestamps):
+            has_invalid_match = False
             for j, t2 in enumerate(timestamps):
                 if i == j:
                     continue
                 time_diff = abs((t1 - t2).total_seconds())
-                if time_diff == FIVE_MINUTES:
-                    has_exact_match = True
+                if time_diff in invalid_deltas:
+                    has_invalid_match = True
                     break
-            if not has_exact_match:
+            if not has_invalid_match:
                 valid_timestamps.append(t1)
 
         return len(valid_timestamps)
@@ -70,6 +70,7 @@ def get_logged_session_count():
         st.warning("Could not retrieve session count from Google Sheet.")
         st.exception(e)
         return 0
+        
 def track_session():
     """
     Tracks a user session by generating a unique ID and logging it to Google Sheets
