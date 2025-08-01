@@ -4,13 +4,8 @@ from PIL import Image
 import os
 import base64
 
-from utils.session_tracker import log_new_session_if_needed, get_logged_session_count
-if "session_logged" not in st.session_state:
-    log_new_session_if_needed()
-    st.session_state["session_logged"] = True
-
-# Now, we can safely retrieve the count for display on every run
-session_count = get_logged_session_count()
+from utils.session_tracker import track_session
+session_count = track_session()
 
 # Page settings
 st.set_page_config(
