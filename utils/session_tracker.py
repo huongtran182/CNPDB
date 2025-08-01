@@ -26,35 +26,10 @@ def get_google_sheet_client():
         st.exception(e)
         return None
 
-def log_to_google_sheet(session_id, timestamp):
-    """Appends a new session row to the Google Sheet."""
-    sheet = get_google_sheet_client()
-    if sheet:
-        try:
-            row = [session_id, timestamp.strftime("%Y-%m-%d %H:%M:%S")]
-            sheet.append_row(row)
-        except Exception as e:
-            st.error("Error logging session to Google Sheet.")
-            st.exception(e)
-
-def get_logged_session_count():
-    """Retrieves the total number of sessions from the Google Sheet."""
-    sheet = get_google_sheet_client()
-    if sheet:
-        try:
-            all_records = sheet.get_all_records()
-            session_count = len(all_records)
-        except Exception as e:
-            st.warning("Could not retrieve session count from Google Sheet.")
-            st.exception(e)
-            session_count = 0
-
-        return session_count
-
-def track_session():
+def log_new_session_if_needed():
     """
-    Tracks a session based on a cookie and logs a new entry if the session is new or expired.
-    Returns the total session count.
+    Checks for a valid session cookie. If none exists or it has expired,
+    it logs a new session to the Google Sheet.
     """
     now = datetime.now()
     session_cookie = cookie_controller.get("visitor_id")
@@ -78,7 +53,26 @@ def track_session():
         session_id = session_cookie or str(uuid.uuid4())
         cookie_controller.set("visitor_id", session_id, expires=None)
         cookie_controller.set("last_visit", now.isoformat(), expires=None)
-        log_to_google_sheet(session_id, now)
+        
+        sheet = get_google_sheet_client()
+        if sheet:
+            try:
+                row = [session_id, now.strftime("%Y-%m-%d %H:%M:%S")]
+                sheet.append_row(row)
+            except Exception as e:
+                st.error("Error logging session to Google Sheet.")
+                st.exception(e)
 
-    # Always return the current total count, whether a new session was logged or not
-    return get_logged_session_count()
+def get_logged_session_count():
+    """Retrieves the total number of sessions from the Google Sheet."""
+    sheet = get_google_sheet_client()
+    if sheet:
+        try:
+            all_records = sheet.get_all_records()
+            session_count = len(all_records)
+        except Exception as e:
+            st.warning("Could not retrieve session count from Google Sheet.")
+            st.exception(e)
+            session_count = 0
+
+        return session_count
