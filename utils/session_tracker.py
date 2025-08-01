@@ -10,7 +10,6 @@ import pandas as pd
 
 SHEET_ID = "1-h6G1QKP9gIa7V9T9Ked_V3pusBYOQLgC922Wy7_Pvg"
 SESSION_LOG_FILE = "session_log.csv"
-SESSION_COUNT_FILE = "total_sessions.txt"
 SESSION_EXPIRY_HOURS = 24
 
 def get_or_create_user_session_id():
@@ -77,16 +76,6 @@ def track_session():
     except Exception as e:
         st.warning("Could not log to Google Sheet.")
         st.exception(e)
-
-    # Session counter
-    if not os.path.exists(SESSION_COUNT_FILE):
-        with open(SESSION_COUNT_FILE, "w") as f:
-            f.write("1")
-    else:
-        with open(SESSION_COUNT_FILE, "r+") as f:
-            count = int(f.read().strip())
-            f.seek(0)
-            f.write(str(count + 1))
 
     return get_logged_session_count()
 
