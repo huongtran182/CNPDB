@@ -34,8 +34,7 @@ def log_to_google_sheet(session_id, timestamp, ip_address, country, user_agent):
 
 def get_logged_session_count():
     """
-    Counts timestamps that are not within 5 minutes of any other timestamp
-    in the log (i.e., isolated sessions).
+    Count all timestamps except those that have another timestamp exactly 5 minutes apart.
     """
     try:
         sheet = get_google_sheet_client()
@@ -49,29 +48,28 @@ def get_logged_session_count():
         df = df.sort_values(by='Timestamp').reset_index(drop=True)
 
         timestamps = df['Timestamp'].tolist()
-        DEDUPLICATION_WINDOW_MINUTES = 5
+        FIVE_MINUTES = 5 * 60  # in seconds
 
-        unique_count = 0
+        valid_timestamps = []
 
-        for i, current_time in enumerate(timestamps):
-            is_unique = True
-            for j, compare_time in enumerate(timestamps):
+        for i, t1 in enumerate(timestamps):
+            has_exact_match = False
+            for j, t2 in enumerate(timestamps):
                 if i == j:
                     continue
-                time_diff = abs((current_time - compare_time).total_seconds())
-                if time_diff < DEDUPLICATION_WINDOW_MINUTES * 60:
-                    is_unique = False
+                time_diff = abs((t1 - t2).total_seconds())
+                if time_diff == FIVE_MINUTES:
+                    has_exact_match = True
                     break
-            if is_unique:
-                unique_count += 1
+            if not has_exact_match:
+                valid_timestamps.append(t1)
 
-        return unique_count
+        return len(valid_timestamps)
 
     except Exception as e:
         st.warning("Could not retrieve session count from Google Sheet.")
         st.exception(e)
         return 0
-
 def track_session():
     """
     Tracks a user session by generating a unique ID and logging it to Google Sheets
