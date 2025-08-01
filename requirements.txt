@@ -8,5 +8,4 @@ gspread
 oauth2client
 requests
 streamlit-javascript
-streamlit-extras==0.2.5
-
+streamlit-extras
