@@ -2,7 +2,7 @@ import streamlit as st
 from sidebar import render_sidebar
 import textwrap
 
-from session_tracker import track_session
+from utils.session_tracker import track_session
 track_session()
 
 
