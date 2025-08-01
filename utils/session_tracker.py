@@ -53,7 +53,7 @@ def get_logged_session_count():
     return session_count
 
 
-def track_session_robust_with_manager():
+def track_session():
     now = datetime.now()
     session_id_from_cookie = cookies.get("visitor_id")
     last_visit_from_cookie = cookies.get("last_visit")
