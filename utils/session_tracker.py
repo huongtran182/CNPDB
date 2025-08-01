@@ -106,7 +106,7 @@ def track_session():
 
 def get_logged_session_count():
     try:
-        df = pd.read_csv(SESSION_LOG_FILE)
+        df = pd.read_csv(SESSION_LOG_FILE, on_bad_lines='skip')  # 👈 skip malformed lines)
         return len(df)
     except FileNotFoundError:
         return 0
