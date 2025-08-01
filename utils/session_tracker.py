@@ -47,5 +47,5 @@ def get_logged_session_count():
             st.exception(e)
             session_count = 0
 
-    return session_count
+        return session_count
 
