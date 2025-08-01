@@ -4,37 +4,78 @@ import pandas as pd
 import os
 import csv
 import streamlit as st
-from streamlit_extras.cookie_manager import CookieManager
+import streamlit.components.v1 as components
 
 SESSION_LOG_FILE = "session_log.csv"
 COOKIE_EXPIRY_MINUTES = 30  # Only count again after 30 minutes
 
-cookie_manager = CookieManager()
-cookie_manager.get_all()  # Must call this first in app
+# Custom JS Cookie Reader/Setter
+def set_and_get_cookies_js(cookie_name, cookie_value=None, days_expire=30):
+    js_code = f"""
+    <script>
+        function setCookie(name, value, days) {{
+            const d = new Date();
+            d.setTime(d.getTime() + (days*24*60*60*1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }}
 
-def track_session(): #track_with_cookie
+        function getCookie(name) {{
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i < ca.length; i++) {{
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {{
+                    c = c.substring(1);
+                }}
+                if (c.indexOf(name + "=") == 0) {{
+                    return c.substring((name + "=").length, c.length);
+                }}
+            }}
+            return "";
+        }}
+
+        const cookieName = "{cookie_name}";
+        const cookieVal = getCookie(cookieName);
+
+        if (!cookieVal && "{cookie_value}" !== "") {{
+            setCookie(cookieName, "{cookie_value}", {days_expire});
+            document.body.innerText = "{cookie_value}";
+        }} else {{
+            document.body.innerText = cookieVal;
+        }}
+    </script>
+    """
+    result = components.html(js_code, height=0)
+    return result
+
+def track_session_custom():
     now = datetime.now()
-    session_cookie = cookie_manager.get("visitor_id")
-    last_visit_cookie = cookie_manager.get("last_visit")
 
+    # Use JS to set/get visitor_id and last_visit cookies
+    session_id = str(uuid.uuid4())
+    visitor_id = set_and_get_cookies_js("visitor_id", session_id)
+    last_visit = set_and_get_cookies_js("last_visit", now.isoformat())
+
+    # Store them in session_state for access
+    if "visitor_id" not in st.session_state:
+        st.session_state.visitor_id = visitor_id
+    if "last_visit" not in st.session_state:
+        st.session_state.last_visit = last_visit
+
+    # Try parse last visit
     should_log = False
-
-    if session_cookie and last_visit_cookie:
-        try:
-            last_visit = datetime.fromisoformat(last_visit_cookie)
-            if now - last_visit > timedelta(minutes=COOKIE_EXPIRY_MINUTES):
-                should_log = True
-        except Exception:
+    try:
+        parsed_last_visit = datetime.fromisoformat(last_visit)
+        if now - parsed_last_visit > timedelta(minutes=COOKIE_EXPIRY_MINUTES):
             should_log = True
-    else:
+    except Exception:
         should_log = True
 
     if should_log:
-        session_id = session_cookie or str(uuid.uuid4())
-        cookie_manager.set("visitor_id", session_id, expires_at=None)
-        cookie_manager.set("last_visit", now.isoformat(), expires_at=None)
-
-        log_to_csv(session_id, now)
+        log_to_csv(visitor_id or session_id, now)
+        # Update cookie
+        _ = set_and_get_cookies_js("last_visit", now.isoformat())
 
     return get_logged_session_count()
 
