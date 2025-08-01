@@ -33,7 +33,7 @@ def log_to_google_sheet(session_id, timestamp, ip_address, country, user_agent):
         st.exception(e)
 
 def get_logged_session_count():
-     """
+    """
     Counts timestamps that are not within 5 minutes of any other timestamp
     in the log (i.e., isolated sessions).
     """
