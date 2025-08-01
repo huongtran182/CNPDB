@@ -33,9 +33,9 @@ def log_to_google_sheet(session_id, timestamp, ip_address, country, user_agent):
         st.exception(e)
 
 def get_logged_session_count():
-    """
-    Retrieves and processes all records from the Google Sheet to count
-    unique visits based on a simple 5-minute time window.
+     """
+    Counts timestamps that are not within 5 minutes of any other timestamp
+    in the log (i.e., isolated sessions).
     """
     try:
         sheet = get_google_sheet_client()
@@ -43,31 +43,29 @@ def get_logged_session_count():
 
         if not all_records:
             return 0
-        
+
         df = pd.DataFrame(all_records)
         df['Timestamp'] = pd.to_datetime(df['Timestamp'])
-        
-        # Sort by timestamp to ensure chronological order
         df = df.sort_values(by='Timestamp').reset_index(drop=True)
-        
-        # Define the time window for deduplication
+
+        timestamps = df['Timestamp'].tolist()
         DEDUPLICATION_WINDOW_MINUTES = 5
-        
-        unique_timestamps = []
-        if not df.empty:
-            # The first entry is always counted as a unique visit
-            unique_timestamps.append(df.iloc[0]['Timestamp'])
-            
-            # Iterate through the rest of the DataFrame
-            for index, row in df.iloc[1:].iterrows():
-                # Get the timestamp of the last unique visit we kept
-                last_unique_timestamp = unique_timestamps[-1]
-                
-                # Check if the current timestamp is more than the window after the last unique one
-                if row['Timestamp'] - last_unique_timestamp > timedelta(minutes=DEDUPLICATION_WINDOW_MINUTES):
-                    unique_timestamps.append(row['Timestamp'])
-        
-        return len(unique_timestamps)
+
+        unique_count = 0
+
+        for i, current_time in enumerate(timestamps):
+            is_unique = True
+            for j, compare_time in enumerate(timestamps):
+                if i == j:
+                    continue
+                time_diff = abs((current_time - compare_time).total_seconds())
+                if time_diff < DEDUPLICATION_WINDOW_MINUTES * 60:
+                    is_unique = False
+                    break
+            if is_unique:
+                unique_count += 1
+
+        return unique_count
 
     except Exception as e:
         st.warning("Could not retrieve session count from Google Sheet.")
