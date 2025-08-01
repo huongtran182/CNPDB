@@ -93,9 +93,17 @@ def track_session():
     # Return count from CSV
 def get_logged_session_count():
     try:
-        df = pd.read_csv(SESSION_LOG_FILE)
+        df = pd.read_csv(
+            SESSION_LOG_FILE,
+            names=["SessionID", "Timestamp", "IP", "Country", "UserAgent"],
+            header=0,  # Skip the header row if already present
+            on_bad_lines='skip'  # Skip corrupted lines
+        )
         session_count = len(df)
     except FileNotFoundError:
+        session_count = 0
+    except Exception as e:
+        st.warning(f"Failed to read session log: {e}")
         session_count = 0
 
     return session_count
