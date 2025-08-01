@@ -1,15 +1,23 @@
-import streamlit as st
-from streamlit_cookies_controller import CookieController
 from datetime import datetime, timedelta
 import uuid
+import streamlit as st
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from streamlit_cookies_manager import EncryptedCookieManager
+import os
 
 SHEET_ID = "1-h6G1QKP9gIa7V9T9Ked_V3pusBYOQLgC922Wy7_Pvg"
 COOKIE_EXPIRY_MINUTES = 30
 
-# Initialize the CookieController
-cookie_controller = CookieController()
+# This should be at the very top of your script
+cookies = EncryptedCookieManager(
+    prefix="your_app_name/",  # Change this to a unique identifier for your app
+    password=os.environ.get("COOKIES_PASSWORD", "default_secret")
+)
+
+# This is the critical part to prevent the race condition
+if not cookies.ready():
+    st.stop()
 
 def get_google_sheet_client():
     # Your existing function
@@ -45,27 +53,16 @@ def get_logged_session_count():
     return session_count
 
 
-def track_session():
-    """A more robust function to track sessions."""
-
-    # 1. Initialize session state variables if they don't exist
-    if "session_logged" not in st.session_state:
-        st.session_state["session_logged"] = False
-    
-    # 2. Check if a session has already been logged. If so, do nothing.
-    if st.session_state["session_logged"]:
-        return get_logged_session_count()
-
-    # 3. Retrieve cookies
+def track_session_robust_with_manager():
     now = datetime.now()
-    session_cookie = cookie_controller.get("visitor_id")
-    last_visit_cookie = cookie_controller.get("last_visit")
-    
+    session_id_from_cookie = cookies.get("visitor_id")
+    last_visit_from_cookie = cookies.get("last_visit")
+
     should_log = False
-    
-    if session_cookie and last_visit_cookie:
+
+    if session_id_from_cookie and last_visit_from_cookie:
         try:
-            last_visit = datetime.fromisoformat(last_visit_cookie)
+            last_visit = datetime.fromisoformat(last_visit_from_cookie)
             if now - last_visit > timedelta(minutes=COOKIE_EXPIRY_MINUTES):
                 should_log = True
         except (ValueError, TypeError):
@@ -74,14 +71,13 @@ def track_session():
         should_log = True
 
     if should_log:
-        session_id = session_cookie or str(uuid.uuid4())
-        
-        # Set cookies and log to sheet
-        cookie_controller.set("visitor_id", session_id, expires=None)
-        cookie_controller.set("last_visit", now.isoformat(), expires=None)
-        log_to_google_sheet(session_id, now)
+        session_id = session_id_from_cookie or str(uuid.uuid4())
 
-        # Mark the session as logged in session_state to prevent re-logging
-        st.session_state["session_logged"] = True
+        # Set cookies using the manager's dictionary-like interface
+        cookies["visitor_id"] = session_id
+        cookies["last_visit"] = now.isoformat()
+        
+        # Log to the Google Sheet
+        log_to_google_sheet(session_id, now)
 
     return get_logged_session_count()
