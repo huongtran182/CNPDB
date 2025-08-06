@@ -440,10 +440,10 @@ full_fasta = "\n".join(
     if pd.notna(row['ID']) and pd.notna(row['Sequence'])
 )
 
-col1, col2, col3 = st.columns([1, 2, 1])
+col1, col2, col3 = st.columns([2, 1, 2])
 with col2:
     st.download_button(
-        label="Download Full cNPDB (FASTA)",
+        label="Download Full cNPDB Database (FASTA)",
         data=full_fasta,
         file_name="cNPDB_Full_Database.fasta",
         mime="text/plain",
@@ -451,9 +451,9 @@ with col2:
         key="download_full_fasta"
     )
 
-# --- Gray horizontal separator before title ---
+# --- Separator Line ---
 st.markdown("""
-<hr style='border: none; border-top: 1px solid #cccccc; margin: 20px 0 30px 0;'>
+<hr style='border: none; border-top: 2px solid #6a51a3; margin: 0px 30px;'>
 """, unsafe_allow_html=True)
 
 # --- Centered, spaced title ---
