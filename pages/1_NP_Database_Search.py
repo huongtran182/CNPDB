@@ -430,6 +430,32 @@ div.stCheckbox {
 </style>
 """, unsafe_allow_html=True)
 
+# --- Load Data ---
+df = pd.read_excel("Assets/20250801_cNPDB.xlsx")
+
+# --- FASTA DOWNLOAD: Full Database ---
+full_fasta = "\n".join(
+    f">{row['ID'].lstrip('>')}\n{row['Sequence']}" 
+    for _, row in df.iterrows() 
+    if pd.notna(row['ID']) and pd.notna(row['Sequence'])
+)
+
+col1, col2, col3 = st.columns([1, 2, 1])
+with col2:
+    st.download_button(
+        label="Download Full cNPDB (FASTA)",
+        data=full_fasta,
+        file_name="cNPDB_Full_Database.fasta",
+        mime="text/plain",
+        type="primary",
+        key="download_full_fasta"
+    )
+
+# --- Gray horizontal separator before title ---
+st.markdown("""
+<hr style='border: none; border-top: 1px solid #cccccc; margin: 20px 0 30px 0;'>
+""", unsafe_allow_html=True)
+
 # --- Centered, spaced title ---
 st.markdown(
     '<h2 class="custom-title">'
@@ -440,9 +466,6 @@ st.markdown(
 
 # Begin styled container
 st.markdown('<div class="main-search-container">', unsafe_allow_html=True)
-
-#--- Load Data ---
-df = pd.read_excel("Assets/20250801_cNPDB.xlsx")
 
 # Ensure numeric columns are numeric
 numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue', 'Instability Index Value', 'Isoelectric Point (pI)', 'Net Charge (pH 7.0)', 'Aliphatic Index', 'Boman Index']
