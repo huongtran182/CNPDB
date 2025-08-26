@@ -435,8 +435,8 @@ df = pd.read_excel("Assets/20250801_cNPDB.xlsx")
 
 # --- FASTA DOWNLOAD: Full Database ---
 full_fasta = "\n".join(
-    f">{row['ID'].lstrip('>')}\n{row['Sequence']}" 
-    for _, row in df.iterrows() 
+    f">{row['ID'].lstrip('>').replace(';', '_')}\n{row['Sequence']}"
+    for _, row in df.iterrows()
     if pd.notna(row['ID']) and pd.notna(row['Sequence'])
 )
 
@@ -815,7 +815,8 @@ if len(df_filtered) > 0:
                 st.warning("⚠️ Please select at least one peptide to download FASTA file.")
             else:
                 fasta_str = "\n".join(
-                    f">{row['ID'].lstrip('>')}\n{row['Sequence']}" for _, row in selected_rows.iterrows()
+                f">{row['ID'].lstrip('>').replace(';', '_')}\n{row['Sequence']}"
+                for _, row in selected_rows.iterrows()
                 )
                 st.download_button(
                     "Download FASTA File",
