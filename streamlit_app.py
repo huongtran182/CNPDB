@@ -3,22 +3,14 @@ from PIL import Image, ImageDraw
 import os
 import base64
 from io import BytesIO
-from sidebar import render_sidebar
 import streamlit.components.v1 as components
+from utils.session_tracker import track_session
+track_session()
 
-components.html("""
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VWK5FWH61R"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-VWK5FWH61R');
-</script>
-""", height=0)
 # Set page config
 st.set_page_config(layout="wide", initial_sidebar_state="expanded")
 
+from sidebar import render_sidebar
 render_sidebar()
 
 # Main content area
@@ -56,7 +48,7 @@ else:
     
 st.markdown("""
 ### TOOLS & FEATURES
-The current release of cNPDB (Version 1.0, 2025) contains **1364** curated neuropeptide entries from **29** crustacean species, organized into **55** neuropeptide families. Some representative species include *Homarus americanus*  (American Lobster), *Callinectes sapidus*  (Blue Crab), *Cancer borealis*  (Jonah Crab), *Carcinus maenas*  (European green crab), and *Panulirus interruptus*  (California spiny lobster). cNPDB offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
+The current release of cNPDB (Version 1.0, 2025) contains **1516** curated neuropeptide entries from **30** crustacean species, organized into **76** neuropeptide families. However, these numbers may change as new neuropeptides are reported in future studies and will be updated accordingly on the cNPDB website. Some representative species include *Homarus americanus*  (American Lobster), *Callinectes sapidus*  (Blue Crab), *Cancer borealis*  (Jonah Crab), *Carcinus maenas*  (European green crab), and *Panulirus interruptus*  (California spiny lobster). cNPDB offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
 - **Custom Search Engine** – Find neuropeptides by sequence, species, families, tissues, post-translational modifications (PTMs), and desired peptide physiological properties, with an option to download the resulted FASTA file.
 - **Sequence Alignment & Homology Search** – Identify conserved motifs and sequence similarities.
 - **Peptide Property Calculator** – Compute GRAVY scores, hydrophobicity, instability index, and other physiological properties.
@@ -107,20 +99,21 @@ Stay updated on the latest cNPDB developments by following us on our social medi
 - [Facebook](https://www.facebook.com/profile.php?id=100057624782828) and [LinkedIn](https://www.linkedin.com/company/lingjun-li-lab): Lingjun Li Lab
 """)
 
-#st.markdown("""
-#CITATION AND FUNDING
-#If you use cNPDB in your research, please cite: 
+st.markdown("""
+### CITATION AND FUNDING
 
-#<div style="margin-left: 1cm;">
-#    cNPDB: A centralized platform for crustacean neuropeptides featuring empirical data and predicted 3D structural insights. Tran, V.N.H.; Duong, T.U.; Fields, L.; Tourlouskis, K.; Beaver, M.; and Li, L. <b>Nucleic Acids Research</b>. 2025.
-#</div>
+If you use cNPDB in your research, please cite: 
 
-#<br>
+<div style="margin-left: 1cm;">
+    Tran, V.N.H.; Duong, T.U.; Fields, L.; Tourloukis, K.; Beaver, M.; and Li, L. cNPDB: A comprehensive empirical crustacean neuropeptide database. <b>bioRxiv</b>. 2025.
+</div>
 
-#**Funding:** This work is supported by in part by National Institutes of Health (NIH) through grants R01DK071801 and the Research Forward grant by University of Wisconsin - Madison Office of the Vice Chancellor for Research with funding from the Wisconsin Alumni Research Foundation. LF was supported in part by the National Institute of General Medical Sciences of the National Institutes of Health under Award Number T32GM008505 (Chemistry–Biology Interface Training Program), the 2024 Eli Lilly and Company/ACS Analytical Graduate Fellowship, and a predoctoral fellowship supported by the NIH, under Ruth L. Kirschstein National Research Service Award (NRSA) from the National Institutes of Health-General Medical Sciences F31GM156104. LL would like to acknowledge NIH grants R01AG052324, S10OD028473, and S10OD025084, as well as funding support from a Vilas Distinguished Achievement Professorship and Charles Melbourne Johnson Professorship with funding provided by the Wisconsin Alumni Research Foundation and University of Wisconsin-Madison School of Pharmacy. 
+<br>
 
-#For other tools developed by the Li Lab, please visit **[www.lilabs.org/resources](http://www.lilabs.org/resources)**
-#""", unsafe_allow_html=True)
+**Funding:** This work is supported by in part by National Institutes of Health (NIH) through grants R01DK071801 and the Research Forward grant by University of Wisconsin - Madison Office of the Vice Chancellor for Research with funding from the Wisconsin Alumni Research Foundation. LF was supported in part by the National Institute of General Medical Sciences of the National Institutes of Health under Award Number T32GM008505 (Chemistry–Biology Interface Training Program), the 2024 Eli Lilly and Company/ACS Analytical Graduate Fellowship, and a predoctoral fellowship supported by the NIH, under Ruth L. Kirschstein National Research Service Award (NRSA) from the National Institutes of Health-General Medical Sciences F31GM156104. LL would like to acknowledge NIH grants R01AG052324, S10OD028473, and S10OD025084, as well as funding support from a Vilas Distinguished Achievement Professorship and Charles Melbourne Johnson Professorship with funding provided by the Wisconsin Alumni Research Foundation and University of Wisconsin-Madison School of Pharmacy. 
+
+For other tools developed by the Li Lab, please visit **[www.lilabs.org/resources](http://www.lilabs.org/resources)**
+""", unsafe_allow_html=True)
 
 st.markdown("""
 ### COPYRIGHTS

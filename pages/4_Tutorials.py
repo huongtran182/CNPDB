@@ -3,6 +3,10 @@ from sidebar import render_sidebar
 import os
 import base64
 
+from utils.session_tracker import track_session
+track_session()
+
+
 st.set_page_config(
     page_title="Tutorials",
     layout="wide",

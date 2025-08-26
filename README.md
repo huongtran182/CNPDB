@@ -12,7 +12,7 @@ Despite their significance, crustacean neuropeptides remain underrepresented in 
 
 ## TOOLS AND FEATURES
 
-The current release of cNPDB (Version 1.0, 2025) contains 1239 curated neuropeptide entries from 28 crustacean species, organized into 46 neuropeptide families. Some representative species include Homarus americanus (American Lobster), Callinectes sapidus (Blue Crab), Cancer borealis (Jonah Crab), Carcinus maenas (European green crab), and Panulirus interruptus (California spiny lobster). cNPDB offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
+The current release of cNPDB (Version 1.0, 2025) contains 1516 curated neuropeptide entries from 30 crustacean species, organized into 76 neuropeptide families. However, these numbers may change as new neuropeptides are reported in future studies and will be updated accordingly on the cNPDB website. Some representative species include Homarus americanus (American Lobster), Callinectes sapidus (Blue Crab), Cancer borealis (Jonah Crab), Carcinus maenas (European green crab), and Panulirus interruptus (California spiny lobster). cNPDB offers various tools that facilitate functional investigation, evolutionary analysis, and synthetic peptide design:
 
 - **Custom Search Engine** – Find neuropeptides by sequence, species, families, tissues, post-translational modifications (PTMs), and desired peptide physiological properties, with an option to download the resulted FASTA file.
 - **Sequence Alignment & Homology Search** – Identify conserved motifs and sequence similarities.
@@ -63,16 +63,14 @@ Stay updated on the latest cNPDB developments by following us on our social medi
 - [**X**](https://x.com/LiResearch) and [**BlueSky**](https://bsky.app/profile/liresearch.bsky.social): @LiResearch
 - [**Facebook**](https://www.facebook.com/profile.php?id=100057624782828) and [**LinkedIn**](https://www.linkedin.com/company/lingjun-li-lab): Lingjun Li Lab
 
-<!--
 ## CITATION AND FUNDING
 If you use cNPDB in your research, please cite:
 
-cNPDB: A centralized platform for crustacean neuropeptides featuring empirical data and predicted 3D structural insights. Tran, V.N.H.; Duong, T.U.; Fields, L.; Tourlouskis, K.; Beaver, M.; and Li, L. Nucleic Acids Research. 2025.
+Tran, V.N.H.; Duong, T.U.; Fields, L.; Tourloukis, K.; Beaver, M.; and Li, L. cNPDB: A comprehensive empirical crustacean neuropeptide database. bioRxiv. 2025.
 
 **Funding:** This work is supported by in part by National Institutes of Health (NIH) through grants R01DK071801 and the Research Forward grant by University of Wisconsin - Madison Office of the Vice Chancellor for Research with funding from the Wisconsin Alumni Research Foundation. LF was supported in part by the National Institute of General Medical Sciences of the National Institutes of Health under Award Number T32GM008505 (Chemistry–Biology Interface Training Program), the 2024 Eli Lilly and Company/ACS Analytical Graduate Fellowship, and a predoctoral fellowship supported by the NIH, under Ruth L. Kirschstein National Research Service Award (NRSA) from the National Institutes of Health-General Medical Sciences F31GM156104. LL would like to acknowledge NIH grants R01AG052324, S10OD028473, and S10OD025084, as well as funding support from a Vilas Distinguished Achievement Professorship and Charles Melbourne Johnson Professorship with funding provided by the Wisconsin Alumni Research Foundation and University of Wisconsin-Madison School of Pharmacy.
 
 For other tools developed by the Li Lab, please visit [**www.lilabs.org/resources**](https://www.lilabs.org/resources).
--->
 
 ## COPYRIGHTS
 Copyright 2025 Department of Pharmaceutical Sciences, University of Wisconsin-Madison, **All Rights Reserved**

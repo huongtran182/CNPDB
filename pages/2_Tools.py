@@ -7,6 +7,10 @@ from io import StringIO
 from Bio.Align import substitution_matrices
 import re
 
+from utils.session_tracker import track_session
+track_session()
+
+
 st.set_page_config(
     page_title="Tools",
     layout="wide",
@@ -163,7 +167,7 @@ Peptide Alignment allows users to align two peptide sequences of interest or aga
 # Load peptide sequence database
 @st.cache_data
 def load_data():
-    return pd.read_excel("Assets/20250713_cNPDB.xlsx")
+    return pd.read_excel("Assets/20250801_cNPDB.xlsx")
 
 df = load_data()
 
@@ -602,7 +606,7 @@ if run_clicked:
 
 # @st.cache_data
 # def load_db():
-    # return pd.read_excel("Assets/20250713_cNPDB.xlsx", sheet_name="Sheet 1")
+    # return pd.read_excel("Assets/20250801_cNPDB.xlsx", sheet_name="Sheet 1")
 
 # df = load_db()
 

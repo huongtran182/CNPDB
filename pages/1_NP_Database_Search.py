@@ -12,6 +12,10 @@ import io
 import zipfile
 import mimetypes
 
+from utils.session_tracker import track_session
+track_session()
+
+
 st.set_page_config(
     page_title="NP Database search",
     layout="wide",
@@ -426,6 +430,32 @@ div.stCheckbox {
 </style>
 """, unsafe_allow_html=True)
 
+# --- Load Data ---
+df = pd.read_excel("Assets/20250801_cNPDB.xlsx")
+
+# --- FASTA DOWNLOAD: Full Database ---
+full_fasta = "\n".join(
+    f">{row['ID'].lstrip('>')}\n{row['Sequence']}" 
+    for _, row in df.iterrows() 
+    if pd.notna(row['ID']) and pd.notna(row['Sequence'])
+)
+
+col1, col2, col3 = st.columns([1, 1, 1])
+with col2:
+    st.download_button(
+        label="Download Full cNPDB Database (FASTA)",
+        data=full_fasta,
+        file_name="cNPDB_Full_Database.fasta",
+        mime="text/plain",
+        type="primary",
+        key="download_full_fasta"
+    )
+
+# --- Separator Line ---
+st.markdown("""
+<hr style='border: none; border-top: 2px solid #6a51a3; margin: 0px 30px;'>
+""", unsafe_allow_html=True)
+
 # --- Centered, spaced title ---
 st.markdown(
     '<h2 class="custom-title">'
@@ -436,9 +466,6 @@ st.markdown(
 
 # Begin styled container
 st.markdown('<div class="main-search-container">', unsafe_allow_html=True)
-
-#--- Load Data ---
-df = pd.read_excel("Assets/20250713_cNPDB.xlsx")
 
 # Ensure numeric columns are numeric
 numeric_cols = ['Monoisotopic Mass', 'Length', 'GRAVY', '% Hydrophobic Residue', 'Instability Index Value', 'Isoelectric Point (pI)', 'Net Charge (pH 7.0)', 'Aliphatic Index', 'Boman Index']
@@ -465,10 +492,10 @@ with col_filter:
     st.markdown('<div class="fill-height">', unsafe_allow_html=True)
 
     st.markdown('<div class="section-title">Monoisotopic mass (m/z)</div>', unsafe_allow_html=True)
-    mono_mass_range = st.slider("", 200.0, 14000.0, (200.0, 14000.0), label_visibility="collapsed")
+    mono_mass_range = st.slider("", 200.0, 16000.0, (200.0, 16000.0), label_visibility="collapsed")
 
     st.markdown('<div class="section-title">Length (amino acids)</div>', unsafe_allow_html=True)
-    length_range = st.slider("", 2, 130, (2, 130), label_visibility="collapsed")
+    length_range = st.slider("", 2, 150, (2, 150), label_visibility="collapsed")
 
     st.markdown('<div class="section-title">GRAVY Score</div>', unsafe_allow_html=True)
     gravy_range = st.slider("", -5.0, 5.0, (-5.0, 5.0), label_visibility="collapsed")
@@ -628,8 +655,8 @@ if technique_selected:
 #    - They're not at their default values, OR
 #    - No right-side filters are active
 default_ranges = {
-    'Monoisotopic Mass': (200.0, 14000.0),
-    'Length': (2, 130),
+    'Monoisotopic Mass': (200.0, 16000.0),
+    'Length': (2, 150),
     'GRAVY': (-5.0, 5.0),
     '% Hydrophobic Residue': (-1, 100),
     'Instability Index Value': (-100, 250),
